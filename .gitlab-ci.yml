@@ -6,6 +6,8 @@ stages:
 
 deploy:
   stage: deploy
+  tags:
+    - deploy
   script:
     - cd $ROOT_PATH
     - docker-compose down
