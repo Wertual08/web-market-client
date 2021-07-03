@@ -6,4 +6,6 @@ deploy:
   tags:
     - deploy
   script:
+    - telegram-send "Web service deployment started..."
     - docker-compose up -d --build
+    - telegram-send "Web service successfully deployed."
