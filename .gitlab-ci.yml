@@ -2,20 +2,11 @@ stages:
   - deploy
 
 before_script:
-  - echo "Current branch -" $CI_COMMIT_REF_NAME
-  - ls
-  - pwd 
-  - docker ps
+  - docker-compose down
 
 deploy:
   stage: deploy
   tags:
     - deploy
   script:
-    - pwd
-    - echo $USER
-    - ls
-    #- cd $ROOT_PATH
-    - docker-compose down
-    - git pull origin master
-    - docker-compose up -d
+    - docker-compose up -d --build
