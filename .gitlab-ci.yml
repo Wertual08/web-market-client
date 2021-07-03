@@ -1,9 +1,10 @@
 stages:
+  - start
   - deploy
-  - notify
+  - finish
 
 notify_start:
-  stage: notify
+  stage: start
   tags:
     - dev-shell-runner
   script:
@@ -17,14 +18,14 @@ deploy:
     - docker-compose up -d --build
 
 notify_success:
-  stage: notify
+  stage: finish
   tags:
     - dev-shell-runner
   script:
     - telegram-send "Web service successfully deployed."
 
 notify_error:
-  stage: notify
+  stage: finish
   tags:
     - dev-shell-runner
   script:
