@@ -1,0 +1,13 @@
+variables:
+  ROOT_PATH: "/home/admin/korea-bus/api"
+
+stages:
+  deploy
+
+deploy:
+  stage: deploy
+  script:
+    - cd $ROOT_PATH
+    - docker-compose down
+    - git pull
+    - docker-compose up
