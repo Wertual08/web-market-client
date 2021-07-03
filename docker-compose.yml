@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+    web:
+        container_name: kb-web
+        restart: unless-stopped
+        build:
+            context: ./project
+            dockerfile: Dockerfile
+        networks:
+            - services-network
+
+            
+networks:
+    services-network:
+        name: kb-services-network
