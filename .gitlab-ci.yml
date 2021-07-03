@@ -15,7 +15,6 @@ deploy:
   tags:
     - dev-shell-runner
   script:
-    - supershit
     - docker-compose up -d --build
 
 notify_success:
@@ -23,12 +22,12 @@ notify_success:
   tags:
     - dev-shell-runner
   script:
-    - telegram-send "Web service successfully deployed."
+    - telegram-send "✅ Web service successfully deployed."
 
 notify_error:
   stage: finish
   tags:
     - dev-shell-runner
   script:
-    - telegram-send "Web service fucked up."
+    - telegram-send "❌ Web service fucked up."
   when: on_failure
