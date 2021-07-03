@@ -4,6 +4,10 @@ variables:
 stages:
   - deploy
 
+before_script:
+  # Prepare app environment
+  - echo "Current branch -" $CI_COMMIT_REF_NAME
+
 deploy:
   stage: deploy
   tags:
