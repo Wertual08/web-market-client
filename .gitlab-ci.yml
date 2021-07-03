@@ -12,6 +12,7 @@ deploy:
   tags:
     - deploy
   script:
+    - echo $USER
     - cd $ROOT_PATH
     - docker-compose down
     - git pull origin master
