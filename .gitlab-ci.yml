@@ -1,11 +1,11 @@
-variables:
-  ROOT_PATH: "/home/admin/korea-bus/web"
-
 stages:
   - deploy
 
 before_script:
   - echo "Current branch -" $CI_COMMIT_REF_NAME
+  - ls
+  - pwd 
+  - docker ps
 
 deploy:
   stage: deploy
