@@ -1,9 +1,6 @@
 stages:
   - deploy
 
-before_script:
-  - docker-compose down
-
 deploy:
   stage: deploy
   tags:
