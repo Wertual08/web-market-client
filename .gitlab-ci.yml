@@ -12,6 +12,7 @@ deploy:
   tags:
     - deploy
   script:
+    - pwd
     - echo $USER
     - cd $ROOT_PATH
     - docker-compose down
