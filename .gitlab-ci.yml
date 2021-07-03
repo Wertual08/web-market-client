@@ -1,11 +1,10 @@
 variables:
-  ROOT_PATH: "/home/admin/korea-bus/api"
+  ROOT_PATH: "/home/admin/korea-bus/web"
 
 stages:
   - deploy
 
 before_script:
-  # Prepare app environment
   - echo "Current branch -" $CI_COMMIT_REF_NAME
 
 deploy:
