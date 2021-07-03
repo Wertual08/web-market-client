@@ -11,11 +11,12 @@ notify_start:
   tags:
     - dev-shell-runner
   script:
-    - telegram-send "Web service deployment started...
-    - Branch: $CI_COMMIT_BRANCH
-    - User: $CI_COMMIT_AUTHOR
-    - Message: $CI_COMMIT_MESSAGE
-    - "
+    - >
+      telegram-send "Web service deployment started...
+      Branch: $CI_COMMIT_BRANCH
+      User: $CI_COMMIT_AUTHOR
+      Message: $CI_COMMIT_MESSAGE
+      "
 
 deploy:
   stage: deploy
