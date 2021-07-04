@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Go fuck yourself"/>
+  <HelloWorld msg="Go fuck yourself, ugly bastard"/>
 </template>
 
 <script>
