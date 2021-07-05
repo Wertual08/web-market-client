@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Go fuck yourself, ugly bastard"/>
+  <HelloWorld msg="У коли не стоит, потому что ему не дают"/>
 </template>
 
 <script>
