@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="У Бекзода не стоит, потому что ему не дают"/>
+  <HelloWorld msg="У Коли не стоит, потому что ему не дают"/>
 </template>
 
 <script>
