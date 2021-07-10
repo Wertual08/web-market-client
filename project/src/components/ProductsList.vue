@@ -31,9 +31,8 @@ export default {
     };
   },
   mounted () {
-    axios.get('http://84.252.141.174/api/products')
+    axios.get('/api/products')
       .then(response => (this.products = response))
-  //.then(response => {this.nutrients = response.data})
   // [
   //   { Id: 121, Name: 'Murphy', Description: 'Go' },
   //   { Id: 666, Name: 'Sword', Description: 'Fuck' },
