@@ -4,9 +4,9 @@
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
+          <th>Id</th>
           <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody>
@@ -25,13 +25,8 @@ import axios from 'axios'
 
 export default {
   data() {
-    //console.log(axios.get('http://84.252.141.174/api/products'));
     return {
-      products: [
-        { Id: 121, Name: 'Murphy', Description: 'Go' },
-        { Id: 666, Name: 'Sword', Description: 'Fuck' },
-        { Id: 531, Name: 'Shit', Description: 'Yourself' },
-      ]
+      products: null
     };
   },
   mounted () {
