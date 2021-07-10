@@ -1,15 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="У Коли не стоит, потому что ему не дают"/>
+  <HelloWorld msg="The fucking ugly list of products (there... below)"/>
+  <ProductsList/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import ProductsList from './components/ProductsList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    ProductsList
   }
 }
 </script>
