@@ -27,17 +27,18 @@ export default {
   data() {
     //console.log(axios.get('http://84.252.141.174/api/products'));
     return {
-      products: null
+      products: [
+        { Id: 121, Name: 'Murphy', Description: 'Go' },
+        { Id: 666, Name: 'Sword', Description: 'Fuck' },
+        { Id: 531, Name: 'Shit', Description: 'Yourself' },
+      ]
     };
   },
   mounted () {
     axios.get('/api/products')
-      .then(response => (this.products = response))
-  // [
-  //   { Id: 121, Name: 'Murphy', Description: 'Go' },
-  //   { Id: 666, Name: 'Sword', Description: 'Fuck' },
-  //   { Id: 531, Name: 'Shit', Description: 'Yourself' },
-  // ]
+      .then(response => {
+        this.products = response.data;
+      })
   }
 }
 </script>
