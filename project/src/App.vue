@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="The fucking ugly list of products (there... below)"/>
+  <HelloWorld msg="The very fucking ugly list of products (there... below)"/>
   <ProductsList/>
 </template>
 
