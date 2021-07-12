@@ -2,17 +2,20 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="The very fucking ugly list of products (there... below)"/>
   <ProductsList/>
+  <Dick/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import ProductsList from './components/ProductsList.vue'
+import Dick from './components/Dick.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    ProductsList
+    ProductsList,
+    Dick
   }
 }
 </script>
