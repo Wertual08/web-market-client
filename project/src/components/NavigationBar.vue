@@ -13,7 +13,7 @@
             Полезная информация
         </button>
         <button>
-            Контакты
+            Контактыы
         </button>
     </div>
 </template>
