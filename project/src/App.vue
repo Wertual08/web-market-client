@@ -1,21 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="The very fucking ugly list of products (there... below)"/>
-  <ProductsList/>
-  <Dick/>
+  <div id='app'>
+    <Header/>
+    <Container/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import ProductsList from './components/ProductsList.vue'
-import Dick from './components/Dick.vue'
+import Header from './components/Header.vue'
+import Container from './components/Container.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    ProductsList,
-    Dick
+    Header,
+    Container
   }
 }
 </script>
@@ -27,6 +25,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
+  padding: 0;
 }
 </style>
