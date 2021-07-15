@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="navigationBar">
         <button>
             Главная
         </button>
@@ -24,5 +24,12 @@
 
 
 <style scoped>
-    
+    #navigationBar {
+        background-color: lightslategray;
+    }
+
+    button {
+        height: 35px;
+        width: 160px;
+    }
 </style>

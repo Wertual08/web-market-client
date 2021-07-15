@@ -1,8 +1,7 @@
 <template>
-    <div>
+    <div id="header">
         <TopInfo/>
         <NavigationBar/>
-
     </div>
 </template>
 
@@ -20,9 +19,9 @@
 
 </script>
 
-<style scopped>
-    * {
-        margin: 0;
-        padding: 0;
+<style scoped>
+    #header {
+        background-color: lightcyan;
+        padding: 8px 60px;
     }
 </style>
