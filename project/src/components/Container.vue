@@ -1,14 +1,11 @@
 <template>
     <div id="container">
-        kajhslkajhfdlakjh
+        work in progress
     </div>
 </template>
 
 <style>
     #container {
-        width: 80%;
-        min-width: 1200px;
-        border: blue;
-        border-width: 4px;
-    }
+        font: bold 10em "Fira Sans", serif;
+           }
 </style>
