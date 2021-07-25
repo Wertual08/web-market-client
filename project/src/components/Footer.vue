@@ -1,4 +1,4 @@
-<template>
+<template class = 'footer'>
     <div class = 'back'>
     <div class="contact"> 
 		<p class="phone">8 (800) 100-09-08</p>
@@ -35,8 +35,7 @@
     .back{
         height: 60px;
         font: bold 1em "Fira Sans", serif;
-        position: fixed; 
-        left: 0; bottom: 0;  /* Левый нижний угол */
+
         padding: 10px; /* Поля вокруг текста */
         background: #030b3a; /* Цвет фона */
         width: 100%; /* Ширина слоя */
@@ -62,5 +61,9 @@
     }
     a{
         color: rgb(0, 189, 247);
+    }
+    .footer{
+        position: relative; 
+        left: 0; bottom: 0;
     }
 </style>
