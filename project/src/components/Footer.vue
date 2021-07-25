@@ -30,6 +30,7 @@
         margin-inline: 10px;
         color: rgb(0, 0, 0);
         background-color: rgb(0, 225, 255);
+        margin-top: 1ex;
     }
     .back{
         height: 60px;
@@ -50,12 +51,13 @@
     }
     .phone{
         color: rgb(0, 189, 247);
-        margin-top: 1ex;
+        margin-top: 0ex;
         font:  1em "Fira Sans", serif;
+        margin-bottom: 1ex;
     }
     .mail{
         
-        margin-top: 1ex;
+        margin-top: 4ex;
         font:  1em "Fira Sans", serif;
     }
     a{
