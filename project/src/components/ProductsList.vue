@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="box">
     <h3 class="p-3 text-center">Vue.js - Display a list of products with v-for</h3>
     <table class="table table-striped table-bordered">
       <thead>
