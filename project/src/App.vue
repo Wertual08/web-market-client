@@ -3,6 +3,19 @@
     <Header/>
     <Container/>
     <Footer/>
+    <modal-window ref="modalTwo">
+        <template v-slot:title>
+            <h3 class="modal-title">Добавить отзыв</h3>
+        </template>
+        <template v-slot:body>
+            <textarea class="modal-textarea"                   
+                      placeholder="Добавьте отзыв">
+            </textarea>
+        </template>
+        <template v-slot:footer>
+            <button class="modal-footer__button" @click="sendDataFunction">Отправить</button>
+        </template>
+    </modal-window>
   </div>
 </template>
 

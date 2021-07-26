@@ -3,16 +3,19 @@
         <div class="modal">
             <div class="modal-close" @click="closeModal">&#10006;</div>
             <slot name="title">
-                <h3 class="modal-title">Заголовок</h3>
+                <h3 class="modal-title">Ввведите данные пользователя</h3>
             </slot>
             <slot name="body">
                 <div class="modal-content">
-                    Дефолтный контент модального окна
+                    <div>Введите никнейм:</div>
+                    <input v-model="message_user" placeholder="username"/>
+                    <div>Введите пароль:</div>
+                    <input v-model="message_password" placeholder="password"/>
                 </div>
             </slot>
             <slot name="footer">
                 <div class="modal-footer">
-                    <button class="modal-footer__button" @click="closeModal">
+                    <button class="modal-footer__button" v-on:click="sendReq">
                         Ок
                     </button>
                 </div>
@@ -22,19 +25,40 @@
 </template>
  
 <script>
-    export default {
-        name: "ModalWindow",
-        data: function () {
-            return {
-                show: false
+import axios from 'axios'
+
+export default {
+    name: "ModalWindow",
+    data()  {
+        return {
+            show: false,
+            message_user: 'ffff',
+            submitted: false,
+            message_password: ''
+        }
+    },
+    methods: {
+        closeModal: function () {
+            this.show = false
+            
+        }, 
+        sendReq: function(){
+            let body = {
+                Login: this.message_user,
+                Password: this.message_password
             }
-        },
-        methods: {
-            closeModal: function () {
-                this.show = false
-            }
+            let json = JSON.stringify(body)
+
+            axios.post('/api/auth/login',json)
+                .then(Response => {
+                this.products = Response.data;
+                })
+            console.log(body)
         }
     }
+}   
+
+
 </script>
  
 <style scoped>
@@ -73,6 +97,7 @@
     }
     .modal-title {
         color: #0971c7;
+        margin-bottom: 20px;
     }
     .modal-content {
         margin-bottom: 20px;
