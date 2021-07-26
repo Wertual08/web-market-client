@@ -13,15 +13,20 @@
             Корзина
         </div>
         <div id="login" class="topBlock">
-            <p id="sign-in">
-                Войти
-            </p>
-            <p id="sign-up">
-                Регистрация
-            </p>
+            <NotSignedLoginPanel/>
         </div>
     </div>
 </template>
+
+<script>
+    import NotSignedLoginPanel from '@/components/NotSignedLoginPanel.vue'
+
+    export default {
+        components: {
+            NotSignedLoginPanel
+        }
+    }
+</script>
 
 <style scoped>
     #topInfo {
@@ -34,15 +39,7 @@
     .topBlock {
         height: 60px;
         padding: 0px 20px;
-    }
-
-    #sign-in {
-        display: inline-block;
-    }
-
-    #sign-up {
-        display: inline-block;
-    }    
+    } 
 
     img {
         width: 50px;

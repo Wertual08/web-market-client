@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import ProductsList from './ProductsList.vue'
+    import ProductsList from './ProductsList.vue'
 
-export default {
-    components: {
-        ProductsList
+    export default {
+        components: {
+            ProductsList
+        }
     }
-}
 </script>
 
 

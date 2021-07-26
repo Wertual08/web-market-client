@@ -6,7 +6,6 @@
 </template>
 
 <script>
-
     import TopInfo from '@/components/TopInfo.vue'
     import NavigationBar from '@/components/NavigationBar.vue'
 
@@ -16,7 +15,6 @@
             NavigationBar
         }
     }
-
 </script>
 
 <style scoped>
