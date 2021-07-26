@@ -3,6 +3,14 @@
     <Header/>
     <Container/>
     <Footer/>
+    <div class="page">
+ 
+        <button сlass="show-modal-button" @click="showModal">Показать модальное окно</button>
+ 
+        <modal-window ref="modal"></modal-window>
+        
+    </div>
+ 
   </div>
 </template>
 
@@ -10,14 +18,24 @@
 import Header from './components/Header.vue'
 import Container from './components/Container.vue'
 import Footer from './components/Footer.vue'
+import ModalWindow from './components/modal-window.vue'
+
 
 export default {
   name: 'App',
   components: {
     Header,
     Container,
-    Footer
-  }
+    Footer,
+    ModalWindow
+    
+  },
+  methods: {
+    showModal: function () {
+        this.$refs.modal.show = true
+    }
+},
+
 }
 </script>
 
@@ -31,4 +49,13 @@ export default {
   margin: 0;
   padding: 0;
 }
+
+ 
+
 </style>
+
+
+ 
+
+
+ 
