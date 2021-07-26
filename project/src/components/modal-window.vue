@@ -36,9 +36,8 @@
         }
     }
 </script>
- 
-<style scoped lang = 'scss'>
 
+<style scoped>
     .modal-shadow {
         position: absolute;
         top: 0;
@@ -47,7 +46,6 @@
         width: 100%;
         background: rgba(0, 0, 0, 0.39);
     }
- 
     .modal {
         background: #fff;
         border-radius: 8px;
@@ -58,42 +56,36 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
- 
-        &-close {
-            border-radius: 50%;
-            color: #fff;
-            background: #2a4cc7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 7px;
-            right: 7px;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-        }
- 
-        &-title {
-            color: #0971c7;
-        }
- 
-        &-content {
-            margin-bottom: 20px
-        }
- 
-        &-footer {
-            &__button {
-                background-color: #0971c7;
-                color: #fff;
-                border: none;
-                text-align: center;
-                padding: 8px;
-                font-size: 17px;
-                font-weight: 500;
-                border-radius: 8px;
-                min-width: 150px;
-            }
-        }
+    }
+    .modal-close {
+        border-radius: 50%;
+        color: #fff;
+        background: #2a4cc7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+    .modal-title {
+        color: #0971c7;
+    }
+    .modal-content {
+        margin-bottom: 20px;
+    }
+    .modal-footer__button {
+        background-color: #0971c7;
+        color: #fff;
+        border: none;
+        text-align: center;
+        padding: 8px;
+        font-size: 17px;
+        font-weight: 500;
+        border-radius: 8px;
+        min-width: 150px;
     }
 </style>
