@@ -5,13 +5,13 @@
             <modal-window ref="modal"></modal-window>
         </p>
         <p id="sign-up">
-            Регистрация
+            <button>Регистрация</button>
         </p>
     </div>
 </template>
 
 <script>
-    import ModalWindow from '@/components/modal-window.vue'
+    import ModalWindow from '@/components/ModalWindow.vue'
 
     export default {
         components: {
