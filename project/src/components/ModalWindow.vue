@@ -10,13 +10,14 @@
                     <div>Введите никнейм:</div>
                     <input v-model="message_user" placeholder="username"/>
                     <div>Введите пароль:</div>
-                    <input v-model="message_password" placeholder="password"/>
+                    <input v-model="message_password" placeholder="password" type="password"/>
+                    <div v-if="showError" class="wrong-login">Неверный логин или пароль</div>
                 </div>
             </slot>
             <slot name="footer">
                 <div class="modal-footer">
                     <button class="modal-footer__button" v-on:click="sendReq">
-                        Ок
+                        Войти
                     </button>
                 </div>
             </slot>
@@ -32,15 +33,17 @@ export default {
     data()  {
         return {
             show: false,
-            message_user: 'ffff',
+            showError: false,
+            message_user: '',
+            message_password: '',
             submitted: false,
-            message_password: ''
+            refreshToken: '',
+            accessTokes: ''
         }
     },
     methods: {
         closeModal: function () {
             this.show = false
-            
         }, 
         sendReq: function(){
             let body = {
@@ -48,17 +51,23 @@ export default {
                 Password: this.message_password
             }
             let json = JSON.stringify(body)
-
-            axios.post('/api/auth/login',json)
-                .then(Response => {
-                this.products = Response.data;
-                })
-            console.log(body)
-        }
+            axios.post('/api/auth/login',json, {
+                headers: {'Content-Type': 'application/json'}})
+                    .then(Response => {
+                        this.refreshToken = Response.data.RefreshToken
+                        this.accessTokes = Response.data.AccessTokes
+                        // тут закрываем модальное окно и обновляем TopInfo
+                        this.show = false
+                        this.message_user = ''
+                        this.message_password = ''
+                    }).catch(err => {
+                        console.log(err)
+                        this.showError = true
+                        this.message_password = ''
+                    })
+        },
     }
-}   
-
-
+}
 </script>
  
 <style scoped>

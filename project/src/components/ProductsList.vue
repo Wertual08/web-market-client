@@ -53,11 +53,10 @@ export default {
     margin: 10px;
   }
 
-  .prodDesc{
-  
-  text-overflow: ellipsis;
-  height: 38px;
-  overflow: hidden;
+  .prodDesc{  
+    text-overflow: ellipsis;
+    height: 38px;
+    overflow: hidden;
   }
 
   img{
@@ -77,6 +76,8 @@ export default {
     margin-bottom: 20px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-
+    text-overflow: ellipsis;
+    height: 38px;
+    overflow: hidden;
   }
 </style>
