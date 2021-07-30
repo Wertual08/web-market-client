@@ -59,9 +59,9 @@ export default {
                         this.refreshToken = Response.data.RefreshToken
                         this.accessTokes = Response.data.AccessTokes
                         // тут закрываем модальное окно и обновляем TopInfo
-                        this.closeModal()
                         this.message_password = ''
                         this.Flag = true
+                        this.closeModal()
 
                     }).catch(err => {
                         console.log(err)

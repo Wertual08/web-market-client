@@ -6,7 +6,7 @@
 
         </p>
         <p id="sign-up">
-            <button  onclick ="Registered" >Регистрация</button>
+            <button  @click ="Registered" >Регистрация</button>
         </p>
     </div>
     
