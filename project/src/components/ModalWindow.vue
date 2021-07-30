@@ -38,12 +38,14 @@ export default {
             message_password: '',
             submitted: false,
             refreshToken: '',
-            accessTokes: ''
+            accessTokes: '',
+            Flag: false
         }
     },
     methods: {
         closeModal: function () {
             this.show = false
+            this.closed()
         }, 
         sendReq: function(){
             let body = {
@@ -57,14 +59,16 @@ export default {
                         this.refreshToken = Response.data.RefreshToken
                         this.accessTokes = Response.data.AccessTokes
                         // тут закрываем модальное окно и обновляем TopInfo
-                        this.show = false
-                        this.message_user = ''
+                        this.closeModal()
                         this.message_password = ''
+                        this.Flag = true
+
                     }).catch(err => {
                         console.log(err)
                         this.showError = true
                         this.message_password = ''
                     })
+            
         },
     }
 }
