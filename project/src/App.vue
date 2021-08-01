@@ -1,21 +1,8 @@
 <template>
   <div id='app'>
     <Header/>
-    <Container/>
+    <component :is="dynamicComponent"></component> 
     <Footer/>
-    <modal-window ref="modalTwo">
-        <template v-slot:title>
-            <h3 class="modal-title">Добавить отзыв</h3>
-        </template>
-        <template v-slot:body>
-            <textarea class="modal-textarea"                   
-                      placeholder="Добавьте отзыв">
-            </textarea>
-        </template>
-        <template v-slot:footer>
-            <button class="modal-footer__button" @click="sendDataFunction">Отправить</button>
-        </template>
-    </modal-window>
   </div>
 </template>
 
@@ -23,14 +10,24 @@
   import Header from './components/Header.vue'
   import Container from './components/Container.vue'
   import Footer from './components/Footer.vue'
+  import Container2 from './components/Container2.vue'
 
   export default {
     name: 'App',
     components: {
       Header,
-      Container,
-      Footer
-    }
+      Footer,
+      
+    },
+    computed: {     
+      dynamicComponent() {       
+        if(Math.random() > 0.5) {         
+          return Container;       
+        } else {         
+          return Container2;       
+        }
+      }
+    } 
   }
 </script>
 
