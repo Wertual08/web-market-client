@@ -5,16 +5,17 @@
   </div>
 </template>
 
-<script>
-import TopInfo from "@/components/TopInfo.vue";
-import NavigationBar from "@/components/NavigationBar.vue";
+<script lang="ts">
+import { defineComponent } from 'vue'
+import TopInfo from "@/components/TopInfo.vue"
+import NavigationBar from "@/components/NavigationBar.vue"
 
-export default {
+export default defineComponent({
   components: {
     TopInfo,
     NavigationBar,
   },
-};
+})
 </script>
 
 <style scoped>

@@ -31,11 +31,11 @@
   </div>
 </template>
  
-<script>
-import axios from "axios";
+<script lang="ts">
+import { defineComponent } from 'vue'
+import axios from "axios"
 
-export default {
-  name: "ModalWindow",
+export default defineComponent({
   data() {
     return {
       show: false,
@@ -48,10 +48,15 @@ export default {
       Flag: false,
     };
   },
+
+  emits: [
+    'closed'
+  ],
+
   methods: {
     closeModal: function () {
       this.show = false;
-      this.closed();
+      this.$emit('closed');
     },
     sendReq: function () {
       let body = {
@@ -78,7 +83,7 @@ export default {
         });
     },
   },
-};
+})
 </script>
  
 <style scoped>

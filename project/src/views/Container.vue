@@ -2,25 +2,27 @@
   <div id="container">
     <div class="work_in_progress">work in progress</div>
     <div class="prod_list">
-      <ProductsList @onSwitch="hui" />
+      <ProductsList @load-product="$emit('load-product', $event)" />
     </div>
   </div>
 </template>
 
-<script>
-import ProductsList from "./ProductsList.vue";
+<script lang="ts">
+import { defineComponent } from 'vue'
+import ProductsList from "@/components/ProductsList.vue";
 
-export default {
+export default defineComponent({
   components: {
     ProductsList,
   },
+
   methods: {
-    hui(b) {
-     
-      this.$emit("changeFlag",b);
-    },
   },
-};
+
+  emits: [
+    'load-product',
+  ]
+})
 </script>
 
 

@@ -14,14 +14,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import NotSignedLoginPanel from "@/components/NotSignedLoginPanel.vue";
 
-export default {
+export default defineComponent({
   components: {
     NotSignedLoginPanel,
   },
-};
+})
 </script>
 
 <style scoped>

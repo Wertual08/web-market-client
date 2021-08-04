@@ -1,55 +1,45 @@
 <template>
-  <div id="app">
-    <Header />
-    <component :is="dynamicComponent" @changeFlag="jopa" ref="KOLA" ></component>
-    <Footer />
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/product">About</router-link>
   </div>
+  <Header/>
+  <router-view/>
+  <Footer/>
 </template>
 
-<script>
-import { nextTick } from 'vue';
-import Container from "./components/Container.vue";
-import Container2 from "./components/Container2.vue";
+<script lang="ts">
+import { defineComponent } from 'vue'
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 
-export default {
-  name: "App",
-  methods: {
-    jopa(c) {
-      console.log(c);
-      this.Flag = true;
-      nextTick()
-      this.$refs.KOLA.setId(c)
-      console.log(this.$refs.KOLA)
-      // Container2.setId(c)
-
-      
-    },
-  },
-  data() {
-    return { Flag: false};
-  },
-
-  computed: {
-    dynamicComponent() {
-      console.log("Flag" + this.Flag)
-      if (this.Flag) {
-        return Container2;
-      } else {
-        return Container;
-      }
-    },
-  },
-};
+export default defineComponent({
+  components: {
+    Header,
+    Footer
+  }
+})
 </script>
 
 <style>
-* {
+#app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin: 0;
-  padding: 0;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

@@ -9,9 +9,10 @@
           <th>Description</th>
         </tr>
       </thead> -->
+      <!-- TODO: move product card to separate component -->
       <div>
         <div class="prodCard" v-for="product in products" :key="product.Id">
-          <button @click="NewWin(product.Id)" class="prodId">
+          <button @click="$emit('load-product', product.Id)" class="prodId">
             артикул: {{ product.Id }}
           </button>
           <img src="../assets/meme.gif" alt="oops.jpg" />
@@ -25,25 +26,29 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import axios from "axios";
 
-export default {
+export default defineComponent({
   data() {
     return {
       products: null,
     };
   },
-  methods: {
-    NewWin(a) {
-      this.$emit("onSwitch",a);
-    },
-  },
+
   mounted() {
     axios.get("/api/products").then((response) => {
       this.products = response.data;
     });
   },
-};
+
+  methods: {
+  },
+
+  emits: [
+    'load-product',
+  ]
+})
 </script>
 
 <style scoped>
