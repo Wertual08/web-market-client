@@ -21,7 +21,7 @@ button {
   margin-inline: 10px;
   color: rgb(0, 0, 0);
   background-color: rgb(0, 225, 255);
-  margin-top: 1ex;
+  margin-top: 11px;
 }
 .back {
   height: 60px;
@@ -42,10 +42,12 @@ button {
   margin-top: 0ex;
   font: 1em "Fira Sans", serif;
   margin-bottom: 1ex;
+  text-align: center;
 }
 .mail {
   margin-top: 4ex;
   font: 1em "Fira Sans", serif;
+  text-align: center;
 }
 a {
   color: rgb(0, 189, 247);
@@ -54,5 +56,13 @@ a {
   position: relative;
   left: 0;
   bottom: 0;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  margin-bottom: 0ch;
+  margin-block-end: 0em;
+
 }
 </style>

@@ -10,7 +10,7 @@ export default defineComponent({
   methods: {
   },
   data() {
-    return { fuck: -1 };
+    return {};
   },
 })
 </script>
