@@ -2,7 +2,7 @@
   <div id="register">
     <p id="sign-in">
       <button сlass="show-modal-button" @click="showModal">Войти</button>
-      <modal-window ref="modal" @closed="Registered"/>
+      <modal-window ref="modal" @closed="Registered" />
     </p>
     <p id="sign-up">
       <button @click="Registered">Регистрация</button>
@@ -11,26 +11,30 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from "vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 
 export default defineComponent({
   components: {
     ModalWindow,
   },
+  setup () {
+    const modal = ref<InstanceType<typeof ModalWindow>>()
+    return {modal}
+  },
   methods: {
     showModal() {
-      //this.$refs.modal.show = true;
+/*       modal.show = true; */
     },
     Registered() {
-      //if (this.$refs.modal.Flag) {
-      //  document.getElementById("register").innerHTML =
-      //    this.$refs.modal.message_user;
-      //  console.log(1);
-      //}
+/*       if (this.$refs.modal.Flag) {
+        document.getElementById("register").innerHTML =
+          this.$refs.modal.message_user;
+        console.log(1);
+      } */
     },
   },
-})
+});
 </script>
 
 <style scoped>

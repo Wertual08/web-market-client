@@ -21,7 +21,7 @@
             :to="{ path: '/product/' + product.Id }"
             >артикул: {{ product.Id }}</router-link
           >
-          <img src="../assets/meme.gif" alt="oops.jpg" />
+          <img :src= "'/api/records/' + product.Records[0]" alt="../assets/logo.jpg" />
           <p class="prodName">{{ product.Name }}</p>
           <p class="prodDesc">{{ product.Description }}</p>
           <img class="basket" src="../assets/basketball.jpg" alt="oops.jpg" />
