@@ -3,7 +3,7 @@ export default class Product {
     name: String = ""
     description: String  = ""
     price: Number  = -1
-    records:String[] = []
+    records:String[] = ['../assets/oops.jpg']
     categories:String[] = []
     sections:String[] = []
 }
