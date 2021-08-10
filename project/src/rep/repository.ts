@@ -6,6 +6,11 @@ class Repa {
     const prod = new Product()
     prod.id = data.Id
     prod.name = data.Name
+    prod.description = data.Description
+    prod.price = data.Price
+    prod.records = data.Records
+    prod.categories = data.Categories
+    prod.sections = data.Sections
     return prod
 
   }
@@ -13,11 +18,20 @@ class Repa {
     let response = await axios.get("/api/products/" + id)
     return this.map(response.data)
   }
-  private() {
-    this.getProdById(1).then((result: Product) => {
-      
-    })
+  public async getProdList() {
+    let response = await axios.get("/api/products")
+    let products: any = response.data
+    let readyProdList:Product[] = []
+    for (let i = 0; i < products.length; i++) {
+      readyProdList.push(this.map(products[i]))
+    }
+    return readyProdList
   }
+  // private() {
+  //   this.getProdById(1).then((result: Product) => {
+
+  //   })
+  // }
 }
 
 export default new Repa()
