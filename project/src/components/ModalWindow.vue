@@ -36,27 +36,25 @@ import { defineComponent } from 'vue'
 import axios from "axios"
 
 export default defineComponent({
+  props: {
+    show: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
-      show: false,
       showError: false,
       message_user: "",
       message_password: "",
       submitted: false,
       refreshToken: "",
       accessTokes: "",
-      Flag: false,
     };
   },
-
-  emits: [
-    'closed'
-  ],
-
   methods: {
     closeModal: function () {
-      this.show = false;
-      this.$emit('closed');
+      this.$emit('update:show', false)
     },
     sendReq: function () {
       let body = {
@@ -73,7 +71,6 @@ export default defineComponent({
           this.accessTokes = Response.data.AccessTokes;
           // тут закрываем модальное окно и обновляем TopInfo
           this.message_password = "";
-          this.Flag = true;
           this.closeModal();
         })
         .catch((err) => {
