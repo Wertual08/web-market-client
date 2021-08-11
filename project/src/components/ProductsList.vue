@@ -19,18 +19,11 @@
             class-active="prodId"
             class="prodId"
             :to="{ path: '/product/' + product.id }"
-            >артикул: {{ product.id }}</router-link
           >
+            артикул: {{ product.id }}
+          </router-link>
           <img
-            id="f2"
-            src="../assets/meme.gif"
-            alt="../assets/meme.gif"
-            style="display: none"
-          />
-          <img
-            id="f1"
-            @click="switcher()"
-            :src="product.records[0]"
+            :src="getCoverImage(product)"
             alt="../assets/meme.gif"
             style="display: block"
           />
@@ -46,7 +39,7 @@
 <script lang = 'ts'>
 import { defineComponent } from "vue";
 import Product from "@/models/product";
-import Repa from "@/rep/repository";
+import Repa from "@/repositories/repository";
 
 export default defineComponent({
   data() {
@@ -60,12 +53,13 @@ export default defineComponent({
     });
   },
   methods: {
-    switcher() {
-      let elem = document.getElementById("f2");
-      if (elem) {
-        elem.style.display = "none";
+    getCoverImage(product: Product): String {
+      if (product.records.length > 0) {
+        return product.records[0]
+      } else {
+        return require('@/assets/meme.gif')
       }
-    },
+    }
   },
 });
 </script>

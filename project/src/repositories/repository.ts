@@ -10,11 +10,8 @@ class Repa {
     prod.price = data.Price
     prod.categories = data.Categories
     prod.sections = data.Sections
-    if (data.Records[0]) {
-      for (let i = 0; i < data.Records.length; i++) {
-        data.Records[i] = '/api/records/' + data.Records[i]
-      }
-      prod.records = data.Records
+    for (let i = 0; i < data.Records.length; i++) {
+      prod.records.push('/api/records/' + data.Records[i])
     }
     
     return prod
