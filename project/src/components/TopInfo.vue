@@ -9,7 +9,7 @@
     </div>
     <div id="cart" class="topBlock">Корзина</div>
     <div id="login" class="topBlock">
-      <NotSignedLoginPanel />
+      <component :is="currentComponent"/>
     </div>
   </div>
 </template>
@@ -17,11 +17,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import NotSignedLoginPanel from "@/components/NotSignedLoginPanel.vue";
+import SignedLoginPanel from "@/components/SignedLoginPanel.vue";
 
 export default defineComponent({
   components: {
     NotSignedLoginPanel,
+    SignedLoginPanel
   },
+  data() {
+    return {
+      currentComponent: 'NotSignedLoginPanel'
+    }
+  }
 })
 </script>
 

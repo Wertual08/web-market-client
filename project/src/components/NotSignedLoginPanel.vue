@@ -15,6 +15,7 @@ import { defineComponent, ref } from "vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 
 export default defineComponent({
+  name: 'not-signed-login-panel',
   data() {
     return {
       modalVisible: false
