@@ -8,11 +8,16 @@ class Repa {
     prod.name = data.Name
     prod.description = data.Description
     prod.price = data.Price
-    prod.records = data.Records
     prod.categories = data.Categories
     prod.sections = data.Sections
+    if (data.Records[0]) {
+      for (let i = 0; i < data.Records.length; i++) {
+        data.Records[i] = '/api/records/' + data.Records[i]
+      }
+      prod.records = data.Records
+    }
+    
     return prod
-
   }
   public async getProdById(id: Number) {
     let response = await axios.get("/api/products/" + id)
@@ -21,7 +26,7 @@ class Repa {
   public async getProdList() {
     let response = await axios.get("/api/products")
     let products: any = response.data
-    let readyProdList:Product[] = []
+    let readyProdList: Product[] = []
     for (let i = 0; i < products.length; i++) {
       readyProdList.push(this.map(products[i]))
     }

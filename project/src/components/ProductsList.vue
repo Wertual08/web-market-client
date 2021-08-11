@@ -18,12 +18,24 @@
           <router-link
             class-active="prodId"
             class="prodId"
-            :to="{ path: '/product/' + product.Id }"
-            >артикул: {{ product.Id }}</router-link
+            :to="{ path: '/product/' + product.id }"
+            >артикул: {{ product.id }}</router-link
           >
-          <img :src= "'/api/records/' + product.Records[0]" alt="../assets/logo.jpg" />
-          <p class="prodName">{{ product.Name }}</p>
-          <p class="prodDesc">{{ product.Description }}</p>
+          <img
+            id="f2"
+            src="../assets/meme.gif"
+            alt="../assets/meme.gif"
+            style="display: none"
+          />
+          <img
+            id="f1"
+            @click="switcher()"
+            :src="product.records[0]"
+            alt="../assets/meme.gif"
+            style="display: block"
+          />
+          <p class="prodName">{{ product.name }}</p>
+          <p class="prodDesc">{{ product.description }}</p>
           <img class="basket" src="../assets/basketball.jpg" alt="oops.jpg" />
         </div>
       </div>
@@ -31,26 +43,30 @@
   </div>
 </template>
 
-<script>
+<script lang = 'ts'>
 import { defineComponent } from "vue";
-import axios from "axios";
+import Product from "@/models/product";
+import Repa from "@/rep/repository";
 
 export default defineComponent({
   data() {
     return {
-      products: null,
+      products: [] as Product[],
     };
   },
-
   mounted() {
-    axios.get("/api/products").then((response) => {
-      this.products = response.data;
+    Repa.getProdList().then((result: Product[]) => {
+      this.products = result;
     });
   },
-
-  methods: {},
-
-  emits: ["load-product"],
+  methods: {
+    switcher() {
+      let elem = document.getElementById("f2");
+      if (elem) {
+        elem.style.display = "none";
+      }
+    },
+  },
 });
 </script>
 
