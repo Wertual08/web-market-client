@@ -11,10 +11,13 @@ class Repa {
     prod.categories = data.Categories
     prod.sections = data.Sections
     if (data.Records[0]) {
+      for (let i = 0; i < data.Records.length; i++) {
+        data.Records[i] = '/api/records/' + data.Records[i]
+      }
       prod.records = data.Records
     }
+    
     return prod
-
   }
   public async getProdById(id: Number) {
     let response = await axios.get("/api/products/" + id)
