@@ -13,7 +13,7 @@ class Repa {
     for (let i = 0; i < data.Records.length; i++) {
       prod.records.push('/api/records/' + data.Records[i])
     }
-    
+
     return prod
   }
   public async getProdById(id: Number) {
@@ -28,6 +28,14 @@ class Repa {
       readyProdList.push(this.map(products[i]))
     }
     return readyProdList
+  }
+
+  public getCoverImage(product: Product): String {
+    if (product.records.length > 0) {
+      return product.records[0]
+    } else {
+      return require('@/assets/meme.gif')
+    }
   }
   // private() {
   //   this.getProdById(1).then((result: Product) => {

@@ -26,8 +26,10 @@ button {
 .back {
   height: 60px;
   font: bold 1em "Fira Sans", serif;
-
-  padding: 10px; /* Поля вокруг текста */
+  margin-bottom: 0ch;
+  padding-bottom: 0ch;
+  border-bottom: 0ch;
+  padding: 10px;
   background: #030b3a; /* Цвет фона */
   width: 100%; /* Ширина слоя */
 }
@@ -52,17 +54,10 @@ button {
 a {
   color: rgb(0, 189, 247);
 }
-.footer {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  height: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  margin-bottom: 0ch;
-  margin-block-end: 0em;
 
+.footer {
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
+	
 </style>

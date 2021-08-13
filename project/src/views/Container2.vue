@@ -1,34 +1,37 @@
 <template>
-  <div>{{  getID() }}</div>
-  <div>{{getDesc()}}</div>
-  <div>{{ getName()}}</div>
-  <div>{{ getPrice()}}</div>
+  <div>{{ product.id }}</div>
+  <div>{{ product.name }}</div>
+  <div>{{ product.description }}</div>
+  <img :src="getCoverImage(product)" alt="../assets/meme.gif" />
+  <div></div>
 </template>
 
 /* гори в аду Коля */
 <script lang="ts">
 import { defineComponent } from "vue";
-import axios from "axios";
+import Repa from "@/repositories/repository";
+import Product from "@/models/product";
 
 export default defineComponent({
   name: "ff",
-  methods: {
-    getID() {return this.product?.Id;},
-    getDesc() {return this.product?.Description},
-    getName() {return this.product?.Name},
-    getPrice() {return this.product?.Price},
-
-  },
   data() {
-    return { product: null as any };
+    return { product: new Product(), id: null as any };
   },
 
   mounted() {
-    console.log("/api/products/" + this.$route.params.id);
-    axios.get("/api/products/" + this.$route.params.id).then((response) => {
-      this.product = response.data;
-      console.log(this.product?.Id);
+    this.id = this.$route.params.id;
+    Repa.getProdById(this.id).then((result: Product) => {
+      this.product = result;
     });
+  },
+  methods: {
+    getCoverImage(product: Product): String {
+      if (product.records.length > 0) {
+        return product.records[0];
+      } else {
+        return require("@/assets/meme.gif");
+      }
+    },
   },
 });
 </script>
