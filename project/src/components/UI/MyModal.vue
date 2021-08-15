@@ -1,6 +1,6 @@
 <template>
     <div class="modal" v-if="show" @click.stop="hideModal">
-        <div @click.stop class="dialog__content">
+        <div @click.stop class="modal__content">
             <slot></slot>
         </div>
     </div>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped>
-.dialog {
+.modal {
   top: 0;
   bottom: 0;
   right: 0;
@@ -28,7 +28,7 @@ export default {
   position: fixed;
   display: flex;
 }
-.dialog__content {
+.modal__content {
   margin: auto;
   background: white;
   border-radius: 12px;
