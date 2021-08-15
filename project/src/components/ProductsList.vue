@@ -100,9 +100,9 @@ img {
   background-color: rgb(245, 245, 245);
 }
 .basket {
-  margin: 0px;
-  width: 50px;
-  height: 50px;
+  margin: 2px;
+  width: 40px;
+  height: 40px;
   align-content: flex-end;
 }
 .prodName {
