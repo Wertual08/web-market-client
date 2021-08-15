@@ -1,10 +1,12 @@
 <template>
   <div id="navigationBar">
-    <button>Главная</button>
-    <button>Запчасти</button>
-    <button>Доставка и оплата</button>
-    <button>Полезная информация</button>
-    <button>Контакты</button>
+    <div class="navbar__btns">
+      <button @click="$router.push('/')">Главная</button>
+      <button @click="$router.push('/catalog')">Запчасти</button>
+      <button>Доставка и оплата</button>
+      <button>Полезная информация</button>
+      <button @click="$router.push('/about')">Контакты</button>
+    </div>
   </div>
 </template>
 

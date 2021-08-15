@@ -1,7 +1,9 @@
 <template>
-  <Header/>
-  <router-view/>
-  <Footer/>
+  <div id="app">
+    <Header/>
+    <router-view/>
+    <Footer/>
+  </div>
 </template>
 
 <script lang="ts">
@@ -18,6 +20,12 @@ export default defineComponent({
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,10 +33,10 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
 }
+
 html, body {
   height: 100%;
 }
-
 
 .footer {
   flex-shrink: 0;
