@@ -19,10 +19,11 @@ import { defineComponent } from 'vue'
 import NotSignedLoginPanel from "@/components/NotSignedLoginPanel.vue";
 import SignedLoginPanel from "@/components/SignedLoginPanel.vue";
 
+
 export default defineComponent({
   components: {
     NotSignedLoginPanel,
-    SignedLoginPanel
+    SignedLoginPanel,
   },
   data() {
     return {

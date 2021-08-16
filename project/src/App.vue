@@ -1,20 +1,20 @@
 <template>
-  <Header/>
-  <router-view/>
-  <Footer/>
+  <Header />
+  <router-view />
+  <Footer />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
+import { defineComponent } from "vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default defineComponent({
   components: {
     Header,
-    Footer
-  }
-})
+    Footer,
+  },
+});
 </script>
 
 <style>
@@ -25,10 +25,10 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
 }
-html, body {
+html,
+body {
   height: 100%;
 }
-
 
 .footer {
   flex-shrink: 0;

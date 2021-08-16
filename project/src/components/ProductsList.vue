@@ -37,9 +37,9 @@
 </template>
 
 <script lang = 'ts'>
-import { defineComponent } from "vue";
-import Product from "@/models/product";
-import Repa from "@/repositories/repository";
+import { defineComponent } from "vue"
+import Product from "@/models/product"
+import Repa from "@/repositories/repository"
 
 export default defineComponent({
   data() {
