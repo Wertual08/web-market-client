@@ -34,5 +34,7 @@ notify_error:
   tags:
     - dev-shell-runner
   script:
-    - telegram-send "❌ Service fucked up."
+    - |
+      telegram-send "❌ Service fucked up.
+      Pipeline: $CI_PIPELINE_URL"
   when: on_failure
