@@ -21,9 +21,10 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import axios from "axios"
 
-export default {
+export default defineComponent({
   data() {
     return {
       user: {
@@ -35,6 +36,7 @@ export default {
   },
   methods: {
     sendReq: function () {
+      console.log(this.user.login)
       let body = {
         Login: this.user.login,
         Password: this.user.password,
@@ -55,7 +57,7 @@ export default {
         });
     },
   },
-}
+})
 </script>
 
 <style scoped>
