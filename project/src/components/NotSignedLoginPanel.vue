@@ -3,7 +3,7 @@
     <p id="sign-in">
       <button сlass="show-modal-button" @click="showModal">Войти</button>
       <my-modal v-model:show="modalVisible">
-        <sign-in-form/>
+        <sign-in-form @signed="signedIn"/>
       </my-modal>
     </p>
     <p id="sign-up">
@@ -14,31 +14,35 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import MyModal from "@/components/UI/MyModal.vue";
 import SignInForm from "@/components/SingInForm.vue"
 
 export default defineComponent({
   name: 'not-signed-login-panel',
+  // props: {
+  //   login: {
+  //     type: String,
+  //     default: "login not found"
+  //   }
+  // },
   data() {
     return {
       modalVisible: false
     }
   },
   components: {
-    MyModal,
     SignInForm
   },
   methods: {
     showModal() {
       this.modalVisible = true
     },
-    Registered() {
-/*       if (this.$refs.modal.Flag) {
-        document.getElementById("register").innerHTML =
-          this.$refs.modal.message_user;
-        console.log(1);
-      } */
+    signedIn(login: any, accToken: any, refToken: any) {
+      this.modalVisible = false
+      this.$emit('signed', login, accToken, refToken)
     },
+    hideModal() {
+      this.modalVisible = false
+    }
   },
 });
 </script>

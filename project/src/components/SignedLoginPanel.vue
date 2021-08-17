@@ -1,27 +1,33 @@
 <template>
   <div id="signed-in-panel">
     <p id="login">
-        логин
-      <!--логин-->
+      {{ login }}
     </p>
     <p id="log-out">
-      <button @click="logOut">выйти</button>
+      <my-button @click="logOut">
+        выйти
+      </my-button>
     </p>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import MyButton from "./UI/MyButton.vue";
 
 export default defineComponent({
+  components: { MyButton },
   name: 'signed-login-panel',
-  data() {
-    return {
-      
+  props: {
+    login: {
+      type: String,
+      default: "login not found"
     }
   },
   methods: {
-
+    logOut() {
+      this.$emit('logout')
+    }
   },
 });
 </script>

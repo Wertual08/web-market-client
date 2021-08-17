@@ -1,11 +1,11 @@
 <template>
   <div id="navigationBar">
     <div class="navbar__btns">
-      <button @click="$router.push('/')">Главная</button>
-      <button @click="$router.push('/catalog')">Запчасти</button>
-      <button>Доставка и оплата</button>
-      <button>Полезная информация</button>
-      <button @click="$router.push('/about')">Контакты</button>
+      <my-button @click="$router.push('/')">Главная</my-button>
+      <my-button @click="$router.push('/catalog')">Запчасти</my-button>
+      <my-button>Доставка и оплата</my-button>
+      <my-button>Информация</my-button>
+      <my-button @click="$router.push('/about')">Контакты</my-button>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default defineComponent({
 
 <style scoped>
 #navigationBar {
-  background-color: lightslategray;
+  background-color: rgb(250, 250, 250);
 }
 
 button {

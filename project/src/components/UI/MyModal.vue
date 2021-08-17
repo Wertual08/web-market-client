@@ -15,6 +15,11 @@ export default {
             default: false
         }
     },
+    methods: {
+        hideModal() {
+            this.$emit('update:show', false)
+        }
+    }
 }
 </script>
 

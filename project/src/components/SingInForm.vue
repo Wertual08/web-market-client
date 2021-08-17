@@ -8,9 +8,12 @@
     />
     <my-input
       v-model="user.password"
-      type="text"
+      type="password"
       placeholder="Пароль"
     />
+    <div v-if="showError">
+      Неправильный логин или пароль
+    </div>
     <my-button
       style="align-self: flex-end; margin-top: 15px"
       @click="sendReq"
@@ -25,18 +28,20 @@ import { defineComponent } from 'vue'
 import axios from "axios"
 
 export default defineComponent({
+  name: 'sign-in-form',
   data() {
     return {
       user: {
         login: "",
-        password: ""
+        password: "",
+        refreshToken: 0,
+        accessToken: 0
       },
       showError: false,
     }
   },
   methods: {
     sendReq: function () {
-      console.log(this.user.login)
       let body = {
         Login: this.user.login,
         Password: this.user.password,
@@ -47,8 +52,12 @@ export default defineComponent({
           headers: { "Content-Type": "application/json" },
         })
         .then((Response) => {
-          //this.refreshToken = Response.data.RefreshToken;
-          //this.accessTokes = Response.data.AccessTokes;
+          this.showError = false
+          this.user.refreshToken = Response.data.RefreshToken;
+          this.user.accessToken = Response.data.AccessToken;
+          this.$emit('signed', this.user.login, this.user.accessToken, this.user.refreshToken)
+          this.user.login = "",
+          this.user.password = ""
         })
         .catch((err) => {
           console.log(err);

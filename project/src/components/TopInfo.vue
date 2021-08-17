@@ -9,7 +9,8 @@
     </div>
     <div id="cart" class="topBlock">Корзина</div>
     <div id="login" class="topBlock">
-      <component :is="currentComponent"/>
+      <!-- тут надо прокидывать в компонент login -->
+      <component :is="currentComponent" @signed="signed" @logout="logout"/>
     </div>
   </div>
 </template>
@@ -19,7 +20,6 @@ import { defineComponent } from 'vue'
 import NotSignedLoginPanel from "@/components/NotSignedLoginPanel.vue";
 import SignedLoginPanel from "@/components/SignedLoginPanel.vue";
 
-
 export default defineComponent({
   components: {
     NotSignedLoginPanel,
@@ -27,7 +27,26 @@ export default defineComponent({
   },
   data() {
     return {
-      currentComponent: 'NotSignedLoginPanel'
+      currentComponent: 'NotSignedLoginPanel',
+      user: {
+        login: "",
+        accessToken: "",
+        refreshToken: ""
+      }
+    }
+  },
+  methods: {
+    signed(login: any, accToken: any, refToken: any) {
+      this.currentComponent = 'SignedLoginPanel'
+      this.user.login = login
+      this.user.accessToken = accToken
+      this.user.refreshToken = refToken
+    },
+    logout() {
+      this.user.login = "",
+      this.user.accessToken = "",
+      this.user.refreshToken = "",
+      this.currentComponent = 'NotSignedLoginPanel'
     }
   }
 })
