@@ -1,21 +1,22 @@
 <template>
   <div id="navigationBar">
-    <p>{{TreeView}}</p>
-    <button>Главная</button>
-    <button>Запчасти</button>
-    <button>Доставка и оплата</button>
-    <button>Полезная информация</button>
-    <button>Контакты</button>
+    <div class="navbar__btns">
+      <button @click="$router.push('/')">Главная</button>
+      <button @click="$router.push('/catalog')">Запчасти</button>
+      <button>Доставка и оплата</button>
+      <button>Полезная информация</button>
+      <button @click="$router.push('/about')">Контакты</button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import TreeView from "@/components/TreeView.vue"
+// import TreeView from "@/components/TreeView.vue"
 
 export default defineComponent({
   components: {
-    TreeView
+    // TreeView
   },
 })
 </script>

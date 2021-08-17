@@ -18,18 +18,22 @@
           <router-link
             class-active="prodId"
             class="prodId"
-            :to="{ path: '/product/' + product.id }"
+            :to="{ path: '/productpage/' + product.id }"
           >
-            артикул: {{ product.id }}
+            <div class="prodCardContent">
+              артикул: {{ product.id }}
+              <img
+                :src="getCoverImage(product)"
+                alt="../assets/meme.gif"
+                style="display: block"
+              />
+              <p class="prodName">{{ product.name }}</p>
+              <p class="prodDesc">{{ product.description }}</p>
+            </div>
           </router-link>
-          <img
-            :src="getCoverImage(product)"
-            alt="../assets/meme.gif"
-            style="display: block"
-          />
-          <p class="prodName">{{ product.name }}</p>
-          <p class="prodDesc">{{ product.description }}</p>
-          <img class="basket" src="../assets/basketball.jpg" alt="oops.jpg" />
+          <div class="addToCart" @click="cartAdd">
+            <img class="basket" src="../assets/cart.png" alt="oops.jpg"/>
+          </div>
         </div>
       </div>
     </table>
@@ -59,6 +63,9 @@ export default defineComponent({
       } else {
         return require('@/assets/meme.gif')
       }
+    },
+    cartAdd() {
+      alert("Добавлено в корзину")
     }
   },
 });
@@ -89,10 +96,13 @@ img {
   align-content: center;
   margin-bottom: 0ch;
 }
+.addToCart {
+  background-color: rgb(245, 245, 245);
+}
 .basket {
-  margin: 0px;
-  width: 50px;
-  height: 50px;
+  margin: 2px;
+  width: 40px;
+  height: 40px;
   align-content: flex-end;
 }
 .prodName {

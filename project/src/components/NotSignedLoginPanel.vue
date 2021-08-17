@@ -2,7 +2,9 @@
   <div id="register">
     <p id="sign-in">
       <button сlass="show-modal-button" @click="showModal">Войти</button>
-      <modal-window v-model:show="modalVisible" />
+      <my-modal v-model:show="modalVisible">
+        <sign-in-form/>
+      </my-modal>
     </p>
     <p id="sign-up">
       <button @click="Registered">Регистрация</button>
@@ -12,7 +14,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import ModalWindow from "@/components/ModalWindow.vue";
+import MyModal from "@/components/UI/MyModal.vue";
+import SignInForm from "@/components/SingInForm.vue"
 
 export default defineComponent({
   name: 'not-signed-login-panel',
@@ -22,11 +25,8 @@ export default defineComponent({
     }
   },
   components: {
-    ModalWindow,
-  },
-  setup () {
-    const modal = ref<InstanceType<typeof ModalWindow>>()
-    return {modal}
+    MyModal,
+    SignInForm
   },
   methods: {
     showModal() {

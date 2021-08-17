@@ -6,7 +6,6 @@
   <div></div>
 </template>
 
-/* гори в аду Коля */
 <script lang="ts">
 import { defineComponent } from "vue";
 import Repa from "@/repositories/repository";
