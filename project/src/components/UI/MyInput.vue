@@ -3,7 +3,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
   name: 'my-input',
   props: {
     modelValue: [String, Number]
@@ -13,7 +15,7 @@ export default {
       this.$emit('update:modelValue', event.target.value)
     }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -2,7 +2,7 @@
   <div id="register">
     <p id="sign-in">
       <button сlass="show-modal-button" @click="showModal">Войти</button>
-      <my-modal v-model:show="modalVisible">
+      <my-modal v-model:show="modalVisible" @show_to_false="showToFalse">
         <sign-in-form @signed="signedIn"/>
       </my-modal>
     </p>
@@ -41,6 +41,9 @@ export default defineComponent({
       this.$emit('signed', login, accToken, refToken)
     },
     hideModal() {
+      this.modalVisible = false
+    },
+    showToFalse() {
       this.modalVisible = false
     }
   },

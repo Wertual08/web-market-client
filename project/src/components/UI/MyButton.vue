@@ -5,9 +5,11 @@
 </template>
 
 <script>
-export default {
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
   name: 'my-button'
-}
+})
 </script>
 
 <style scoped>

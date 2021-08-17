@@ -7,7 +7,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
     name: 'my-modal',
     props: {
         show: {
@@ -17,10 +19,10 @@ export default {
     },
     methods: {
         hideModal() {
-            this.$emit('update:show', false)
+            this.$emit('show_to_false')
         }
     }
-}
+})
 </script>
 
 <style scoped>
