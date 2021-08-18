@@ -12,7 +12,7 @@
 <script>
 import { defineComponent } from 'vue'
 import ProductsList from "@/components/ProductsList.vue";
-import Tree from "@/components/AAAAAAAAAAAAAAAA.vue"
+import Tree from "@/components/DropdownMenu.vue"
 
 export default defineComponent({
   components: {

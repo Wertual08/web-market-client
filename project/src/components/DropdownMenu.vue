@@ -70,7 +70,9 @@ export default defineComponent({
   position: relative;
   display: block;
   width: 100%;
-  height: 39px;
+  height: 39
+vypadayushchiye menyu
+dropdown menuspx;
   box-sizing: border-box;
   font-size: 13px;
   text-transform: uppercase;
