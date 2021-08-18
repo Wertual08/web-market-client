@@ -50,10 +50,11 @@ export default defineComponent({
     }
   },
   computed: {
-    currentProperties: function() {
+    currentProperties(): any {
       if (this.currentComponent === 'SignedLoginPanel') {
-        return { login: 'this.user.login' }
-        //return { login: this.user.login }
+        return { 
+          login: this.user.login 
+        }
       }
     }
   }
