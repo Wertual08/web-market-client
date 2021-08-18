@@ -10,7 +10,7 @@
     <div id="cart" class="topBlock">Корзина</div>
     <div id="login" class="topBlock">
       <!-- тут надо прокидывать в компонент login -->
-      <component :is="currentComponent" @signed="signed" @logout="logout"/>
+      <component :is="currentComponent" v-bind="currentProperties" @signed="signed" @logout="logout"/>
     </div>
   </div>
 </template>
@@ -47,6 +47,14 @@ export default defineComponent({
       this.user.accessToken = "",
       this.user.refreshToken = "",
       this.currentComponent = 'NotSignedLoginPanel'
+    }
+  },
+  computed: {
+    currentProperties: function() {
+      if (this.currentComponent === 'SignedLoginPanel') {
+        return { login: 'this.user.login' }
+        //return { login: this.user.login }
+      }
     }
   }
 })
