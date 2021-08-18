@@ -1,28 +1,13 @@
 <template>
   <div id="container">
     <div class="work_in_progress">work in progress</div>
-    <div class="prod_list">
-      <ProductsList @load-product="$emit('load-product', $event)" />
-    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import ProductsList from "@/components/ProductsList.vue";
+import { defineComponent } from "vue";
 
-export default defineComponent({
-  components: {
-    ProductsList,
-  },
-
-  methods: {
-  },
-
-  emits: [
-    'load-product',
-  ]
-})
+export default defineComponent({});
 </script>
 
 
