@@ -1,7 +1,7 @@
 <template>
   <div id="container">
+    <Tree/>
     <div class="prod_list">
-      <Tree/>
       <ProductsList @load-product="$emit('load-product', $event)" />
     </div>
   </div>
