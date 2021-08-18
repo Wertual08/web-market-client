@@ -54,6 +54,7 @@ export default defineComponent({
   },
   methods: {
     closeModal: function () {
+      console.log("closing started")
       this.$emit('update:show', false)
     },
     sendReq: function () {
