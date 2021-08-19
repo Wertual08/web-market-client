@@ -1,12 +1,20 @@
 <template class = 'card'>
-<div class="abc">
-  <Menu />
-  <img class="magamed" :src="getCoverImage(product)" alt="../assets/meme.gif" />
-  <div>{{ product.id }}</div>
-  <nobr>{{ product.name }}</nobr>
-  <div>{{ product.description }}</div>
-  <p>1</p>
-</div>
+  <div class="abc">
+    <Menu />
+    <img
+      class="magamed"
+      :src="getCoverImage(product)"
+      alt="../assets/meme.gif"
+    />
+    <div style="overflow: hidden" class="line">
+      <p style="float: left" class="id">Артикул товара: {{ product.id }}</p>
+      <p style="float: right" class="name">{{ product.name }}</p>
+    </div>
+    <div class="description">
+      <p class="des">Описание товара:</p>
+    <div>{{ product.description }} </div>
+    </div>
+  </div>
 
   <div></div>
 </template>
@@ -46,9 +54,31 @@ export default defineComponent({
 
 
 <style scoped>
-.abc{
-background: rgb(9,9,121);
-background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,129,255,0.16290266106442575) 79%, rgba(2,0,36,1) 100%);
+.des{
+  margin-top: 100px;
+  position: relative;
+  right: 285px;
+  margin-bottom: 20px;
+}
+.abc {
+  font-weight: 1000;
+  background: rgb(186, 186, 214);
+  background: -moz-linear-gradient(
+    90deg,
+    rgba(186, 186, 214, 1) 0%,
+    rgba(0, 255, 252, 0.16290266106442575) 20%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(186, 186, 214, 1) 0%,
+    rgba(0, 255, 252, 0.16290266106442575) 20%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(186, 186, 214, 1) 0%,
+    rgba(0, 255, 252, 0.16290266106442575) 20%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#babad6",endColorstr="#00fffc",GradientType=1);
 }
 .magamed {
   float: right;
@@ -57,5 +87,31 @@ background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,129,255,0.16290266
   width: 500px;
   height: auto;
 }
-
+.line {
+  margin-bottom: 10px;
+}
+.name {
+  position: relative;
+  text-align: center;
+  right: 200px;
+  margin-top: 2px;
+  font-size: 21px;
+  font-weight: 1000;
+  font-family: Arial (sans-serif);
+}
+.id {
+  font-family: Arial (sans-serif);
+  font-size: 20px;
+  padding: 4px;
+  border: solid;
+  font-weight: 1000;
+  border-width: 1px;
+  position: relative;
+  left: 40px;
+}
+.description {
+  position: relative;
+  right: 100px;
+  height: 1000px;
+}
 </style>
