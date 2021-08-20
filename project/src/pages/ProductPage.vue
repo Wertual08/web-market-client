@@ -63,6 +63,7 @@ export default defineComponent({
 .abc {
   font-weight: 1000;
   background: rgb(186, 186, 214);
+  min-height: 1080px;
   background: -moz-linear-gradient(
     90deg,
     rgba(186, 186, 214, 1) 0%,
@@ -112,6 +113,5 @@ export default defineComponent({
 .description {
   position: relative;
   right: 100px;
-  height: 1000px;
 }
 </style>

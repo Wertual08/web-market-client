@@ -31,11 +31,5 @@ export default defineComponent({
 .work_in_progress {
   font: bold 10em "Fira Sans", serif;
 }
-#container {
-  width: 1500px;
-  background-color: rgb(207, 204, 204);
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 1080px;
-}
+
 </style>
