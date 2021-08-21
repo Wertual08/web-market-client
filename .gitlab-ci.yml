@@ -36,5 +36,6 @@ notify_error:
   script:
     - |
       telegram-send "❌ Service fucked up.
-      Pipeline: $CI_PIPELINE_URL"
+      Pipeline: $CI_PIPELINE_URL
+      Job: $CI_JOB_URL"
   when: on_failure
