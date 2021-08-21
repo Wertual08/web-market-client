@@ -1,12 +1,10 @@
 <template class = 'footer'>
   <div class="back">
     <div class="contact">
-      <p class="phone">8 (800) 100-09-08</p>
-      <p class="mail">
-        <a href="mailto:info@korea-bus.ru">info@korea-bus.ru</a>
-      </p>
+      <p class="phone">Звоните: 8 (800) 100-09-08</p>
     </div>
-    <div>
+    <div class="but">
+      <a class="mail" href="mailto:info@korea-bus.ru">info@korea-bus.ru</a>
       <button>Главная</button>
       <button>Запчасти</button>
       <button>Доставка и оплата</button>
@@ -17,18 +15,27 @@
 </template>
 
 <style scoped>
+.but {
+  background: #030b3a;
+  margin-top: 5px;
+  position: relative;
+  text-align: center;
+}
 button {
   margin-inline: 10px;
   color: rgb(0, 0, 0);
-  background-color: rgb(0, 225, 255);
-  margin-top: 11px;
+  background-color: #0f8397;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
 }
 .back {
-  height: 60px;
-  font: bold 1em "Fira Sans", serif;
-  margin-bottom: 0ch;
-  padding-bottom: 0ch;
-  border-bottom: 0ch;
+  height: 90px;
   padding: 10px;
   background: #030b3a; /* Цвет фона */
   width: 100%; /* Ширина слоя */
@@ -38,6 +45,7 @@ button {
   float: none;
   margin-right: 20px;
   text-align: left;
+  margin-bottom: 0px;
 }
 .phone {
   color: rgb(0, 189, 247);
@@ -45,19 +53,18 @@ button {
   font: 1em "Fira Sans", serif;
   margin-bottom: 1ex;
   text-align: center;
+  position: relative;
+  left: 25px;
 }
 .mail {
-  margin-top: 4ex;
+  margin-top: 5ex;
   font: 1em "Fira Sans", serif;
-  text-align: center;
+  position: relative;
+  text-align: left;
+  left: -400px;
+  
 }
 a {
   color: rgb(0, 189, 247);
 }
-
-.footer {
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-	
 </style>
