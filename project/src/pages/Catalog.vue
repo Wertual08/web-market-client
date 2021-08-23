@@ -1,8 +1,11 @@
-<template>
-  <div id="container">
-    <Tree/>
-    <div class="prod_list">
-      <ProductsList @load-product="$emit('load-product', $event)" />
+<template >
+  <div class="cat">
+    <SearchBar />
+    <div id="container">
+      <Tree />
+      <div class="prod_list">
+        <ProductsList @load-product="$emit('load-product', $event)" />
+      </div>
     </div>
   </div>
 </template>
@@ -10,14 +13,14 @@
 
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 import ProductsList from "@/components/ProductsList.vue";
-import Tree from "@/components/DropdownMenu.vue"
+import Tree from "@/components/DropdownMenu.vue";
 
 export default defineComponent({
   components: {
     ProductsList,
-    Tree
+    Tree,
   },
 
   methods: {},
@@ -28,8 +31,7 @@ export default defineComponent({
 
 
 <style>
-.work_in_progress {
-  font: bold 10em "Fira Sans", serif;
+.cat {
+  background-color: rgba(169, 241, 241, 0.377);
 }
-
 </style>

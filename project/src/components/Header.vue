@@ -20,7 +20,7 @@ export default defineComponent({
 
 <style scoped>
 #header {
-  background-color: lightcyan;
   padding: 8px 60px;
+  background-color: rgba(169, 241, 241, 0.377);
 }
 </style>

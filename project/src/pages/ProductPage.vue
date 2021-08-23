@@ -1,4 +1,5 @@
 <template class = 'card'>
+<SearchBar/>
   <div class="abc">
     <Menu />
     <img

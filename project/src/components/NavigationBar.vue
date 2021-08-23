@@ -22,9 +22,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-#navigationBar {
-  background-color: rgb(250, 250, 250);
-}
 
 button {
   height: 35px;
