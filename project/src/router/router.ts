@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Container from '../views/Container.vue'
 
+import FindPage from "@/pages/FindPage.vue"
 import Main from "@/pages/Main.vue";
 import About from "@/pages/About.vue";
 import Catalog from "@/pages/Catalog.vue";
@@ -23,6 +23,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: Main
+  },
+  {
+    path: "/search",
+    component: FindPage
   },
   {
     path: '/about',

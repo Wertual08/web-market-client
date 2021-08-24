@@ -1,7 +1,7 @@
 <template>
   <h1 class="ff">
     <input class="search" type="search" name="q" placeholder="Поиск по сайту" />
-    <input class="but" type="submit" value="Найти" />
+    <input class="but" type="submit"  value="Найти"  @click="$router.push('/search')"/> 
   </h1>
 </template>
 <script>

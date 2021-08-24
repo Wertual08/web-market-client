@@ -1,0 +1,3 @@
+<template>
+    Коля Лох
+</template>

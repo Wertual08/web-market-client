@@ -1,6 +1,7 @@
 import Product from "@/models/product"
 import axios from "axios"
 import Section from "@/models/sexual"
+import { response } from "express"
 
 class Repa {
   private map(data: any) {
@@ -25,24 +26,26 @@ class Repa {
     return section
   }
   public async getFuckingSections(){
-    let sections: any = await axios.get('/api/sections')
+    let sections= await axios.get('/api/sections')
     let readySections: Section[] = []
-    for( let i = 0; i < sections.length; i++){
-      readySections.push(this.secmap(sections[i]))
+    for( let i = 0; i < sections.data.length; i++){
+      readySections.push(this.secmap(sections.data[i]))
     }
+    return readySections
   }
   public async getProdById(id: Number) {
     let response = await axios.get("/api/products/" + id)
     return this.map(response.data)
   }
   public async getProdList() {
-    let response: any = await axios.get("/api/products")
+    let products = await axios.get("/api/products")
     let readyProdList: Product[] = []
-    for (let i = 0; i < response.length; i++) {
-      readyProdList.push(this.map(response[i]))
+    for (let i = 0; i < products.data.length; i++) {
+      readyProdList.push(this.map(products.data[i]))
     }
     return readyProdList
   }
+
 
   public getCoverImage(product: Product): String {
     if (product.records.length > 0) {

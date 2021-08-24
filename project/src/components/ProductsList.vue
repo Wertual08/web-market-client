@@ -10,30 +10,28 @@
         </tr>
       </thead> -->
       <!-- TODO: move product card to separate component -->
-      <div>
-        <div class="prodCard" v-for="product in products" :key="product.Id">
-          <!--  <button @click="$emit('load-product', product.Id)" class="prodId">
+      <div class="prodCard" v-for="product in products" :key="product.id">
+        <!--  <button @click="$emit('load-product', product.Id)" class="prodId">
             артикул: {{ product.Id }}
           </button> -->
-          <router-link
-            class-active="prodId"
-            class="prodId"
-            :to="{ path: '/productpage/' + product.id }"
-          >
-            <div class="prodCardContent">
-              артикул: {{ product.id }}
-              <img
-                :src="getCoverImage(product)"
-                alt="../assets/meme.gif"
-                style="display: block"
-              />
-              <p class="prodName">{{ product.name }}</p>
-              <p class="prodDesc">{{ product.description }}</p>
-            </div>
-          </router-link>
-          <div class="addToCart" @click="cartAdd">
-            <img class="basket" src="../assets/cart.png" alt="oops.jpg"/>
+        <router-link
+          class-active="prodId"
+          class="prodId"
+          :to="{ path: '/productpage/' + product.id }"
+        >
+          <div class="prodCardContent">
+            артикул: {{ product.id }}
+            <img
+              :src="getCoverImage(product)"
+              alt="../assets/meme.gif"
+              style="display: block"
+            />
+            <p class="prodName">{{ product.name }}</p>
+            <p class="prodDesc">{{ product.description }}</p>
           </div>
+        </router-link>
+        <div class="addToCart" @click="cartAdd">
+          <img class="basket" src="../assets/cart.png" alt="oops.jpg" />
         </div>
       </div>
     </table>
@@ -41,9 +39,9 @@
 </template>
 
 <script lang = 'ts'>
-import { defineComponent } from "vue"
-import Product from "@/models/product"
-import Repa from "@/repositories/repository"
+import { defineComponent } from "vue";
+import Product from "@/models/product";
+import Repa from "@/repositories/repository";
 
 export default defineComponent({
   data() {
@@ -59,14 +57,14 @@ export default defineComponent({
   methods: {
     getCoverImage(product: Product): String {
       if (product.records.length > 0) {
-        return product.records[0]
+        return product.records[0];
       } else {
-        return require('@/assets/meme.gif')
+        return require("@/assets/meme.gif");
       }
     },
     cartAdd() {
-      alert("Добавлено в корзину")
-    }
+      alert("Добавлено в корзину");
+    },
   },
 });
 </script>
