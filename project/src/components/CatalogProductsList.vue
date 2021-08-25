@@ -1,6 +1,6 @@
 <template>
   <div class="box" @scroll="onScroll">
-    <h3 class="p-3 text-center"></h3>
+    <h3 class="p-3 text-center">ГДЕ МОЙ КЭШ?</h3>
     <table class="table table-striped table-bordered">
       <div class="productCardContainer" v-for="product in products" :key="product.id">
         <CatalogProductCard :product="product" @add-cart="addCart"/>
