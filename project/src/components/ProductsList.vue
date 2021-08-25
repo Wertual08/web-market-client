@@ -41,7 +41,7 @@
 <script lang = 'ts'>
 import { defineComponent } from "vue";
 import Product from "@/models/product";
-import Repa from "@/repositories/repository";
+import productsRepository from "@/repositories/productsRepository";
 
 export default defineComponent({
   data() {
@@ -50,12 +50,13 @@ export default defineComponent({
     };
   },
   mounted() {
-    Repa.getProdList().then((result: Product[]) => {
-      this.products = result;
-    });
+    productsRepository.getProducts()
+      .then((result: Product[]) => {
+        this.products = result;
+      });
   },
   methods: {
-    getCoverImage(product: Product): String {
+    getCoverImage(product: Product): string {
       if (product.records.length > 0) {
         return product.records[0];
       } else {

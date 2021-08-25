@@ -1,6 +1,6 @@
 <template class = 'card'>
-<SearchBar/>
   <div class="abc">
+    <SearchBar/>
     <Menu />
     <img
       class="magamed"
@@ -16,15 +16,13 @@
     <div>{{ product.description }} </div>
     </div>
   </div>
-
-  <div></div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Repa from "@/repositories/repository";
-import Product from "@/models/product";
-import Menu from "@/components/DropdownMenu.vue";
+import { defineComponent } from "vue"
+import productsRepository from "@/repositories/productsRepository"
+import Product from "@/models/product"
+import Menu from "@/components/DropdownMenu.vue"
 
 export default defineComponent({
   name: "ff",
@@ -37,9 +35,10 @@ export default defineComponent({
 
   mounted() {
     this.id = this.$route.params.id;
-    Repa.getProdById(this.id).then((result: Product) => {
-      this.product = result;
-    });
+    productsRepository.getProduct(this.id)
+      .then((result: Product) => {
+        this.product = result;
+      });
   },
   methods: {
     getCoverImage(product: Product): String {

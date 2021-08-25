@@ -7,19 +7,6 @@ import Catalog from "@/pages/Catalog.vue";
 import ProductPage from '@/pages/ProductPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/',
-  //   name: 'Container',
-  //   component: Container
-  // },
-  // {
-  //   path: '/product/:id',
-  //   name: 'Container2',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/Container2.vue')
-  // },
   {
     path: '/',
     component: Main

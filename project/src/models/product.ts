@@ -1,9 +1,9 @@
 export default class Product {
-    id: Number = -1
-    name: String = ""
-    description: String  = ""
-    price: Number  = -1
-    records:String[] = []
-    categories:String[] = []
-    sections:String[] = []
+  id: number = -1
+  name: string = ""
+  description: string = ""
+  price: number = -1
+  records: string[] = []
+  categories: string[] = []
+  sections: string[] = []
 }

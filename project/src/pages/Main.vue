@@ -23,8 +23,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Section from "@/models/sexual";
-import Repa from "@/repositories/repository";
+import Section from "@/models/section";
+import sectionsRepository from "@/repositories/sectionsRepository";
 
 export default defineComponent({
   data() {
@@ -33,9 +33,10 @@ export default defineComponent({
     };
   },
   mounted() {
-    Repa.getFuckingSections().then((result: Section[]) => {
-      this.sections = result;
-    });
+    sectionsRepository.getSections()
+      .then((result: Section[]) => {
+        this.sections = result;
+      });
   },
 });
 </script>
