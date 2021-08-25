@@ -8,7 +8,7 @@ class SectionsRepository extends AbstractRepository<Section> {
     const section = new Section() 
     section.id = item.Id
     section.name = item.Name
-    section.parentId = item.ParentId
+    section.sectionId = item.ParentId
     section.sections = item.Sections
     return section
   }
