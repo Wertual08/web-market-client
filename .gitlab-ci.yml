@@ -19,8 +19,7 @@ deploy:
     - dev-shell-runner
   script:
     - docker-compose up -d --build --force-recreate --remove-orphans
-    - docker image prune -f
-    - docker builder prune -f
+    - docker image ls
 
 notify_success:
   stage: finish
