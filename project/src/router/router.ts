@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Catalog
   },
   {
-    path: '/productpage/:id',
+    path: '/product/:id',
     component: ProductPage
   }
 ]

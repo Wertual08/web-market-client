@@ -30,7 +30,7 @@ export default defineComponent({
 </script>
 
 
-<style>
+<style scoped>
 .cat {
   background-color: rgba(169, 241, 241, 0.377);
 }

@@ -42,7 +42,7 @@ export default defineComponent({
 </script>
 
 
-<style>
+<style scoped>
 .table {
  margin-left: 20px;
 }
