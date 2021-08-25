@@ -1,5 +1,5 @@
 <template >
-  <div class="cat">
+  <div class="catalog">
     <SearchBar />
     <div id="container">
       <Tree />
@@ -14,7 +14,7 @@
 
 <script>
 import { defineComponent } from "vue";
-import ProductsList from "@/components/ProductsList.vue";
+import ProductsList from "@/components/CatalogProductsList.vue";
 import Tree from "@/components/DropdownMenu.vue";
 
 export default defineComponent({
@@ -31,7 +31,8 @@ export default defineComponent({
 
 
 <style scoped>
-.cat {
+.catalog {
   background-color: rgba(169, 241, 241, 0.377);
+  height: 100%;
 }
 </style>

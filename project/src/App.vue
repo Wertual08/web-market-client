@@ -2,19 +2,16 @@
   <div id="app">
     <Header/>
     <router-view/>
-    <Footer/>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
+import { defineComponent } from "vue"
+import Header from "@/components/Header.vue"
 
 export default defineComponent({
   components: {
     Header,
-    Footer,
   },
 });
 </script>
@@ -36,7 +33,6 @@ export default defineComponent({
 }
 
 html, body {
-  height: 100%;
 }
 
 </style>

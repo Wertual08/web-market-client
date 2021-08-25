@@ -48,7 +48,7 @@ class ProductsRepository extends AbstractRepository<Product> {
   }
 
   public async createProduct(): Promise<Product> {
-    let response = await this.axios.post(id.toString())
+    let response = await this.axios.post('')
     return this.map(response.data)
   }
 }
