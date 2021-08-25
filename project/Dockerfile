@@ -1,7 +1,7 @@
 FROM node:lts-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --production --package-lock=false
+RUN npm install --production
 COPY . .
 RUN npm run build
 
