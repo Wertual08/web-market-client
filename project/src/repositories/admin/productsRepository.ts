@@ -13,7 +13,9 @@ class ProductsRepository extends AbstractRepository<Product> {
     prod.createdAt = Date.parse(item.CreatedAt)
     prod.updatedAt = Date.parse(item.UpdatedAt)
     prod.categories = item.Categories
-    prod.sections = item.Sections
+    for (let i = 0; i < item.Sections.length; i++) {
+      prod.sections.push(item.Sections[i].Name)
+    }
     for (let i = 0; i < item.Records.length; i++) {
       prod.records.push('/api/records/' + item.Records[i])
     }

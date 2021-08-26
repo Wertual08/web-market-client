@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import FindPage from "@/pages/FindPage.vue"
-import Main from "@/pages/Main.vue";
-import About from "@/pages/About.vue";
-import Catalog from "@/pages/Catalog.vue";
-import ProductPage from '@/pages/ProductPage.vue';
+import Main from "@/pages/Main.vue"
+import About from "@/pages/About.vue"
+import Catalog from "@/pages/Catalog.vue"
+import ProductPage from '@/pages/ProductPage.vue'
+import AdminProductsPage from '@/pages/AdminProductsPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,6 +27,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/product/:id',
     component: ProductPage
+  },
+  {
+    path: '/admin/products',
+    component: AdminProductsPage
   }
 ]
 

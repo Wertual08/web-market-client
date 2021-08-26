@@ -1,23 +1,22 @@
 <template>
-  <div class="box">
-    <h3 class="p-3 text-center">ГДЕ МОЙ КЭШ?</h3>
-    <table class="table table-striped table-bordered">
-      <div class="productCardContainer" v-for="product in products" :key="product.id">
-        <CatalogProductCard :product="product" @add-cart="addCart"/>
-      </div>
-    </table>
+  <div>
+    <div v-for="product in products" :key="product.id">
+      <admin-product-card :product="product" @add-cart="addCart"/>
+    </div>
   </div>
 </template>
 
 <script lang = 'ts'>
 import { defineComponent } from "vue";
-import CatalogProductCard from "@/components/common/CatalogProductCard.vue"
-import Product from "@/models/product";
-import productsRepository from "@/repositories/productsRepository";
+import Product from "@/models/admin/product";
+import productsRepository from "@/repositories/admin/productsRepository";
+import AdminProductCard from "./common/AdminProductCard.vue";
 
 export default defineComponent({
+  name: 'admin-products-list',
+
   components: {
-    CatalogProductCard,
+    AdminProductCard,
   },
 
   data() {
@@ -71,17 +70,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.box {
-  height: 100%;
-}
-
-.productCardContainer {
-  width: 220px;
-  height: 300px;
-  display: inline;
-  float: left;
-  overflow: hidden;
-  background: lightblue;
-  margin: 10px;
-}
 </style>
