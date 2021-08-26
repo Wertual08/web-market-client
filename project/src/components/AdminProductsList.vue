@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <div v-for="product in products" :key="product.id">
-      <admin-product-card :product="product" @add-cart="addCart"/>
-    </div>
+  <div v-for="product in products" :key="product.id">
+    <admin-product-card :product="product" @add-cart="addCart"/>
   </div>
 </template>
 
