@@ -14,3 +14,4 @@ services:
 networks:
     services-network:
         name: kb-services-network
+        external: true
