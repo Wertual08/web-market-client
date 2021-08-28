@@ -7,7 +7,7 @@
       <a class ='phone' href="tel:+89165782648">8 (916) 578-26-48</a>
       <p>email@mail.com</p>
     </div>
-    <div id="cart" class="topBlock">Корзина</div>
+    <div class="topBlock" @click="$router.push('/cart')">Корзина</div>
     <div id="login" class="topBlock">
       <!-- тут надо прокидывать в компонент login -->
       <component :is="currentComponent" v-bind="currentProperties" @signed="signed" @logout="logout"/>
