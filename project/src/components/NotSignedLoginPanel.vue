@@ -51,9 +51,8 @@ export default defineComponent({
     showRegModal() {
       this.regModalVisible = true
     },
-    registered() {
+    registered(login: String) {
       this.regModalVisible = false
-      // тут кидаем пропс наверх через $emit
     },
     hideRegModal() {
       this.regModalVisible = false
