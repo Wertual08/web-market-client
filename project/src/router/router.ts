@@ -6,6 +6,7 @@ import About from "@/pages/About.vue"
 import Catalog from "@/pages/Catalog.vue"
 import ProductPage from '@/pages/ProductPage.vue'
 import AdminProductsPage from '@/pages/AdminProductsPage.vue'
+import AdminProductPage from '@/pages/AdminProductPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -31,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/admin/products',
     component: AdminProductsPage
+  },
+  {
+    path: '/admin/products/:id',
+    component: AdminProductPage
   }
 ]
 
