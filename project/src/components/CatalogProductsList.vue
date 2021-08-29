@@ -3,11 +3,29 @@
     <h3 class="p-3 text-center">ГДЕ МОЙ КЭШ?</h3>
     <table class="table table-striped table-bordered">
       <div class="productCardContainer" v-for="product in products" :key="product.id">
-        <CatalogProductCard :product="product" @add-cart="addCart"/>
+        <catalog-product-card :product="product" @add-cart="addCart"/>
       </div>
     </table>
   </div>
 </template>
+
+
+<style scoped>
+.box {
+  height: 100%;
+}
+
+.productCardContainer {
+  width: 220px;
+  height: 300px;
+  display: inline;
+  float: left;
+  overflow: hidden;
+  background: lightblue;
+  margin: 10px;
+}
+</style>
+
 
 <script lang = 'ts'>
 import { defineComponent } from "vue";
@@ -69,19 +87,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-.box {
-  height: 100%;
-}
-
-.productCardContainer {
-  width: 220px;
-  height: 300px;
-  display: inline;
-  float: left;
-  overflow: hidden;
-  background: lightblue;
-  margin: 10px;
-}
-</style>

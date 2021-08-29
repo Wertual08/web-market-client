@@ -21,47 +21,8 @@
 </template>
 
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import Product from "@/models/product";
-
-export default defineComponent({
-  emits: ['add-cart'],
-
-  data() {
-    return {
-    };
-  },
-  
-  mounted() {
-  },
-
-  props: {
-    product: Product
-  },
-
-  methods: {
-  },
-
-  computed: {
-    coverImage(): string {
-      let records: string[] = this.product?.records ?? []
-      
-      if (records.length > 0) {
-        return records[0];
-      } else {
-        return require('@/assets/meme.gif')
-      }
-    },
-  }
-});
-</script>
-
-
 <style scoped>
 .box {
-  display: flex;
-  flex-flow: column;
   height: 100%;
 }
 
@@ -112,3 +73,42 @@ export default defineComponent({
   max-height: 100%
 }
 </style>
+
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import Product from "@/models/product";
+
+export default defineComponent({
+  name: 'catalog-product-card',
+
+  emits: ['add-cart'],
+
+  data() {
+    return {
+    };
+  },
+  
+  mounted() {
+  },
+
+  props: {
+    product: Product
+  },
+
+  methods: {
+  },
+
+  computed: {
+    coverImage(): string {
+      let records: string[] = this.product?.records ?? []
+      
+      if (records.length > 0) {
+        return records[0];
+      } else {
+        return require('@/assets/meme.gif')
+      }
+    },
+  }
+});
+</script>
