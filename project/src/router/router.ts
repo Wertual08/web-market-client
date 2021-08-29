@@ -16,7 +16,9 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/search",
-    component: FindPage
+    component: FindPage,
+    name: 'SearchPage',
+    props: true 
   },
   {
     path: '/about',

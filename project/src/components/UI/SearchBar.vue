@@ -1,15 +1,35 @@
 <template>
   <h1 class="ff">
-    <input class="search" type="search" name="q" placeholder="Поиск по сайту" />
-    <input class="but" type="submit"  value="Найти"  @click="$router.push('/search')"/> 
+    <input
+      class="search"
+      id="ff"
+      type="search"
+      name="query"
+      placeholder="Поиск по сайту"
+      v-model="request"
+    />
+    <input
+      class="but"
+      type="submit"
+      value="Найти"
+      @click=" 
+        $router.replace( {
+          name: 'SearchPage',
+          params: { query: request }
+        })
+      "
+    />
   </h1>
 </template>
-<script>
-import { defineComponent } from "vue"
+<script lang = 'ts'>
+import { defineComponent } from "vue";
 
 export default defineComponent({
-   name: "SearchBar"
-})
+  name: "SearchBar",
+  data() {
+    return { request: "" };
+  },
+});
 </script>
 
 <style  scoped>
@@ -28,7 +48,6 @@ export default defineComponent({
 }
 .ff {
   margin-top: 0px;
-   
 }
 .search {
   border: 1px outset;
