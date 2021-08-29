@@ -20,7 +20,6 @@ class SectionsRepository extends AbstractRepository<Section> {
   public async getSections(): Promise<Section[]> {
     let response = await this.axios.get('')
     let data = response.data;
-
     let sections: Section[] = []
     for (let i = 0; i < data.length; i++) {
       sections.push(this.map(data[i]))
