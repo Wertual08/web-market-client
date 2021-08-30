@@ -3,7 +3,7 @@ import AbstractRepository from "./abstractRepository";
 
 
 
-class AuthRepository extends AbstractRepository<Auth> {
+export default class AuthRepository extends AbstractRepository<Auth> {
   protected map(item: any): Auth {
     const result = new Auth()
     result.refreshToken = item.RefreshToken
@@ -52,5 +52,3 @@ class AuthRepository extends AbstractRepository<Auth> {
     return this.map(data)
   }
 }
-
-export default new AuthRepository()

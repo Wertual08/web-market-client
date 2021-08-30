@@ -1,20 +1,23 @@
-// import createStore from "vuex";
+import { InjectionKey } from "vue";
+import { createLogger, createStore, useStore as baseUseStore, Store } from "vuex"
+import createPersistedState from 'vuex-persistedstate'
+import Profile from "@/models/profile"
+import Auth from "@/models/auth";
 
-// export default createStore({
-//     state: {
-//         // само состояние, тут описываем данные в приложении
-//     	likes: 0
-//     },
-//     getters: {
-//         // некоторые computed свойства аналогично тем, которые мы делали в компоненте (своего рода кэшируемые и вычисляемые значения)
-//     },
-//     mutations: {
-//         // изменять состояние можем не напрямую, а с помощью мутаций. Они представляют из себя функции, внутри которых мы меняем значение какого-то поля в состоянии
-//     },
-//     actions: {
-//         // функции, которые внутри себя используют мутации. Внутри них обычно делаются side-эффекты. Например, получаем данные с сервера, вызываем мутацию и сохраняем эти данные в состоянии
-//     },
-//     modules: {
-//         // ...
-//     }
-// })
+export interface State {
+  profile: Profile|null
+  auth: Auth|null
+}
+
+export const key: InjectionKey<Store<State>> = Symbol()
+
+export const store = createStore<State>({
+  state: {
+    profile: null,
+    auth: null
+  }
+})
+
+export function useStore() {
+  return baseUseStore(key)
+}

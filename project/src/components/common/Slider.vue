@@ -1,12 +1,12 @@
 <template>
-    <div class="slides">
-      <div class="inner" ref="container" :style="innerStyle">
-        <slot/>
-      </div> 
-      <div id="controls">
-        <button class="selector" :style="selectorStyle(i - 1)" v-for="i in count" :key="i" @click="current=i - 1"/>
-      </div>
+  <div class="slides">
+    <div class="inner" ref="container" :style="innerStyle">
+      <slot/>
+    </div> 
+    <div id="controls">
+      <button class="selector" :style="selectorStyle(i - 1)" v-for="i in count" :key="i" @click="current=i - 1"/>
     </div>
+  </div>
 </template>
 
 

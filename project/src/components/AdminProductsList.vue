@@ -7,7 +7,7 @@
 <script lang = 'ts'>
 import { defineComponent } from "vue";
 import Product from "@/models/admin/product";
-import productsRepository from "@/repositories/admin/productsRepository";
+import ProductsRepository from "@/repositories/admin/productsRepository";
 import AdminProductCard from "./common/AdminProductCard.vue";
 
 export default defineComponent({
@@ -15,6 +15,12 @@ export default defineComponent({
 
   components: {
     AdminProductCard,
+  },
+
+  setup() {
+    return {
+      productsRepository: new ProductsRepository
+    }
   },
 
   data() {
@@ -46,7 +52,7 @@ export default defineComponent({
     loadUp(): void {
       if (!this.loading) {
         this.loading = true
-        productsRepository.getProducts(this.page)
+        this.productsRepository.getProducts(this.page)
           .then(result => {
             if (result.length > 0 && this.productsToLoad) {
               result.forEach(item => this.products.push(item))

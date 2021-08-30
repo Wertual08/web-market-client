@@ -3,7 +3,7 @@ import Section from "@/models/section"
 
 
 
-class SectionsRepository extends AbstractRepository<Section> {
+export default class SectionsRepository extends AbstractRepository<Section> {
   protected map(item: any): Section {
     const section = new Section() 
     section.id = item.Id
@@ -28,5 +28,3 @@ class SectionsRepository extends AbstractRepository<Section> {
     return sections
   }
 }
-
-export default new SectionsRepository()

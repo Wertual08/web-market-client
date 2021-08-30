@@ -31,11 +31,17 @@
 import { defineComponent } from "vue";
 import CatalogProductCard from "@/components/common/CatalogProductCard.vue"
 import Product from "@/models/product";
-import productsRepository from "@/repositories/productsRepository";
+import ProductsRepository from "@/repositories/productsRepository";
 
 export default defineComponent({
   components: {
     CatalogProductCard,
+  },
+
+  setup() {
+    return {
+      productsRepository: new ProductsRepository()
+    }
   },
 
   data() {
@@ -67,7 +73,7 @@ export default defineComponent({
     loadUp(): void {
       if (!this.loading) {
         this.loading = true
-        productsRepository.getProducts(this.page)
+        this.productsRepository.getProducts(this.page)
           .then(result => {
             if (result.length > 0 && this.productsToLoad) {
               result.forEach(item => this.products.push(item))

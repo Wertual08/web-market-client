@@ -3,7 +3,7 @@ import Product from "@/models/admin/product"
 
 
 
-class ProductsRepository extends AbstractRepository<Product> {
+export default class ProductsRepository extends AbstractRepository<Product> {
   protected map(item: any): Product {
     const prod = new Product()
     prod.id = item.Id
@@ -54,5 +54,3 @@ class ProductsRepository extends AbstractRepository<Product> {
     return this.map(response.data)
   }
 }
-
-export default new ProductsRepository()

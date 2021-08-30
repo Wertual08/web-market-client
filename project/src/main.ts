@@ -1,16 +1,15 @@
 import { createApp } from 'vue'
 import App from '@/App.vue'
 import router from '@/router/router'
+import { store, key } from '@/store'
 import components from "@/components/UI"
 
-import authRepository from './repositories/authRepository'
-
 const app = createApp(App) 
- 
+
 components.forEach(component => {
-    app.component(component.name, component)
+  app.component(component.name, component)
 })
 
-app
-  .use(router)
-  .mount('#app')
+app.use(router)
+app.use(store, key)
+app.mount('#app')

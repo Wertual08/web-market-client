@@ -24,20 +24,31 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Section from "@/models/section";
-import sectionsRepository from "@/repositories/sectionsRepository";
+import SectionsRepository from "@/repositories/sectionsRepository";
 
 export default defineComponent({
+  setup() {
+    return {
+      sectionsRepository: new SectionsRepository(),
+    }
+  },
+
   data() {
     return {
       sections: [] as Section[],
     };
   },
+
   mounted() {
-    sectionsRepository.getSections()
+    this.sectionsRepository.getSections()
       .then((result: Section[]) => {
         this.sections = result;
       });
   },
+  computed: {
+    test() {
+    }
+  }
 });
 </script>
 

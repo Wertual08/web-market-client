@@ -14,6 +14,7 @@
   </div>
 </template>
 
+
 <style scoped>
 .but {
   background: #030b3a;

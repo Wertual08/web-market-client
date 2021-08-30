@@ -1,7 +1,7 @@
 import AbstractRepository from "./abstractRepository"
 import SearchProduct from "@/models/searchProduct"
 
-class SearchRepository extends AbstractRepository<SearchProduct> {
+export default class SearchRepository extends AbstractRepository<SearchProduct> {
   public constructor() {
     super('api/search/products')
   }
@@ -36,5 +36,3 @@ class SearchRepository extends AbstractRepository<SearchProduct> {
     return Products
   }
 }
-
-export default new SearchRepository()

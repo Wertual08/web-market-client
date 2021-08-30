@@ -9,19 +9,19 @@
     </div>
     <div class="topBlock" @click="$router.push('/cart')">Корзина</div>
     <div id="login" class="topBlock">
-      <!-- тут надо прокидывать в компонент login -->
-      <component :is="currentComponent" v-bind="currentProperties" @signed="signed" @logout="logout"/>
+      <profile-card/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import NotSignedLoginPanel from "@/components/NotSignedLoginPanel.vue";
-import SignedLoginPanel from "@/components/SignedLoginPanel.vue";
-
+import NotSignedLoginPanel from "@/components/NotSignedLoginPanel.vue"
+import SignedLoginPanel from "@/components/SignedLoginPanel.vue"
+import ProfileCard from "@/components/common/ProfileCard.vue"
 export default defineComponent({
   components: {
+    ProfileCard,
     NotSignedLoginPanel,
     SignedLoginPanel,
   },

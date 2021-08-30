@@ -23,6 +23,13 @@ import SearchProductCard from "@/components/common/SearchProductCard.vue"
 
 export default defineComponent({
   components: { SearchProductCard, Tree },
+
+  setup() {
+    return {
+      searchRepository: new SearchRepository(),
+    }
+  },
+
   mounted() {
     this.loadUp();
     window.onscroll = () => {
@@ -38,6 +45,7 @@ export default defineComponent({
       loading: false,
     };
   },
+
   props: {
     query: {
       type: String,
@@ -57,7 +65,7 @@ export default defineComponent({
     loadUp(): void {
       if (!this.loading) {
         this.loading = true;
-        SearchRepository.Search(this.query, this.page).then((result) => {
+        this.searchRepository.Search(this.query, this.page).then((result) => {
           if (result.length > 0 && this.productsToLoad) {
             result.forEach((item) => this.products.push(item));
             this.page++;

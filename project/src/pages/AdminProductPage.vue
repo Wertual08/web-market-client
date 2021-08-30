@@ -7,11 +7,18 @@
 <script lang="ts">
 import Product from '@/models/admin/product'
 import { defineComponent } from "vue"
-import productsRepository from '@/repositories/admin/productsRepository'
+import ProductsRepository from '@/repositories/admin/productsRepository'
 import AdminProductForm from '@/components/common/AdminProductForm.vue';
 
 export default defineComponent({
   name: "admin-product-page",
+
+  setup() {
+    return {
+      productsRepository: new ProductsRepository(),
+    }
+  },
+
   components: {
     AdminProductForm
   },
@@ -23,7 +30,7 @@ export default defineComponent({
   },
 
   mounted() {
-    productsRepository.getProduct(+this.$route.params.id)
+    this.productsRepository.getProduct(+this.$route.params.id)
       .then(product => this.product = product)
   },
 

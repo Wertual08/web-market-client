@@ -20,22 +20,30 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import productsRepository from "@/repositories/productsRepository"
+import ProductsRepository from "@/repositories/productsRepository"
 import Product from "@/models/product"
 import Menu from "@/components/DropdownMenu.vue"
 
 export default defineComponent({
   name: "ff",
+
+  setup() {
+    return {
+      productsRepository: new ProductsRepository(),
+    }
+  },
+
   components: {
     Menu,
   },
+
   data() {
     return { product: new Product(), id: null as any };
   },
 
   mounted() {
     this.id = this.$route.params.id;
-    productsRepository.getProduct(this.id)
+    this.productsRepository.getProduct(this.id)
       .then((result: Product) => {
         this.product = result;
       });
