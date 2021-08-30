@@ -1,11 +1,18 @@
 <template>
   <div style="box">
     <slider class="slider">    
-      <img class="slide" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg">
+      <div class="slide">
+        <input>
+        <button>BUTTON</button>
+        <img class="slide" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/rock.jpg">
+      </div>
       <img class="slide" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/grooves.jpg">
       <img class="slide" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/arch.jpg">
       <img class="slide" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5689/sunset.jpg">
-      <img class="slide" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMl4_ScwHun3sWMAmlDsshDOzMCpJIWXsXQ">
+      <div class="slide">
+        SUPERSHIT
+        <img class="slide" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMl4_ScwHun3sWMAmlDsshDOzMCpJIWXsXQ">
+      </div>
     </slider>
     <div class="properties">
       <h1>{{ product.id }}</h1>
@@ -63,6 +70,7 @@ export default defineComponent({
 .slider {
   width: 260pt;
   height: 260pt;
+  border-radius: 10pt;
 }
 
 .slide {
