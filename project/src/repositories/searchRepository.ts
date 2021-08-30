@@ -3,7 +3,7 @@ import SearchProduct from "@/models/searchProduct"
 
 class SearchRepository extends AbstractRepository<SearchProduct> {
   public constructor() {
-    super('/search/products')
+    super('api/search/products')
   }
   protected map(item: any): SearchProduct {
     const prod = new SearchProduct()
@@ -18,9 +18,17 @@ class SearchRepository extends AbstractRepository<SearchProduct> {
     return prod
   }
 
-  public async Search(quer: string): Promise<SearchProduct[]> {
-    let response = await this.axios.get('', { params: { query: quer } })
-    let data = response.data;
+  public async Search(quer: string, page: number = 0, categories: number[] = [],
+    sections: number[] = []): Promise<SearchProduct[]> {
+      let response = await this.axios.get('', {
+        params: {
+          query: quer,
+          page: page,
+          categories: categories,
+          sections: sections,
+        }
+      })
+      let data = response.data;
     let Products: SearchProduct[] = []
     for (let i = 0; i < data.length; i++) {
       Products.push(this.map(data[i]))

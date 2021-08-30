@@ -80,7 +80,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Product from "@/models/product";
+import SearchProduct from "@/models/searchProduct";
 
 export default defineComponent({
   name: 'catalog-product-card',
@@ -96,7 +96,7 @@ export default defineComponent({
   },
 
   props: {
-    product: Product
+    product: SearchProduct
   },
 
   methods: {
@@ -104,10 +104,8 @@ export default defineComponent({
 
   computed: {
     coverImage(): string {
-      let records: string[] = this.product?.records ?? []
-      
-      if (records.length > 0) {
-        return records[0];
+      if (this.product?.image) {
+        return '/api/records/' + this.product.image;
       } else {
         return require('@/assets/meme.gif')
       }
