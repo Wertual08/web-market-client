@@ -2,7 +2,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://178.154.194.118',
+        target: 'https://softinspirit.net',
         changeOrigin: true,
       }
     }
