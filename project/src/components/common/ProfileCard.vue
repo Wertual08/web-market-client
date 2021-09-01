@@ -46,8 +46,8 @@ export default defineComponent({
 
   data() {
     return {
-      login: '',
-      password: '',
+      login: 'admin',
+      password: 'admin',
       invalidCredentials: false
     }
   },
@@ -56,8 +56,7 @@ export default defineComponent({
     performLogin() {
       this.authRepository.login(this.login, this.password)
         .then(model => {
-          //this.store.state.auth = model
-          this.store.commit('setAuth', model)
+          this.store.state.auth = model
           this.profileRepository.get()
             .then(model => {
               this.store.state.profile = model
