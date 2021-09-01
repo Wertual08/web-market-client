@@ -8,6 +8,7 @@ export default class AuthRepository extends AbstractRepository<Auth> {
     const result = new Auth()
     result.refreshToken = item.RefreshToken
     result.accessToken = item.AccessToken
+    result.expiresAt = item.ExpiresAt
     return result
   }
 

@@ -15,6 +15,12 @@ export const store = createStore<State>({
   state: {
     profile: null,
     auth: null
+  },
+
+  mutations: {
+    setAuth(state: State, auth: Auth|null) {
+      state.auth = auth
+    }
   }
 })
 

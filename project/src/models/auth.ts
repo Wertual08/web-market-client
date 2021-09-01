@@ -1,4 +1,5 @@
 export default class Auth {
-  refreshToken: string = ''
-  accessToken: string = ''
+  public refreshToken: string = ''
+  public accessToken: string = ''
+  public expiresAt: number = -1
 }
