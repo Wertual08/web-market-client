@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from '@/App.vue'
 import router from '@/router/router'
-import { store, key } from '@/store'
+import { store } from '@/store'
 import components from "@/components/UI"
 
 const app = createApp(App) 
@@ -11,5 +11,5 @@ components.forEach(component => {
 })
 
 app.use(router)
-app.use(store, key)
+app.use(store)
 app.mount('#app')

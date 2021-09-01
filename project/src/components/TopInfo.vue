@@ -1,4 +1,7 @@
 <template>
+  <modal-window :visible="registerOpened" @close="closeRegister()">
+    <registration-form/>
+  </modal-window>
   <div id="topInfo">
     <div id="logo" class="topBlock">
       <img src="../assets/logo.png" alt="vue logo" />
@@ -9,55 +12,35 @@
     </div>
     <div class="topBlock" @click="$router.push('/cart')">Корзина</div>
     <div id="login" class="topBlock">
-      <profile-card/>
+      <profile-card @register="openRegister"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import NotSignedLoginPanel from "@/components/NotSignedLoginPanel.vue"
-import SignedLoginPanel from "@/components/SignedLoginPanel.vue"
-import ProfileCard from "@/components/common/ProfileCard.vue"
+import ProfileCard from '@/components/common/ProfileCard.vue'
+import ModalWindow from '@/components/common/ModalWindow.vue'
+import RegistrationForm from './RegistrationForm.vue'
 export default defineComponent({
   components: {
     ProfileCard,
-    NotSignedLoginPanel,
-    SignedLoginPanel,
+    ModalWindow,
+    RegistrationForm,
   },
   data() {
     return {
-      currentComponent: 'NotSignedLoginPanel',
-      user: {
-        login: "",
-        accessToken: "",
-        refreshToken: ""
-      }
+      registerOpened: false,
     }
   },
   methods: {
-    signed(login: any, accToken: any, refToken: any) {
-      this.currentComponent = 'SignedLoginPanel'
-      this.user.login = login
-      this.user.accessToken = accToken
-      this.user.refreshToken = refToken
+    openRegister() {
+      this.registerOpened = true
     },
-    logout() {
-      this.user.login = "",
-      this.user.accessToken = "",
-      this.user.refreshToken = "",
-      this.currentComponent = 'NotSignedLoginPanel'
-    }
+    closeRegister() {
+      this.registerOpened = false
+    },
   },
-  computed: {
-    currentProperties(): any {
-      if (this.currentComponent === 'SignedLoginPanel') {
-        return { 
-          login: this.user.login 
-        }
-      }
-    }
-  }
 })
 </script>
 

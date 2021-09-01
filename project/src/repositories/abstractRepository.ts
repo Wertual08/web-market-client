@@ -33,7 +33,7 @@ export default abstract class AbstractRepository<T> {
     if (auth != null) {
       if (auth.expiresAt < new Date().valueOf() / 1000 - 10) {
         auth = await this.refreshToken(auth.refreshToken)
-        this.store.commit('setAuth', auth)
+        this.store.commit('auth', auth)
         if (auth == null) {
           return null
         }

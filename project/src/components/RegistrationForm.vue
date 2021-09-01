@@ -67,6 +67,29 @@
   </form>
 </template>
 
+
+<style scoped>
+form {
+  width: 300pt;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 10pt;
+  border-color: black;
+  border: solid;
+  border-width: 2pt;;
+}
+
+my-input:focus:invalid {
+  box-shadow: none;
+}
+
+my-input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+</style>
+
+
 <script lang="ts">
 import { defineComponent } from 'vue'
 import axios from "axios"
@@ -121,18 +144,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped>
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-my-input:focus:invalid {
-  box-shadow: none;
-}
-
-my-input:invalid {
-  box-shadow: 0 0 5px 1px red;
-}
-</style>

@@ -3,7 +3,7 @@
     <label>Login</label>
     <input v-model="login">
     <label>Password</label>
-    <input v-model="password">
+    <input type="password" v-model="password">
     <button @click="performLogin">Log in</button>
     <button @click="$emit('register')">Register</button>
   </div>
@@ -36,6 +36,8 @@ import ProfileRepository from '@/repositories/profileRepository'
 export default defineComponent({
   name: 'profile-card',
 
+  emits: ['register'],
+
   setup() {
     return {
       authRepository: new AuthRepository(),
@@ -48,7 +50,15 @@ export default defineComponent({
     return {
       login: 'admin',
       password: 'admin',
-      invalidCredentials: false
+      invalidCredentials: false,
+      profile: null as Profile|null,
+    }
+  },
+
+  mounted() {
+    if (this.store.state.auth != null) {
+      this.profileRepository.get()
+        .then(model => this.profile = model)
     }
   },
 
@@ -56,11 +66,9 @@ export default defineComponent({
     performLogin() {
       this.authRepository.login(this.login, this.password)
         .then(model => {
-          this.store.state.auth = model
+          this.store.commit('auth', model)
           this.profileRepository.get()
-            .then(model => {
-              this.store.state.profile = model
-            })
+            .then(model => this.profile = model)
         })
         .catch(error => {
           if (error.response) {
@@ -69,16 +77,11 @@ export default defineComponent({
           }
         })
     },
+
     performLogout() {
-      this.store.state.auth = null
-      this.store.state.profile = null
+      this.store.commit('auth', null)
+      this.profile = null
     }
   },
-
-  computed: {
-    profile(): Profile|null {
-      return this.store.state.profile
-    },
-  }
 })
 </script>

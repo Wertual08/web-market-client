@@ -18,5 +18,6 @@ export default defineComponent({
   background: none;
   color: teal;
   border: 1px solid teal;
+  margin: 15pt 15pt;
 }
 </style>

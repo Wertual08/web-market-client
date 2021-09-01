@@ -1,53 +1,34 @@
-import { InjectionKey } from 'vue'
-import { createLogger, createStore, useStore as baseUseStore, Store } from 'vuex'
+import { createLogger, createStore, Store } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import Profile from '@/models/profile'
 import Auth from '@/models/auth'
-import * as Cookies from 'js-cookie'
 
-export interface State {
-  profile: Profile|null
-  auth: Auth|null
+export class State {
+  public auth: Auth|null = null
 }
 
-export const key: InjectionKey<Store<State>> = Symbol()
-
 export const store = createStore<State>({
-  state: {
-    profile: null,
-    auth: null
-  },
+  state: new State(),
 
   mutations: {
-    setAuth(state: State, auth: Auth|null) {
+    auth(state: State, auth: Auth|null) {
       state.auth = auth
-    }
+    },
+  },
+
+  getters: {
+    auth(state: State) {
+      return state.auth
+    },
   },
 
   plugins: [
     createPersistedState({
-      key: 'keyname',
-      storage: {
-        getItem(key: string) {
-          return Cookies.get(key)
-        },
-
-        setItem(key: string, value: string|object) {
-          Cookies.set(key, value, {
-            expires: 365,
-            secure: false,
-          })
-        },
-
-        removeItem(key: string) {
-          Cookies.remove(key)
-        },
-      }      
+      storage: window.sessionStorage
     }),
     createLogger()
   ],
 })
 
-export function useStore() {
-  return baseUseStore(key)
+export function useStore(): Store<State> {
+  return store
 }
