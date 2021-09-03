@@ -13,8 +13,8 @@ export default abstract class AbstractRepository<T> {
   protected abstract map(item: any): T
 
   private async refreshToken(token: string): Promise<Auth|null> {
-    const inst = axios.create()
-    const response = await inst.post('api/auth/refresh', {
+    const inst = axios.create({ baseURL: '/api/auth' })
+    const response = await inst.post('refresh', {
       Token: token
     })
     if (response.status != 200) {

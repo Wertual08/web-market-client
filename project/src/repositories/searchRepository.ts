@@ -3,7 +3,7 @@ import SearchProduct from "@/models/searchProduct"
 
 export default class SearchRepository extends AbstractRepository<SearchProduct> {
   public constructor() {
-    super('api/search/products')
+    super('/api/search/products')
   }
   protected map(item: any): SearchProduct {
     const prod = new SearchProduct()

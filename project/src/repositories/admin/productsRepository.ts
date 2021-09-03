@@ -1,5 +1,6 @@
 import AbstractRepository from "@/repositories/abstractRepository"
 import Product from "@/models/admin/product"
+import PutProductRequest from "@/requests/admin/putProductRequest"
 
 
 
@@ -47,6 +48,18 @@ export default class ProductsRepository extends AbstractRepository<Product> {
     }
 
     return products
+  }
+
+  public async putProduct(request: PutProductRequest): Promise<Product> {
+    let response = await this.axios.put(`${request.id}`, {
+      Name: request.name,
+      Description: request.description,
+      Price: request.price,
+      Records: request.records,
+      Categories: request.categories,
+      Sections: request.sections,
+    })
+    return this.map(response.data)
   }
 
   public async createProduct(): Promise<Product> {

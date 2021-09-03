@@ -3,7 +3,7 @@ import Profile from "@/models/profile"
 
 export default class ProfileRepository extends AbstractRepository<Profile> {
   public constructor() {
-    super('api/profile')
+    super('/api/profile')
   }
   protected map(item: any): Profile {
     const result = new Profile()
