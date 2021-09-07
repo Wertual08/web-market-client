@@ -41,7 +41,6 @@ export default defineComponent({
   setup() {
     return {
       authRepository: new AuthRepository(),
-      profileRepository: new ProfileRepository(),
       store: useStore(),
     }
   },
@@ -57,7 +56,7 @@ export default defineComponent({
 
   mounted() {
     if (this.store.state.auth != null) {
-      this.profileRepository.get()
+      this.store.dispatch('profile')
         .then(model => this.profile = model)
     }
   },
@@ -67,8 +66,11 @@ export default defineComponent({
       this.authRepository.login(this.login, this.password)
         .then(model => {
           this.store.commit('auth', model)
-          this.profileRepository.get()
-            .then(model => this.profile = model)
+          this.store.dispatch('profile')
+            .then(model => {
+              this.profile = model
+              this.$router.go(0)
+            })
         })
         .catch(error => {
           if (error.response) {
@@ -81,6 +83,7 @@ export default defineComponent({
     performLogout() {
       this.store.commit('auth', null)
       this.profile = null
+      this.$router.go(0)
     }
   },
 })
