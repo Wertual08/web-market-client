@@ -17,12 +17,14 @@ export const store = createStore<State>({
 
   getters: {
     auth(state: State) {
+      console.log('SHIT')
       return state.auth
     },
   },
 
   plugins: [
     createPersistedState({
+      paths: ['auth'],
       storage: window.sessionStorage
     }),
     createLogger()

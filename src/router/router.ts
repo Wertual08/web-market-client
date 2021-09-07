@@ -1,18 +1,19 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import FindPage from "@/pages/FindPage.vue"
-import Main from "@/pages/Main.vue"
-import About from "@/pages/About.vue"
-import Catalog from "@/pages/Catalog.vue"
+import MainPage from "@/pages/MainPage.vue"
+import AboutPage from "@/pages/AboutPage.vue"
+import CatalogPage from "@/pages/CatalogPage.vue"
 import ProductPage from '@/pages/ProductPage.vue'
-import Cart from '@/pages/Cart.vue'
+import CartPage from '@/pages/CartPage.vue'
 import AdminProductsPage from '@/pages/AdminProductsPage.vue'
 import AdminProductPage from '@/pages/AdminProductPage.vue'
+import AdminSectionsPage from '@/pages/AdminSectionsPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    component: Main
+    component: MainPage
   },
   {
     path: "/search",
@@ -22,28 +23,32 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/about',
-    component: About
+    component: AboutPage,
   },
   {
     path: '/catalog',
-    component: Catalog
+    component: CatalogPage,
   },
   {
     path: '/product/:id',
-    component: ProductPage
+    component: ProductPage,
   },
   {
     path: '/cart',
-    component: Cart
+    component: CartPage,
   },
   {
     path: '/admin/products',
-    component: AdminProductsPage
+    component: AdminProductsPage,
   },
   {
     path: '/admin/products/:id',
-    component: AdminProductPage
-  }
+    component: AdminProductPage,
+  },
+  {
+    path: '/admin/sections',
+    component: AdminSectionsPage,
+  },
 ]
 
 const router = createRouter({
