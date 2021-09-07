@@ -2,21 +2,17 @@
   <div id="main">
     <SearchBar />
     <div id="container">
-      <!-- <div class="work_in_progress">work in progress</div> -->
-      <!-- <table class="table"> -->
-        <!-- <div class="sections" v-for="section in sections" :key="section.id"> -->
-          <!--  <button @click="$emit('load-product', product.Id)" class="prodId">
-            артикул: {{ product.Id }}
-          </button> -->
-          <!-- <router-link class="productCardContent" :to="{ path: '/catalog' }"> -->
-            <!-- <div class="prodCardContent"> -->
-              <!-- <p class="prodName">{{ section.name }}</p> -->
-              <div class="sectionImg">shit</div>
-              <!-- <img class="sectionImg" src=@/assets/meme.gif/> -->
-            <!-- </div> -->
-          <!-- </router-link> -->
-        <!-- </div> -->
-      <!-- </table> -->
+      <div class="work_in_progress">work in progress</div> 
+      <table class="table"> 
+        <div class="sections" v-for="section in sections" :key="section.id"> 
+          <router-link class="productCardContent" :to="{ path: '/catalog' }"> 
+            <div class="prodCardContent"> 
+              <p class="prodName">{{ section.name }}</p> 
+              <img class="sectionImg" src=@/assets/meme.gif/> 
+            </div> 
+          </router-link> 
+        </div> 
+      </table> 
     </div>
   </div>
 </template>
@@ -31,16 +27,17 @@
   flex-direction: column;
 }
 #container {
-  background-color: rgba(98, 0, 50);
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 1080px;
 }
 .sectionImg {
-  min-width: 100pt;
-  min-height: 100pt;
-  background: violet;
+  width: 150pt;
+  height: 150pt;
+  margin-top: 10pt;
+
 }
 .table {
  margin-left: 20px;
@@ -48,7 +45,7 @@
 .prodCardContent {
   width: 100%;
   height: 100%;
-  background: red;
+
 }
 .sections {
   width: 220px;

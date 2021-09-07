@@ -57,18 +57,16 @@ export default defineComponent({
   margin: 0px;
   padding: 0px;
   list-style: none;
-  position: relative;
+  
 }
 #menuVertical ul li {
   display: block;
   width: 100%;
   height: auto;
-  position: relative;
   ;
 }
 #menuVertical ul li a {
-  position: relative;
-  display: block;
+  display: flex;
   width: 100%;
   height: 39
 vypadayushchiye menyu

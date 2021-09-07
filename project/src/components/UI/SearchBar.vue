@@ -40,7 +40,7 @@ export default defineComponent({
 
 <style  scoped>
 .but {
-  position: relative;
+  margin-left: 20pt;
   left: 10px;
   background-color: #0f8397;
   border: none;
@@ -61,7 +61,6 @@ export default defineComponent({
   width: 1000px;
   margin: 0px;
   height: 30px;
-  position: relative;
   margin-bottom: 10px;
   background-color: rgba(204, 207, 207, 0.356);
 }
