@@ -91,7 +91,7 @@ export default defineComponent({
   left: 0;
   min-height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.39);
+  background: rgba(207, 8, 8, 0.39);
 }
 .modal {
   background: #fff;
