@@ -12,10 +12,16 @@
       class="but"
       type="submit"
       value="Найти"
-      @click=" 
-        $router.replace( {
+      v-on:keyup="
+        $router.replace({
           name: 'SearchPage',
-          params: { query: request }
+          params: { query: request },
+        })
+      "
+      @click="
+        $router.replace({
+          name: 'SearchPage',
+          params: { query: request },
         })
       "
     />

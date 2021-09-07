@@ -4,7 +4,7 @@
     <div id="container">
       <Tree />
       <div class="prod_list">
-        <ProductsList @load-product="$emit('load-product', $event)" />
+        <ProductsList />
       </div>
     </div>
   </div>
@@ -22,10 +22,6 @@ export default defineComponent({
     ProductsList,
     Tree,
   },
-
-  methods: {},
-
-  emits: ["load-product"],
 });
 </script>
 
