@@ -1,25 +1,68 @@
 <template>
-  <div class="main">
+  <div id="main">
     <SearchBar />
     <div id="container">
-      <div class="work_in_progress">work in progress</div>
-      <table class="table">
-        <div class="sections" v-for="section in sections" :key="section.id">
+      <!-- <div class="work_in_progress">work in progress</div> -->
+      <!-- <table class="table"> -->
+        <!-- <div class="sections" v-for="section in sections" :key="section.id"> -->
           <!--  <button @click="$emit('load-product', product.Id)" class="prodId">
             артикул: {{ product.Id }}
           </button> -->
-          <router-link :to="{ path: '/catalog' }">
-            <div class="prodCardContent">
-              <p class="prodName">{{ section.name }}</p>
-              <img class = sectionImg src=@/assets/meme.gif style="display:
-              block" />
-            </div>
-          </router-link>
-        </div>
-      </table>
+          <!-- <router-link class="productCardContent" :to="{ path: '/catalog' }"> -->
+            <!-- <div class="prodCardContent"> -->
+              <!-- <p class="prodName">{{ section.name }}</p> -->
+              <div class="sectionImg">shit</div>
+              <!-- <img class="sectionImg" src=@/assets/meme.gif/> -->
+            <!-- </div> -->
+          <!-- </router-link> -->
+        <!-- </div> -->
+      <!-- </table> -->
     </div>
   </div>
 </template>
+
+
+<style scoped>
+#main {
+  background-color: rgba(169, 241, 241);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#container {
+  background-color: rgba(98, 0, 50);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sectionImg {
+  min-width: 100pt;
+  min-height: 100pt;
+  background: violet;
+}
+.table {
+ margin-left: 20px;
+}
+.prodCardContent {
+  width: 100%;
+  height: 100%;
+  background: red;
+}
+.sections {
+  width: 220px;
+  height: 300px;
+  display: inline;
+  float: left;
+  overflow: hidden;
+  background: lightblue;
+  margin: 10px;
+}
+.work_in_progress {
+  font: bold 10em "Fira Sans", serif;
+}
+</style>
 
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -51,43 +94,3 @@ export default defineComponent({
   }
 });
 </script>
-
-
-<style scoped>
-.table {
- margin-left: 20px;
-}
-.sectionImg {
-  position: relative;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 150px;
-  height: 150px;
-  margin-top: 80px;
-}
-.sections {
-  width: 220px;
-  height: 300px;
-  display: inline;
-  float: left;
-  overflow: hidden;
-  background: lightblue;
-  margin: 10px;
-}
-.main {
-  background-color: rgba(169, 241, 241, 0.377);
-  width: auto;
-  min-height: 1080px;
-}
-.work_in_progress {
-  font: bold 10em "Fira Sans", serif;
-}
-#container {
-  width: 1500px;
-  background-color: rgba(98, 0, 255, 0.11);
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 1080px;
-}
-</style>
