@@ -38,6 +38,10 @@ const routes: Array<RouteRecordRaw> = [
     component: CartPage,
   },
   {
+    path: '/admin',
+    component: AdminProductsPage,
+  },
+  {
     path: '/admin/products',
     component: AdminProductsPage,
   },

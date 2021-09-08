@@ -1,9 +1,13 @@
 export default class Profile {
-  id: number = 0
-  role: string = ''
-  login: string = ''
-  email: string = ''
-  phone: string = ''
-  name: string = ''
-  surname: string = ''
+  public id: number = 0
+  public role: string = ''
+  public login: string = ''
+  public email: string = ''
+  public phone: string = ''
+  public name: string = ''
+  public surname: string = ''
+
+  public isAdmin(): boolean {
+    return this.role.toLowerCase() == 'admin'
+  }
 }

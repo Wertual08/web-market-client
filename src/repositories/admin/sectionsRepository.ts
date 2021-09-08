@@ -40,8 +40,9 @@ export default class ProductsRepository extends AbstractRepository<Section> {
     return result
   }
 
-  public async putSection(request: PutProductRequest): Promise<Section> {
+  public async putSection(request: any): Promise<Section> {
     let response = await this.axios.put(`${request.id}`, {
+      SectionId: request.sectionId,
       Name: request.name,
       Description: request.description,
       Price: request.price,

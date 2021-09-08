@@ -4,8 +4,10 @@
     <input v-model="login">
     <label>Password</label>
     <input type="password" v-model="password">
-    <button @click="performLogin">Log in</button>
-    <button @click="$emit('register')">Register</button>
+    <div id="controls">
+      <button @click="performLogin">Log in</button>
+      <button @click="$emit('register')">Register</button>
+    </div>
   </div>
   <div id="card" v-else>
     {{profile.login}}
@@ -22,6 +24,10 @@
   background: white;
   display: flex;
   flex-direction: column;
+}
+
+#controls {
+  display: flex;
 }
 </style>
 
@@ -61,10 +67,9 @@ export default defineComponent({
   methods: {
     performLogin() {
       this.authRepository.login(this.login, this.password)
-        .then(model => {
+        .then(() => {
           this.profileRepository.get()
-            .then(model => {
-              this.profile = model
+            .then(() => {
               this.$router.go(0)
             })
         })
@@ -78,7 +83,7 @@ export default defineComponent({
 
     performLogout() {
       this.authRepository.logout()
-      this.profile = null
+      this.$router.push('/')
       this.$router.go(0)
     }
   },

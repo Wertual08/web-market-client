@@ -4,6 +4,15 @@
   </div>
 </template>
 
+
+<style scoped>
+.box {
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+
 <script lang="ts">
 import { defineComponent } from 'vue'
 import AdminSectionsTree from '@/components/AdminSectionsTree.vue'
@@ -37,11 +46,3 @@ export default defineComponent({
   },
 });
 </script>
-
-
-<style scoped>
-.box {
-  width: 100%;
-  height: 100%;
-}
-</style>

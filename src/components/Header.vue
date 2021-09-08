@@ -42,7 +42,7 @@ export default defineComponent({
   mounted() {
     this.profileRepository.get()
       .then((profile: Profile|null) => {
-        this.isAdmin = profile?.role.toLowerCase() == 'admin' ?? false
+        this.isAdmin = profile?.isAdmin() ?? false
       })
   },
 })
