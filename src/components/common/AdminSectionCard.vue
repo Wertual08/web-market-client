@@ -20,6 +20,11 @@
   border-radius: 3pt;
 }
 
+#box:hover {
+  box-shadow: 0pt 0pt 1pt 1pt cyan;
+  background: lightgray;
+}
+
 #cover {
   max-width: 100pt;
   max-height: 100%;

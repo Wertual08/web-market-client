@@ -1,8 +1,8 @@
 <template>
   <div id="nodes" v-for="section in sections" :key="section.name">
-    <admin-section-card :section="section"/>
+    <admin-section-card :section="section" @click="$emit('selected', section)"/>
     <div id="nested-nodes">
-      <admin-sections-tree :sections="section.sections"/>
+      <admin-sections-tree :sections="section.sections" @selected="$emit('selected', $event)"/>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
 }
 
 #nested-nodes {
-  padding-left: 20pt;
+  padding: 2pt 2pt 0pt 20pt;
 }
 
 </style>
@@ -32,6 +32,8 @@ export default defineComponent({
   components: {
     AdminSectionCard,
   },
+
+  emits: ['selected'],
 
   props: {
     sections: {
