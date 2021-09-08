@@ -16,9 +16,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import TopInfo from "@/components/TopInfo.vue"
-import NavigationBar from "@/components/NavigationBar.vue"
-import { useStore } from '@/store'
+import TopInfo from '@/components/TopInfo.vue'
+import NavigationBar from '@/components/NavigationBar.vue'
+import ProfileRepository from '@/repositories/profileRepository'
 import Profile from '@/models/profile'
 
 export default defineComponent({
@@ -29,7 +29,7 @@ export default defineComponent({
 
   setup() {
     return {
-      store: useStore(),
+      profileRepository: new ProfileRepository(),
     }
   },
 
@@ -40,7 +40,7 @@ export default defineComponent({
   },
 
   mounted() {
-    this.store.dispatch('profile')
+    this.profileRepository.get()
       .then((profile: Profile|null) => {
         this.isAdmin = profile?.role.toLowerCase() == 'admin' ?? false
       })

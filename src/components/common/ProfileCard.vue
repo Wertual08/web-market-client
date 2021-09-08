@@ -28,7 +28,6 @@
 
 <script lang="ts">
 import Profile from '@/models/profile'
-import { useStore } from '@/store'
 import { defineComponent } from 'vue'
 import AuthRepository from '@/repositories/authRepository'
 import ProfileRepository from '@/repositories/profileRepository'
@@ -41,7 +40,7 @@ export default defineComponent({
   setup() {
     return {
       authRepository: new AuthRepository(),
-      store: useStore(),
+      profileRepository: new ProfileRepository(),
     }
   },
 
@@ -55,18 +54,15 @@ export default defineComponent({
   },
 
   mounted() {
-    if (this.store.state.auth != null) {
-      this.store.dispatch('profile')
-        .then(model => this.profile = model)
-    }
+    this.profileRepository.get()
+      .then(model => this.profile = model)
   },
 
   methods: {
     performLogin() {
       this.authRepository.login(this.login, this.password)
         .then(model => {
-          this.store.commit('auth', model)
-          this.store.dispatch('profile')
+          this.profileRepository.get()
             .then(model => {
               this.profile = model
               this.$router.go(0)
@@ -81,7 +77,7 @@ export default defineComponent({
     },
 
     performLogout() {
-      this.store.commit('auth', null)
+      this.authRepository.logout()
       this.profile = null
       this.$router.go(0)
     }

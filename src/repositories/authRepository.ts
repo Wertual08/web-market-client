@@ -36,20 +36,29 @@ export default class AuthRepository extends AbstractRepository<Auth> {
     return this.map(data)
   }
 
-  public async login(login: string, password: string): Promise<Auth> {
+  public async login(login: string, password: string): Promise<Auth|null> {
     const response = await this.axios.post('login', {
       Login: login,
       Password: password,
     })
     const data = response.data
-    return this.map(data)
+    
+    this.store.commit('auth', this.map(data))
+    return this.store.state.auth
   }
 
-  public async refresh(refreshToken: string): Promise<Auth> {
+  public async refresh(refreshToken: string): Promise<Auth|null> {
     const response = await this.axios.post('refresh', {
       Token: refreshToken
     })
     const data = response.data
-    return this.map(data)
+    
+    this.store.commit('auth', this.map(data))
+    return this.store.state.auth
+  }
+
+  public async logout(): Promise<void> {
+    this.store.commit('auth', null)
+    this.store.commit('profile', null)
   }
 }

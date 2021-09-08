@@ -19,8 +19,11 @@ export default class ProfileRepository extends AbstractRepository<Profile> {
   }
 
   public async get(): Promise<Profile|null> {
-    let response = await this.axios.get('')
-    let data = response.data;
-    return this.map(data)
+    if (this.store.state.profile === null && this.store.state.auth !== null) {
+      let response = await this.axios.get('')
+      let data = response.data;
+      this.store.commit('profile', this.map(data))
+    }
+    return this.store.state.profile
   }
 }

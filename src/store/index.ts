@@ -16,6 +16,9 @@ export const store = createStore<State>({
     auth(state, auth: Auth|null) {
       state.auth = auth
     },
+    profile(state, profile: Profile|null) {
+      state.profile = profile
+    },
   },
 
   getters: {
@@ -25,20 +28,6 @@ export const store = createStore<State>({
     profile(state) {
       return state.profile
     },
-  },
-
-  actions: {
-    async profile(context): Promise<Profile|null> {
-      if (context.state.profile !== null) {
-        return context.state.profile
-      }
-      if (context.state.auth !== null) {
-        const repository = new ProfileRepository()
-        context.state.profile = await repository.get()
-        return context.state.profile
-      }
-      return null
-    }
   },
 
   plugins: [
