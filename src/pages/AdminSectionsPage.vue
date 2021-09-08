@@ -4,7 +4,7 @@
       <admin-sections-tree :sections="sections" @selected="selectSection"/>
     </div>
     <div id="redactor" v-if="selectedSection !== null">
-      <admin-section-form :section="selectedSection"/>
+      <admin-section-form :section="selectedSection" @save-section="saveSection"/>
     </div>
   </div>
 </template>
@@ -22,7 +22,6 @@
   width: 100%;
   height: 100%;
 
-
   background: cyan;
 }
 </style>
@@ -34,6 +33,7 @@ import AdminSectionsTree from '@/components/AdminSectionsTree.vue'
 import AdminSectionForm from '@/components/common/AdminSectionForm.vue'
 import SectionsRepository from '@/repositories/admin/sectionsRepository'
 import Section from '@/models/admin/section';
+import PutSectionRequest from '@/requests/admin/putSectionRequest';
 
 export default defineComponent({
   name: "admin-products-page",
@@ -63,7 +63,16 @@ export default defineComponent({
   methods: {
     selectSection(section: Section|null) {
       this.selectedSection = section
-    }
+    },
+
+    saveSection(section: Section) {
+      this.sectionsRepository.putSection(
+        new PutSectionRequest(section)
+      ).then(() => {
+        this.sectionsRepository.getSections()
+          .then(models => this.sections = models)
+      })
+    },
   },
 
   computed: {

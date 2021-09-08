@@ -1,12 +1,27 @@
 <template>
   <div id="box">
-    {{ localSection.id }}
+    <div id="properties">
+      {{ localSection.id }}
+      <label>Name</label>
+      <input v-model="localSection.name">
+      <label>Parent section id</label>
+      <input type="number" v-model="localSection.sectionId">
+      <button @click="$emit('save-section', localSection)">Save</button>
+    </div>
   </div>
 </template>
 
 
 <style scoped>
+#box {
+  display: flex;
+}
 
+#properties {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
 </style>
 
 
@@ -17,6 +32,8 @@ import Section from '@/models/admin/section'
 
 export default defineComponent({
   name: 'admin-section-form',
+
+  emits: ['save-section'],
 
   props: {
     section: {
@@ -38,7 +55,7 @@ export default defineComponent({
 
   watch: {
     section(value: Section) {
-      this.localSection = value
+      this.localSection = Object.assign(new Section(), value)
     }
   },
 })
