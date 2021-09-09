@@ -1,15 +1,15 @@
 import Section from "@/models/admin/section"
 
 export default class PutSectionRequest {
-  public id: number = 0
-  public sectionId: number|null = 0
-  public name: string = ''
-  public record: string = ''
+  public id: number
+  public sectionId: number|null 
+  public name: string
+  public recordId: number|null
 
   public constructor(section: Section) {
     this.id = section.id
     this.sectionId = section.sectionId
     this.name = section.name
-    this.record = section.record
+    this.recordId = section.record?.id ?? null
   }
 }

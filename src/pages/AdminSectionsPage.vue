@@ -32,8 +32,9 @@ import { defineComponent } from 'vue'
 import AdminSectionsTree from '@/components/AdminSectionsTree.vue'
 import AdminSectionForm from '@/components/common/AdminSectionForm.vue'
 import SectionsRepository from '@/repositories/admin/sectionsRepository'
-import Section from '@/models/admin/section';
-import PutSectionRequest from '@/requests/admin/putSectionRequest';
+import RecordsRepository from '@/repositories/recordsRepository'
+import Section from '@/models/admin/section'
+import PutSectionRequest from '@/requests/admin/putSectionRequest'
 
 export default defineComponent({
   name: "admin-products-page",
@@ -45,6 +46,7 @@ export default defineComponent({
   setup() {
     return {
       sectionsRepository: new SectionsRepository(),
+      recordsRepository: new RecordsRepository(),
     }
   },
 
@@ -65,7 +67,17 @@ export default defineComponent({
       this.selectedSection = section
     },
 
-    saveSection(section: Section) {
+    async saveSection(section: Section, coverUrl: string|null) {
+      let currentUrl = this.recordsRepository.toUrl(section.record?.identifier ?? null)
+      if (currentUrl != coverUrl) {
+        if (coverUrl) {
+          let blob = await fetch(coverUrl).then(r => r.blob())
+          section.record = await this.recordsRepository.createRecord(blob)
+        } else {
+          section.record = null
+        }
+      }
+
       this.sectionsRepository.putSection(
         new PutSectionRequest(section)
       ).then(() => {

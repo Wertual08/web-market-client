@@ -42,13 +42,21 @@
 
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import Section from "@/models/admin/section";
+import { defineComponent, PropType } from 'vue'
+import Section from '@/models/admin/section'
+import RecordsRepository from '@/repositories/recordsRepository'
+
 
 export default defineComponent({
   name: 'admin-section-card',
 
   emits: ['add-cart'],
+
+  setup() {
+    return {
+      recordsRepository: new RecordsRepository()
+    }
+  },
 
   data() {
     return {
@@ -69,8 +77,9 @@ export default defineComponent({
 
   computed: {
     coverImage(): string {
-      if (this.section?.record) {
-        return this.section?.record;
+      let url = this.recordsRepository.toUrl(this.section?.record?.identifier ?? null)
+      if (url) {
+        return url
       } else {
         return require('@/assets/placeholder.jpg')
       }

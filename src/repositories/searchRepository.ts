@@ -6,16 +6,16 @@ export default class SearchRepository extends AbstractRepository<SearchProduct> 
     super('/api/search/products')
   }
   protected map(item: any): SearchProduct {
-    const prod = new SearchProduct()
-    prod.id = item.Id
-    prod.name = item.Name
-    prod.description = item.Description
-    prod.price = item.Price
-    prod.categories = item.Categories
-    prod.sections = item.Sections
-    prod.image = item.Image
+    const model = new SearchProduct()
+    model.id = item.Id
+    model.name = item.Name
+    model.description = item.Description
+    model.price = item.Price
+    model.categories = item.Categories
+    model.sections = item.Sections
+    model.image = item.Image
 
-    return prod
+    return model
   }
 
   public async Search(quer: string, page: number = 0, categories: number[] = [],
