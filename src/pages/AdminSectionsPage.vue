@@ -1,7 +1,12 @@
 <template>
   <div id="box">
-    <div>
-      <admin-sections-tree :sections="sections" @selected="selectSection"/>
+    <div id="sections">
+      <admin-sections-tree 
+        v-for="section in sections" 
+        :key="section.name" 
+        :section="section" 
+        @selected="selectSection"
+      />
     </div>
     <div id="redactor" v-if="selectedSection !== null">
       <admin-section-form :section="selectedSection" @save-section="saveSection"/>
@@ -12,17 +17,27 @@
 
 <style scoped>
 #box {
-  display: flex;
-
   width: 100%;
   height: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+#sections {
+  display: flex;
+  flex-direction: column;
 }
 
 #redactor {
-  width: 100%;
-  height: 100%;
+  width: 500pt;
+  height: 300pt;
 
-  background: cyan;
+  position: sticky;
+  top: 20pt;
+  right: 20pt;
+
+  display: flex;
 }
 </style>
 

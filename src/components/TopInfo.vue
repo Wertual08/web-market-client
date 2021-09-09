@@ -17,6 +17,30 @@
   </div>
 </template>
 
+
+<style scoped>
+#topInfo {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.topBlock {
+  height: 60px;
+  
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
+.phone{
+  margin-bottom: 0ch;
+}
+</style>
+
+
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ProfileCard from '@/components/common/ProfileCard.vue'
@@ -43,25 +67,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-#topInfo {
-  height: 60px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.topBlock {
-  height: 60px;
-  
-}
-
-img {
-  width: 50px;
-  height: 50px;
-}
-.phone{
-  margin-bottom: 0ch;
-}
-</style>

@@ -63,10 +63,12 @@ export default defineComponent({
     modelValue: {
       type: null as unknown as PropType<string|null>,
       required: true,
+      default: null,
     },
     default: {
       type: null as unknown as PropType<string|null>,
       required: true,
+      default: null,
     },
   },
 

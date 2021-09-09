@@ -17,12 +17,18 @@
 
 <style scoped>
 #box {
+  width: 100%;
+  height: 100%;
+  
   display: flex;
+  
+  box-sizing: border-box;
+  padding: 5pt;
 }
 
 #cover {
-  width: 400pt;
-  height: 400pt;
+  width: 100%;
+  height: 100%;
   background: lightgray;
   border-radius: 10pt;
 }
@@ -31,6 +37,8 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+
+  margin: 0pt 0pt 0pt 10pt;
 }
 </style>
 

@@ -1,23 +1,34 @@
 <template>
-  <div id="nodes" v-for="section in sections" :key="section.name">
-    <admin-section-card :section="section" @click="$emit('selected', section)"/>
-    <div id="nested-nodes">
-      <admin-sections-tree :sections="section.sections" @selected="$emit('selected', $event)"/>
+  <div id="box">
+    <div id="node">
+      <input type="checkbox" v-model="expanded" :disabled="section.sections.length == 0">
+      <admin-section-card :section="section" @click="$emit('selected', section)"/>
+    </div>
+    <div v-if="expanded">
+      <div id="nested-nodes" v-for="section in section.sections" :key="section.name">
+        <admin-sections-tree :section="section" @selected="$emit('selected', $event)"/>
+      </div>
     </div>
   </div>
 </template>
 
 
 <style scoped>
-#nodes {
+#box {
   display: flex;
   flex-direction: column;
+  padding: 2pt 2pt 0pt 2pt;
+}
+
+#node {
+  display: flex;
 }
 
 #nested-nodes {
+  display: flex;
+  flex-direction: column;
   padding: 2pt 2pt 0pt 20pt;
 }
-
 </style>
 
 
@@ -36,17 +47,16 @@ export default defineComponent({
   emits: ['selected'],
 
   props: {
-    sections: {
-      type: Array as PropType<Section[]>,
+    section: {
+      type: Object as PropType<Section>,
+      required: true,
     }
-  },
-
-  setup() {
   },
 
   data() {
     return {
+      expanded: false,
     }
-  }
+  },
 })
 </script>

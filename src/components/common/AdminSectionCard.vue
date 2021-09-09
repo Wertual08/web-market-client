@@ -1,7 +1,7 @@
 <template>
-  <div id="box">
-    <img id="cover" :src="coverImage"/>
-    <div id="properties">
+  <div class="admin-section-card-box">
+    <img class="cover" :src="coverImage"/>
+    <div class="properties">
       {{ section.id }}: {{ section.name }}<br>
       Section id: {{ section.sectionId }}<br>
       Created at: {{ section.createdAt }} Updated at: {{ section.updatedAt }}
@@ -11,27 +11,27 @@
 
 
 <style scoped>
-#box {
+.admin-section-card-box {
   display: flex;
   flex-direction: row;
-  width: 500pt;
+  width: 400pt;
   height: 50pt;
   background: white;
   border-radius: 3pt;
 }
 
-#box:hover {
+.admin-section-card-box:hover {
   box-shadow: 0pt 0pt 1pt 1pt cyan;
   background: lightgray;
 }
 
-#cover {
+.cover {
   max-width: 100pt;
   max-height: 100%;
   border-radius: 2pt;
 }
 
-#properties {
+.properties {
   width: 100%;
   height: 100%;
   display: flex;
