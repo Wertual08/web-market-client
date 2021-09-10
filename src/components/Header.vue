@@ -1,28 +1,22 @@
 <template>
+  <tool-bar @register="openRegister()"/>
+  <navigation-bar :admin="isAdmin"/>
+  
   <modal-window :visible="registerOpened" @close="closeRegister()">
     <registration-form/>
   </modal-window>
-
-  <div id="header">
-    <tool-bar @register="openRegister()"/>
-    <navigation-bar :admin="isAdmin"/>
-  </div>
 </template>
 
 
 <style scoped>
-#header {
-  padding: 2px 30px;
-  background-color: rgba(169, 241, 241, 0.377);
-}
 </style>
 
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import NavigationBar from '@/components/NavigationBar.vue'
 import ProfileRepository from '@/repositories/profileRepository'
 import Profile from '@/models/profile'
+import NavigationBar from '@/components/NavigationBar.vue'
 import ToolBar from './ToolBar.vue'
 import ModalWindow from './common/ModalWindow.vue'
 import RegistrationForm from './RegistrationForm.vue'
