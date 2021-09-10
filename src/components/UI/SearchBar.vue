@@ -41,16 +41,17 @@ export default defineComponent({
 <style  scoped>
 .but {
   margin-left: 20pt;
-  left: 10px;
+  left: 10pt;
   background-color: #0f8397;
   border: none;
   color: white;
   padding: 8px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   border-radius: 4px;
+  
+
 }
 .ff {
   margin-top: 0px;
@@ -58,10 +59,12 @@ export default defineComponent({
 .search {
   border: 1px outset;
   text-align: center;
-  width: 1000px;
+  display: inline-block;
+  width: 60%;
+  min-width: 10pt;
   margin: 0px;
-  height: 30px;
-  margin-bottom: 10px;
+  height: 30pt;
+  margin-bottom: 10pt;
   background-color: rgba(204, 207, 207, 0.356);
 }
 .search:focus {
