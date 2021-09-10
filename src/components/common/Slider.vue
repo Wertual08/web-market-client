@@ -52,19 +52,19 @@
   display: inline-block;
   align-self: flex-end;
 
-  width: 8pt;
-  height: 8pt;
+  width: 8px;
+  height: 8px;
 
   cursor: pointer;
 
-  margin: 1pt;
-  margin-bottom: 10pt;
+  margin: 1px;
+  margin-bottom: 10px;
   
   background: #ffffffaa;
   
   border-color: #00000088;
-  border-width: 1pt;
-  border-radius: 3pt;
+  border-width: 1px;
+  border-radius: 3px;
   
   pointer-events: auto;
 }

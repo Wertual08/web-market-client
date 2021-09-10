@@ -70,14 +70,14 @@
 
 <style scoped>
 form {
-  width: 300pt;
+  width: 300px;
   display: flex;
   flex-direction: column;
   background: white;
-  border-radius: 10pt;
+  border-radius: 10px;
   border-color: black;
   border: solid;
-  border-width: 2pt;;
+  border-width: 2px;;
 }
 
 my-input:focus:invalid {

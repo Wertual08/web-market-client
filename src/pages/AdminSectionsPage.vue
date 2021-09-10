@@ -30,12 +30,12 @@
 }
 
 #redactor {
-  width: 500pt;
-  height: 300pt;
+  width: 500px;
+  height: 300px;
 
   position: sticky;
-  top: 20pt;
-  right: 20pt;
+  top: 20px;
+  right: 20px;
 
   display: flex;
 }

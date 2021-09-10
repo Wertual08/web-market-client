@@ -30,10 +30,10 @@
 
 .box {
   width: 90%;
-  height: 100pt;
-  margin: 5pt;
+  height: 100px;
+  margin: 5px;
   background: white;
-  border-radius: 10pt;
+  border-radius: 10px;
   display: flex;
 }
 
@@ -52,9 +52,9 @@
 
 .cover-box {
   float: left;
-  width: 200pt;
+  width: 200px;
   height: 100%;
-  margin: 0pt;
+  margin: 0px;
   
   display: flex;
   justify-content: center;
@@ -66,24 +66,24 @@
   max-width: 90%;
   margin: auto;
   display: block;
-  border-radius: 5pt;
+  border-radius: 5px;
   border: black;
-  border-width: 1pt;
+  border-width: 1px;
 }
 
 .name {
   width: 100%;
   vertical-align: top;
   font-weight: bold;
-  font-size: 17pt;
+  font-size: 17px;
   text-align: left;
   text-decoration: none;
-  margin: 0pt;
+  margin: 0px;
   color: black;
 }
 
 .specifications-box {
-  width: 250pt;
+  width: 250px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -93,14 +93,14 @@
 .description {
   vertical-align: top;
   text-align: left;
-  margin: 0pt;
+  margin: 0px;
   width: 100%;
   height: 100%;
 }
 
 .section-label {
   background: gray;
-  border-radius: 5pt;
+  border-radius: 5px;
 }
 </style>
 

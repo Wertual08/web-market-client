@@ -20,8 +20,8 @@
 }
 
 .section {
-  height: 30pt;
-  width: 120pt;
+  height: 30px;
+  width: 120px;
 
   text-decoration: none;
 

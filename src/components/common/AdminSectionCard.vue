@@ -14,21 +14,21 @@
 .admin-section-card-box {
   display: flex;
   flex-direction: row;
-  width: 400pt;
-  height: 50pt;
+  width: 400px;
+  height: 50px;
   background: white;
-  border-radius: 3pt;
+  border-radius: 3px;
 }
 
 .admin-section-card-box:hover {
-  box-shadow: 0pt 0pt 1pt 1pt cyan;
+  box-shadow: 0px 0px 1px 1px cyan;
   background: lightgray;
 }
 
 .cover {
-  max-width: 100pt;
+  max-width: 100px;
   max-height: 100%;
-  border-radius: 2pt;
+  border-radius: 2px;
 }
 
 .properties {

@@ -18,7 +18,7 @@
   height: 100%;
   
   box-sizing: border-box;
-  padding: 5pt 5pt 0 5pt;
+  padding: 5px 5px 0 5px;
 
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@
   justify-content: space-between;
 
   box-sizing: border-box;
-  margin: 5pt;
+  margin: 5px;
 }
 
 #image-input {

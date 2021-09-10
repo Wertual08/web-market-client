@@ -17,7 +17,7 @@
 #box {
   display: flex;
   flex-direction: column;
-  padding: 2pt 2pt 0pt 2pt;
+  padding: 2px 2px 0px 2px;
 }
 
 #node {
@@ -27,7 +27,7 @@
 #nested-nodes {
   display: flex;
   flex-direction: column;
-  padding: 2pt 2pt 0pt 20pt;
+  padding: 2px 2px 0px 20px;
 }
 </style>
 

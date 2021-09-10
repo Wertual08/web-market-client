@@ -22,7 +22,7 @@ export default defineComponent({
 .input {
   border: 1px solid teal;
   padding: 10px 15px;
-  margin: 10pt 15pt;
+  margin: 10px 15px;
 }
 
 input:focus:invalid {

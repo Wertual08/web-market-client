@@ -23,14 +23,14 @@
   display: flex;
   
   box-sizing: border-box;
-  padding: 5pt;
+  padding: 5px;
 }
 
 #cover {
   width: 100%;
   height: 100%;
   background: lightgray;
-  border-radius: 10pt;
+  border-radius: 10px;
 }
 
 #properties {
@@ -38,7 +38,7 @@
   flex-direction: column;
   text-align: left;
 
-  margin: 0pt 0pt 0pt 10pt;
+  margin: 0px 0px 0px 10px;
 }
 </style>
 

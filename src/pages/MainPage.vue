@@ -38,8 +38,8 @@
   flex-direction: column;
 }
 .sectionImg {
-  min-width: 100pt;
-  min-height: 100pt;
+  min-width: 100px;
+  min-height: 100px;
   background: violet;
 }
 .table {

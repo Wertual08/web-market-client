@@ -44,8 +44,8 @@
 }
 
 #image-slider {
-  width: 250pt;
-  height: 300pt;
+  width: 250px;
+  height: 300px;
 }
 
 #properties {
