@@ -1,57 +1,57 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-import FindPage from "@/pages/FindPage.vue"
-import MainPage from "@/pages/MainPage.vue"
-import AboutPage from "@/pages/AboutPage.vue"
-import CatalogPage from "@/pages/CatalogPage.vue"
-import ProductPage from '@/pages/ProductPage.vue'
-import CartPage from '@/pages/CartPage.vue'
-import AdminProductsPage from '@/pages/AdminProductsPage.vue'
-import AdminProductPage from '@/pages/AdminProductPage.vue'
-import AdminSectionsPage from '@/pages/AdminSectionsPage.vue'
+import FindView from "@/views/FindView.vue"
+import MainView from "@/views/MainView.vue"
+import AboutView from "@/views/AboutView.vue"
+import CatalogView from "@/views/CatalogView.vue"
+import ProductView from '@/views/ProductView.vue'
+import CartView from '@/views/CartView.vue'
+import AdminProductsView from '@/views/AdminProductsView.vue'
+import AdminProductView from '@/views/AdminProductView.vue'
+import AdminSectionsView from '@/views/AdminSectionsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    component: MainPage
+    component: MainView
   },
   {
     path: "/search",
-    component: FindPage,
+    component: FindView,
     name: 'SearchPage',
     props: true 
   },
   {
     path: '/about',
-    component: AboutPage,
+    component: AboutView,
   },
   {
     path: '/catalog',
-    component: CatalogPage,
+    component: CatalogView,
   },
   {
     path: '/product/:id',
-    component: ProductPage,
+    component: ProductView,
   },
   {
     path: '/cart',
-    component: CartPage,
+    component: CartView,
   },
   {
     path: '/admin',
-    component: AdminProductsPage,
+    component: AdminProductsView,
   },
   {
     path: '/admin/products',
-    component: AdminProductsPage,
+    component: AdminProductsView,
   },
   {
     path: '/admin/products/:id',
-    component: AdminProductPage,
+    component: AdminProductView,
   },
   {
     path: '/admin/sections',
-    component: AdminSectionsPage,
+    component: AdminSectionsView,
   },
 ]
 

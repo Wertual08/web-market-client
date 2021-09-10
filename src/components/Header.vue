@@ -1,6 +1,10 @@
 <template>
+  <modal-window :visible="registerOpened" @close="closeRegister()">
+    <registration-form/>
+  </modal-window>
+
   <div id="header">
-    <TopInfo />
+    <tool-bar @register="openRegister()"/>
     <navigation-bar :admin="isAdmin"/>
   </div>
 </template>
@@ -8,7 +12,7 @@
 
 <style scoped>
 #header {
-  padding: 8px 60px;
+  padding: 2px 30px;
   background-color: rgba(169, 241, 241, 0.377);
 }
 </style>
@@ -16,15 +20,19 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import TopInfo from '@/components/TopInfo.vue'
 import NavigationBar from '@/components/NavigationBar.vue'
 import ProfileRepository from '@/repositories/profileRepository'
 import Profile from '@/models/profile'
+import ToolBar from './ToolBar.vue'
+import ModalWindow from './common/ModalWindow.vue'
+import RegistrationForm from './RegistrationForm.vue'
 
 export default defineComponent({
   components: {
-    TopInfo,
     NavigationBar,
+    ToolBar,
+    ModalWindow,
+    RegistrationForm,
   },
 
   setup() {
@@ -35,7 +43,8 @@ export default defineComponent({
 
   data() {
     return {
-      isAdmin: false
+      isAdmin: false,
+      registerOpened: false,
     }
   },
 
@@ -44,6 +53,16 @@ export default defineComponent({
       .then((profile: Profile|null) => {
         this.isAdmin = profile?.isAdmin() ?? false
       })
+  },
+
+  methods: {
+    openRegister() {
+      console.log('shit')
+      this.registerOpened = true
+    },
+    closeRegister() {
+      this.registerOpened = false
+    },
   },
 })
 </script>
