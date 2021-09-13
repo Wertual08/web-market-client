@@ -62,29 +62,37 @@ export default defineComponent({
   props: {
     section: {
       type: Object as PropType<Section>,
+      required: true
     }
   },
 
   setup() {
     return {
       sectionsRepository: new SectionsRepository(),
-      recordsRepository: new RecordsRepository(),
     }
   },
 
   data() {
+    let url: string|null = RecordsRepository.toUrl(this.section.record?.identifier ?? null)
     return {
-      localSection: new Section(),
-      coverUrl: null as string|null,
-      defaultCoverUrl: null as string|null,
+      localSection: Object.assign(new Section(), this.section),
+      coverUrl: url,
+      defaultCoverUrl: url,
     }
   },  
+
+  methods: {
+    assign() {
+
+    }
+  },
 
   watch: {
     section(section: Section) {
       this.localSection = Object.assign(new Section(), section)
-      this.coverUrl = this.recordsRepository.toUrl(section.record?.identifier ?? null)
-      this.defaultCoverUrl = this.coverUrl
+      let url: string|null = RecordsRepository.toUrl(this.section.record?.identifier ?? null)
+      this.coverUrl = url
+      this.defaultCoverUrl = url
     }
   },
 })

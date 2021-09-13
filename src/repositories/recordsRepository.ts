@@ -2,7 +2,7 @@ import Record from "@/models/record"
 import AbstractRepository from "./abstractRepository"
 
 export default class RecordsRepository extends AbstractRepository<Record> {
-  public toUrl(identifier: string|null): string|null {
+  public static toUrl(identifier: string|null): string|null {
     if (identifier) {
       return `/api/records/${identifier}`
     } else {

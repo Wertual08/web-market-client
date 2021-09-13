@@ -50,6 +50,7 @@ import SectionsRepository from '@/repositories/admin/sectionsRepository'
 import RecordsRepository from '@/repositories/recordsRepository'
 import Section from '@/models/admin/section'
 import PutSectionRequest from '@/requests/admin/putSectionRequest'
+import CreateSectionRequest from '@/requests/admin/createSectionRequest'
 
 export default defineComponent({
   name: "admin-products-page",
@@ -83,7 +84,7 @@ export default defineComponent({
     },
 
     async saveSection(section: Section, coverUrl: string|null) {
-      let currentUrl = this.recordsRepository.toUrl(section.record?.identifier ?? null)
+      let currentUrl = RecordsRepository.toUrl(section.record?.identifier ?? null)
       if (currentUrl != coverUrl) {
         if (coverUrl) {
           let blob = await fetch(coverUrl).then(r => r.blob())
@@ -93,9 +94,16 @@ export default defineComponent({
         }
       }
 
-      this.sectionsRepository.putSection(
-        new PutSectionRequest(section)
-      ).then(() => {
+      if (section.id != -1) {
+        var promise = this.sectionsRepository.putSection(
+          new PutSectionRequest(section)
+        )
+      } else {
+        var promise = this.sectionsRepository.createSection(
+          new CreateSectionRequest(section)
+        )
+      }
+      promise.then(() => {
         this.sectionsRepository.getSections()
           .then(models => this.sections = models)
       })

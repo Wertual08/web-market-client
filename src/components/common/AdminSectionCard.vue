@@ -54,7 +54,6 @@ export default defineComponent({
 
   setup() {
     return {
-      recordsRepository: new RecordsRepository()
     }
   },
 
@@ -77,7 +76,7 @@ export default defineComponent({
 
   computed: {
     coverImage(): string {
-      let url = this.recordsRepository.toUrl(this.section?.record?.identifier ?? null)
+      let url = RecordsRepository.toUrl(this.section?.record?.identifier ?? null)
       if (url) {
         return url
       } else {
