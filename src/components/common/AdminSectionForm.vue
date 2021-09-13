@@ -82,9 +82,29 @@ export default defineComponent({
   },  
 
   methods: {
-    assign() {
+    createdAt(): string {
+      return new Date(this.section.createdAt).toLocaleString(undefined, {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      })
+    },
 
-    }
+    updatedAt(): string {
+      return new Date(this.section.updatedAt).toLocaleString(undefined, {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      })
+    },
   },
 
   watch: {

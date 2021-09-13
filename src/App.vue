@@ -6,9 +6,15 @@
 </template>
 
 
-<style scoped>
+<style>
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #app {
-  max-width: 100%;
+  width: 100%;
   max-height: 100%;
 
   font-family: Avenir, Helvetica, Arial, sans-serif;

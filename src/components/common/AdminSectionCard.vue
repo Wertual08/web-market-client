@@ -1,10 +1,10 @@
 <template>
   <div class="admin-section-card-box">
-    <img class="cover" :src="coverImage"/>
+    <div class="cover">
+      <img :src="coverImage"/>
+    </div>
     <div class="properties">
-      {{ section.id }}: {{ section.name }}<br>
-      Section id: {{ section.sectionId }}<br>
-      Created at: {{ section.createdAt }} Updated at: {{ section.updatedAt }}
+      {{ section.id }}: {{ section.name }}
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 .admin-section-card-box {
   display: flex;
   flex-direction: row;
-  width: 400px;
+  max-width: 400px;
   height: 50px;
   background: white;
   border-radius: 3px;
@@ -26,7 +26,18 @@
 }
 
 .cover {
-  max-width: 100px;
+  width: 50px;
+  height: 50px;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.cover > img {
+  max-width: 100%;
   max-height: 100%;
   border-radius: 2px;
 }
@@ -34,9 +45,16 @@
 .properties {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
+
+  margin: 0px 10px;
+
   text-align: left;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+
+  font-size: 24px;
 }
 </style>
 
@@ -52,26 +70,11 @@ export default defineComponent({
 
   emits: ['add-cart'],
 
-  setup() {
-    return {
-    }
-  },
-
-  data() {
-    return {
-    };
-  },
-  
-  mounted() {
-  },
-
   props: {
     section: {
       type: Object as PropType<Section>,
+      required: true,
     }
-  },
-
-  methods: {
   },
 
   computed: {
