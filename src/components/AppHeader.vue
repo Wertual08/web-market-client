@@ -22,6 +22,8 @@ import ModalWindow from './common/ModalWindow.vue'
 import RegistrationForm from './RegistrationForm.vue'
 
 export default defineComponent({
+  name: 'header',
+
   components: {
     NavigationBar,
     ToolBar,
