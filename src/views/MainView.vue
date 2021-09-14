@@ -1,6 +1,5 @@
 <template>
   <div id="main">
-    <SearchBar />
     <div id="container">
       <div class="work_in_progress">work in progress</div> 
       <table class="table"> 

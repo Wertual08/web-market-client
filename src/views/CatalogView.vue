@@ -1,6 +1,5 @@
 <template >
   <div class="catalog">
-    <SearchBar />
     <div id="container">
       <Tree />
       <div class="prod_list">

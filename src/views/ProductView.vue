@@ -1,6 +1,5 @@
 <template class = 'card'>
   <div class="abc">
-    <SearchBar/>
     <Menu />
     <img
       class="magamed"

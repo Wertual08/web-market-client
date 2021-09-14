@@ -7,6 +7,8 @@
 
 
 <style>
+@import url('https://rsms.me/inter/inter.css');
+
 body {
   width: 100%;
   margin: 0;

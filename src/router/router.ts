@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-import FindView from "@/views/FindView.vue"
+import SearchView from "@/views/SearchView.vue"
 import MainView from "@/views/MainView.vue"
 import AboutView from "@/views/AboutView.vue"
 import CatalogView from "@/views/CatalogView.vue"
@@ -17,8 +17,8 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/search",
-    component: FindView,
-    name: 'SearchPage',
+    component: SearchView,
+    name: 'SearchView',
     props: true 
   },
   {

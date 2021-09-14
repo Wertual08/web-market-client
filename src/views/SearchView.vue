@@ -1,5 +1,4 @@
 <template >
-  <SearchBar />
   <Tree/>
   <div class="box">
     <h3 class="p-3 text-center">Результаты поиска</h3>
@@ -81,6 +80,16 @@ export default defineComponent({
     addCart(id: number): void {
       alert(`DEBUG_MESSAGE: Добавлено в корзину ${id}`);
     },
+  },
+
+  watch: {
+    query() {
+      this.products = []
+      this.page = 0 
+      this.productsToLoad = true
+      this.loading = false
+      this.loadUp();
+    }
   },
 });
 </script>

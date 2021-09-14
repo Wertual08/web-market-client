@@ -6,10 +6,11 @@
       </dropdown>
     </div> -->
     <div class="info">
-      <p>Ваш регион</p>
-      <p>Москва?</p>
-      <router-link class="item" to="/">Информация</router-link>
-      <router-link class="item" to="/about">Контакты</router-link>
+      <region-card/>
+      <div class="items">
+        <router-link class="item" to="/">Информация</router-link>
+        <router-link class="item" to="/about">Контакты</router-link>
+      </div>
     </div>
 
     <div class="phone">
@@ -21,13 +22,8 @@
 
 
 <style scoped>
-@import url('https://rsms.me/inter/inter.css');
-
 .tool-bar {
   height: 38px;
-
-  position: sticky;
-  top: 0px;
 
   background: #00174A;
 
@@ -50,17 +46,22 @@
   line-height: 160%;
 }
 
-.info > p {
-  padding: 0px 8px;
-
-  color: white;
+.info > .items {
+  padding-left: 30px;
 }
 
-.info > .item {
+.info > .items > .item {
   padding: 0px 12px;
 
   text-decoration: none;
   color: #8C929F;
+}
+
+.info > .items > .item:hover {
+  padding: 0px 12px;
+
+  text-decoration: none;
+  color: #DDDDDD;
 }
 
 .phone {
@@ -92,11 +93,13 @@
 import { defineComponent } from 'vue'
 import Dropdown from './common/Dropdown.vue'
 import ProfileCard from './common/ProfileCard.vue'
+import RegionCard from '@/components/miscellaneous/RegionCard.vue'
 
 export default defineComponent({
   components: { 
     Dropdown,
-    ProfileCard 
+    ProfileCard,
+    RegionCard,
   },
   name: 'tool-bar',
 
