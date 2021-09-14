@@ -12,7 +12,6 @@
   cursor: pointer;
   color: white;
   
-  font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -26,12 +25,11 @@
 
 #box:hover {
   color: lightgray;
-  
 }
 
 #box > img {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
 }
 
 #box > p {

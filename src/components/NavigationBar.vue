@@ -12,6 +12,7 @@
 
     <div class="interaction">
       <search-card class="tool"/>
+      <cart-card class="tool"/>
       <profile-card class="tool"/>
     </div>
   </div>
@@ -96,6 +97,7 @@
 import { defineComponent } from 'vue'
 import SearchCard from './miscellaneous/SearchCard.vue'
 import ProfileCard from './common/ProfileCard.vue'
+import CartCard from './common/CartCard.vue'
 
 export default defineComponent({
   name: 'navigation-bar',
@@ -103,6 +105,7 @@ export default defineComponent({
   components: {
     SearchCard,
     ProfileCard,
+    CartCard,
   },
 
   props: {
