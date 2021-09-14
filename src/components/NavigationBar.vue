@@ -1,6 +1,5 @@
 <template>
   <div id="box">
-
     <div class="navigation">
       <img class="logo" src="@/assets/logo.svg" alt="vue logo" />
       <router-link class="section" to="/">Главная</router-link>
@@ -12,7 +11,8 @@
     </div>
 
     <div class="interaction">
-      <search-card/>
+      <search-card class="tool"/>
+      <profile-card class="tool"/>
     </div>
   </div>
 </template>
@@ -86,17 +86,8 @@
   flex-wrap: wrap;
 }
 
-
-.contacts {
-  padding: 10px;
-}
-
-.contacts > .phone {
-  margin: 1px;
-}
-
-.contacts > .email {
-  margin: 1px;
+.interaction > .tool {
+  padding: 0px 14px;
 }
 </style>
 
@@ -104,12 +95,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import SearchCard from './miscellaneous/SearchCard.vue'
+import ProfileCard from './common/ProfileCard.vue'
 
 export default defineComponent({
   name: 'navigation-bar',
   
   components: {
     SearchCard,
+    ProfileCard,
   },
 
   props: {

@@ -1,34 +1,43 @@
 <template>
-  <div id="card" v-if="profile === null">
-    <label>Login</label>
-    <input v-model="login">
-    <label>Password</label>
-    <input type="password" v-model="password">
-    <div id="controls">
-      <button @click="performLogin">Log in</button>
-      <button @click="$emit('register')">Register</button>
-    </div>
-  </div>
-  <div id="card" v-else>
-    {{profile.login}}
-    {{profile.email}}
-    <button @click="performLogout">Log out</button>
+  <div id="box">
+    <img src="@/assets/ic_profile.svg">
+    <p v-if="profile === null">Войти</p>
+    <p v-else>{{profile.login}}</p>
   </div>
 </template>
 
 
 <style scoped>
-#card {
-  width: 100%;
-  height: 100%;
-  background: white;
+#box {
+  cursor: pointer;
+  color: white;
+  
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 160%;
+
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-#controls {
-  display: flex;
+#box:hover {
+  color: lightgray;
+  
 }
+
+#box > img {
+  width: 24px;
+  height: 24px;
+}
+
+#box > p {
+  padding-left: 12px;
+}
+
 </style>
 
 

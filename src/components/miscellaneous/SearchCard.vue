@@ -1,28 +1,31 @@
 <template>
-  <div id="box">
-    <input type="text" 
-      class="query" 
-      placeholder="Поиск товара..." 
-      v-model="query" 
-      @keyup.enter="submit"
-    >
-    <img src="@/assets/ic_search.svg" 
-      alt="search" 
-      class="search" 
-      @click="submit"
-    >
+  <div>
+    <div id="box">
+      <input type="text" 
+        class="query" 
+        placeholder="Поиск товара..." 
+        v-model="query" 
+        @keyup.enter="submit"
+      >
+      <img src="@/assets/ic_search.svg" 
+        alt="search" 
+        class="search" 
+        @click="submit"
+      >
+    </div>
   </div>
 </template>
 
 
 <style scoped>
 #box {
-    position: relative;
+  position: relative;
 }
 
 .query {
-  width: 154px;
+  width: 210px;
   height: 40px;
+  box-sizing: border-box;
 
   padding-left: 16px;
   padding-right: 40px;
