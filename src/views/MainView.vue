@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div id="container">
-      <div class="work_in_progress">work in progress</div> 
+      <img class="SliderImg" src=@/assets/slideImg.jpg/> 
       <table class="table"> 
         <div class="sections" v-for="section in sections" :key="section.id"> 
           <router-link class="productCardContent" :to="{ path: '/catalog' }"> 
@@ -18,8 +18,14 @@
 
 
 <style scoped>
+.SliderImg{
+  width: auto;
+  height: auto;
+  min-height: 496px;
+  min-width: 1172px;
+}
 #main {
-  background-color: rgba(169, 241, 241);
+  background: #E5E5E5;
   width: 100%;
   height: 100%;
   display: flex;
@@ -55,9 +61,7 @@
   background: lightblue;
   margin: 10px;
 }
-.work_in_progress {
-  font: bold 10em "Fira Sans", serif;
-}
+
 </style>
 
 <script lang="ts">
