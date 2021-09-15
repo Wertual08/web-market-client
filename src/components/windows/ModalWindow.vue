@@ -1,7 +1,7 @@
 <template>
   <div class="modal-background" @click="close" v-show="visible">
     <button type="button" class="btn-close" @click="close">X</button>
-    <div @click.stop>
+    <div class="container" @click.stop>
       <slot/>
     </div>
   </div>
@@ -15,13 +15,17 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 23, 74, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: initial;
 }
 
+.container {
+  max-width: 100%;
+  display: flex;
+}
 
 .btn-close {
   position: absolute;

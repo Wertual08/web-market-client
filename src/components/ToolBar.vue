@@ -91,14 +91,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Dropdown from './common/Dropdown.vue'
-import ProfileCard from './common/ProfileCard.vue'
 import RegionCard from '@/components/miscellaneous/RegionCard.vue'
 
 export default defineComponent({
   components: { 
-    Dropdown,
-    ProfileCard,
     RegionCard,
   },
   name: 'tool-bar',

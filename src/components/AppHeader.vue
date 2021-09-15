@@ -1,9 +1,9 @@
 <template>
-  <tool-bar @register="openRegister()"/>
-  <navigation-bar :admin="isAdmin"/>
+  <tool-bar/>
+  <navigation-bar :admin="isAdmin" @authorize="openAuthorization()"/>
   
-  <modal-window :visible="registerOpened" @close="closeRegister()">
-    <registration-form/>
+  <modal-window :visible="authorizationOpened" @close="closeAuthorization()">
+    <authorization-window/>
   </modal-window>
 </template>
 
@@ -18,8 +18,9 @@ import ProfileRepository from '@/repositories/profileRepository'
 import Profile from '@/models/profile'
 import NavigationBar from '@/components/NavigationBar.vue'
 import ToolBar from './ToolBar.vue'
-import ModalWindow from './common/ModalWindow.vue'
+import ModalWindow from './windows/ModalWindow.vue'
 import RegistrationForm from './RegistrationForm.vue'
+import AuthorizationWindow from './windows/authorization/AuthorizationWindow.vue'
 
 export default defineComponent({
   name: 'app-header',
@@ -29,6 +30,7 @@ export default defineComponent({
     ToolBar,
     ModalWindow,
     RegistrationForm,
+    AuthorizationWindow,
   },
 
   setup() {
@@ -40,7 +42,7 @@ export default defineComponent({
   data() {
     return {
       isAdmin: false,
-      registerOpened: false,
+      authorizationOpened: false,
     }
   },
 
@@ -52,12 +54,11 @@ export default defineComponent({
   },
 
   methods: {
-    openRegister() {
-      console.log('shit')
-      this.registerOpened = true
+    openAuthorization() {
+      this.authorizationOpened = true
     },
-    closeRegister() {
-      this.registerOpened = false
+    closeAuthorization() {
+      this.authorizationOpened = false
     },
   },
 })

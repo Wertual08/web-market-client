@@ -13,7 +13,7 @@
     <div class="interaction">
       <search-card class="tool"/>
       <cart-card class="tool"/>
-      <profile-card class="tool"/>
+      <profile-card class="tool" @authorize="$emit('authorize')"/>
     </div>
   </div>
 </template>
@@ -107,6 +107,8 @@ export default defineComponent({
     ProfileCard,
     CartCard,
   },
+
+  emits: ['authorize'],
 
   props: {
     admin: {

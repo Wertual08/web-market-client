@@ -1,0 +1,88 @@
+<template>
+  <div class="password-input">
+    <text-input class="password" :type="passwordType" :placeholder="placeholder" v-model="value"/>
+    <img class="eye" :src="eyeImage" @click="toggleVisible()"/>
+  </div>
+</template>
+
+
+<style scoped>
+.password-input {
+  background: #355396;
+  border-radius: 6px;
+  border: none;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.password {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.eye {
+  width: 24px;
+  height: 24px;
+  padding-right: 16px;
+
+  cursor: pointer;
+}
+
+.eye:hover {
+  filter: brightness(150%);
+}
+</style>
+
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import TextInput from './TextInput.vue'
+
+export default defineComponent({
+  name: 'password-input',
+
+  components: { TextInput },
+
+  props: {
+    placeholder: {
+      type: String,
+    },
+    modelValue: {
+      type: String,
+    },
+  },
+
+  data() {
+    return {
+      visible: false,
+      value: '',
+    }
+  },
+
+  methods: {
+    toggleVisible() {
+      this.visible = !this.visible
+    },
+  },
+
+  watch: {
+    modelValue() {
+      this.value = this.modelValue ?? ''
+    },
+    value() {
+      this.$emit('update:modelValue', this.value)
+    },
+  },
+
+  computed: {
+    passwordType(): string {
+      return this.visible ? 'text' : 'password'
+    },
+    eyeImage() {
+      return  this.visible ? require('@/assets/ic_eye_slash.svg') : require('@/assets/ic_eye.svg')
+    }
+  }
+})
+</script>

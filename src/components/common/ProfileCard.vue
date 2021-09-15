@@ -1,5 +1,5 @@
 <template>
-  <div id="box" @click="">
+  <div id="box" @click="activate()">
     <img src="@/assets/ic_profile.svg">
     <p v-if="profile === null">Войти</p>
     <p v-else>{{profile.login}}</p>
@@ -42,26 +42,21 @@
 <script lang="ts">
 import Profile from '@/models/profile'
 import { defineComponent } from 'vue'
-import AuthRepository from '@/repositories/authRepository'
 import ProfileRepository from '@/repositories/profileRepository'
 
 export default defineComponent({
   name: 'profile-card',
 
-  emits: ['register'],
+  emits: ['authorize'],
 
   setup() {
     return {
-      authRepository: new AuthRepository(),
       profileRepository: new ProfileRepository(),
     }
   },
 
   data() {
     return {
-      login: 'admin',
-      password: 'admin',
-      invalidCredentials: false,
       profile: null as Profile|null,
     }
   },
@@ -72,27 +67,17 @@ export default defineComponent({
   },
 
   methods: {
-    performLogin() {
-      this.authRepository.login(this.login, this.password)
-        .then(() => {
-          this.profileRepository.get()
-            .then(() => {
-              this.$router.go(0)
-            })
-        })
-        .catch(error => {
-          if (error.response) {
-            this.password = ''
-            this.invalidCredentials = true
-          }
-        })
+    activate() {
+      if (this.profile === null) {
+        this.$emit('authorize')
+      }
     },
 
-    performLogout() {
-      this.authRepository.logout()
-      this.$router.push('/')
-      this.$router.go(0)
-    }
+    // performLogout() {
+    //   this.authRepository.logout()
+    //   this.$router.push('/')
+    //   this.$router.go(0)
+    // },
   },
 })
 </script>
