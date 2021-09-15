@@ -1,5 +1,5 @@
 <template>
-  <div id="box">
+  <div id="box" @click="">
     <img src="@/assets/ic_profile.svg">
     <p v-if="profile === null">Войти</p>
     <p v-else>{{profile.login}}</p>
@@ -28,8 +28,8 @@
 }
 
 #box > img {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 #box > p {

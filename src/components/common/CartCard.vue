@@ -30,8 +30,8 @@
 }
 
 .box > img {
-  width: 16px;
-  height: 18px;
+  width: 18px;
+  height: 20px;
 }
 
 .box > p {
