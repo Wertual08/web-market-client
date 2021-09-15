@@ -21,8 +21,9 @@
 .SliderImg{
   width: auto;
   height: auto;
-  min-height: 496px;
-  min-width: 1172px;
+  min-height: 124px;
+  min-width: 293px ;
+  align-content: center;
 }
 #main {
   background: #E5E5E5;
