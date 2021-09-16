@@ -15,6 +15,10 @@
       />
     </div>
     <submit-button class="submit" :disabled="!allValid" @click="register()">Зарегистрироваться</submit-button>
+    <div class="bottom">
+      <p v-if="emailConflict" class="error">E-mail адрес уже используется</p>
+      <p v-if="unknownError" class="error">Неизвестная ошибка, попробуйте позже</p>
+    </div>
   </div>
 </template>
 
@@ -48,6 +52,14 @@
 .submit {
   width: 100%;
 }
+
+.error {
+  font-weight: 500;
+  font-size: 12px;
+  
+  text-decoration: none;
+  color: red;
+}
 </style>
 
 
@@ -73,14 +85,19 @@ export default defineComponent({
     
   data() {
     return {
-      email: '',
-      password: '',
-      repeat: '',
+      email: 'a@a.aa',
+      password: 'aaaaa',
+      repeat: 'aaaaa',
+      emailConflict: false,
+      unknownError: false,
     }
   },
 
   methods: {
     register() {
+      this.emailConflict = false
+      this.unknownError = false
+
       this.authRepository.register(
         this.email,
         this.password,
@@ -89,6 +106,13 @@ export default defineComponent({
         null,
       )
       .then(() => this.$router.go(0))
+      .catch(error => {
+        if (error.response.status == 409 && error.response.data.Field == "Email") {
+          this.emailConflict = true
+        } else {
+          this.unknownError = true
+        }
+      })
     }
   },
 

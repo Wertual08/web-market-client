@@ -65,7 +65,7 @@ export default defineComponent({
   data() {
     return {
       visible: false,
-      value: '',
+      value: this.modelValue,
     }
   },
 

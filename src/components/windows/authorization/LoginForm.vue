@@ -3,7 +3,10 @@
     <text-input class="spacer" type="email" placeholder="Логин" v-model="login"/>
     <password-input class="spacer" placeholder="Пароль" v-model="password"/>
     <submit-button class="spacer" @click="performLogin">Войти в личный кабинет</submit-button>
-    <router-link to="" class="forgot">Забыли пароль?</router-link>
+    <div class="bottom">
+      <p v-if="invalidCredentials" class="error">Неправильный логин или пароль</p>
+      <router-link to="" class="forgot">Забыли пароль?</router-link>
+    </div>
   </div>
 </template>
 
@@ -19,6 +22,22 @@
 .spacer {
   margin: 0px 0px 16px 0px;
   width: 100%;
+}
+
+.bottom {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.error {
+  font-weight: 500;
+  font-size: 12px;
+  
+  text-decoration: none;
+  color: red;
 }
 
 .forgot {
@@ -59,7 +78,7 @@ export default defineComponent({
 
   data() {
     return {
-      login: 'admin',
+      login: 'admin@admin.sru',
       password: 'admin',
       invalidCredentials: false,
     }
