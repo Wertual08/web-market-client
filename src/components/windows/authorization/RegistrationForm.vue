@@ -69,6 +69,7 @@ import TextInput from './TextInput.vue'
 import { defineComponent } from 'vue'
 import SubmitButton from './SubmitButton.vue'
 import AuthRepository from '@/repositories/authRepository'
+import Conflict from '@/models/conflict'
 
 export default defineComponent({
   name: 'registration-form',
@@ -106,13 +107,14 @@ export default defineComponent({
         null,
       )
       .then(() => this.$router.go(0))
-      .catch(error => {
-        if (error.response.status == 409 && error.response.data.Field == "Email") {
+      .catch((conflict: Conflict) => {
+        if (conflict.field == "Email") {
           this.emailConflict = true
         } else {
           this.unknownError = true
         }
       })
+      .catch(() => this.unknownError = true)
     }
   },
 
