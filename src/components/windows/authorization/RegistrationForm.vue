@@ -69,7 +69,7 @@ import TextInput from './TextInput.vue'
 import { defineComponent } from 'vue'
 import SubmitButton from './SubmitButton.vue'
 import AuthRepository from '@/repositories/authRepository'
-import Conflict from '@/models/conflict'
+import ConflictError from '@/models/errors/conflictError'
 
 export default defineComponent({
   name: 'registration-form',
@@ -86,9 +86,9 @@ export default defineComponent({
     
   data() {
     return {
-      email: 'a@a.aa',
-      password: 'aaaaa',
-      repeat: 'aaaaa',
+      email: '',
+      password: '',
+      repeat: '',
       emailConflict: false,
       unknownError: false,
     }
@@ -107,7 +107,7 @@ export default defineComponent({
         null,
       )
       .then(() => this.$router.go(0))
-      .catch((conflict: Conflict) => {
+      .catch((conflict: ConflictError) => {
         if (conflict.field == "Email") {
           this.emailConflict = true
         } else {

@@ -1,8 +1,8 @@
 <template>
   <div class="login-form">
-    <text-input class="spacer" type="email" placeholder="Логин" v-model="login"/>
-    <password-input class="spacer" placeholder="Пароль" v-model="password"/>
-    <submit-button class="spacer" @click="performLogin">Войти в личный кабинет</submit-button>
+    <text-input class="spacer" type="email" placeholder="Логин" :valid="loginValid" v-model="login"/>
+    <password-input class="spacer" placeholder="Пароль" :valid="passwordValid" v-model="password"/>
+    <submit-button class="spacer" :disabled="!inputValid" @click="performLogin">Войти в личный кабинет</submit-button>
     <div class="bottom">
       <p v-if="invalidCredentials" class="error">Неправильный логин или пароль</p>
       <router-link to="" class="forgot">Забыли пароль?</router-link>
@@ -64,6 +64,7 @@ import ProfileRepository from '@/repositories/profileRepository'
 import PasswordInput from './PasswordInput.vue'
 import TextInput from './TextInput.vue'
 import SubmitButton from './SubmitButton.vue'
+import UnouthorizedError from '@/models/errors/unouthorizedError'
 
 export default defineComponent({
   components: { TextInput, PasswordInput, SubmitButton },
@@ -78,8 +79,8 @@ export default defineComponent({
 
   data() {
     return {
-      login: 'admin@admin.sru',
-      password: 'admin',
+      login: '',
+      password: '',
       invalidCredentials: false,
     }
   },
@@ -90,13 +91,23 @@ export default defineComponent({
         .then(() => {
           this.$router.go(0)
         })
-        .catch(error => {
-          if (error.response) {
-            this.password = ''
-            this.invalidCredentials = true
-          }
+        .catch((error: UnouthorizedError) => {
+          this.password = ''
+          this.invalidCredentials = true
         })
     },
-  }
+  },
+
+  computed: {
+    loginValid(): boolean {
+      return this.login.length > 0
+    },
+    passwordValid(): boolean {
+      return this.password.length > 0
+    },
+    inputValid(): boolean {
+      return this.loginValid && this.passwordValid
+    }
+  },
 })
 </script>
