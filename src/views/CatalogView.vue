@@ -1,33 +1,29 @@
 <template >
   <div class="catalog">
-    <div id="container">
-      <Tree />
-      <div class="prod_list">
-        <ProductsList />
-      </div>
-    </div>
+    <products-list/>
   </div>
 </template>
 
 
+<style scoped>
+.catalog {
+  background: #192F60;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
 
 <script>
 import { defineComponent } from "vue";
-import ProductsList from "@/components/CatalogProductsList.vue";
-import Tree from "@/components/DropdownMenu.vue";
+import ProductsList from "@/components/catalog/CatalogProductsList.vue";
 
 export default defineComponent({
   components: {
     ProductsList,
-    Tree,
   },
 });
 </script>
-
-
-<style scoped>
-.catalog {
-  background-color: rgba(169, 241, 241, 0.377);
-  height: 100%;
-}
-</style>

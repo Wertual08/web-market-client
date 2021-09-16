@@ -35,7 +35,7 @@ body {
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import AppHeader from "@/components/AppHeader.vue"
+import AppHeader from "@/components/header/AppHeader.vue"
 import Footer from "./components/Footer.vue";
 
 export default defineComponent({

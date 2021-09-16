@@ -1,19 +1,21 @@
 <template>
   <div id="box">
-    <div class="navigation">
-      <img class="logo" src="@/assets/logo.svg" alt="vue logo" />
-      <router-link class="section" to="/">Главная</router-link>
-      <router-link class="section" to="/catalog">Каталог товаров</router-link>
-      <router-link class="section" to="/">Где купить?</router-link>
-      <div v-if="admin">
-        <router-link class="section admin" to="/admin">Управление</router-link>
+    <div class="content">
+      <div class="navigation">
+        <img class="logo" src="@/assets/logo.svg" alt="vue logo" />
+        <router-link class="section" to="/">Главная</router-link>
+        <router-link class="section" to="/catalog">Каталог товаров</router-link>
+        <router-link class="section" to="/">Где купить?</router-link>
+        <div v-if="admin">
+          <router-link class="section admin" to="/admin">Управление</router-link>
+        </div>
       </div>
-    </div>
 
-    <div class="interaction">
-      <search-card class="tool"/>
-      <cart-card class="tool"/>
-      <profile-card class="tool" @authorize="$emit('authorize')"/>
+      <div class="interaction">
+        <search-card class="tool"/>
+        <cart-card class="tool"/>
+        <profile-card class="tool" @authorize="$emit('authorize')"/>
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +39,14 @@
   text-align: left;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.content {
+  width: 90%;
+  
+  display: flex;
+  justify-content: space-between;
 }
 
 .navigation {
@@ -95,9 +104,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import SearchCard from './miscellaneous/SearchCard.vue'
-import ProfileCard from './common/ProfileCard.vue'
-import CartCard from './common/CartCard.vue'
+import SearchCard from './SearchCard.vue'
+import ProfileCard from './ProfileCard.vue'
+import CartCard from './CartCard.vue'
 
 export default defineComponent({
   name: 'navigation-bar',

@@ -16,11 +16,10 @@
 import { defineComponent } from 'vue'
 import ProfileRepository from '@/repositories/profileRepository'
 import Profile from '@/models/profile'
-import NavigationBar from '@/components/NavigationBar.vue'
+import NavigationBar from './NavigationBar.vue'
 import ToolBar from './ToolBar.vue'
-import ModalWindow from './windows/ModalWindow.vue'
-import RegistrationForm from './DEPRECATEDRegistrationForm.vue'
-import AuthorizationWindow from './windows/authorization/AuthorizationWindow.vue'
+import ModalWindow from '@/components/windows/ModalWindow.vue'
+import AuthorizationWindow from '@/components/windows/authorization/AuthorizationWindow.vue'
 
 export default defineComponent({
   name: 'app-header',
@@ -29,7 +28,6 @@ export default defineComponent({
     NavigationBar,
     ToolBar,
     ModalWindow,
-    RegistrationForm,
     AuthorizationWindow,
   },
 

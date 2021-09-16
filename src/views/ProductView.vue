@@ -1,6 +1,5 @@
 <template class = 'card'>
   <div class="abc">
-    <Menu />
     <img
       class="magamed"
       :src="getCoverImage(product)"
@@ -16,48 +15,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue"
-import ProductsRepository from "@/repositories/productsRepository"
-import Product from "@/models/product"
-import Menu from "@/components/DropdownMenu.vue"
-
-export default defineComponent({
-  name: "ff",
-
-  setup() {
-    return {
-      productsRepository: new ProductsRepository(),
-    }
-  },
-
-  components: {
-    Menu,
-  },
-
-  data() {
-    return { product: new Product(), id: null as any };
-  },
-
-  mounted() {
-    this.id = this.$route.params.id;
-    this.productsRepository.getProduct(this.id)
-      .then((result: Product) => {
-        this.product = result;
-      });
-  },
-  methods: {
-    getCoverImage(product: Product): String {
-      if (product.records.length > 0) {
-        return product.records[0];
-      } else {
-        return require("@/assets/meme.gif");
-      }
-    },
-  },
-});
-</script>
 
 
 <style scoped>
@@ -122,3 +79,44 @@ export default defineComponent({
   right: 100px;
 }
 </style>
+
+
+<script lang="ts">
+import { defineComponent } from "vue"
+import ProductsRepository from "@/repositories/productsRepository"
+import Product from "@/models/product"
+
+export default defineComponent({
+  name: "ff",
+
+  setup() {
+    return {
+      productsRepository: new ProductsRepository(),
+    }
+  },
+
+  components: {
+  },
+
+  data() {
+    return { product: new Product(), id: null as any };
+  },
+
+  mounted() {
+    this.id = this.$route.params.id;
+    this.productsRepository.getProduct(this.id)
+      .then((result: Product) => {
+        this.product = result;
+      });
+  },
+  methods: {
+    getCoverImage(product: Product): String {
+      if (product.records.length > 0) {
+        return product.records[0];
+      } else {
+        return require("@/assets/meme.gif");
+      }
+    },
+  },
+});
+</script>

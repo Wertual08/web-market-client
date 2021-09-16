@@ -65,7 +65,7 @@ export default abstract class AbstractRepository<T> {
   private mapConflict(data: any): ConflictError {
     let result = new ConflictError()
     result.field = data.Field
-    throw result;
+    return result;
   }
 
   protected constructor(url: string) {

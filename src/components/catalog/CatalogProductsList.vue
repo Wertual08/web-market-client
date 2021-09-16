@@ -1,41 +1,46 @@
 <template>
-  <div class="box">
-    <h3 class="p-3 text-center">ГДЕ МОЙ КЭШ?</h3>
-    <table class="table table-striped table-bordered">
-      <div class="productCardContainer" v-for="product in products" :key="product.id">
-        <catalog-product-card :product="product" @add-cart="addCart"/>
-      </div>
-    </table>
+  <div class="catalog-product-list">
+    <div class="product-container" v-for="product in products" :key="product.id">
+      <product-card :product="product" @add-cart="addCart"/>
+    </div>
   </div>
 </template>
 
 
 <style scoped>
-.box {
+.catalog-product-list {
+  width: 100%;
   height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.productCardContainer {
-  width: 220px;
-  height: 300px;
+.product-container {
+  width: 90%;
+  height: 243px;
   display: inline;
   float: left;
   overflow: hidden;
-  background: lightblue;
-  margin: 10px;
+
+  border-bottom: 1px solid #355396;
 }
 </style>
 
 
 <script lang = 'ts'>
 import { defineComponent } from "vue";
-import CatalogProductCard from "@/components/common/CatalogProductCard.vue"
+import ProductCard from "@/components/common/ProductCard.vue"
 import Product from "@/models/product";
 import ProductsRepository from "@/repositories/productsRepository";
 
 export default defineComponent({
+  name: 'catalog-product-list',
+
   components: {
-    CatalogProductCard,
+    ProductCard,
   },
 
   setup() {

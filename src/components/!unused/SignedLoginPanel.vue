@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import MyButton from "./UI/MyButton.vue";
+import MyButton from "../UI/MyButton.vue";
 
 export default defineComponent({
   components: { MyButton },

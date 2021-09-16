@@ -1,5 +1,4 @@
 <template >
-  <Tree/>
   <div class="box">
     <h3 class="p-3 text-center">Результаты поиска</h3>
     <table class="table table-striped table-bordered">
@@ -14,14 +13,12 @@
 </template>
 <script lang = 'ts'>
 import { defineComponent } from "vue";
-import Tree from "@/components/DropdownMenu.vue";
 import SearchProduct from "@/models/searchProduct";
 import SearchRepository from "@/repositories/searchRepository";
 import SearchProductCard from "@/components/common/SearchProductCard.vue"
 
 
 export default defineComponent({
-  components: { SearchProductCard, Tree },
 
   setup() {
     return {

@@ -1,21 +1,18 @@
 <template>
   <div class="tool-bar">
-    <!-- <div class="profile">
-      <dropdown text="Профиль">
-        <profile-card @register="$emit('register')"/>
-      </dropdown>
-    </div> -->
-    <div class="info">
-      <region-card/>
-      <div class="items">
-        <router-link class="item" to="/">Акции</router-link>
-        <router-link class="item" to="/about">Контакты</router-link>
+    <div class="content">
+      <div class="info">
+        <region-card/>
+        <div class="items">
+          <router-link class="item" to="/">Акции</router-link>
+          <router-link class="item" to="/about">Контакты</router-link>
+        </div>
       </div>
-    </div>
 
-    <div class="phone">
-      <a href="tel:+7(800)100-09-08">8 (916) 578-26-48</a>
-      <img src="@/assets/ic_down.svg">
+      <div class="phone">
+        <a href="tel:+7(800)100-09-08">8 (916) 578-26-48</a>
+        <img src="@/assets/ic_down.svg">
+      </div>
     </div>
   </div>
 </template>
@@ -28,10 +25,17 @@
   background: #00174A;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   
   font-family: Inter;
   font-style: normal;
+}
+
+.content {
+  width: 90%;
+  
+  display: flex;
+  justify-content: space-between;
 }
 
 .info {
@@ -91,7 +95,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import RegionCard from '@/components/miscellaneous/RegionCard.vue'
+import RegionCard from '@/components/header/RegionCard.vue'
 
 export default defineComponent({
   components: { 
