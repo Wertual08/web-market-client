@@ -1,5 +1,8 @@
 import Auth from "@/models/auth"
-import Conflict from "@/models/conflict"
+import BadRequestError from "@/models/errors/badRequestError"
+import ConflictError from "@/models/errors/conflictError"
+import ForbiddenError from "@/models/errors/forbiddenError"
+import UnouthorizedError from "@/models/errors/unouthorizedError"
 import { State, useStore } from "@/store"
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
 import { Store } from "vuex"
@@ -47,10 +50,22 @@ export default abstract class AbstractRepository<T> {
     }
   }
 
-  private mapConflict(item: any): Conflict {
-    let conflict = new Conflict()
-    conflict.field = item.Field
-    throw conflict;
+  private mapBadRequest(data: any): BadRequestError {
+    let result = new BadRequestError()
+    return result
+  }
+  private mapUnouthorized(data: any): UnouthorizedError {
+    let result = new UnouthorizedError()
+    return result
+  }
+  private mapForbidden(data: any): ForbiddenError {
+    let result = new ForbiddenError()
+    return result
+  }
+  private mapConflict(data: any): ConflictError {
+    let result = new ConflictError()
+    result.field = data.Field
+    throw result;
   }
 
   protected constructor(url: string) {
@@ -70,10 +85,13 @@ export default abstract class AbstractRepository<T> {
       return payload
     })
     this.axios.interceptors.response.use(response => response, error => {
-      if (error.response.status == 409) {
-        throw this.mapConflict(error.response.data)
-      } else {
-        throw error
+      const data = error.response.data
+      switch (error.response.status) {
+        case 400: throw this.mapBadRequest(data)
+        case 401: throw this.mapUnouthorized(data)
+        case 403: throw this.mapForbidden(data)
+        case 409: throw this.mapConflict(data)
+        default: throw error
       }
     })
   }
