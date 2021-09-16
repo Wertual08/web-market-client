@@ -1,4 +1,5 @@
 import Auth from "@/models/auth"
+import Conflict from "@/models/conflict"
 import { State, useStore } from "@/store"
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
 import { Store } from "vuex"
@@ -46,6 +47,12 @@ export default abstract class AbstractRepository<T> {
     }
   }
 
+  private mapConflict(item: any): Conflict {
+    let conflict = new Conflict()
+    conflict.field = item.Field
+    throw conflict;
+  }
+
   protected constructor(url: string) {
     this.store = useStore()
 
@@ -61,6 +68,13 @@ export default abstract class AbstractRepository<T> {
     this.axios.interceptors.request.use(async payload => {
       payload.headers.Authorization = await this.getToken()
       return payload
+    })
+    this.axios.interceptors.response.use(response => response, error => {
+      if (error.response.status == 409) {
+        throw this.mapConflict(error.response.data)
+      } else {
+        throw error
+      }
     })
   }
 }

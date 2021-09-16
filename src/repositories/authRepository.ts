@@ -1,6 +1,5 @@
-import Auth from "@/models/auth";
-import Conflict from "@/models/conflict";
-import AbstractRepository from "./abstractRepository";
+import Auth from '@/models/auth'
+import AbstractRepository from './abstractRepository'
 
 
 
@@ -24,26 +23,17 @@ export default class AuthRepository extends AbstractRepository<Auth> {
     name: string|null,
     surname: string|null,
   ): Promise<Auth|null> {
-    try {
-      const response = await this.axios.post('register', {
-        Email: email,
-        Password: password,
-        Phone: phone,
-        Name: name,
-        Surname: surname,
-      })
-      const data = response.data
+    const response = await this.axios.post('register', {
+      Email: email,
+      Password: password,
+      Phone: phone,
+      Name: name,
+      Surname: surname,
+    })
+    const data = response.data
 
-      this.store.commit('auth', this.map(data))
-      return this.store.state.auth
-    } catch (error: any) {
-      if (error.response.status == 409) {
-        let conflict = new Conflict()
-        conflict.field = error.response.data.Field
-        throw conflict;
-      }
-      throw error
-    }
+    this.store.commit('auth', this.map(data))
+    return this.store.state.auth
   }
 
   public async login(login: string, password: string): Promise<Auth|null> {
