@@ -1,5 +1,5 @@
 <template>
-  <div class="password-input">
+  <div :class="{ 'password-input': true, invalid: !valid }">
     <text-input class="password" :type="passwordType" :placeholder="placeholder" v-model="value"/>
     <img class="eye" :src="eyeImage" @click="toggleVisible()"/>
   </div>
@@ -15,6 +15,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.invalid {
+  box-shadow: 0 0 5px 1px red;
 }
 
 .password {
@@ -52,6 +56,10 @@ export default defineComponent({
     modelValue: {
       type: String,
     },
+    valid: {
+      type: Boolean,
+      default: true,
+    }
   },
 
   data() {

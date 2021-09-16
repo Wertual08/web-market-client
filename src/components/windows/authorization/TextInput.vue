@@ -1,5 +1,5 @@
 <template>
-  <input class="input" :type="type" :placeholder="placeholder" :value="modelValue" @input="onInput"/>
+  <input :class="{ input: true, invalid: !valid }" :type="type" :placeholder="placeholder" :value="modelValue" @input="onInput"/>
 </template>
 
 
@@ -28,6 +28,14 @@
 .input::placeholder {
   color: #C3C5CB;
 }
+
+.input:focus:invalid {
+  box-shadow: none;
+}
+
+.invalid {
+  box-shadow: 0 0 5px 1px red;
+}
 </style>
 
 
@@ -48,17 +56,28 @@ export default defineComponent({
     modelValue: {
       type: String,
     },
+    valid: {
+      type: Boolean,
+      default: true,
+    }
+  },
+
+  data() {
+    return {
+    }
   },
 
   methods: {
     onInput(event: Event) {
-      let target = event.target as HTMLInputElement
-      this.$emit('update:modelValue', target.value)
+      let value = (event.target as HTMLInputElement).value
+      this.$emit('update:modelValue', value)
     }
   },
 
-  setup() {
-        
-  },
+  watch: {
+    validValue(payload: boolean) {
+      this.$emit('update:valid', payload)
+    },
+  }
 })
 </script>

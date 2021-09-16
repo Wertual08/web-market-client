@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import SignInForm from "@/components/SingInForm.vue"
-import RegistrationForm from "@/components/RegistrationForm.vue"
+import RegistrationForm from "@/components/DEPRECATEDRegistrationForm.vue"
 
 export default defineComponent({
   name: 'not-signed-login-panel',

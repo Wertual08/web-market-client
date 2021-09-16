@@ -1,5 +1,5 @@
 <template>
-  <button class="button"><slot/></button>
+  <button class="button" :disabled="disabled"><slot/></button>
 </template>
 
 
@@ -29,6 +29,11 @@
 .button:active {
   background: #A03030;
 }
+
+.button:disabled {
+  background: gray;
+  pointer-events: none;
+}
 </style>
 
 
@@ -37,6 +42,14 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'submit-button',
+
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    }
+  },
+
   setup() {
         
   },

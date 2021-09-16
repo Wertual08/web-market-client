@@ -8,7 +8,7 @@
     <div class="info">
       <region-card/>
       <div class="items">
-        <router-link class="item" to="/">Информация</router-link>
+        <router-link class="item" to="/">Акции</router-link>
         <router-link class="item" to="/about">Контакты</router-link>
       </div>
     </div>

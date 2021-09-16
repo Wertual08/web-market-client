@@ -69,10 +69,7 @@ export default defineComponent({
     performLogin() {
       this.authRepository.login(this.login, this.password)
         .then(() => {
-          this.profileRepository.get()
-            .then(() => {
-              this.$router.go(0)
-            })
+          this.$router.go(0)
         })
         .catch(error => {
           if (error.response) {

@@ -19,7 +19,7 @@ import Profile from '@/models/profile'
 import NavigationBar from '@/components/NavigationBar.vue'
 import ToolBar from './ToolBar.vue'
 import ModalWindow from './windows/ModalWindow.vue'
-import RegistrationForm from './RegistrationForm.vue'
+import RegistrationForm from './DEPRECATEDRegistrationForm.vue'
 import AuthorizationWindow from './windows/authorization/AuthorizationWindow.vue'
 
 export default defineComponent({

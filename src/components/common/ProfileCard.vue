@@ -2,13 +2,19 @@
   <div id="box" @click="activate()">
     <img src="@/assets/ic_profile.svg">
     <p v-if="profile === null">Войти</p>
-    <p v-else>{{profile.login}}</p>
+    <p v-if="profile !== null">{{profile.email}}</p>
+    <div v-if="profile !== null" class="dropdown">
+      Всякая<br>хуита
+      <button @click="performLogout()">Выйти</button>
+    </div>
   </div>
 </template>
 
 
 <style scoped>
 #box {
+  height: 100%;
+
   cursor: pointer;
   color: white;
   
@@ -36,12 +42,28 @@
   padding-left: 12px;
 }
 
+#box:hover > .dropdown {
+  display: inline;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+
+  color: black;
+
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+
+  display: none;
+}
+
 </style>
 
 
 <script lang="ts">
 import Profile from '@/models/profile'
 import { defineComponent } from 'vue'
+import AuthRepository from '@/repositories/authRepository'
 import ProfileRepository from '@/repositories/profileRepository'
 
 export default defineComponent({
@@ -51,6 +73,7 @@ export default defineComponent({
 
   setup() {
     return {
+      authRepository: new AuthRepository(),
       profileRepository: new ProfileRepository(),
     }
   },
@@ -73,11 +96,11 @@ export default defineComponent({
       }
     },
 
-    // performLogout() {
-    //   this.authRepository.logout()
-    //   this.$router.push('/')
-    //   this.$router.go(0)
-    // },
+    performLogout() {
+      this.authRepository.logout()
+      this.$router.push('/')
+      this.$router.go(0)
+    },
   },
 })
 </script>

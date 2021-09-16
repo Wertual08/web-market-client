@@ -17,23 +17,23 @@ export default class AuthRepository extends AbstractRepository<Auth> {
   }
 
   public async register(
-    login: string, 
-    password: string, 
     email: string, 
+    password: string, 
     phone: string|null,
     name: string|null,
     surname: string|null,
-  ): Promise<Auth> {
+  ): Promise<Auth|null> {
     const response = await this.axios.post('register', {
-      Login: login,
-      Password: password,
       Email: email,
+      Password: password,
       Phone: phone,
       Name: name,
       Surname: surname,
     })
     const data = response.data
-    return this.map(data)
+
+    this.store.commit('auth', this.map(data))
+    return this.store.state.auth
   }
 
   public async login(login: string, password: string): Promise<Auth|null> {
