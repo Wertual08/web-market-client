@@ -135,5 +135,6 @@ export default defineComponent({
   background: #00174a;
   width: 100%; /* Ширина слоя */
   width: auto;
+  margin-bottom: 0px;
 }
 </style>
