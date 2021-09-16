@@ -2,6 +2,7 @@
   <div id="app">
     <app-header/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
@@ -35,10 +36,13 @@ body {
 <script lang="ts">
 import { defineComponent } from "vue"
 import AppHeader from "@/components/AppHeader.vue"
+import Footer from "./components/Footer.vue";
 
 export default defineComponent({
   components: {
     AppHeader,
+    Footer
   },
-});
+})
+    Footer;
 </script>
