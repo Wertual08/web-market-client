@@ -1,71 +1,139 @@
 <template class = 'footer'>
   <div class="back">
-    <div class="contact">
-      <p class="phone">Звоните: 8 (800) 100-09-08</p>
+    <img class="logo" src="/img/logo.ff5cf2ac.svg" alt="vue logo" data-v-d1a7e442="">
+    <div class="h1">
+      <div class="fast">Быстрые ссылки</div>
+      <div class="h11">Главная</div>
+      <div class="h11">Возврат и обмен</div>
+      <div class="h11">Где купить</div>
+      <div class="h11">Акции</div>
+      <div class="h11">Контакты</div>
     </div>
-    <div class="but">
-      <a class="mail" href="mailto:info@korea-bus.ru">info@korea-bus.ru</a>
-      <button>Главная</button>
-      <button>Запчасти</button>
-      <button>Доставка и оплата</button>
-      <button>Полезная информация</button>
-      <button>Контакты</button>
+    <div class="h2">
+      <div class="fast">Daewoo Ultra Novus</div>
+      <div class="h12">Запчасти КМУ</div>
+      <div class="h12">Грузовики Hyndai</div>
+      <div class="h12">Автобусы Hyndai</div>
+      <div class="h12">Автобусы Daewoo</div>
+      <div class="h12">Грузовики Kia</div>
+      <div class="h12">Автобусы  Kia</div>
+      <div class="h12">Автобусы Ssang Yong</div>
+    </div>
+    <div class="h3">
+      <div class="fast">Контакты</div>
+      <div class="h13">г. Рязань улица Связи</div>
+      <div class="h13">дом 25, строение 2</div>
+      <div class="h13">помещение Н9 офис №2</div>
+
+      <div class="h133">пн-пт: 09:00-18:00</div>
+
+      <div class="h13">123@mail.ru</div>
+      <div class="h13">123@mail.ru</div>
+      <div class="h13">123@mail.ru</div>
+   </div>
+   <div class="h4">
+      <div>ООО ЗЕЛЕНОГЛАЗОЕ ТАКСИ</div>
+      <div>НЕ ТОРМОЗИ НЕ ТОРМОЗИ</div>
+      <div>OOO И ОТВЕЗИ МЕНЯ ТУДА</div>
     </div>
   </div>
 </template>
 
 
+<script>
+import { defineComponent } from "vue";
+export default defineComponent({
+  name: "footer",
+});
+</script>
+
+
+
 <style scoped>
-.but {
-  background: #030b3a;
-  margin-top: 5px;
-  position: relative;
-  text-align: center;
+.h133{
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
-button {
-  margin-inline: 10px;
-  color: rgb(0, 0, 0);
-  background-color: #0f8397;
-  border: none;
-  color: white;
-  padding: 8px 20px;
-  text-align: center;
-  text-decoration: none;
+.logo{
   display: inline-block;
-  font-size: 16px;
-  border-radius: 4px;
+  position: relative;
+  bottom: 10%;
+  right: 15%;
+  height: auto;
+  width: auto;
+  height: 30%;
 }
-.back {
-  height: 90px;
-  padding: 10px;
-  background: #030b3a; /* Цвет фона */
-  width: 100%; /* Ширина слоя */
-}
-.contact {
-  height: 2ex;
-  float: none;
-  margin-right: 20px;
-  text-align: left;
-  margin-bottom: 0px;
-}
-.phone {
-  color: rgb(0, 189, 247);
-  margin-top: 0ex;
-  font: 1em "Fira Sans", serif;
-  margin-bottom: 1ex;
+.h4 {
+  bottom: 20%;
+  left: 10%;
   text-align: center;
   position: relative;
-  left: 25px;
+  display: inline-block;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: rgba(193, 193, 193, 1);
+  opacity: 0.5;
+  margin-left: 20px;
 }
-.mail {
-  margin-top: 5ex;
-  font: 1em "Fira Sans", serif;
+.h3 {
+  top: 20px;
+  left: 80px;
   position: relative;
-  text-align: left;
-  left: -400px;
-  
+  text-align: center;
+  display: inline-block;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #fafafa;
+  margin-left: 20px;
 }
-a {
-  color: rgb(0, 189, 247);
+.h2 {
+  bottom: 30px;
+  left: 40px;
+  position: relative;
+  display: inline-block;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  color: #fafafa;
+}
+.h1 {
+  bottom: 84px;
+  right: 40px;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  color: #fafafa;
+
+}
+.h13 {
+  margin-top: 5px;
+}
+
+.fast {
+  opacity: 0.5;
+}
+.h12 {
+  margin-top: 5px;
+}
+.h11 {
+  margin-top: 10px;
+}
+
+
+.back {
+  height: 312px;
+  background: #00174a;
+  width: 100%; /* Ширина слоя */
+  width: auto;
 }
 </style>
