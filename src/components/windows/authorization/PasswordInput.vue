@@ -24,6 +24,7 @@
 .password {
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
 }
 
 .eye {
@@ -42,7 +43,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import TextInput from './TextInput.vue'
+import TextInput from '../../common/TextInput.vue'
 
 export default defineComponent({
   name: 'password-input',

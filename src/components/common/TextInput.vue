@@ -5,7 +5,6 @@
 
 <style scoped>
 .input {
-  height: 48px;
   box-sizing: border-box;
   padding: 16px;
 

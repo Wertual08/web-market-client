@@ -33,11 +33,13 @@
 
 .spacer {
   width: 100%;
+  height: 48px;
   margin: 0px 0px 16px 0px;
 }
 
 .passwords {
   width: 100%;
+  height: 48px;
   display: flex;
 }
 
@@ -66,7 +68,7 @@
 
 <script lang="ts">
 import PasswordInput from './PasswordInput.vue'
-import TextInput from './TextInput.vue'
+import TextInput from '@/components/common/TextInput.vue'
 import { defineComponent } from 'vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import AuthRepository from '@/repositories/authRepository'

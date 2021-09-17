@@ -126,7 +126,9 @@ export default defineComponent({
   methods: {
     clickTitle() {
       this.selected = !this.selected
-      this.expanded = true
+      if (this.selected) {
+        this.expanded = true
+      }
     },
     toggle() {
       this.expanded = !this.expanded
