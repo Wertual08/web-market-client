@@ -2,7 +2,7 @@
   <div class="catalog-product-list">
     <div class="filter-column">
       <p class="title">Каталог</p>
-      <catalog-filter/>
+      <catalog-filter :sections="sections"/>
     </div>
     <div class="products-list">
       <div class="product-container" v-for="product in products" :key="product.id">
@@ -95,10 +95,12 @@
 import { defineComponent } from 'vue'
 import ProductCard from '@/components/common/ProductCard.vue'
 import Product from '@/models/product'
+import SectionsRepository from '@/repositories/sectionsRepository'
 import ProductsRepository from '@/repositories/productsRepository'
 import QuantityInput from '@/components/common/QuantityInput.vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import CatalogFilter from './CatalogFilter.vue'
+import Section from '@/models/section'
 
 export default defineComponent({
   name: 'catalog-product-list',
@@ -112,12 +114,14 @@ export default defineComponent({
 
   setup() {
     return {
-      productsRepository: new ProductsRepository()
+      sectionsRepository: new SectionsRepository(),
+      productsRepository: new ProductsRepository(),
     }
   },
 
   data() {
     return {
+      sections: [] as Section[],
       products: [] as Product[],
       page: 0 as number,
       productsToLoad: true,
@@ -126,6 +130,9 @@ export default defineComponent({
   },
 
   mounted() {
+    this.sectionsRepository.getSections()
+      .then(sections => this.sections = sections)
+
     this.loadUp()
 
     window.onscroll = () => {

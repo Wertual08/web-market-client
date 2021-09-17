@@ -1,6 +1,9 @@
 <template>
   <div class="catalog-filter">
     <p class="title">Модельный ряд</p>
+    <div class="sections-tree">
+      <section-entry v-for="section in sections" :key="section.name" :section="section"/>
+    </div>
   </div>
 </template>
 
@@ -8,9 +11,6 @@
 <style scoped>
 .catalog-filter {
   width: 100%;
-  height: 1200px;
-
-  background: blue;
 
   display: flex;
   flex-direction: column;
@@ -29,14 +29,35 @@
   font-size: 24px;
   line-height: 200%;
 }
+
+.catalog-filter > .sections-tree {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 </style>
 
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import Section from '@/models/section'
+import { defineComponent, PropType } from 'vue'
+import SectionEntry from './SectionEntry.vue'
 
 export default defineComponent({
   name: 'catalog-filter',
+
+  components: {
+    SectionEntry,
+  },
+
+  props: {
+    sections: {
+      type: Array as PropType<Section[]>,
+      required: true,
+    }
+  },
 
   setup() {
         
