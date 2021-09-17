@@ -59,7 +59,7 @@
 .logo {
   width: 120px;
   height: 39px;
-  padding: 18px;
+  margin: 18px 18px 18px 0px;
 }
 
 .section {

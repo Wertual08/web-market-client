@@ -1,12 +1,18 @@
 <template>
   <div class="catalog-product-list">
-    <div class="product-container" v-for="product in products" :key="product.id">
-      <product-card :product="product" @add-cart="addCart">
-        <div class="controls">
-          <quantity-input class="quantity"/>
-          <action-button class="submit">Добавить в корзину</action-button>
-        </div>
-      </product-card>
+    <div class="filter-column">
+      <p class="title">Каталог</p>
+      <catalog-filter/>
+    </div>
+    <div class="products-list">
+      <div class="product-container" v-for="product in products" :key="product.id">
+        <product-card :product="product" @add-cart="addCart">
+          <div class="controls">
+            <quantity-input class="quantity"/>
+            <action-button class="submit">Добавить в корзину</action-button>
+          </div>
+        </product-card>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +20,38 @@
 
 <style scoped>
 .catalog-product-list {
-  width: 100%;
+  width: 90%;
+  height: 100%;
+  display: flex;
+}
+
+.filter-column {
+  position: sticky;
+  top: 75px;
+
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-column > .title {
+  padding: 0px;
+  margin: 24px 0px;
+
+  color: #E04040;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 120%;
+
+  display: flex;
+  align-items: center;
+}
+
+.products-list {
+  width: 80%;
   height: 100%;
 
   display: flex;
@@ -24,7 +61,7 @@
 }
 
 .product-container {
-  width: 90%;
+  width: 100%;
   height: 243px;
   display: inline;
   float: left;
@@ -34,7 +71,7 @@
 }
 
 .controls {
-  width: 245px;
+  max-width: 245px;
   height: 48px;
 
   margin: 16px 0px;
@@ -61,11 +98,13 @@ import Product from '@/models/product'
 import ProductsRepository from '@/repositories/productsRepository'
 import QuantityInput from '@/components/common/QuantityInput.vue'
 import ActionButton from '@/components/common/ActionButton.vue'
+import CatalogFilter from './CatalogFilter.vue'
 
 export default defineComponent({
   name: 'catalog-product-list',
 
   components: {
+    CatalogFilter,
     ProductCard,
     QuantityInput,
     ActionButton,
