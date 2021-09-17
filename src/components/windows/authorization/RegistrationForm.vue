@@ -14,7 +14,7 @@
         :valid="samePasswords" 
       />
     </div>
-    <submit-button class="submit" :disabled="!allValid" @click="register()">Зарегистрироваться</submit-button>
+    <action-button class="submit" :disabled="!allValid" @click="register()">Зарегистрироваться</action-button>
     <div class="bottom">
       <p v-if="emailConflict" class="error">E-mail адрес уже используется</p>
       <p v-if="unknownError" class="error">Неизвестная ошибка, попробуйте позже</p>
@@ -51,6 +51,7 @@
 
 .submit {
   width: 100%;
+  height: 48px;
 }
 
 .error {
@@ -67,14 +68,14 @@
 import PasswordInput from './PasswordInput.vue'
 import TextInput from './TextInput.vue'
 import { defineComponent } from 'vue'
-import SubmitButton from './SubmitButton.vue'
+import ActionButton from '@/components/common/ActionButton.vue'
 import AuthRepository from '@/repositories/authRepository'
 import ConflictError from '@/models/errors/conflictError'
 
 export default defineComponent({
   name: 'registration-form',
 
-  components: { TextInput, PasswordInput, SubmitButton, },
+  components: { TextInput, PasswordInput, ActionButton, },
 
   setup() {
     return {

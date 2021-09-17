@@ -1,7 +1,12 @@
 <template>
   <div class="catalog-product-list">
     <div class="product-container" v-for="product in products" :key="product.id">
-      <product-card :product="product" @add-cart="addCart"/>
+      <product-card :product="product" @add-cart="addCart">
+        <div class="controls">
+          <quantity-input class="quantity"/>
+          <action-button class="submit">Добавить в корзину</action-button>
+        </div>
+      </product-card>
     </div>
   </div>
 </template>
@@ -27,20 +32,43 @@
 
   border-bottom: 1px solid #355396;
 }
+
+.controls {
+  width: 245px;
+  height: 48px;
+
+  margin: 16px 0px;
+  padding: 0px;
+
+  display: flex;
+}
+
+.quantity {
+  width: 40%;
+  margin-right: 8px; 
+}
+
+.submit {
+  width: 60%;
+}
 </style>
 
 
-<script lang = 'ts'>
-import { defineComponent } from "vue";
-import ProductCard from "@/components/common/ProductCard.vue"
-import Product from "@/models/product";
-import ProductsRepository from "@/repositories/productsRepository";
+<script lang="ts">
+import { defineComponent } from 'vue'
+import ProductCard from '@/components/common/ProductCard.vue'
+import Product from '@/models/product'
+import ProductsRepository from '@/repositories/productsRepository'
+import QuantityInput from '@/components/common/QuantityInput.vue'
+import ActionButton from '@/components/common/ActionButton.vue'
 
 export default defineComponent({
   name: 'catalog-product-list',
 
   components: {
     ProductCard,
+    QuantityInput,
+    ActionButton,
   },
 
   setup() {

@@ -6,7 +6,9 @@
       <p class="description">{{ product.description }}</p>
     </div>
     <div class="interaction">
-      <prop/>
+      <p class="price-full" v-if="true">{{ 'AssPlug' }}₽</p>
+      <p class="price-current">{{ product.price }}₽</p>
+      <slot/>
     </div>
   </div>
 </template>
@@ -59,6 +61,42 @@
 
 .interaction {
   width: 30%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.price-full {
+  padding: 0px;
+  margin: 0px;
+
+  color: #C3C5CB;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 160%;
+
+  text-align: right;
+  text-decoration-line: line-through;
+}
+
+.price-current {
+  padding: 0px;
+  margin: 0px;
+  
+  color: #FAFAFA;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 140%;
+
+  text-align: right;
 }
 </style>
 

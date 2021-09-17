@@ -2,7 +2,7 @@
   <div class="login-form">
     <text-input class="spacer" type="email" placeholder="Логин" :valid="loginValid" v-model="login"/>
     <password-input class="spacer" placeholder="Пароль" :valid="passwordValid" v-model="password"/>
-    <submit-button class="spacer" :disabled="!inputValid" @click="performLogin">Войти в личный кабинет</submit-button>
+    <action-button class="spacer" :disabled="!inputValid" @click="performLogin">Войти в личный кабинет</action-button>
     <div class="bottom">
       <p v-if="invalidCredentials" class="error">Неправильный логин или пароль</p>
       <router-link to="" class="forgot">Забыли пароль?</router-link>
@@ -22,6 +22,7 @@
 .spacer {
   margin: 0px 0px 16px 0px;
   width: 100%;
+  height: 48px;
 }
 
 .bottom {
@@ -63,11 +64,11 @@ import AuthRepository from '@/repositories/authRepository'
 import ProfileRepository from '@/repositories/profileRepository'
 import PasswordInput from './PasswordInput.vue'
 import TextInput from './TextInput.vue'
-import SubmitButton from './SubmitButton.vue'
+import ActionButton from '@/components/common/ActionButton.vue'
 import UnouthorizedError from '@/models/errors/unouthorizedError'
 
 export default defineComponent({
-  components: { TextInput, PasswordInput, SubmitButton },
+  components: { TextInput, PasswordInput, ActionButton },
   name: 'login-form',
 
   setup() {
