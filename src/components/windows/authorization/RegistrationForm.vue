@@ -1,5 +1,5 @@
 <template>
-  <div class="registration-form">
+  <div class="registration-form" @keyup.enter="register()">
     <text-input class="spacer" placeholder="E-mail" 
       v-model="email" 
       :valid="emailRegExp.test(email)"
@@ -97,25 +97,27 @@ export default defineComponent({
 
   methods: {
     register() {
-      this.emailConflict = false
-      this.unknownError = false
+      if (this.allValid) {
+        this.emailConflict = false
+        this.unknownError = false
 
-      this.authRepository.register(
-        this.email,
-        this.password,
-        null,
-        null,
-        null,
-      )
-      .then(() => this.$router.go(0))
-      .catch((conflict: ConflictError) => {
-        if (conflict.field == "Email") {
-          this.emailConflict = true
-        } else {
-          this.unknownError = true
-        }
-      })
-      .catch(() => this.unknownError = true)
+        this.authRepository.register(
+          this.email,
+          this.password,
+          null,
+          null,
+          null,
+        )
+        .then(() => this.$router.go(0))
+        .catch((conflict: ConflictError) => {
+          if (conflict.field == "Email") {
+            this.emailConflict = true
+          } else {
+            this.unknownError = true
+          }
+        })
+        .catch(() => this.unknownError = true)
+      }
     }
   },
 

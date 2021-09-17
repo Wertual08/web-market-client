@@ -1,8 +1,8 @@
 <template>
-  <div class="login-form">
+  <div class="login-form" @keyup.enter="performLogin()">
     <text-input class="spacer" type="email" placeholder="Логин" :valid="loginValid" v-model="login"/>
     <password-input class="spacer" placeholder="Пароль" :valid="passwordValid" v-model="password"/>
-    <action-button class="spacer" :disabled="!inputValid" @click="performLogin">Войти в личный кабинет</action-button>
+    <action-button class="spacer" :disabled="!inputValid" @click="performLogin()">Войти в личный кабинет</action-button>
     <div class="bottom">
       <p v-if="invalidCredentials" class="error">Неправильный логин или пароль</p>
       <router-link to="" class="forgot">Забыли пароль?</router-link>
@@ -88,14 +88,16 @@ export default defineComponent({
 
   methods: {
     performLogin() {
-      this.authRepository.login(this.login, this.password)
-        .then(() => {
-          this.$router.go(0)
-        })
-        .catch((error: UnouthorizedError) => {
-          this.password = ''
-          this.invalidCredentials = true
-        })
+      if (this.inputValid) {
+        this.authRepository.login(this.login, this.password)
+          .then(() => {
+            this.$router.go(0)
+          })
+          .catch((error: UnouthorizedError) => {
+            this.password = ''
+            this.invalidCredentials = true
+          })
+      }
     },
   },
 
