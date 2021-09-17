@@ -32,6 +32,7 @@
 .catalog-product-list > .search-bar {
   width: 100%;
   height: 48px;
+  margin-top: 48px;
 }
 
 .catalog-product-list > .columns { 

@@ -30,7 +30,6 @@
   text-align: center;
 
   color: #E04040;
-  opacity: 0.4;
 
   cursor: pointer;
 }

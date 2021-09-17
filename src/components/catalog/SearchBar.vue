@@ -27,8 +27,6 @@
   height: 24px;
   padding-right: 16px;
 
-  filter: brightness(150%);
-
   cursor: pointer;
 }
 
