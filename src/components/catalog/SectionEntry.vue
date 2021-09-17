@@ -4,7 +4,7 @@
       <p :class="titleClass" @click="clickTitle()">{{ section.name }}</p>
       <img src="@/assets/ic_down.svg" v-if="expander" :class="expanderClass" @click="toggle()"/>
     </div>
-    <div class="subsections" v-if="expanded">
+    <div :class="{ subsections: true, hiden: !expanded }">
       <section-entry 
         v-for="subsection in section.sections" 
         :key="subsection.name" 
@@ -88,6 +88,10 @@
   margin-left: 24px;
   display: flex;
   flex-direction: column;
+}
+
+.section-entry > .hiden {
+  display: none;
 }
 </style>
 
