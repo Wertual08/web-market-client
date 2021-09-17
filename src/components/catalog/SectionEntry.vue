@@ -40,8 +40,6 @@
   font-size: 24px;
   line-height: 200%;
 
-  user-select: none;
-
   cursor: pointer;
 }
 

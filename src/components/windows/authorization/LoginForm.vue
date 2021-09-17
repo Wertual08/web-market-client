@@ -50,6 +50,8 @@
   
   text-decoration: none;
   color: #5C6175;
+  
+  user-select: none;
 }
 
 .forgot:hover {

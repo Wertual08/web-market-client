@@ -40,6 +40,7 @@
 
   display: flex;
   justify-content: center;
+  user-select: none;
 }
 
 .content {

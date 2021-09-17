@@ -43,6 +43,8 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  
+  user-select: none;
 }
 
 .tab {
