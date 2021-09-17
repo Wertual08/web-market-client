@@ -1,17 +1,20 @@
 <template>
   <div class="catalog-product-list">
-    <div class="filter-column">
-      <p class="title">Каталог</p>
-      <catalog-filter :sections="sections"/>
-    </div>
-    <div class="products-list">
-      <div class="product-container" v-for="product in products" :key="product.id">
-        <product-card :product="product" @add-cart="addCart">
-          <div class="controls">
-            <quantity-input class="quantity"/>
-            <action-button class="submit">Добавить в корзину</action-button>
-          </div>
-        </product-card>
+    <search-bar class="search-bar"/>
+    <div class="columns">
+      <div class="filter-column">
+        <p class="title">Каталог</p>
+        <catalog-filter :sections="sections"/>
+      </div>
+      <div class="products-list">
+        <div class="product-container" v-for="product in products" :key="product.id">
+          <product-card :product="product" @add-cart="addCart">
+            <div class="controls">
+              <quantity-input class="quantity"/>
+              <action-button class="submit">Добавить в корзину</action-button>
+            </div>
+          </product-card>
+        </div>
       </div>
     </div>
   </div>
@@ -21,6 +24,18 @@
 <style scoped>
 .catalog-product-list {
   width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-product-list > .search-bar {
+  width: 100%;
+  height: 48px;
+}
+
+.catalog-product-list > .columns { 
+  width: 100%;
   height: 100%;
   display: flex;
 }
@@ -101,6 +116,7 @@ import QuantityInput from '@/components/common/QuantityInput.vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import CatalogFilter from './CatalogFilter.vue'
 import Section from '@/models/section'
+import SearchBar from './SearchBar.vue'
 
 export default defineComponent({
   name: 'catalog-product-list',
@@ -110,6 +126,7 @@ export default defineComponent({
     ProductCard,
     QuantityInput,
     ActionButton,
+    SearchBar,
   },
 
   setup() {
