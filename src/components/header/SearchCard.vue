@@ -85,7 +85,7 @@ export default defineComponent({
         name: 'CatalogView',
         force: true,
         params: { 
-          launch: this.query 
+          launch: this.query,
         },
       })
     }

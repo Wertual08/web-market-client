@@ -18,7 +18,7 @@
 
 
 <style scoped>
-.SliderImg{
+.SliderImg {
   width: auto;
   height: auto;
   min-height: 124px;

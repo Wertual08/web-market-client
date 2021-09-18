@@ -166,7 +166,7 @@ export default defineComponent({
     this.sectionsRepository.getSections()
       .then(sections => this.sections = sections)
 
-    this.loadUp()
+    this.loadUp(true)
 
     window.onscroll = () => {
       this.onScroll()
@@ -174,25 +174,22 @@ export default defineComponent({
   },
 
   methods: {
-    applyFilters(): void {
-      this.filterPage = 0
-      this.products = []
-      this.productsToLoad = true
-      this.loading = false
-
-      this.loadUp()
-    },
-
     onScroll(): void {
       let height = document.documentElement.scrollTop + window.innerHeight
       let bottomOfWindow = height === document.documentElement.offsetHeight;
       if (bottomOfWindow) {
-        this.loadUp()
+        this.loadUp(false)
       }
     },
+    
+    loadUp(refresh: boolean): void {
+      if (refresh) {
+        this.filterPage = 0
+        this.productsToLoad = true
+        this.loading = false
+      }
 
-    loadUp(): void {
-      if (!this.loading) {
+      if (!this.loading && this.productsToLoad) {
         this.loading = true
         this.searchRepository.getProducts(
           this.filterQuery,
@@ -202,30 +199,28 @@ export default defineComponent({
           this.filterMinPrice,
           this.filterMaxPrice,
         ).then(result => {
-            if (result.length > 0 && this.productsToLoad) {
-              result.forEach(item => this.products.push(item))
-              this.filterPage++
-            } else {
-              this.productsToLoad = true
+            if (refresh) {
+              this.products = []
+            }
+            result.forEach(item => this.products.push(item))
+            this.filterPage++
+
+            if (result.length < 1) {
+              this.productsToLoad = false
             }
             this.loading = false
             this.onScroll()
           })
       }
     },
-
-    addCart(id: number): void {
-      alert(`DEBUG_MESSAGE: Добавлено в корзину ${id}`)
-    },
   },
 
   watch: {
     filterQuery() {
-      this.applyFilters()
+      this.loadUp(true)
     },
 
     launch(payload: string) {
-      console.log(payload)
       this.filterQuery = payload
     },
   }
