@@ -58,15 +58,15 @@ export default defineComponent({
 .logo{
   display: inline-block;
   position: relative;
-  bottom: 10%;
-  right: 15%;
+  bottom: 6%;
+  right: 20%;
   height: auto;
   width: auto;
   height: 15%;
 }
 .h4 {
-  bottom: 20%;
-  left: 10%;
+  bottom: 6%;
+  left: 20%;
   text-align: left;
   position: relative;
   display: inline-block;
@@ -77,10 +77,11 @@ export default defineComponent({
   color: rgba(193, 193, 193, 1);
   opacity: 0.5;
   margin-left: 20px;
+  
 }
 .h3 {
-  top: 20px;
-  left: 80px;
+  top: 60px;
+  left: 150px;
   position: relative;
   text-align: left;
   display: inline-block;
@@ -92,7 +93,7 @@ export default defineComponent({
   margin-left: 20px;
 }
 .h2 {
-  bottom: 30px;
+  top: 33px;
   left: 40px;
   position: relative;
   display: inline-block;
@@ -103,8 +104,8 @@ export default defineComponent({
   color: #fafafa;
 }
 .h1 {
-  bottom: 60px;
-  right: 40px;
+  bottom: 25px;
+  right: 100px;
   display: inline-block;
   position: relative;
   text-align: left;
@@ -144,5 +145,6 @@ export default defineComponent({
   width: 100%; /* Ширина слоя */
   width: auto;
   margin-bottom: 0px;
+  padding: 0px;
 }
 </style>
