@@ -2,7 +2,7 @@
   <div class="back">
     <img class="logo" src="/img/logo.ff5cf2ac.svg" alt="vue logo" data-v-d1a7e442="">
     <div class="h1">
-      <div class="fast">Быстрые ссылки</div>
+      <div class="fast">БЫСТРЫЕ ССЫЛКИ</div>
       <div class="h11">Главная</div>
       <div class="h11">Возврат и обмен</div>
       <div class="h11">Где купить</div>
@@ -10,7 +10,8 @@
       <div class="h11">Контакты</div>
     </div>
     <div class="h2">
-      <div class="fast">Daewoo Ultra Novus</div>
+      <div class="fast">КАТАЛОГ</div>
+      <div class="h12">DAEWOO ULTRA</div>
       <div class="h12">Запчасти КМУ</div>
       <div class="h12">Грузовики Hyndai</div>
       <div class="h12">Автобусы Hyndai</div>
@@ -20,7 +21,7 @@
       <div class="h12">Автобусы Ssang Yong</div>
     </div>
     <div class="h3">
-      <div class="fast">Контакты</div>
+      <div class="fast">КОНТАКТЫ</div>
       <div class="h13">г. Рязань улица Связи</div>
       <div class="h13">дом 25, строение 2</div>
       <div class="h13">помещение Н9 офис №2</div>
@@ -61,18 +62,18 @@ export default defineComponent({
   right: 15%;
   height: auto;
   width: auto;
-  height: 30%;
+  height: 15%;
 }
 .h4 {
   bottom: 20%;
   left: 10%;
-  text-align: center;
+  text-align: left;
   position: relative;
   display: inline-block;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 10px;
   color: rgba(193, 193, 193, 1);
   opacity: 0.5;
   margin-left: 20px;
@@ -81,12 +82,12 @@ export default defineComponent({
   top: 20px;
   left: 80px;
   position: relative;
-  text-align: center;
+  text-align: left;
   display: inline-block;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 10px;
   color: #fafafa;
   margin-left: 20px;
 }
@@ -98,35 +99,42 @@ export default defineComponent({
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 10px;
   color: #fafafa;
 }
 .h1 {
-  bottom: 84px;
+  bottom: 60px;
   right: 40px;
   display: inline-block;
   position: relative;
-  text-align: center;
+  text-align: left;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 10px;
   line-height: 100%;
   color: #fafafa;
 
 }
 .h13 {
   margin-top: 5px;
+  font-size: 12px;
+  text-align: left;
 }
 
 .fast {
+  text-align: left;
   opacity: 0.5;
 }
 .h12 {
+  text-align: left;
+  font-size: 12px;
   margin-top: 5px;
 }
 .h11 {
+  text-align: left;
   margin-top: 10px;
+  font-size: 12px;
 }
 
 
