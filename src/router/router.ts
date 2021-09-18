@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-import SearchView from "@/views/SearchView.vue"
 import MainView from "@/views/MainView.vue"
 import AboutView from "@/views/AboutView.vue"
 import CatalogView from "@/views/CatalogView.vue"
@@ -16,18 +15,14 @@ const routes: Array<RouteRecordRaw> = [
     component: MainView
   },
   {
-    path: "/search",
-    component: SearchView,
-    name: 'SearchView',
-    props: true 
-  },
-  {
     path: '/about',
     component: AboutView,
   },
   {
     path: '/catalog',
     component: CatalogView,
+    name: 'CatalogView',
+    props: true,
   },
   {
     path: '/product/:id',

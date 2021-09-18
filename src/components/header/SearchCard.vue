@@ -82,10 +82,10 @@ export default defineComponent({
   methods: {
     submit() {
       this.$router.push({
-        name: 'SearchView',
+        name: 'CatalogView',
         force: true,
         params: { 
-          query: this.query 
+          launch: this.query 
         },
       })
     }

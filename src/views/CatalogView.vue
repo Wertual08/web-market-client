@@ -1,6 +1,6 @@
 <template >
   <div class="catalog">
-    <products-list/>
+    <products-list :launch="launch"/>
   </div>
 </template>
 
@@ -18,12 +18,21 @@
 
 
 <script>
-import { defineComponent } from "vue";
-import ProductsList from "@/components/catalog/CatalogProductsList.vue";
+import { defineComponent } from 'vue'
+import ProductsList from '@/components/catalog/CatalogProductsList.vue'
 
 export default defineComponent({
+  name: 'catalog-view',
+
   components: {
     ProductsList,
+  },
+
+  props: {
+    launch: {
+      type: String,
+      default: '',
+    },
   },
 });
 </script>

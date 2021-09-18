@@ -1,6 +1,6 @@
 <template>
   <div class="search-bar">
-    <text-input class="text-input" placeholder="Поиск товара"/>
+    <text-input class="text-input" placeholder="Поиск товара" v-model="value"/>
     <img class="icon" src="@/assets/ic_search.svg"/>
   </div>
 </template>
@@ -44,8 +44,26 @@ export default defineComponent({
   components: { TextInput },
   name: 'search-bar',
 
-  setup() {
-        
+  props: {
+    modelValue: {
+      type: String,
+      default: '',
+    }
+  },
+
+  data() {
+    return {
+      value: this.modelValue,
+    }
+  },
+
+  watch: {
+    modelValue(payload: string) {
+      this.value = payload
+    },
+    value(payload: string) {
+      this.$emit('update:modelValue', payload)
+    },
   },
 })
 </script>

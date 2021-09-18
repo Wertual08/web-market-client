@@ -1,6 +1,6 @@
 <template>
   <div class="catalog-product-list">
-    <search-bar class="search-bar"/>
+    <search-bar class="search-bar" v-model="filterQuery"/>
     <div class="columns">
       <div class="filter-column">
         <p class="title">Каталог</p>
@@ -112,14 +112,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ProductCard from '@/components/common/ProductCard.vue'
-import Product from '@/models/product'
 import SectionsRepository from '@/repositories/sectionsRepository'
-import ProductsRepository from '@/repositories/productsRepository'
+import SearchRepository from '@/repositories/searchRepository'
 import QuantityInput from '@/components/common/QuantityInput.vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import CatalogFilter from './CatalogFilter.vue'
 import Section from '@/models/section'
 import SearchBar from './SearchBar.vue'
+import SearchProduct from '@/models/searchProduct'
 
 export default defineComponent({
   name: 'catalog-product-list',
@@ -132,20 +132,33 @@ export default defineComponent({
     SearchBar,
   },
 
+  props: {
+    launch: {
+      type: String,
+      default: '',
+    },
+  },
+
   setup() {
     return {
       sectionsRepository: new SectionsRepository(),
-      productsRepository: new ProductsRepository(),
+      searchRepository: new SearchRepository(),
     }
   },
 
   data() {
     return {
       sections: [] as Section[],
-      products: [] as Product[],
-      page: 0 as number,
+      products: [] as SearchProduct[],
       productsToLoad: true,
       loading: false,
+
+      filterQuery: this.launch,
+      filterPage: 0 as number,
+      filterCategories: null as number[]|null,
+      filterSections: null as number[]|null,
+      filterMinPrice: null as number|null,
+      filterMaxPrice: null as number|null,
     };
   },
 
@@ -161,6 +174,15 @@ export default defineComponent({
   },
 
   methods: {
+    applyFilters(): void {
+      this.filterPage = 0
+      this.products = []
+      this.productsToLoad = true
+      this.loading = false
+
+      this.loadUp()
+    },
+
     onScroll(): void {
       let height = document.documentElement.scrollTop + window.innerHeight
       let bottomOfWindow = height === document.documentElement.offsetHeight;
@@ -172,11 +194,17 @@ export default defineComponent({
     loadUp(): void {
       if (!this.loading) {
         this.loading = true
-        this.productsRepository.getProducts(this.page)
-          .then(result => {
+        this.searchRepository.getProducts(
+          this.filterQuery,
+          this.filterPage,
+          this.filterCategories, 
+          this.filterSections,
+          this.filterMinPrice,
+          this.filterMaxPrice,
+        ).then(result => {
             if (result.length > 0 && this.productsToLoad) {
               result.forEach(item => this.products.push(item))
-              this.page++
+              this.filterPage++
             } else {
               this.productsToLoad = true
             }
@@ -190,5 +218,16 @@ export default defineComponent({
       alert(`DEBUG_MESSAGE: Добавлено в корзину ${id}`)
     },
   },
+
+  watch: {
+    filterQuery() {
+      this.applyFilters()
+    },
+
+    launch(payload: string) {
+      console.log(payload)
+      this.filterQuery = payload
+    },
+  }
 });
 </script>

@@ -18,21 +18,29 @@ export default class SearchRepository extends AbstractRepository<SearchProduct> 
     return model
   }
 
-  public async Search(quer: string, page: number = 0, categories: number[] = [],
-    sections: number[] = []): Promise<SearchProduct[]> {
-      let response = await this.axios.get('', {
-        params: {
-          query: quer,
-          page: page,
-          categories: categories,
-          sections: sections,
-        }
-      })
-      let data = response.data;
-    let Products: SearchProduct[] = []
+  public async getProducts(
+    query: string, 
+    page: number = 0, 
+    categories: number[]|null = null,
+    sections: number[]|null = null,
+    minPrice: number|null = null,
+    maxPrice: number|null = null,
+  ): Promise<SearchProduct[]> {
+    let response = await this.axios.get('', {
+      params: {
+        Query: query,
+        Page: page,
+        Categories: categories,
+        Sections: sections,
+        MinPrice: minPrice,
+        MaxPrice: maxPrice,
+      }
+    })
+    let data = response.data;
+    let result: SearchProduct[] = []
     for (let i = 0; i < data.length; i++) {
-      Products.push(this.map(data[i]))
+      result.push(this.map(data[i]))
     }
-    return Products
+    return result
   }
 }

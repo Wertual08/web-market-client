@@ -102,14 +102,14 @@
 
 
 <script lang="ts">
-import Product from '@/models/product'
+import SearchProduct from '@/models/searchProduct'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'product-card',
 
   props: {
-    product: Product,
+    product: SearchProduct,
   },
 
   setup() {
