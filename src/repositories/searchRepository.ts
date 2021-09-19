@@ -1,5 +1,6 @@
 import AbstractRepository from "./abstractRepository"
 import SearchProduct from "@/models/searchProduct"
+import qs from 'qs'
 
 export default class SearchRepository extends AbstractRepository<SearchProduct> {
   public constructor() {
@@ -21,8 +22,8 @@ export default class SearchRepository extends AbstractRepository<SearchProduct> 
   public async getProducts(
     query: string, 
     page: number = 0, 
-    categories: number[]|null = null,
-    sections: number[]|null = null,
+    categories: number[] = [],
+    sections: number[] = [],
     minPrice: number|null = null,
     maxPrice: number|null = null,
   ): Promise<SearchProduct[]> {
@@ -34,7 +35,10 @@ export default class SearchRepository extends AbstractRepository<SearchProduct> 
         Sections: sections,
         MinPrice: minPrice,
         MaxPrice: maxPrice,
-      }
+      },
+      paramsSerializer: params =>{
+        return qs.stringify(params, { arrayFormat: 'repeat' })
+      },
     })
     let data = response.data;
     let result: SearchProduct[] = []

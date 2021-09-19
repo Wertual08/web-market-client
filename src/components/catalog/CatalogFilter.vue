@@ -2,7 +2,7 @@
   <div class="catalog-filter">
     <p class="title">Модельный ряд</p>
     <div class="sections-tree">
-      <section-entry v-for="section in sections" :key="section.name" :section="section"/>
+      <section-entry v-for="section in sections" :key="section.name" :section="section" @selection="onSelection"/>
     </div>
   </div>
 </template>
@@ -48,6 +48,8 @@ import SectionEntry from './SectionEntry.vue'
 export default defineComponent({
   name: 'catalog-filter',
 
+  emits: ['selection'],
+
   components: {
     SectionEntry,
   },
@@ -62,5 +64,11 @@ export default defineComponent({
   setup() {
         
   },
+
+  methods: {
+    onSelection(id: number, selected: boolean) {
+      this.$emit('selection', id, selected)
+    }
+  }
 })
 </script>

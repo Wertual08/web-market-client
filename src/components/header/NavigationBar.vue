@@ -25,9 +25,9 @@
 #box {
   position: sticky;
   top: 0px;
+  z-index: 100;
 
   height: 75;
-
   background: #192F60;
 
   font-family: Inter;
