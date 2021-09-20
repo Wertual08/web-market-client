@@ -1,17 +1,15 @@
 <template>
   <div class="product-card">
     <div class="fields">
-      <p class="name">{{ product.name }}</p>
-      <p class="id">Артикул: {{ product.id }}</p>
-      <p class="description">{{ product.description }}</p>
+      <p class="name">{{ cartProduct.product.name }}</p>
+      <p class="id">Артикул: {{ cartProduct.product.id }}</p>
+      <p class="description">{{ cartProduct.product.description }}</p>
     </div>
     <div class="interaction">
       <p class="price-full" v-if="true">{{ 'AssPlug' }}₽</p>
-      <p class="price-current">{{ product.price }}₽</p>
-      <div class="controls">
-        <quantity-input class="quantity" :modelValue="modelValue" @update-model-value="updateModelValue"/>
-        <action-button class="submit" @add-to-cart="addCart">Добавить в корзину</action-button>
-      </div>
+      <p class="price-current">{{ cartProduct.product.price }}₽</p>
+      <p class="amount">{{ cartProduct.amount }} шт.</p>
+      <slot/>
     </div>
   </div>
 </template>
@@ -102,70 +100,32 @@
   text-align: right;
 }
 
-.controls {
-  max-width: 245px;
-  height: 48px;
+.amount {
+  color: #C3C5CB;
 
-  margin: 16px 0px;
-  padding: 0px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 160%;
 
-  display: flex;
-}
-
-.quantity {
-  width: 40%;
-  margin-right: 8px; 
-}
-
-.submit {
-  width: 60%;
+  text-align: right;
 }
 </style>
 
 
 <script lang="ts">
-import QuantityInput from '@/components/common/QuantityInput.vue'
-import ActionButton from '@/components/common/ActionButton.vue'
-import SearchProduct from '@/models/searchProduct'
-import CartRepository from '@/repositories/cartRepository'
+import CartProduct from '@/models/cartProduct'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'product-card',
-
-  components: {
-    QuantityInput,
-    ActionButton,
-  },
+  name: 'cart-product-card',
 
   props: {
-    product: {
-      type: SearchProduct,
-      required: true,
-    },
+    cartProduct: CartProduct,
   },
 
   setup() {
-    return {
-      cartRepository: new CartRepository()
-    }
+    
   },
-
-  data() {
-    return {
-      modelValue: 0
-    }
-  },
-
-  methods: {
-    updateModelValue(newValue: number) {
-      this.modelValue = newValue
-    },
-
-    addCart() {
-      let id = this.product.id
-      this.cartRepository.addCart(id, this.modelValue)
-    }
-  }
 })
 </script>

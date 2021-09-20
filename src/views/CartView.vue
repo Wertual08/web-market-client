@@ -1,15 +1,29 @@
 <template>
   <div class="cart">
-    
+    <cart-product-list/>
   </div>
 </template>
 
-<script>
-export default {
+<style scoped>
+.cart {
+  background: #192F60;
+  height: 100%;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-</script>
-
-<style>
-
 </style>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import CartProductList from '@/components/common/CartProductsList.vue'
+
+export default defineComponent({
+  name: 'cart-view',
+
+  components: {
+    CartProductList
+  }
+});
+</script>

@@ -3,7 +3,7 @@
     <img src="@/assets/ic_cart.svg">
     <p>Корзина</p>
     <div class="count">
-      0
+      {{ cartAmount }}
     </div>
   </div>
 </template>
@@ -65,7 +65,13 @@ export default defineComponent({
   name: 'cart-card',
 
   setup() {
-        
+
   },
+
+  data() {
+    return {
+      cartAmount: 0
+    }
+  }
 })
 </script>

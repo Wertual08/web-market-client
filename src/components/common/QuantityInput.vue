@@ -83,7 +83,7 @@ export default defineComponent({
       this.value = payload
     },
     value(payload: number) {
-      this.$emit('update:modelValue', payload)
+      this.$emit('update-model-value', payload)
     },
   }
 })

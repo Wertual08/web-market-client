@@ -8,12 +8,7 @@
       </div>
       <div class="products-list">
         <div class="product-container" v-for="product in products" :key="product.id">
-          <product-card :product="product" @add-cart="addCart">
-            <div class="controls">
-              <quantity-input class="quantity"/>
-              <action-button class="submit">Добавить в корзину</action-button>
-            </div>
-          </product-card>
+          <product-card :product="product"></product-card>
         </div>
       </div>
     </div>
@@ -87,25 +82,6 @@
 
   border-bottom: 1px solid #355396;
 }
-
-.controls {
-  max-width: 245px;
-  height: 48px;
-
-  margin: 16px 0px;
-  padding: 0px;
-
-  display: flex;
-}
-
-.quantity {
-  width: 40%;
-  margin-right: 8px; 
-}
-
-.submit {
-  width: 60%;
-}
 </style>
 
 
@@ -114,12 +90,12 @@ import { defineComponent } from 'vue'
 import ProductCard from '@/components/common/ProductCard.vue'
 import SectionsRepository from '@/repositories/sectionsRepository'
 import SearchRepository from '@/repositories/searchRepository'
-import QuantityInput from '@/components/common/QuantityInput.vue'
-import ActionButton from '@/components/common/ActionButton.vue'
 import CatalogFilter from './CatalogFilter.vue'
 import Section from '@/models/section'
 import SearchBar from './SearchBar.vue'
 import SearchProduct from '@/models/searchProduct'
+import Product from '@/models/product'
+import CartProduct from '@/models/cartProduct'
 
 export default defineComponent({
   name: 'catalog-product-list',
@@ -127,8 +103,6 @@ export default defineComponent({
   components: {
     CatalogFilter,
     ProductCard,
-    QuantityInput,
-    ActionButton,
     SearchBar,
   },
 
