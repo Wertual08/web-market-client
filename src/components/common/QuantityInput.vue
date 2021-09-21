@@ -60,10 +60,11 @@
 
 
 <script lang="ts">
-import { defineComponent, watch } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'quantity-input',
+  emits: ['update:modelValue'],
   
   props: {
     modelValue: {
@@ -83,7 +84,7 @@ export default defineComponent({
       this.value = payload
     },
     value(payload: number) {
-      this.$emit('update-model-value', payload)
+      this.$emit('update:modelValue', payload)
     },
   }
 })

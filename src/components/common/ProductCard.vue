@@ -9,7 +9,7 @@
       <p class="price-full" v-if="true">{{ 'AssPlug' }}₽</p>
       <p class="price-current">{{ product.price }}₽</p>
       <div class="controls">
-        <quantity-input class="quantity" :modelValue="modelValue" @update-model-value="updateModelValue"/>
+        <quantity-input class="quantity" v-model="selectedQuantity"/>
         <action-button class="submit" @add-to-cart="addCart">Добавить в корзину</action-button>
       </div>
     </div>
@@ -153,18 +153,14 @@ export default defineComponent({
 
   data() {
     return {
-      modelValue: 0
+      selectedQuantity: 1
     }
   },
 
   methods: {
-    updateModelValue(newValue: number) {
-      this.modelValue = newValue
-    },
-
     addCart() {
       let id = this.product.id
-      this.cartRepository.addCart(id, this.modelValue)
+      this.cartRepository.addCart(id, this.selectedQuantity)
     }
   }
 })
