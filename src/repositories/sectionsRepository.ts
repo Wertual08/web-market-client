@@ -9,6 +9,7 @@ export default class SectionsRepository extends AbstractRepository<Section> {
     result.id = item.Id
     result.name = item.Name
     result.sectionId = item.ParentId
+    result.record = item.Record
     result.sections = []
     item.Sections.forEach((element: Section) => {
       result.sections.push(this.map(element))

@@ -7,7 +7,7 @@
           <router-link class="productCardContent" :to="{ path: '/catalog' }"> 
             <div class="prodCardContent"> 
               <p class="prodName">{{ section.name }}</p> 
-              <img class="sectionImg" src=@/assets/meme.gif/> 
+              <img class="sectionImg" :src="sectionImage(section.record)"> 
             </div> 
           </router-link> 
         </div> 
@@ -66,9 +66,10 @@
 </style>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Section from "@/models/section";
-import SectionsRepository from "@/repositories/sectionsRepository";
+import { defineComponent } from 'vue'
+import Section from '@/models/section'
+import SectionsRepository from '@/repositories/sectionsRepository'
+import RecordsRepository from '@/repositories/recordsRepository'
 
 export default defineComponent({
   setup() {
@@ -89,6 +90,13 @@ export default defineComponent({
         this.sections = result;
       });
   },
+
+  methods: {
+    sectionImage(record: string): string|null {
+      return RecordsRepository.toUrl(record) ?? require('@/assets/meme.gif')
+    }
+  },
+
   computed: {
     test() {
     }
