@@ -48,7 +48,7 @@ import { defineComponent, PropType } from 'vue'
 import SectionsRepository from '@/repositories/admin/sectionsRepository'
 import RecordsRepository from '@/repositories/recordsRepository'
 import Section from '@/models/admin/section'
-import ImageForm from './ImageForm.vue'
+import ImageForm from '@/components/common/ImageForm.vue'
 
 export default defineComponent({
   name: 'admin-section-form',

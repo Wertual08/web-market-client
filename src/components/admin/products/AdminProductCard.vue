@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="admin-product-card">
     <div class="cover-box">
       <img class="cover-image" :src="coverImage"> 
     </div>
@@ -13,11 +13,11 @@
           Price: {{ product.price }}<br>
           Created at: {{ product.createdAt }}<br>
           Updated at: {{ product.updatedAt }}
-          <tr>
-            <td class="section-label" v-for="section in product.sections" :key="section.name">
+          <div class="sections-box">
+            <p class="section-label" v-for="section in product.sections" :key="section.name">
               {{ section }}
-            </td>
-          </tr>
+            </p>
+          </div>
         </div>
         <p class="description">{{ product.description }}</p>
       </div>
@@ -28,9 +28,9 @@
 
 <style scoped>
 
-.box {
+.admin-product-card {
   width: 90%;
-  height: 100px;
+  height: 200px;
   margin: 5px;
   background: white;
   border-radius: 10px;
@@ -98,9 +98,16 @@
   height: 100%;
 }
 
+.sections-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .section-label {
-  background: gray;
+  background: lightgray;
   border-radius: 5px;
+  padding: 0px 2px;
+  margin: 2px;
 }
 </style>
 
@@ -110,6 +117,8 @@ import { defineComponent } from "vue";
 import Product from "@/models/admin/product";
 
 export default defineComponent({
+  name: 'admin-product-card',
+
   emits: ['add-cart'],
 
   data() {

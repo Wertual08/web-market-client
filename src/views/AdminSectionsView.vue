@@ -44,8 +44,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import AdminSectionsTree from '@/components/AdminSectionsTree.vue'
-import AdminSectionForm from '@/components/common/AdminSectionForm.vue'
+import AdminSectionsTree from '@/components/admin/sections/AdminSectionsTree.vue'
+import AdminSectionForm from '@/components/admin/sections/AdminSectionForm.vue'
 import SectionsRepository from '@/repositories/admin/sectionsRepository'
 import RecordsRepository from '@/repositories/recordsRepository'
 import Section from '@/models/admin/section'

@@ -4,11 +4,16 @@
   </div>
 </template>
 
+
+<style scoped>
+</style>
+
+
 <script lang = 'ts'>
 import { defineComponent } from "vue";
 import Product from "@/models/admin/product";
 import ProductsRepository from "@/repositories/admin/productsRepository";
-import AdminProductCard from "./common/AdminProductCard.vue";
+import AdminProductCard from "./AdminProductCard.vue";
 
 export default defineComponent({
   name: 'admin-products-list',
@@ -72,6 +77,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-</style>

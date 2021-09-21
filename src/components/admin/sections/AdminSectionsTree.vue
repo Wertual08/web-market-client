@@ -35,7 +35,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import Section from '@/models/admin/section'
-import AdminSectionCard from './common/AdminSectionCard.vue'
+import AdminSectionCard from '@/components/admin/sections/AdminSectionCard.vue'
 
 export default defineComponent({
   name: 'admin-sections-tree',
