@@ -1,15 +1,21 @@
 <template>
-  <div class="box">
-    <img src="@/assets/ic_cart.svg">
-    <p>Корзина</p>
-    <div class="count">
-      {{ cartAmount }}
+  <router-link class="link" to="/cart">
+    <div class="box">
+      <img src="@/assets/ic_cart.svg">
+      <p>Корзина</p>
+      <div class="count">
+        {{ cartAmount }}
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 
 <style scoped>
+.link {
+  text-decoration: none;
+}
+
 .box {
   cursor: pointer;
   color: white;
@@ -60,17 +66,25 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import CartRepository from '@/repositories/cartRepository'
 
 export default defineComponent({
   name: 'cart-card',
 
   setup() {
-
+    return {
+      cartRepository: new CartRepository(),
+    }
   },
 
   data() {
     return {
-      cartAmount: 0
+    }
+  }, 
+
+  computed: {
+    cartAmount(): number {
+      return this.cartRepository.getAmount() ?? 0
     }
   }
 })

@@ -13,9 +13,7 @@
 
       <div class="interaction">
         <search-card class="tool"/>
-        <router-link to="/cart">
-          <cart-card class="tool"/>
-        </router-link>
+        <cart-card class="tool"/>
         <profile-card class="tool" @authorize="$emit('authorize')"/>
       </div>
     </div>
