@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import CartProductList from '@/components/common/CartProductsList.vue'
+import CartProductList from '@/components/cart/CartProductsList.vue'
 
 export default defineComponent({
   name: 'cart-view',

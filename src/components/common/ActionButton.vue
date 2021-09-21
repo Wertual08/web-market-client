@@ -1,9 +1,5 @@
 <template>
-  <button
-    class="button"
-    :disabled="disabled"
-    @click="this.$emit('add-to-cart')"
-  >
+  <button class="button" :disabled="disabled">
     <slot/>
   </button>
 </template>

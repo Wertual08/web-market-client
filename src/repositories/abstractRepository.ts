@@ -14,6 +14,10 @@ export default abstract class AbstractRepository<T> {
   protected readonly axios: AxiosInstance
   protected readonly baseURL: string
 
+  protected authorized(): boolean {
+    return this.store.state.auth !== null
+  }
+
   protected abstract map(item: any): T
 
   private async refreshToken(token: string): Promise<Auth|null> {

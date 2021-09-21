@@ -1,20 +1,23 @@
 import AbstractRepository from "./abstractRepository"
 import CartProduct from "@/models/cartProduct"
-import ProductsRepository from "@/repositories/productsRepository"
-import { State } from "@/store"
+import LiteProductsRepository from "./liteProductsRepository"
 
 
 
 export default class CartRepository extends AbstractRepository<CartProduct> {
   protected map(item: any): CartProduct {
-    const cartProduct = new CartProduct()
-    cartProduct.amount = item.Id
-    cartProduct.product = item.Product
-    return cartProduct
+    const model = new CartProduct()
+    model.amount = item.Amount
+    model.product = item.Product
+    return model
   }
+
+  private liteProductsRepository: LiteProductsRepository
   
   public constructor() {
     super('/api/cart')
+
+    this.liteProductsRepository = new LiteProductsRepository()
   }
 
   public async getCartFromAPI(): Promise<CartProduct[]> {
@@ -36,41 +39,41 @@ export default class CartRepository extends AbstractRepository<CartProduct> {
 
   public async getCart(): Promise<CartProduct[]> {
     let cartProducts: CartProduct[] = []
-    if (this.store.state.auth === null) {
-      // или лучше смотреть "profile === null"?
-      cartProducts = this.store.state.cart
+    if (this.authorized()) {
+      // грузим с API
       return cartProducts
     } else {
-      // грузим с API
+      cartProducts = this.store.state.cart
       return cartProducts
     }
   }
 
   public addCart(id: number, amount: number) {
-    let productsRepository = new ProductsRepository()
-    productsRepository.getProduct(id)
-    .then(prod => {
-      if (this.store.state.auth === null) {
+    this.liteProductsRepository.getLiteProduct(id)
+    .then(model => {
+      if (this.authorized()) {
+        // API
+      } else {
         let cartProd = new CartProduct()
         cartProd.amount = amount
-        cartProd.product = prod
+        cartProd.product = model
         this.store.commit('cartAdd', cartProd)
-      } else {
-        // API
       }
     })
   }
 
   public removeProduct(id: number) {
-    if (this.store.state.auth === null) {
-      this.store.commit('cartRemove', id)
-    } else {
+    if (this.authorized()) {
       // API
+    } else {
+      this.store.commit('cartRemove', id)
     }
   }
 
   public getAmount() {
-    if (this.store.state.auth === null) {
+    if (this.authorized()) {
+      // API
+    } else {
       return this.store.state.cartAmount
     }
   }

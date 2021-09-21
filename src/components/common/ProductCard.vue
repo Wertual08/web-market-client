@@ -8,10 +8,7 @@
     <div class="interaction">
       <p class="price-full" v-if="true">{{ 'AssPlug' }}₽</p>
       <p class="price-current">{{ product.price }}₽</p>
-      <div class="controls">
-        <quantity-input class="quantity" v-model="selectedQuantity"/>
-        <action-button class="submit" @add-to-cart="addCart">Добавить в корзину</action-button>
-      </div>
+      <slot/>
     </div>
   </div>
 </template>
@@ -101,67 +98,21 @@
 
   text-align: right;
 }
-
-.controls {
-  max-width: 245px;
-  height: 48px;
-
-  margin: 16px 0px;
-  padding: 0px;
-
-  display: flex;
-}
-
-.quantity {
-  width: 40%;
-  margin-right: 8px; 
-}
-
-.submit {
-  width: 60%;
-}
 </style>
 
 
 <script lang="ts">
-import QuantityInput from '@/components/common/QuantityInput.vue'
-import ActionButton from '@/components/common/ActionButton.vue'
-import SearchProduct from '@/models/searchProduct'
-import CartRepository from '@/repositories/cartRepository'
-import { defineComponent } from 'vue'
+import LiteProduct from '@/models/liteProduct'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   name: 'product-card',
 
-  components: {
-    QuantityInput,
-    ActionButton,
-  },
-
   props: {
     product: {
-      type: SearchProduct,
+      type: Object as PropType<LiteProduct>,
       required: true,
     },
   },
-
-  setup() {
-    return {
-      cartRepository: new CartRepository()
-    }
-  },
-
-  data() {
-    return {
-      selectedQuantity: 1
-    }
-  },
-
-  methods: {
-    addCart() {
-      let id = this.product.id
-      this.cartRepository.addCart(id, this.selectedQuantity)
-    }
-  }
 })
 </script>

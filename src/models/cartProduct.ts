@@ -1,6 +1,6 @@
-import Product from "./product";
+import LiteProduct from "./liteProduct"
 
 export default class CartProduct {
   amount: number = 0
-  product: Product = new Product()
+  product: LiteProduct = new LiteProduct()
 }

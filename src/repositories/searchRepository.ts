@@ -1,13 +1,13 @@
 import AbstractRepository from "./abstractRepository"
-import SearchProduct from "@/models/searchProduct"
+import LiteProduct from "@/models/liteProduct"
 import qs from 'qs'
 
-export default class SearchRepository extends AbstractRepository<SearchProduct> {
+export default class SearchRepository extends AbstractRepository<LiteProduct> {
   public constructor() {
     super('/api/search/products')
   }
-  protected map(item: any): SearchProduct {
-    const model = new SearchProduct()
+  protected map(item: any): LiteProduct {
+    const model = new LiteProduct()
     model.id = item.Id
     model.name = item.Name
     model.description = item.Description
@@ -15,7 +15,6 @@ export default class SearchRepository extends AbstractRepository<SearchProduct> 
     model.categories = item.Categories
     model.sections = item.Sections
     model.image = item.Image
-
     return model
   }
 
@@ -26,7 +25,7 @@ export default class SearchRepository extends AbstractRepository<SearchProduct> 
     sections: number[] = [],
     minPrice: number|null = null,
     maxPrice: number|null = null,
-  ): Promise<SearchProduct[]> {
+  ): Promise<LiteProduct[]> {
     let response = await this.axios.get('', {
       params: {
         Query: query,
@@ -41,7 +40,7 @@ export default class SearchRepository extends AbstractRepository<SearchProduct> 
       },
     })
     let data = response.data;
-    let result: SearchProduct[] = []
+    let result: LiteProduct[] = []
     for (let i = 0; i < data.length; i++) {
       result.push(this.map(data[i]))
     }

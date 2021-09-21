@@ -8,7 +8,7 @@
       </div>
       <div class="products-list">
         <div class="product-container" v-for="product in products" :key="product.id">
-          <product-card :product="product"></product-card>
+          <catalog-product-card :product="product"></catalog-product-card>
         </div>
       </div>
     </div>
@@ -83,22 +83,20 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ProductCard from '@/components/common/ProductCard.vue'
+import CatalogProductCard from '@/components/catalog/CatalogProductCard.vue'
 import SectionsRepository from '@/repositories/sectionsRepository'
 import SearchRepository from '@/repositories/searchRepository'
 import CatalogFilter from './CatalogFilter.vue'
 import Section from '@/models/section'
 import SearchBar from './SearchBar.vue'
-import SearchProduct from '@/models/searchProduct'
-import Product from '@/models/product'
-import CartProduct from '@/models/cartProduct'
+import LiteProduct from '@/models/liteProduct'
 
 export default defineComponent({
   name: 'catalog-product-list',
 
   components: {
     CatalogFilter,
-    ProductCard,
+    CatalogProductCard,
     SearchBar,
   },
 
@@ -119,7 +117,7 @@ export default defineComponent({
   data() {
     return {
       sections: [] as Section[],
-      products: [] as SearchProduct[],
+      products: [] as LiteProduct[],
       productsToLoad: true,
       loading: false,
 

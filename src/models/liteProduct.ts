@@ -1,4 +1,4 @@
-export default class SearchProduct {
+export default class LiteProduct {
   id: number = 0
   price: number = 0
   name: string = ''
