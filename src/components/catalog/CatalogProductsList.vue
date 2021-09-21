@@ -4,7 +4,7 @@
     <div class="columns">
       <div class="filter-column">
         <p class="title">Каталог</p>
-        <catalog-filter :sections="sections"/>
+        <catalog-filter :sections="sections" @selection="filterSelectionChanged"/>
       </div>
       <div class="products-list">
         <div class="product-container" v-for="product in products" :key="product.id">
@@ -37,11 +37,7 @@
 }
 
 .filter-column {
-  position: sticky;
-  top: 75px;
-
   width: 20%;
-  height: 100%;
   display: flex;
   flex-direction: column;
 
@@ -129,8 +125,8 @@ export default defineComponent({
 
       filterQuery: this.launch,
       filterPage: 0 as number,
-      filterCategories: null as number[]|null,
-      filterSections: null as number[]|null,
+      filterCategories: [] as number[],
+      filterSections: [] as number[],
       filterMinPrice: null as number|null,
       filterMaxPrice: null as number|null,
     };
@@ -148,6 +144,15 @@ export default defineComponent({
   },
 
   methods: {
+    filterSelectionChanged(id: number, selected: boolean) {
+      if (selected) {
+        this.filterSections.push(id)
+      } else {
+        this.filterSections = this.filterSections.filter(sectionId => sectionId != id)
+      }
+      this.loadUp(true)
+    },
+
     onScroll(): void {
       let height = document.documentElement.scrollTop + window.innerHeight
       let bottomOfWindow = height === document.documentElement.offsetHeight;

@@ -2,8 +2,10 @@
   <div class="catalog-filter">
     <p class="title">Модельный ряд</p>
     <div class="sections-tree">
-      <section-entry v-for="section in sections" :key="section.name" :section="section"/>
+      <section-entry v-for="section in sections" :key="section.name" :section="section" @selection="onSelection"/>
     </div>
+    <p class="price-title">Цена</p>
+    <range-slider class="slider"/>
   </div>
 </template>
 
@@ -37,19 +39,38 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
+.catalog-filter > .price-title {
+  color: #E04040;
+  
+  text-align: left;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 140%;
+}
+
+.catalog-filter > .slider {
+  width: calc(100% - 50px);
+}
 </style>
 
 
 <script lang="ts">
 import Section from '@/models/section'
 import { defineComponent, PropType } from 'vue'
+import RangeSlider from './RangeSlider.vue'
 import SectionEntry from './SectionEntry.vue'
 
 export default defineComponent({
   name: 'catalog-filter',
 
+  emits: ['selection'],
+
   components: {
     SectionEntry,
+    RangeSlider,
   },
 
   props: {
@@ -62,5 +83,11 @@ export default defineComponent({
   setup() {
         
   },
+
+  methods: {
+    onSelection(id: number, selected: boolean) {
+      this.$emit('selection', id, selected)
+    }
+  }
 })
 </script>
