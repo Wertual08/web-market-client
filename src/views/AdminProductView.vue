@@ -71,7 +71,7 @@ import Product from '@/models/admin/product'
 import { defineComponent } from 'vue'
 import ProductsRepository from '@/repositories/admin/productsRepository'
 import Slider from '@/components/common/Slider.vue'
-import PutProductRequest from '@/requests/admin/putProductRequest';
+import PutProductRequest from '@/repositories/requests/admin/putProductRequest';
 
 export default defineComponent({
   name: "admin-product-page",

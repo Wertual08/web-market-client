@@ -32,18 +32,30 @@
   position: absolute;
   top: 0;
   right: 0;
-  border: none;
-  font-size: 20px;
+
   padding: 10px;
-  cursor: pointer;
+  margin: 10px;
+
+  background: rgba(0, 0, 0, 0.2);
+  color: #DDDDDD;
+  
+  border-radius: 5px;
+  border: none;
+  
+  font-size: 20px;
   font-weight: bold;
-  color: #000000;
-  background: transparent;
+  
+  cursor: pointer;
+}
+
+.btn-close:hover {
+  background: rgba(0, 0, 0, 0.3);
+  color: #AAAAAA;
 }
 </style>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'modal-window',

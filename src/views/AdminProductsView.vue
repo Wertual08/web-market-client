@@ -1,14 +1,15 @@
 <template>
-  <div style="box">
+  <div class="admin-products-view">
     <admin-products-list/>
   </div>
 </template>
 
 
 <style scoped>
-.box {
+.admin-products-view {
   width: 100%;
   height: 100%;
+  background: #192F60;
 }
 </style>
 
@@ -18,19 +19,9 @@ import { defineComponent } from 'vue'
 import AdminProductsList from '@/components/admin/products/AdminProductsList.vue'
 
 export default defineComponent({
-  name: "admin-products-page",
+  name: 'admin-products-view',
   components: {
     AdminProductsList,
-  },
-  data() {
-    return {
-      
-    }
-  },
-
-  mounted() {
-  },
-  methods: {
   },
 });
 </script>

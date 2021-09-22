@@ -62,7 +62,7 @@ export default defineComponent({
         .catch((err) => {
           console.log(err);
           this.showError = true;
-          this.user.password = "";
+          this.user.password = ''
         });
     },
   },

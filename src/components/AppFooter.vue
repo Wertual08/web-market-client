@@ -101,14 +101,13 @@
 
   font-style: normal;
   font-weight: 500;
-  font-size: 10px;
-  line-height: 100%;
+  font-size: 10px;line-height: 140%;
 }
 </style>
 
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
   name: "app-footer",
 });

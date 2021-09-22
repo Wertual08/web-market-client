@@ -71,13 +71,13 @@ export default defineComponent({
           this.refreshToken = Response.data.RefreshToken;
           this.accessTokes = Response.data.AccessTokes;
           // тут закрываем модальное окно и обновляем TopInfo
-          this.message_password = "";
+          this.message_password = ''
           this.closeModal();
         })
         .catch((err) => {
           console.log(err);
           this.showError = true;
-          this.message_password = "";
+          this.message_password = ''
         });
     },
   },

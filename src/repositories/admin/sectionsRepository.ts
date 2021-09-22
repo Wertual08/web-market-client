@@ -1,9 +1,9 @@
 import AbstractRepository from '@/repositories/abstractRepository'
 import Section from '@/models/admin/section'
 import Record from '@/models/record'
-import PutProductRequest from '@/requests/admin/putProductRequest'
-import PutSectionRequest from '@/requests/admin/putSectionRequest'
-import CreateSectionRequest from '@/requests/admin/createSectionRequest'
+import PutProductRequest from '@/repositories/requests/admin/putProductRequest'
+import PutSectionRequest from '@/repositories/requests/admin/putSectionRequest'
+import CreateSectionRequest from '@/repositories/requests/admin/createSectionRequest'
 
 
 

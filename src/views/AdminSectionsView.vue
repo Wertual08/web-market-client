@@ -49,8 +49,8 @@ import AdminSectionForm from '@/components/admin/sections/AdminSectionForm.vue'
 import SectionsRepository from '@/repositories/admin/sectionsRepository'
 import RecordsRepository from '@/repositories/recordsRepository'
 import Section from '@/models/admin/section'
-import PutSectionRequest from '@/requests/admin/putSectionRequest'
-import CreateSectionRequest from '@/requests/admin/createSectionRequest'
+import PutSectionRequest from '@/repositories/requests/admin/putSectionRequest'
+import CreateSectionRequest from '@/repositories/requests/admin/createSectionRequest'
 
 export default defineComponent({
   name: "admin-products-page",

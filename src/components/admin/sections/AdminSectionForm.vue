@@ -49,6 +49,7 @@ import SectionsRepository from '@/repositories/admin/sectionsRepository'
 import RecordsRepository from '@/repositories/recordsRepository'
 import Section from '@/models/admin/section'
 import ImageForm from '@/components/common/ImageForm.vue'
+import { dateToString } from '@/services/datetime'
 
 export default defineComponent({
   name: 'admin-section-form',
@@ -83,27 +84,11 @@ export default defineComponent({
 
   methods: {
     createdAt(): string {
-      return new Date(this.section.createdAt).toLocaleString(undefined, {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      })
+      return dateToString(this.section.createdAt)
     },
 
     updatedAt(): string {
-      return new Date(this.section.updatedAt).toLocaleString(undefined, {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      })
+      return dateToString(this.section.updatedAt)
     },
   },
 

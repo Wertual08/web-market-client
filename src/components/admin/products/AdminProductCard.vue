@@ -4,15 +4,15 @@
       <img class="cover-image" :src="coverImage"> 
     </div>
     <div class="vertical-box">
-      <router-link class="name" :to="`/admin/products/${product.id}`">
+      <p class="name" @click="$emit('edit', product)">
         {{ product.name }}
-      </router-link>
+      </p>
       <div class="horizontal-box">
         <div class="specifications-box">
           Id: {{ product.id }}<br>
           Price: {{ product.price }}<br>
-          Created at: {{ product.createdAt }}<br>
-          Updated at: {{ product.updatedAt }}
+          Created at: {{ createdAt }}<br>
+          Updated at: {{ updatedAt }}
           <div class="sections-box">
             <p class="section-label" v-for="section in product.sections" :key="section.name">
               {{ section }}
@@ -20,6 +20,7 @@
           </div>
         </div>
         <p class="description">{{ product.description }}</p>
+        <action-button class="delete-button" @click="$emit('delete', product)">Delete</action-button>
       </div>
     </div>
   </div>
@@ -27,13 +28,11 @@
 
 
 <style scoped>
-
 .admin-product-card {
-  width: 90%;
-  height: 200px;
-  margin: 5px;
-  background: white;
-  border-radius: 10px;
+  width: 100%;
+  height: 250px;
+  border-bottom: 1px solid #355396;
+  color: white;
   display: flex;
 }
 
@@ -48,6 +47,7 @@
   width: 100%;
   height: 100%;
   display: flex;
+  align-items: flex-end;
 }
 
 .cover-box {
@@ -73,13 +73,20 @@
 
 .name {
   width: 100%;
-  vertical-align: top;
+  margin: 0px;
+
+  color: white;
+
   font-weight: bold;
   font-size: 17px;
   text-align: left;
   text-decoration: none;
-  margin: 0px;
-  color: black;
+
+  cursor: pointer;
+}
+
+.name:hover {
+  color: lightgray;
 }
 
 .specifications-box {
@@ -88,6 +95,9 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+
+  font-size: 16px;
+  font-weight: normal;
 }
 
 .description {
@@ -104,36 +114,40 @@
 }
 
 .section-label {
-  background: lightgray;
+  background: #00174A;
   border-radius: 5px;
-  padding: 0px 2px;
+  padding: 0px 4px;
   margin: 2px;
+
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.delete-button {
+  width: 64pt;
+  height: 32px;
+  margin: 16px;
 }
 </style>
 
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Product from "@/models/admin/product";
+import { defineComponent, PropType } from 'vue'
+import Product from '@/models/admin/product'
+import { dateToString } from '@/services/datetime'
+import ActionButton from '@/components/common/ActionButton.vue';
 
 export default defineComponent({
+  components: { ActionButton },
   name: 'admin-product-card',
 
-  emits: ['add-cart'],
-
-  data() {
-    return {
-    }
-  },
-  
-  mounted() {
-  },
+  emits: ['edit', 'delete'],
 
   props: {
-    product: Product
-  },
-
-  methods: {
+    product: {
+      type: Object as PropType<Product>,
+      required: true,
+    },
   },
 
   computed: {
@@ -144,6 +158,14 @@ export default defineComponent({
       } else {
         return require('@/assets/placeholder.jpg')
       }
+    },
+
+    createdAt(): string {
+      return dateToString(this.product.createdAt)
+    },
+
+    updatedAt(): string {
+      return dateToString(this.product.updatedAt)
     },
   }
 });
