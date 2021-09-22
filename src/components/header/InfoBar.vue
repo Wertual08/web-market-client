@@ -1,5 +1,5 @@
 <template>
-  <div class="tool-bar">
+  <div class="info-bar">
     <div class="content">
       <div class="info">
         <region-card/>
@@ -19,7 +19,7 @@
 
 
 <style scoped>
-.tool-bar {
+.info-bar {
   height: 38px;
 
   background: #00174A;

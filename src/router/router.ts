@@ -42,6 +42,10 @@ const routes: RouteRecordRaw[] = [
     component: AdminProductsView,
   },
   {
+    path: '/admin/products/new',
+    component: AdminProductView,
+  },
+  {
     path: '/admin/products/:id',
     component: AdminProductView,
   },

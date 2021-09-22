@@ -1,5 +1,6 @@
 <template>
   <div class="admin-products-view">
+    <admin-products-toolbar @create="onCreate"/>
     <admin-products-list/>
   </div>
 </template>
@@ -17,11 +18,19 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import AdminProductsList from '@/components/admin/products/AdminProductsList.vue'
+import AdminProductsToolbar from '@/components/admin/products/AdminProductsToolbar.vue';
 
 export default defineComponent({
   name: 'admin-products-view',
   components: {
     AdminProductsList,
+    AdminProductsToolbar,
   },
+
+  methods: {
+    onCreate() {
+      this.$router.push('/admin/products/new')
+    }
+  }
 });
 </script>

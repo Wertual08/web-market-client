@@ -1,5 +1,5 @@
 <template>
-  <tool-bar/>
+  <info-bar/>
   <navigation-bar :admin="isAdmin" @authorize="openAuthorization()"/>
   
   <modal-window :visible="authorizationOpened" @close="closeAuthorization()">
@@ -17,7 +17,7 @@ import { defineComponent } from 'vue'
 import ProfileRepository from '@/repositories/profileRepository'
 import Profile from '@/models/profile'
 import NavigationBar from './NavigationBar.vue'
-import ToolBar from './ToolBar.vue'
+import InfoBar from './InfoBar.vue'
 import ModalWindow from '@/components/windows/ModalWindow.vue'
 import AuthorizationWindow from '@/components/windows/authorization/AuthorizationWindow.vue'
 
@@ -26,7 +26,7 @@ export default defineComponent({
 
   components: {
     NavigationBar,
-    ToolBar,
+    InfoBar,
     ModalWindow,
     AuthorizationWindow,
   },

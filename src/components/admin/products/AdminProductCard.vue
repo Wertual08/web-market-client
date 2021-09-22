@@ -20,7 +20,7 @@
           </div>
         </div>
         <p class="description">{{ product.description }}</p>
-        <action-button class="delete-button" @click="$emit('delete', product)">Delete</action-button>
+        <action-button class="delete-button" @click="$emit('delete', product)">Удалить</action-button>
       </div>
     </div>
   </div>
