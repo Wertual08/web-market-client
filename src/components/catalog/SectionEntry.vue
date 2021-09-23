@@ -26,12 +26,15 @@
 }
 
 .section-entry > .title-box {
+  height: 100%;
+
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
 .section-entry > .title-box > .title {
+  height: 100%;
   margin: 0px;
   padding: 0px;
 
@@ -64,10 +67,10 @@
 }
 
 .section-entry > .title-box > .expander {
-  height: 100%;
+  height: 15%;
 
-  margin: 0px;
-  padding: 10px;
+  margin: 10px;
+  padding: 0px;
 
   cursor: pointer;
 
