@@ -9,13 +9,13 @@
       </p>
       <div class="horizontal-box">
         <div class="specifications-box">
-          Id: {{ product.id }}<br>
+          Id: {{ product.id }} Images: {{ product.records.length }}<br>
           Price: {{ product.price }}<br>
           Created at: {{ createdAt }}<br>
           Updated at: {{ updatedAt }}
           <div class="sections-box">
             <p class="section-label" v-for="section in product.sections" :key="section.name">
-              {{ section }}
+              {{ section.name }}
             </p>
           </div>
         </div>
@@ -152,9 +152,9 @@ export default defineComponent({
 
   computed: {
     coverImage(): string {
-      let records: string[] = this.product?.records ?? []
+      let records = this.product?.records ?? []
       if (records.length > 0) {
-        return records[0];
+        return records[0].url;
       } else {
         return require('@/assets/placeholder.jpg')
       }

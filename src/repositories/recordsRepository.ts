@@ -2,12 +2,8 @@ import Record from "@/models/record"
 import AbstractRepository from "./abstractRepository"
 
 export default class RecordsRepository extends AbstractRepository<Record> {
-  public static toUrl(identifier: string|null): string|null {
-    if (identifier) {
-      return `/api/records/${identifier}`
-    } else {
-      return null
-    }
+  public static toUrl(identifier: string|null): string {
+    return `/api/records/${identifier}`
   }
 
   public constructor() {
@@ -15,13 +11,7 @@ export default class RecordsRepository extends AbstractRepository<Record> {
   }
 
   protected map(item: any): Record {
-    const model = new Record()
-    model.id = item.Id
-    model.identifier = item.Identifier
-    model.createdAt = Date.parse(item.CreatedAt)
-    model.contentType = item.ContentType
-    model.name = item.Name
-    return model
+    return new Record(item)
   }
 
   public async createRecord(file: Blob): Promise<Record> {

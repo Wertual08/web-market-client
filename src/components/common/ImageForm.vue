@@ -1,5 +1,5 @@
 <template>
-  <div id="box">
+  <div class="image-form">
     <img id="image-preview" :src="localUrl">
     <div id="controls">
       <input id="image-input" type="file" accept="image/*" @change="uploadImage($event)" ref="imageLoader"/>
@@ -13,7 +13,7 @@
 
 
 <style scoped>
-#box {
+.image-form {
   width: 100%;
   height: 100%;
   
@@ -57,15 +57,10 @@ import { defineComponent, PropType } from 'vue'
 export default defineComponent({
   name: 'image-form',
 
-  emits: ['update:modelValue'],
+  emits: ['update'],
 
   props: {
-    modelValue: {
-      type: null as unknown as PropType<string|null>,
-      required: true,
-      default: null,
-    },
-    default: {
+    image: {
       type: null as unknown as PropType<string|null>,
       required: true,
       default: null,
@@ -78,13 +73,13 @@ export default defineComponent({
 
   data() {
     return {
-      localUrl: this.modelValue,
+      localUrl: this.image,
     }
   },
 
   methods: {
     uploadImage(e: Event) {
-      if (this.localUrl) {
+      if (this.localUrl !== null && this.localUrl !== this.image) {
         URL.revokeObjectURL(this.localUrl)
       }
 
@@ -102,7 +97,7 @@ export default defineComponent({
       let input = this.$refs.imageLoader as HTMLInputElement
       input.value = ''
 
-      if (this.localUrl) {
+      if (this.localUrl !== null && this.localUrl !== this.image) {
         URL.revokeObjectURL(this.localUrl)
       }
       this.localUrl = null
@@ -111,19 +106,17 @@ export default defineComponent({
     resetImage() {
       let input = this.$refs.imageLoader as HTMLInputElement
       input.value = ''
-      this.localUrl = this.default;
+      this.localUrl = this.image
     },
   },
 
   watch: {
-    default() {
-      this.resetImage()
+    image(payload: string) {
+      this.localUrl = payload
     },
-    modelValue(url: string|null) {
-      this.localUrl = url
-    },
-    localUrl(url: string|null) {
-      this.$emit('update:modelValue', url)
+
+    localUrl(payload: string) {
+      this.$emit('update', payload)
     }
   }
 })

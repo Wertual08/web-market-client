@@ -1,6 +1,8 @@
 import AbstractRepository from "@/repositories/abstractRepository"
 import Product from "@/models/admin/product"
 import PutProductRequest from "@/repositories/requests/admin/putProductRequest"
+import Record from "@/models/record"
+import Section from "@/models/admin/section"
 
 
 
@@ -13,12 +15,11 @@ export default class ProductsRepository extends AbstractRepository<Product> {
     prod.price = item.Price
     prod.createdAt = Date.parse(item.CreatedAt)
     prod.updatedAt = Date.parse(item.UpdatedAt)
-    prod.categories = item.Categories
     for (let i = 0; i < item.Sections.length; i++) {
-      prod.sections.push(item.Sections[i].Name)
+      prod.sections.push(new Section(item.Sections[i]))
     }
     for (let i = 0; i < item.Records.length; i++) {
-      prod.records.push('/api/records/' + item.Records[i])
+      prod.records.push(new Record(item.Records[i]))
     }
     return prod
   }

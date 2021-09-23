@@ -1,9 +1,9 @@
 <template>
-  <div class="slides">
+  <div class="slider">
     <div class="inner" ref="container" :style="innerStyle">
       <slot/>
     </div> 
-    <div id="controls">
+    <div class="controls">
       <button class="selector" :style="selectorStyle(i - 1)" v-for="i in count" :key="i" @click="current=i - 1"/>
     </div>
   </div>
@@ -11,7 +11,7 @@
 
 
 <style scoped>
-.slides {
+.slider {
   position: relative;
   overflow: hidden;
 
@@ -19,7 +19,7 @@
   height: 100%;
 }
 
-.inner {
+.slider > .inner {
   position: absolute;
   left: 0;
   top: 0;
@@ -33,7 +33,7 @@
   transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
 }
 
-#controls {
+.slider > .controls {
   position: absolute;
   left: 0;
   top: 0;
@@ -48,7 +48,7 @@
   pointer-events: none;
 }
 
-.selector {
+.slider > .controls > .selector {
   display: inline-block;
   align-self: flex-end;
 
@@ -76,6 +76,15 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'slider',
+
+  emits: ['update:selectedIndex'],
+  props: {
+    selectedIndex: {
+      type: Number,
+      default: 0,
+    }
+  },
+
   data() {
     return {
       count: 0,
@@ -86,6 +95,11 @@ export default defineComponent({
     let container = this.$refs.container as HTMLDivElement;
     this.count = container.children.length;
   },
+  updated() {
+    let container = this.$refs.container as HTMLDivElement;
+    this.count = container.children.length;
+  },
+
   methods: {
     selectorStyle(i: number): object {
       return { 
@@ -93,6 +107,7 @@ export default defineComponent({
       }
     }
   },
+
   computed: {
     innerStyle(): object {
       return { 
@@ -101,5 +116,14 @@ export default defineComponent({
       }
     },
   },
+
+  watch: {
+    selectedIndex(payload: number) {
+      this.current = payload
+    },
+    current(payload: number) {
+      this.$emit('update:selectedIndex', payload)
+    }
+  }
 })
 </script>

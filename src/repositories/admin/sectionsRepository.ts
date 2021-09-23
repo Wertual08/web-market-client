@@ -8,32 +8,8 @@ import CreateSectionRequest from '@/repositories/requests/admin/createSectionReq
 
 
 export default class ProductsRepository extends AbstractRepository<Section> {
-  protected mapRecord(item: any): Record|null {
-    if (item === null) {
-      return null
-    }
-
-    const model = new Record()
-    model.id = item.Id
-    model.identifier = item.Identifier
-    model.createdAt = Date.parse(item.CreatedAt)
-    model.contentType = item.ContentType
-    model.name = item.Name
-    return model
-  }
-
   protected map(item: any): Section {
-    const result = new Section()
-    result.id = item.Id
-    result.sectionId = item.SectionId
-    result.name = item.Name
-    result.createdAt = Date.parse(item.CreatedAt)
-    result.updatedAt = Date.parse(item.UpdatedAt)
-    result.record = this.mapRecord(item.Record)
-    for (let i = 0; i < item.Sections.length; i++) {
-      result.sections.push(this.map(item.Sections[i]))
-    }
-    return result
+    return new Section(item)
   }
 
   public constructor() {

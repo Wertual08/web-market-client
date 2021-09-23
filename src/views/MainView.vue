@@ -92,7 +92,7 @@ export default defineComponent({
   },
 
   methods: {
-    sectionImage(record: string): string|null {
+    sectionImage(record: string): string {
       return RecordsRepository.toUrl(record) ?? require('@/assets/meme.gif')
     }
   },

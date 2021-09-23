@@ -1,6 +1,6 @@
 <template>
   <modal-window :visible="warningVisible" @close="onDeleteReject">
-    <delete-warning-window @submit="onDeleteSubmit" @reject="onDeleteReject"/>
+    <delete-warning-window :product="pendingDelete" @submit="onDeleteSubmit" @reject="onDeleteReject"/>
   </modal-window>
 
   <div class="admin-products-list" v-for="product in products" :key="product.id">
