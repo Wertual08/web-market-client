@@ -23,7 +23,18 @@ export const store = createStore<State>({
       state.profile = profile
     },
     cartAdd(state, cartProd: CartProduct) {
-      state.cart.push(cartProd)
+      let isInCart = -1;
+      for (let i = 0; i < state.cart.length; i++) {
+        if (cartProd.product.id == state.cart[i].product.id) {
+          isInCart = i;
+        }
+      }
+      if (isInCart != -1) {
+        state.cart[isInCart].amount += cartProd.amount
+      }
+      else {
+        state.cart.push(cartProd)
+      }
       state.cartAmount = state.cart.length
     },
     cartRemove(state, id: number) {
