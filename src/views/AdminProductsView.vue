@@ -1,7 +1,9 @@
 <template>
   <div class="admin-products-view">
-    <admin-products-toolbar @create="onCreate"/>
-    <admin-products-list/>
+    <div class="controls">
+      <admin-products-toolbar @create="onCreate"/>
+      <admin-products-list/>
+    </div>
   </div>
 </template>
 
@@ -11,6 +13,16 @@
   width: 100%;
   height: 100%;
   background: #192F60;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-products-view > .controls {
+  width: 90%;
+  height: 100%;
 }
 </style>
 
