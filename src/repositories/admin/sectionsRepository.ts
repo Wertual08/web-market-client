@@ -1,9 +1,6 @@
 import AbstractRepository from '@/repositories/abstractRepository'
 import Section from '@/models/admin/section'
 import Record from '@/models/record'
-import PutProductRequest from '@/repositories/requests/admin/putProductRequest'
-import PutSectionRequest from '@/repositories/requests/admin/putSectionRequest'
-import CreateSectionRequest from '@/repositories/requests/admin/createSectionRequest'
 
 
 
@@ -33,20 +30,20 @@ export default class ProductsRepository extends AbstractRepository<Section> {
     return result
   }
 
-  public async putSection(request: PutSectionRequest): Promise<Section> {
-    let response = await this.axios.put(`${request.id}`, {
-      SectionId: request.sectionId,
-      Name: request.name,
-      RecordId: request.recordId,
+  public async putSection(model: Section): Promise<Section> {
+    let response = await this.axios.put(model.id.toString(), {
+      SectionId: model.sectionId,
+      Name: model.name,
+      RecordId: model.record?.id,
     })
     return this.map(response.data)
   }
 
-  public async createSection(request: CreateSectionRequest): Promise<Section> {
+  public async createSection(model: Section): Promise<Section> {
     let response = await this.axios.post('', {
-      SectionId: request.sectionId,
-      Name: request.name,
-      RecordId: request.recordId,
+      SectionId: model.sectionId,
+      Name: model.name,
+      RecordId: model.record?.id,
     })
     return this.map(response.data)
   }

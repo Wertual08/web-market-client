@@ -49,8 +49,6 @@ import AdminSectionForm from '@/components/admin/sections/AdminSectionForm.vue'
 import SectionsRepository from '@/repositories/admin/sectionsRepository'
 import RecordsRepository from '@/repositories/recordsRepository'
 import Section from '@/models/admin/section'
-import PutSectionRequest from '@/repositories/requests/admin/putSectionRequest'
-import CreateSectionRequest from '@/repositories/requests/admin/createSectionRequest'
 
 export default defineComponent({
   name: "admin-products-page",
@@ -95,13 +93,9 @@ export default defineComponent({
       }
 
       if (section.id != -1) {
-        var promise = this.sectionsRepository.putSection(
-          new PutSectionRequest(section)
-        )
+        var promise = this.sectionsRepository.putSection(section)
       } else {
-        var promise = this.sectionsRepository.createSection(
-          new CreateSectionRequest(section)
-        )
+        var promise = this.sectionsRepository.createSection(section)
       }
       promise.then(() => {
         this.sectionsRepository.getSections()

@@ -1,9 +1,9 @@
 <template>
   <div class="admin-product-form">
     <div class="images">
-      <slider class="slider">    
-        <div class="slide" v-for="image in images" :key="image.position">
-          <image-form class="image" :image="image.url" @update="(url) => imageUpdate(image.position, url)"/>
+      <slider class="slider" v-model:selected-index="selectedIndex">    
+        <div class="slide" v-for="(image, index) in images" :key="index">
+          <image-form class="image" :image="image.url()" @update="(url) => imageUpdate(index, url)"/>
         </div>
       </slider>
       <action-button class="add-image" @click="addImage">Add image</action-button>
@@ -133,15 +133,10 @@ import { defineComponent, PropType } from 'vue'
 import Slider from '@/components/common/Slider.vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import { dateToString } from '@/services/datetime'
+import ImageEntry from '@/models/local/imageEntry'
 import ImageForm from '@/components/common/ImageForm.vue'
+import RecordsRepository from '@/repositories/recordsRepository'
 
-
-class ImageEntry {
-  public id: number = -1
-  public position: number = -1
-  public url: string|null = null
-  public newUrl: string|null = null
-}
 
 
 export default defineComponent({
@@ -159,12 +154,15 @@ export default defineComponent({
   },
 
   setup() {
-        
+    return { 
+      recordsRepository: new RecordsRepository(),
+    }
   },
 
   data() {
     return {
       images: this.productImages() as ImageEntry[],
+      selectedIndex: 0,
     }
   },
 
@@ -173,37 +171,41 @@ export default defineComponent({
       const records = this.product.records
       let result: ImageEntry[] = []
       for (let i = 0; i < records.length; i++) {
-        result.push({
-          id: records[i].id,
-          position: i,
-          url: records[i].url,
-          newUrl: null,
-        })
+        result.push(new ImageEntry(records[i]))
       }
       return result
     },
 
     addImage() {
-      this.images.push({
-        id: -1,
-        position: this.images.length,
-        url: null,
-        newUrl: null,
-      })
+      this.images.splice(this.selectedIndex + 1, 0, new ImageEntry())
     },
     imageUpdate(position: number, url: string|null) {
       if (url === null) {
         this.images.splice(position, 1)
-        for (let i = position; i < this.images.length; i++) {
-          this.images[i].position = i
+        if (this.selectedIndex >= this.images.length) {
+          this.selectedIndex--
         }
-        console.log(this.images.length)
       } else {
         this.images[position].newUrl = url
       }
     },
-    save() {
+    async save() {
+      this.product.records = []
+      for (let i = 0; i < this.images.length; i++) {
+        const image = this.images[i]
+        
+        if (image.newUrl !== null) {
+          if (image.record?.url == image.newUrl) {
+            this.product.records.push(image.record)
+          } else {
+            const blob = await fetch(image.newUrl).then(r => r.blob())
+            const record = await this.recordsRepository.createRecord(blob)
+            this.product.records.push(record)
+          }
+        }
+      }
 
+      this.$emit('save', this.product)
     },
   },
 

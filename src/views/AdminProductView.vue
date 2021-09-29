@@ -1,6 +1,6 @@
 <template>
   <div id="admin-product-view">
-    <admin-product-form :product="product"/>
+    <admin-product-form :product="product" @save="save"/>
   </div>
 </template>
 
@@ -21,11 +21,10 @@ import Product from '@/models/admin/product'
 import { defineComponent } from 'vue'
 import ProductsRepository from '@/repositories/admin/productsRepository'
 import Slider from '@/components/common/Slider.vue'
-import PutProductRequest from '@/repositories/requests/admin/putProductRequest';
 import AdminProductForm from '@/components/admin/product/AdminProductForm.vue'
 
 export default defineComponent({
-  name: "admin-product-page",
+  name: 'admin-product-page',
 
   components: { Slider, AdminProductForm },
 
@@ -43,19 +42,21 @@ export default defineComponent({
 
   mounted() {
     let id = this.$route.params.id;
-    if (id === 'new') {
-
-    } else {
+    if (id !== 'new') {
       this.productsRepository.getProduct(+id)
         .then(product => this.product = product)
     }
   },
 
   methods: {
-    save() {
-      const request = new PutProductRequest(this.product)
-      this.productsRepository.putProduct(request)
-        .then(response => this.product = response)
+    async save(product: Product) {
+      if (product.id >= 0) {
+        this.productsRepository.putProduct(product)
+          .then(model => this.product = model)
+      } else {
+        this.productsRepository.createProduct(product)
+          .then(model => this.product = model)
+      }
     }
   },
 });
