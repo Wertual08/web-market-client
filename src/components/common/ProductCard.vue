@@ -6,7 +6,7 @@
       <p class="description">{{ product.description }}</p>
     </div>
     <div class="interaction">
-      <p class="price-full" v-if="true">{{ 'AssPlug' }}₽</p>
+      <p class="price-full" v-if="product.oldPrice !== null">{{ product.oldPrice }}₽</p>
       <p class="price-current">{{ product.price }}₽</p>
       <slot/>
     </div>

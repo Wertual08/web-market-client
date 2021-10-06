@@ -11,6 +11,7 @@ export default class SearchRepository extends AbstractRepository<LiteProduct> {
     model.id = item.Id
     model.name = item.Name
     model.description = item.Description
+    model.oldPrice = item.OldPrice
     model.price = item.Price
     model.categories = item.Categories
     model.sections = item.Sections

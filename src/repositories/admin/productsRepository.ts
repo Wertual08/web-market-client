@@ -7,20 +7,21 @@ import Section from '@/models/admin/section'
 
 export default class ProductsRepository extends AbstractRepository<Product> {
   protected map(item: any): Product {
-    const prod = new Product()
-    prod.id = item.Id
-    prod.name = item.Name
-    prod.description = item.Description
-    prod.price = item.Price
-    prod.createdAt = Date.parse(item.CreatedAt)
-    prod.updatedAt = Date.parse(item.UpdatedAt)
+    const model = new Product()
+    model.id = item.Id
+    model.name = item.Name
+    model.description = item.Description
+    model.oldPrice = item.OldPrice
+    model.price = item.Price
+    model.createdAt = Date.parse(item.CreatedAt)
+    model.updatedAt = Date.parse(item.UpdatedAt)
     for (let i = 0; i < item.Sections.length; i++) {
-      prod.sections.push(new Section(item.Sections[i]))
+      model.sections.push(new Section(item.Sections[i]))
     }
     for (let i = 0; i < item.Records.length; i++) {
-      prod.records.push(new Record(item.Records[i]))
+      model.records.push(new Record(item.Records[i]))
     }
-    return prod
+    return model
   }
 
   public constructor() {
