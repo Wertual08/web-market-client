@@ -1,21 +1,29 @@
 import AbstractRepository from "./abstractRepository"
 import Product from "@/models/product"
+import ProductsStats from "@/models/productsStats"
 
 
 
 export default class ProductsRepository extends AbstractRepository<Product> {
   protected map(item: any): Product {
-    const prod = new Product()
-    prod.id = item.Id
-    prod.name = item.Name
-    prod.description = item.Description
-    prod.price = item.Price
-    prod.categories = item.Categories
-    prod.sections = item.Sections
+    const model = new Product()
+    model.id = item.Id
+    model.name = item.Name
+    model.description = item.Description
+    model.price = item.Price
+    model.categories = item.Categories
+    model.sections = item.Sections
     for (let i = 0; i < item.Records.length; i++) {
-      prod.records.push('/api/records/' + item.Records[i])
+      model.records.push('/api/records/' + item.Records[i])
     }
-    return prod
+    return model
+  }
+
+  protected mapProductsStats(item: any): ProductsStats {
+    const model = new ProductsStats()
+    model.maxPrice = item.MaxPrice
+    model.minPrice = item.MinPrice
+    return model
   }
 
   public constructor() {
@@ -43,5 +51,12 @@ export default class ProductsRepository extends AbstractRepository<Product> {
     }
 
     return products
+  }
+
+  public async getProductsStats(): Promise<ProductsStats> {
+    let response = await this.axios.get('stats')
+    let data = response.data
+
+    return this.mapProductsStats(data)
   }
 }

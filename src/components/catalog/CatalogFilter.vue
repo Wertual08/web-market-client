@@ -5,7 +5,17 @@
       <section-entry v-for="section in sections" :key="section.name" :section="section" @selection="onSelection"/>
     </div>
     <p class="price-title">Цена</p>
-    <range-slider class="slider"/>
+    <range-slider v-model:min="sliderMin" v-model:max="sliderMax" class="slider"/>
+    <div class="range-fields">
+      <texted-input :class="{ field: true, 'field-invalid': fieldMinInvalid }" v-model="fieldMin">
+        <template v-slot:prefix>от</template>
+        <template v-slot:suffix>₽</template>
+      </texted-input>
+      <texted-input :class="{ field: true, 'field-invalid': fieldMaxInvalid }" v-model="fieldMax">
+        <template v-slot:prefix>до</template>
+        <template v-slot:suffix>₽</template>
+      </texted-input>
+    </div>
   </div>
 </template>
 
@@ -52,30 +62,59 @@
 }
 
 .catalog-filter > .slider {
-  width: calc(100% - 50px);
+  width: 100%;
+}
+
+.catalog-filter > .range-fields {
+  widows: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+}
+
+.catalog-filter > .range-fields > .field {
+  height: 26px;
+  width: 100px;
+  margin: 8px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 100%;
+}
+
+.catalog-filter > .range-fields > .field-invalid {
+  outline: solid rgba(255, 0, 0, 0.5);
 }
 </style>
 
 
 <script lang="ts">
+import ProductsStats from '@/models/productsStats'
 import Section from '@/models/section'
 import { defineComponent, PropType } from 'vue'
 import RangeSlider from './RangeSlider.vue'
 import SectionEntry from './SectionEntry.vue'
+import TextedInput from './TextedInput.vue'
 
 export default defineComponent({
   name: 'catalog-filter',
 
-  emits: ['selection'],
+  emits: ['selection', 'price-range'],
 
   components: {
     SectionEntry,
     RangeSlider,
+    TextedInput,
   },
 
   props: {
     sections: {
       type: Array as PropType<Section[]>,
+      required: true,
+    },
+    productsStats: {
+      type: Object as PropType<ProductsStats>,
       required: true,
     }
   },
@@ -84,10 +123,76 @@ export default defineComponent({
         
   },
 
+  data() {
+    return {
+      fieldMin: this.productsStats.minPrice.toString(),
+      fieldMax: this.productsStats.maxPrice.toString(),
+
+      fieldMinInvalid: false,
+      fieldMaxInvalid: false,
+
+      sliderMin: 0,
+      sliderMax: 1,
+
+      minPrice: this.productsStats.minPrice,
+      maxPrice: this.productsStats.maxPrice,
+
+      priceTimeout: 0
+    }
+  },
+
   methods: {
     onSelection(id: number, selected: boolean) {
       this.$emit('selection', id, selected)
     }
-  }
+  },
+
+  watch: {
+    productsStats(payload: ProductsStats) {
+      this.minPrice = payload.minPrice
+      this.maxPrice = payload.maxPrice
+    },
+
+    sliderMin(payload: number) {
+      this.minPrice = this.productsStats.minPrice + payload * (this.productsStats.maxPrice - this.productsStats.minPrice)
+    },
+    sliderMax(payload: number) {
+      this.maxPrice = this.productsStats.minPrice + payload * (this.productsStats.maxPrice - this.productsStats.minPrice)
+    },
+
+    fieldMin(payload: string) {
+      const value = +payload
+      if (value !== NaN && value <= this.maxPrice) {
+        this.minPrice = value
+        this.fieldMinInvalid = false
+      } else {
+        this.fieldMinInvalid = true
+      }
+    },
+    fiedlMax(payload: string) {
+      const value = +payload
+      if (value !== NaN && value >= this.minPrice) {
+        this.maxPrice = value
+        this.fieldMaxInvalid = false
+      } else { 
+        this.fieldMinInvalid = true
+      }
+    },
+
+    minPrice(payload: number) {
+      this.sliderMin = (payload - this.productsStats.minPrice) / (this.productsStats.maxPrice - this.productsStats.minPrice)   
+      this.fieldMin = payload.toFixed(0)
+
+      clearTimeout(this.priceTimeout)
+      this.priceTimeout = setTimeout(() => this.$emit('price-range', this.minPrice, this.maxPrice), 500)
+    },
+    maxPrice(payload: number) {
+      this.sliderMax = (payload - this.productsStats.minPrice) / (this.productsStats.maxPrice - this.productsStats.minPrice)
+      this.fieldMax = payload.toFixed(0)   
+
+      clearTimeout(this.priceTimeout)
+      this.priceTimeout = setTimeout(() => this.$emit('price-range', this.minPrice, this.maxPrice), 500)
+    }
+  },
 })
 </script>

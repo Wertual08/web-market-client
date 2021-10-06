@@ -6,18 +6,11 @@
 <style scoped>
 .input {
   box-sizing: border-box;
-  padding: 16px;
 
   color: white;
   background: #355396;
   border-radius: 6px;
   border: none;
-
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 160%;
 }
 
 .input:focus {

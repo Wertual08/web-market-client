@@ -1,25 +1,22 @@
 <template>
   <div class="texted-input">
-    <p class="text">place</p>
-    <text-input class="field"/>
-    <p class="text">holder</p>
+    <p class="text"><slot name="prefix"/></p>
+    <text-input class="field" v-model="value"/>
+    <p class="text"><slot name="suffix"/></p>
   </div>
 </template>
 
 
 <style scoped>
 .texted-input {
+  padding: 0px 8px;
+
   box-sizing: border-box;
 
   color: white;
   background: #355396;
   border-radius: 6px;
   border: none;
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 160%;
 
   display: flex;
   align-items: center;
@@ -31,16 +28,16 @@
   padding: 0px;
 
   color: white;
-
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 160%;
 }
 
 .texted-input > .field {
   width: 100%;
   height: 100%;
+
+  font-style: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 </style>
 
@@ -65,5 +62,20 @@ export default defineComponent({
   setup() {
         
   },
+
+  data() {
+    return {
+      value: "",
+    }
+  },
+
+  watch: {
+    modelValue(payload: string) {
+      this.value = payload
+    },
+    value(payload: string) {
+      this.$emit('update:modelValue', payload)
+    },
+  }
 })
 </script>

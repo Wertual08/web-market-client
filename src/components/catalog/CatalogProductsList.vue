@@ -4,12 +4,13 @@
     <div class="columns">
       <div class="filter-column">
         <p class="title">Каталог</p>
-        <catalog-filter :sections="sections" @selection="filterSelectionChanged"/>
+        <catalog-filter :sections="sections" :products-stats="productsStats" @selection="filterSelectionChanged" @price-range="filterPrice"/>
       </div>
       <div class="products-list">
         <div class="product-container" v-for="product in products" :key="product.id">
           <catalog-product-card :product="product"></catalog-product-card>
         </div>
+        <p class="not-found" v-if="products.length == 0">Ничего не найдено :(</p>
       </div>
     </div>
   </div>
@@ -37,7 +38,10 @@
 }
 
 .filter-column {
-  width: 20%;
+  width: 15%;
+
+  margin-right: 50px;
+
   display: flex;
   flex-direction: column;
 
@@ -78,6 +82,15 @@
 
   border-bottom: 1px solid #355396;
 }
+
+.not-found {
+  color: white;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 100%;
+}
 </style>
 
 
@@ -90,6 +103,8 @@ import CatalogFilter from './CatalogFilter.vue'
 import Section from '@/models/section'
 import SearchBar from './SearchBar.vue'
 import LiteProduct from '@/models/liteProduct'
+import ProductsRepository from '@/repositories/productsRepository'
+import ProductsStats from '@/models/productsStats'
 
 export default defineComponent({
   name: 'catalog-product-list',
@@ -111,11 +126,13 @@ export default defineComponent({
     return {
       sectionsRepository: new SectionsRepository(),
       searchRepository: new SearchRepository(),
+      productsRepository: new ProductsRepository(),
     }
   },
 
   data() {
     return {
+      productsStats: new ProductsStats(),
       sections: [] as Section[],
       products: [] as LiteProduct[],
       productsToLoad: true,
@@ -131,6 +148,8 @@ export default defineComponent({
   },
 
   mounted() {
+    this.productsRepository.getProductsStats()
+      .then(model => this.productsStats = model)
     this.sectionsRepository.getSections()
       .then(sections => this.sections = sections)
 
@@ -148,6 +167,13 @@ export default defineComponent({
       } else {
         this.filterSections = this.filterSections.filter(sectionId => sectionId != id)
       }
+      this.loadUp(true)
+    },
+
+    filterPrice(minPrice: number, maxPrice: number) {
+      this.filterMinPrice = minPrice
+      this.filterMaxPrice = maxPrice
+      console.log(`${minPrice} ${maxPrice}`)
       this.loadUp(true)
     },
 

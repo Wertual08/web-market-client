@@ -23,6 +23,14 @@
   margin: 0px 0px 16px 0px;
   width: 100%;
   height: 48px;
+  
+  padding: 16px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 160%;
 }
 
 .bottom {

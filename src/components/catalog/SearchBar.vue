@@ -19,7 +19,14 @@
 .search-bar > .text-input {
   width: 100%;
   height: 100%;
+  padding: 16px;
   box-sizing: border-box;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 160%;
 }
 
 .search-bar > .icon {
