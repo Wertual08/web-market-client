@@ -1,5 +1,5 @@
 <template>
-  <product-card :product="cartProduct.product">
+  <product-card :to="to" :product="cartProduct.product">
     <p class="amount">{{ cartProduct.amount }} шт.</p>
     <div class="controls">
       <action-button class="submit" @click="$emit('remove')">Удалить</action-button>
@@ -53,6 +53,10 @@ export default defineComponent({
   props: {
     cartProduct: {
       type: Object as PropType<CartProduct>,
+      required: true,
+    },
+    to: {
+      type: String,
       required: true,
     }
   },

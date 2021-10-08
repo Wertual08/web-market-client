@@ -1,7 +1,7 @@
 <template>
   <div class="products-list">
     <div class="product-container" v-for="product in cartProducts" :key="product.product.id">
-      <cart-product-card :cartProduct="product" @remove="remove(product)"/>
+      <cart-product-card :to="`/catalog/${product.id}`" :cartProduct="product" @remove="remove(product)"/>
     </div>
   </div>
 </template>

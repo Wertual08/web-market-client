@@ -156,6 +156,7 @@ import { defineComponent, PropType } from 'vue'
 import Slider from '@/components/common/Slider.vue'
 import QuantityInput from '@/components/common/QuantityInput.vue'
 import ActionButton from '@/components/common/ActionButton.vue'
+import CartRepository from '@/repositories/cartRepository'
 
 export default defineComponent({
   name: 'catalog-product-details',
@@ -174,7 +175,9 @@ export default defineComponent({
   },
 
   setup() {
-        
+    return {
+      cartRepository: new CartRepository(),
+    }
   },
 
   data() {
@@ -185,8 +188,9 @@ export default defineComponent({
 
   methods: {
     addCart() {
-
-    }
+      let id = this.product.id
+      this.cartRepository.addCart(id, this.selectedQuantity)
+    },
   }
 })
 </script>

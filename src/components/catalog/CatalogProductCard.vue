@@ -1,5 +1,5 @@
 <template>
-  <product-card :product="product">
+  <product-card :to="to" :product="product">
     <div class="controls">
       <quantity-input class="quantity" v-model="selectedQuantity" :min="1"/>
       <action-button class="submit" @click="addCart">Добавить в корзину</action-button>
@@ -54,6 +54,11 @@ export default defineComponent({
       type: LiteProduct,
       required: true,
     },
+
+    to: {
+      type: String,
+      required: true,
+    }
   },
 
   setup() {
