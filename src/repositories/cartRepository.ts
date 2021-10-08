@@ -41,7 +41,7 @@ export default class CartRepository extends AbstractRepository<CartProduct> {
     let cartProducts: CartProduct[] = []
     if (this.authorized()) {
       // грузим с API
-      return cartProducts
+      return this.getCartFromAPI()
     } else {
       cartProducts = this.store.state.cart
       return cartProducts
