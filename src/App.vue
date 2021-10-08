@@ -10,6 +10,10 @@
 <style>
 @import url('https://rsms.me/inter/inter.css');
 
+/* html {
+  height: 100%;
+} */
+
 body {
   width: 100%;
   margin: 0;

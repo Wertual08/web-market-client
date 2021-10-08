@@ -3,7 +3,7 @@
     <div class="images">
       <slider class="slider" v-model:selected-index="selectedIndex">    
         <div class="slide" v-for="(image, index) in images" :key="index">
-          <image-form class="image" :image="image.url()" @update="(url) => imageUpdate(index, url)"/>
+          <image-form class="image" :image="image.Purl()" @update="(url) => imageUpdate(index, url)"/>
         </div>
       </slider>
       <action-button class="add-image" @click="addImage">Add image</action-button>
@@ -136,6 +136,7 @@ import { dateToString } from '@/services/datetime'
 import ImageEntry from '@/models/local/imageEntry'
 import ImageForm from '@/components/common/ImageForm.vue'
 import RecordsRepository from '@/repositories/recordsRepository'
+import Section from '@/models/section'
 
 
 
@@ -149,6 +150,10 @@ export default defineComponent({
   props: {
     product: {
       type: Object as PropType<Product>,
+      required: true,
+    },
+    sections: {
+      type: Array as PropType<Section[]>,
       required: true,
     }
   },

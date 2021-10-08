@@ -98,7 +98,7 @@ import SectionEntry from './SectionEntry.vue'
 import TextedInput from './TextedInput.vue'
 
 export default defineComponent({
-  name: 'catalog-filter',
+  name: 'products-filter',
 
   emits: ['selection', 'price-range'],
 
@@ -162,7 +162,7 @@ export default defineComponent({
 
     fieldMin(payload: string) {
       const value = +payload
-      if (value !== NaN && value <= this.maxPrice) {
+      if (!isNaN(value) && value <= this.maxPrice) {
         this.minPrice = value
         this.fieldMinInvalid = false
       } else {
@@ -171,7 +171,7 @@ export default defineComponent({
     },
     fiedlMax(payload: string) {
       const value = +payload
-      if (value !== NaN && value >= this.minPrice) {
+      if (!isNaN(value) && value >= this.minPrice) {
         this.maxPrice = value
         this.fieldMaxInvalid = false
       } else { 

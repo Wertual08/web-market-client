@@ -3,7 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import MainView from "@/views/MainView.vue"
 import AboutView from "@/views/AboutView.vue"
 import CatalogView from "@/views/CatalogView.vue"
-import ProductView from '@/views/ProductView.vue'
+import CatalogProductView from '@/views/CatalogProductView.vue'
 import CartView from '@/views/CartView.vue'
 import AdminView from '@/views/AdminView.vue'
 import AdminProductsView from '@/views/AdminProductsView.vue'
@@ -26,8 +26,8 @@ const routes: RouteRecordRaw[] = [
     props: true,
   },
   {
-    path: '/product/:id',
-    component: ProductView,
+    path: '/catalog/:id',
+    component: CatalogProductView,
   },
   {
     path: '/cart',

@@ -1,8 +1,8 @@
 <template>
-  <div class="quantity-input">
-    <button class="counter" @click="value--">-</button>
-    <input class="field" type="text" v-model="value"/>
-    <button class="counter" @click="value++">+</button>
+  <div :class="{ 'quantity-input': true, invalid }">
+    <button class="counter" @click="decrement">-</button>
+    <input class="field" type="text" v-model="textValue"/>
+    <button class="counter" @click="increment">+</button>
   </div>
 </template>
 
@@ -56,6 +56,10 @@
   font-size: 12px;
   line-height: 100%;
 }
+
+.invalid {
+  outline: solid rgba(255, 0, 0, 0.5);
+}
 </style>
 
 
@@ -70,17 +74,57 @@ export default defineComponent({
     modelValue: {
       type: Number,
       default: 0,
-    }
+    },
+    min: {
+      type: Number,
+      requeired: false,
+    },
+    max: {
+      type: Number,
+      required: false,
+    },
   },
 
   data() {
     return {
+      textValue: '1',
       value: this.modelValue,
+      invalid: false,
     }
   },
 
+  methods: {
+    increment() {
+      if (isNaN(this.value)) {
+        this.value = 1
+      } else if (!this.max || this.value < this.max) {
+        this.value++
+      }
+    },
+    decrement() {
+      if (isNaN(this.value)) {
+        this.value = 1
+      } else if (!this.min || this.value > this.min) {
+        this.value--
+      }
+    },
+  },
+
   watch: {
+    textValue(payload: string) {
+      const value = +payload
+      if (!isNaN(value) && 
+        (this.min === undefined || value >= this.min) && 
+        (this.max === undefined || value <= this.max)) {
+        this.value = value
+        this.invalid = false
+      } else {
+        this.invalid = true
+      }
+    },
+    
     modelValue(payload: number) {
+      this.textValue = payload.toString()
       this.value = payload
     },
     value(payload: number) {

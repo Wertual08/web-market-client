@@ -1,7 +1,7 @@
 <template>
   <div class="product-card">
     <div class="fields">
-      <p class="name">{{ product.name }}</p>
+      <router-link :to="to" class="name">{{ product.name }}</router-link>
       <p class="id">Артикул: {{ product.id }}</p>
       <p class="description">{{ product.description }}</p>
     </div>
@@ -22,7 +22,7 @@
   display: flex;
 }
 
-.fields {
+.product-card > .fields {
   width: 70%;
   height: 100%;
 
@@ -32,16 +32,26 @@
   align-items: flex-start;
 }
 
-.name {
+.product-card > .fields > .name {
   color: #FAFAFA;
+
+  margin: 8px 0px;
+  padding: 0px;
+  text-decoration: none;
 
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   line-height: 130%;
+
+  cursor: pointer;
 }
 
-.id {
+.product-card > .fields > .name:hover {
+  color: #AAAAAA;
+}
+
+.product-card > .fields > .id {
   color: #8C929F;
 
   font-style: normal;
@@ -50,7 +60,7 @@
   line-height: 150%;
 }
 
-.description {
+.product-card > .fields > .description {
   color: #5C6175;
 
   font-style: normal;
@@ -59,7 +69,7 @@
   line-height: 160%;
 }
 
-.interaction {
+.product-card > .interaction {
   width: 30%;
   height: 100%;
 
@@ -69,7 +79,7 @@
   align-items: flex-end;
 }
 
-.price-full {
+.product-card > .interaction > .price-full {
   padding: 0px;
   margin: 0px;
 
@@ -84,13 +94,12 @@
   text-decoration-line: line-through;
 }
 
-.price-current {
+.product-card > .interaction > .price-current {
   padding: 0px;
   margin: 0px;
   
   color: #FAFAFA;
 
-  font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -109,6 +118,10 @@ export default defineComponent({
   name: 'product-card',
 
   props: {
+    to: {
+      type: String,
+      required: true,
+    },
     product: {
       type: Object as PropType<LiteProduct>,
       required: true,

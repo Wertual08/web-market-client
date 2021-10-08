@@ -3,14 +3,14 @@
     <search-bar class="search-bar" v-model="filterQuery"/>
     <div class="columns">
       <div class="filter-column">
-        <p class="title">Каталог</p>
-        <catalog-filter :sections="sections" :products-stats="productsStats" @selection="filterSelectionChanged" @price-range="filterPrice"/>
+        <router-link to="/catalog" class="title">Каталог</router-link>
+        <products-filter :sections="sections" :products-stats="productsStats" @selection="filterSelectionChanged" @price-range="filterPrice"/>
       </div>
       <div class="products-list">
         <div class="product-container" v-for="product in products" :key="product.id">
-          <catalog-product-card :product="product"></catalog-product-card>
+          <catalog-product-card :product="product" :to="`/catalog/${product.id}`"></catalog-product-card>
         </div>
-        <p class="not-found" v-if="products.length == 0">Ничего не найдено :(</p>
+        <p class="not-found" v-if="notFound">Ничего не найдено :(</p>
       </div>
     </div>
   </div>
@@ -53,6 +53,8 @@
   margin: 24px 0px;
 
   color: #E04040;
+
+  text-decoration: none;
 
   font-style: normal;
   font-weight: bold;
@@ -99,9 +101,9 @@ import { defineComponent } from 'vue'
 import CatalogProductCard from '@/components/catalog/CatalogProductCard.vue'
 import SectionsRepository from '@/repositories/sectionsRepository'
 import SearchRepository from '@/repositories/searchRepository'
-import CatalogFilter from './CatalogFilter.vue'
+import ProductsFilter from '@/components/common/ProductsFilter.vue'
 import Section from '@/models/section'
-import SearchBar from './SearchBar.vue'
+import SearchBar from '@/components/common/SearchBar.vue'
 import LiteProduct from '@/models/liteProduct'
 import ProductsRepository from '@/repositories/productsRepository'
 import ProductsStats from '@/models/productsStats'
@@ -110,7 +112,7 @@ export default defineComponent({
   name: 'catalog-product-list',
 
   components: {
-    CatalogFilter,
+    ProductsFilter,
     CatalogProductCard,
     SearchBar,
   },
@@ -144,6 +146,7 @@ export default defineComponent({
       filterSections: [] as number[],
       filterMinPrice: null as number|null,
       filterMaxPrice: null as number|null,
+      notFound: false,
     };
   },
 
@@ -173,7 +176,6 @@ export default defineComponent({
     filterPrice(minPrice: number, maxPrice: number) {
       this.filterMinPrice = minPrice
       this.filterMaxPrice = maxPrice
-      console.log(`${minPrice} ${maxPrice}`)
       this.loadUp(true)
     },
 
@@ -190,6 +192,7 @@ export default defineComponent({
         this.filterPage = 0
         this.productsToLoad = true
         this.loading = false
+        this.notFound = false
       }
 
       if (!this.loading && this.productsToLoad) {
@@ -210,6 +213,9 @@ export default defineComponent({
 
             if (result.length < 1) {
               this.productsToLoad = false
+            }
+            if (this.products.length == 0) {
+              this.notFound = true
             }
             this.loading = false
             this.onScroll()

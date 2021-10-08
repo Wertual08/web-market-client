@@ -1,6 +1,6 @@
 <template >
   <div class="catalog">
-    <products-list :launch="launch"/>
+    <catalog-products-list :launch="launch"/>
   </div>
 </template>
 
@@ -19,13 +19,13 @@
 
 <script>
 import { defineComponent } from 'vue'
-import ProductsList from '@/components/catalog/CatalogProductsList.vue'
+import CatalogProductsList from '@/components/catalog/CatalogProductsList.vue'
 
 export default defineComponent({
   name: 'catalog-view',
 
   components: {
-    ProductsList,
+    CatalogProductsList,
   },
 
   props: {

@@ -1,7 +1,7 @@
 <template>
   <product-card :product="product">
     <div class="controls">
-      <quantity-input class="quantity" v-model="selectedQuantity"/>
+      <quantity-input class="quantity" v-model="selectedQuantity" :min="1"/>
       <action-button class="submit" @click="addCart">Добавить в корзину</action-button>
     </div>
   </product-card>
@@ -41,6 +41,8 @@ import ProductCard from '../common/ProductCard.vue'
 export default defineComponent({
   name: 'catalog-product-card',
 
+  emits: ['selected'],
+
   components: {
     QuantityInput,
     ActionButton,
@@ -70,7 +72,7 @@ export default defineComponent({
     addCart() {
       let id = this.product.id
       this.cartRepository.addCart(id, this.selectedQuantity)
-    }
+    },
   }
 })
 </script>
