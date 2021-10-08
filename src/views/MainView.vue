@@ -43,7 +43,7 @@
 .sectionImg {
   width: 150pt;
   height: 150pt;
-  margin-top: 10pt;
+  margin-top: 30pt;
 
 }
 .table {
@@ -57,7 +57,8 @@
   text-decoration: none;
 }
 .prodCardContent {
-  margin: 31px;
+  width: 100%;
+  height: 100%;
 }
 .sections {
   width: 293px;
