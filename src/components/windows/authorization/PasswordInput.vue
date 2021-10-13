@@ -26,7 +26,6 @@
   width: 100%;
   height: 100%;
 
-  padding: 16px;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -37,7 +36,6 @@
 .eye {
   width: 24px;
   height: 24px;
-  padding-right: 16px;
 
   cursor: pointer;
 }

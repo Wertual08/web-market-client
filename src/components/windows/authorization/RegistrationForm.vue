@@ -1,6 +1,6 @@
 <template>
   <div class="registration-form" @keyup.enter="register()">
-    <text-input class="spacer" placeholder="E-mail" 
+    <text-input class="spacer email" placeholder="E-mail" 
       v-model="email" 
       :valid="emailRegExp.test(email)"
     />
@@ -35,13 +35,17 @@
   width: 100%;
   height: 48px;
   margin: 0px 0px 16px 0px;
-  padding: 16px;
+
 
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 160%;
+}
+
+.email {
+  padding: 0px 16px;
 }
 
 .passwords {
@@ -56,6 +60,7 @@
 
 .password {
   width: 100%;
+  padding: 0px 16px;
 }
 
 .submit {
