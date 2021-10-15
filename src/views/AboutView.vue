@@ -1,45 +1,96 @@
 <template>
-  <div class="сontacts">
-    <div class="column">
-      <p class="header">Адрес</p>
-      <div class="city">Москва</div>
-      <div class="link">Ленинский проспект,</div>
-      <div class="link">д. 12, к. 3</div>
-      <router-link to="/" class="link1">посмотреть на карте ></router-link>
-    </div>
-    <div class="column">
-      <p class="header">Основной номер телефона</p>
-      <div class="link5">+7 (800) 100-09-08</div>
-      <div to="/" class="link4">Заказ по телефону</div>
-      <div to="/" class="link2">10:00 - 20:00</div>
-      <div to="/" class="link3">пн - сб</div>
-    </div>
-    <div class="column">
-      <p class="header">Дополнительные номера</p>
-      <div class="link">+7 (495) 508-44-05</div>
-      <div class="link6">
-        Оперативно ответим на ваши вопросы <br />
-        По Москве
+  <div class="page">
+    <div class="сontacts">
+      <div class="column">
+        <p class="header">Адрес</p>
+        <div class="city">Москва</div>
+        <div class="link">Ленинский проспект,</div>
+        <div class="link">д. 12, к. 3</div>
+        <router-link to="/" class="link1">посмотреть на карте ></router-link>
       </div>
-      <div class="link7">
-        +7 (903) 508-44-05 +7
-        <br />+7(925) 002-20-30 <br />+7 (916)196-77-02
+      <div class="column">
+        <p class="header">Основной номер телефона</p>
+        <div class="link5">+7 (800) 100-09-08</div>
+        <div to="/" class="link4">Заказ по телефону</div>
+        <div to="/" class="link2">10:00 - 20:00</div>
+        <div to="/" class="link3">пн - сб</div>
+      </div>
+      <div class="column">
+        <p class="header">Дополнительные номера</p>
+        <div class="link">+7 (495) 508-44-05</div>
+        <div class="link6">
+          Оперативно ответим на ваши вопросы <br />
+          По Москве
+        </div>
+        <div class="link7">
+          +7 (903) 508-44-05 +7
+          <br />+7(925) 002-20-30 <br />+7 (916)196-77-02
+        </div>
+      </div>
+      <div class="column">
+        <p class="header">Электронная почта</p>
+        <div class="link8">
+          info@korea-bus.ru <br />
+          sale@korea-bus.ru <br />
+          parts@korea-bus.ru
+        </div>
       </div>
     </div>
-    <div class="column">
-      <p class="header">Электронная почта</p>
-      <div class="link8">
-        info@korea-bus.ru <br />
-        sale@korea-bus.ru <br />
-        parts@korea-bus.ru
-      </div>
+    <img class="dislocation" src="@/assets/dislocation,.jpg" />
+    <div class="cont">
+      Остались Вопросы? <br />
+      <div class="cont2">Закажите обратный звонок</div>
     </div>
+    <!-- <div class="phoneback">
+      <div class="column">
+        <div>Как мы можем к вам обращаться?</div>
+        <input class="text-input" placeholder="Поиск товара" />
+      </div>
+      <div class="column">
+        <div>Как мы можем к вам обращаться?</div>
+        <input class="text-input" placeholder="Поиск товара" />
+      </div>
+      <div class="column">
+        <button>Отправить заявку на звонок</button>
+      </div>
+    </div> -->
   </div>
-  <img class="bottom-logo" src="@/assets/dislocation,.jpg"/>
 </template>
 
 
 <style scoped>
+.phoneback{
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+.dislocation {
+  box-sizing: border-box;
+  width: 100%;
+}
+.page {
+  background-color: rgba(25, 47, 96, 1);
+  width: auto;
+}
+.cont2 {
+  color: #5c6175;
+}
+.cont {
+  background-color: rgba(25, 47, 96, 1);
+  letter-spacing: 0em;
+  text-align: left;
+  position: relative;
+  left: 134px;
+  height: 200px;
+  margin-top: 64px;
+  width: 1080px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 44px;
+  color: #ffffff;
+}
 .link8 {
   font-family: Inter;
   font-style: normal;
