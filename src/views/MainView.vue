@@ -1,6 +1,7 @@
 <template>
   <div id="main">
     <div id="container">
+      <main-slider/>
       <img class="SliderImg" src=@/assets/slideImg.jpg/> 
       <table class="table"> 
         <div class="sections" v-for="section in sections" :key="section.id"> 
@@ -70,8 +71,11 @@ import { defineComponent } from 'vue'
 import Section from '@/models/section'
 import SectionsRepository from '@/repositories/sectionsRepository'
 import RecordsRepository from '@/repositories/recordsRepository'
+import MainSlider from '@/components/main/MainSlider.vue';
 
 export default defineComponent({
+  components: { MainSlider },
+  
   setup() {
     return {
       sectionsRepository: new SectionsRepository(),
