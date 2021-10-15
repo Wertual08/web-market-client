@@ -53,8 +53,8 @@
       <div class="column">
         <button>Отправить заявку на звонок</button>
       </div>
-    </div>
-  </div> -->
+    </div> -->
+  </div>
 </template>
 
 
