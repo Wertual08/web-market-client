@@ -9,8 +9,10 @@ export default class ProductsRepository extends AbstractRepository<Product> {
   protected map(item: any): Product {
     const model = new Product()
     model.id = item.Id
+    model.code = item.Code
     model.name = item.Name
     model.description = item.Description
+    model.privateInfo = item.PrivateInfo
     model.oldPrice = item.OldPrice
     model.price = item.Price
     model.createdAt = Date.parse(item.CreatedAt)
@@ -62,8 +64,10 @@ export default class ProductsRepository extends AbstractRepository<Product> {
     }
 
     let response = await this.axios.put(model.id.toString(), {
+      Code: model.code,
       Name: model.name,
       Description: model.description,
+      PrivateInfo: model.privateInfo,
       Price: model.price,
       Records: recordIds,
       Categories: [],
@@ -83,8 +87,10 @@ export default class ProductsRepository extends AbstractRepository<Product> {
     }
     
     let response = await this.axios.post('', {
+      Code: model.code,
       Name: model.name,
       Description: model.description,
+      PrivateInfo: model.privateInfo,
       Price: model.price,
       Records: recordIds,
       Categories: [],

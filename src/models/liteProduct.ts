@@ -1,10 +1,12 @@
 export default class LiteProduct {
-  id: number = 0
-  oldPrice: number|null = null
-  price: number = 0
-  name: string = ''
-  description: string = ''
-  image: string = ''
-  categories: number[] = []
-  sections: number[] = []
+  public id: number = 0
+  public code: string = ''
+  public oldPrice: number|null = null
+  public price: number = 0
+  public name: string = ''
+  public description: string = ''
+  public image: string = ''
+  public categories: number[] = []
+  public sections: number[] = []
 }
+

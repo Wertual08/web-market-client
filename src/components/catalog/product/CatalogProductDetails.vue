@@ -6,7 +6,7 @@
           <img class="image" :src="image"/>
         </div>
       </slider>
-      <p class="id">Артикул: {{ product.id }}</p>
+      <p class="id">Артикул: {{ product.code }}</p>
       <p class="description">{{ product.description }}</p>
     </div>
     <div class="right">
