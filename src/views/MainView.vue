@@ -22,7 +22,7 @@
   width: auto;
   height: auto;
   min-height: 124px;
-  min-width: 293px ;
+  min-width: 293px;
   align-content: center;
 }
 #main {
