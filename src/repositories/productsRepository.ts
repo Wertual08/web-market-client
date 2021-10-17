@@ -8,6 +8,7 @@ export default class ProductsRepository extends AbstractRepository<Product> {
   protected map(item: any): Product {
     const model = new Product()
     model.id = item.Id
+    model.code = item.Code
     model.name = item.Name
     model.description = item.Description
     model.oldPrice = item.OldPrice

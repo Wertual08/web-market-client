@@ -1,7 +1,7 @@
 export default class Section {
-    id: number = -1
-    sectionId: number | null = null
-    name: string = ''
-    record: string = ''
-    sections: Section[] = []
+  public id: number = -1
+  public sectionId: number | null = null
+  public name: string = ''
+  public record: string = ''
+  public sections: Section[] = []
 }

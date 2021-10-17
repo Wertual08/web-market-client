@@ -14,9 +14,9 @@
 <style scoped>
 .login-form {
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
 .spacer {
@@ -24,7 +24,9 @@
   width: 100%;
   height: 48px;
   
-  padding: 16px;
+  padding: 0px 16px;
+
+  box-sizing: border-box;
 
   font-family: Inter;
   font-style: normal;

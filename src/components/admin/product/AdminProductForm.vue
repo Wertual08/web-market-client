@@ -3,7 +3,7 @@
     <div class="images">
       <slider class="slider" v-model:selected-index="selectedIndex">    
         <div class="slide" v-for="(image, index) in images" :key="index">
-          <image-form class="image" :image="image.Purl()" @update="(url) => imageUpdate(index, url)"/>
+          <image-form class="image" :image="image.url()" @update="(url) => imageUpdate(index, url)"/>
         </div>
       </slider>
       <action-button class="add-image" @click="addImage">Add image</action-button>
@@ -17,6 +17,17 @@
       <label class="name">Description</label>
       <textarea class="field large-field" v-model="product.description"/><br>
       <p class="name">Created at: [{{ createdAt }}] Updated at: [{{ updatedAt }}]</p>
+
+      <div class="sections">
+        <admin-product-section-label 
+          v-for="section in allSections" 
+          :key="section.name" 
+          :section="section" 
+          :enabled="sectionEnabled(section.id)"
+          @toggle="sectionToggle"
+        />
+      </div>
+
       <action-button class="save" @click="save">Save</action-button>
     </div>
   </div>    
@@ -119,6 +130,11 @@ img {
   resize: vertical;
 }
 
+.admin-product-form > .properties > .sections {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .admin-product-form > .properties > .save {
   width: 64px;
   height: 32px;
@@ -132,18 +148,19 @@ import Product from '@/models/admin/product'
 import { defineComponent, PropType } from 'vue'
 import Slider from '@/components/common/Slider.vue'
 import ActionButton from '@/components/common/ActionButton.vue'
+import ImageForm from '@/components/common/ImageForm.vue'
+import AdminProductSectionLabel from './AdminProductSectionLabel.vue'
 import { dateToString } from '@/services/datetime'
 import ImageEntry from '@/models/local/imageEntry'
-import ImageForm from '@/components/common/ImageForm.vue'
 import RecordsRepository from '@/repositories/recordsRepository'
-import Section from '@/models/section'
+import Section from '@/models/admin/section'
 
 
 
 export default defineComponent({
   name: 'admin-product-form',
 
-  components: { Slider, ActionButton, ImageForm },
+  components: { Slider, ActionButton, ImageForm, AdminProductSectionLabel },
 
   emits: ['save'],
 
@@ -166,17 +183,35 @@ export default defineComponent({
 
   data() {
     return {
+      allSections: this.getSections(this.sections) as Section[],
+      selectedSections: [] as number[],
       images: this.productImages() as ImageEntry[],
       selectedIndex: 0,
     }
   },
 
   methods: {
+    getSections(sections: Section[]): Section[] {
+      let result: Section[] = []
+      for (let i = 0; i < sections.length; i++) {
+        result.push(sections[i])
+        result = result.concat(this.getSections(sections[i].sections))
+      }
+      return result
+    },
     productImages(): ImageEntry[] {
       const records = this.product.records
       let result: ImageEntry[] = []
       for (let i = 0; i < records.length; i++) {
         result.push(new ImageEntry(records[i]))
+      }
+      return result
+    },
+    productSections(): number[] {
+      let sections = this.product.sections
+      let result: number[] = []
+      for (let i = 0; i < sections.length; i++) {
+        result.push(sections[i].id)
       }
       return result
     },
@@ -210,7 +245,28 @@ export default defineComponent({
         }
       }
 
+      this.product.sections = []
+      for (let i = 0; i < this.selectedSections.length; i++) {
+        let id = this.selectedSections[i];
+        let section: Section|undefined = this.allSections.find(section => section.id == id)
+        if (section !== undefined) {
+          this.product.sections.push(section)
+        }
+      }
+
       this.$emit('save', this.product)
+    },
+
+    sectionToggle(id: number) {
+      let index = this.selectedSections.indexOf(id)
+      if (index < 0) {
+        this.selectedSections.push(id)
+      } else {
+        this.selectedSections.splice(index, 1)
+      }
+    },
+    sectionEnabled(id: number): boolean {
+      return this.selectedSections.indexOf(id) >= 0
     },
   },
 
@@ -224,7 +280,11 @@ export default defineComponent({
   },
 
   watch: {
+    sections(payload: Section[]) {
+      this.allSections = this.getSections(payload)
+    },
     product() {
+      this.selectedSections = this.productSections()
       this.images = this.productImages()
     }
   }

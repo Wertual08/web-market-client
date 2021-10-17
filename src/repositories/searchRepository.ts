@@ -9,6 +9,7 @@ export default class SearchRepository extends AbstractRepository<LiteProduct> {
   protected map(item: any): LiteProduct {
     const model = new LiteProduct()
     model.id = item.Id
+    model.code = item.Code
     model.name = item.Name
     model.description = item.Description
     model.oldPrice = item.OldPrice

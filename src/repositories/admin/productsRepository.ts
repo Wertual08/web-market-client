@@ -9,8 +9,10 @@ export default class ProductsRepository extends AbstractRepository<Product> {
   protected map(item: any): Product {
     const model = new Product()
     model.id = item.Id
+    model.code = item.Code
     model.name = item.Name
     model.description = item.Description
+    model.privateInfo = item.PrivateInfo
     model.oldPrice = item.OldPrice
     model.price = item.Price
     model.createdAt = Date.parse(item.CreatedAt)
@@ -56,14 +58,20 @@ export default class ProductsRepository extends AbstractRepository<Product> {
     for (let i = 0; i < model.records.length; i++) {
       recordIds.push(model.records[i].id)
     }
+    let sectionIds: number[] = []
+    for (let i = 0; i < model.sections.length; i++) {
+      sectionIds.push(model.sections[i].id)
+    }
 
     let response = await this.axios.put(model.id.toString(), {
+      Code: model.code,
       Name: model.name,
       Description: model.description,
+      PrivateInfo: model.privateInfo,
       Price: model.price,
       Records: recordIds,
       Categories: [],
-      Sections: [],
+      Sections: sectionIds,
     })
     return this.map(response.data)
   }
@@ -73,14 +81,20 @@ export default class ProductsRepository extends AbstractRepository<Product> {
     for (let i = 0; i < model.records.length; i++) {
       recordIds.push(model.records[i].id)
     }
+    let sectionIds: number[] = []
+    for (let i = 0; i < model.sections.length; i++) {
+      sectionIds.push(model.sections[i].id)
+    }
     
     let response = await this.axios.post('', {
+      Code: model.code,
       Name: model.name,
       Description: model.description,
+      PrivateInfo: model.privateInfo,
       Price: model.price,
       Records: recordIds,
       Categories: [],
-      Sections: [],
+      Sections: sectionIds,
     })
     return this.map(response.data)
   }

@@ -4,8 +4,7 @@
     <p v-if="profile === null">Войти</p>
     <p v-if="profile !== null">{{profile.email}}</p>
     <div v-if="profile !== null" class="dropdown">
-      Всякая<br>хуита
-      <button @click="performLogout()">Выйти</button>
+      <profile-dropdown @logout="performLogout"/>
     </div>
   </div>
 </template>
@@ -47,12 +46,18 @@
 }
 
 .dropdown {
+  width: 200px;
+  height: 300px;
+
   position: absolute;
   top: 100%;
 
   color: black;
+  background: #192F60;
 
-  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+
+  box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.6);
 
   display: none;
 }
@@ -65,9 +70,12 @@ import Profile from '@/models/profile'
 import { defineComponent } from 'vue'
 import AuthRepository from '@/repositories/authRepository'
 import ProfileRepository from '@/repositories/profileRepository'
+import ProfileDropdown from './ProfileDropdown.vue'
 
 export default defineComponent({
   name: 'profile-card',
+
+  components: { ProfileDropdown },
 
   emits: ['authorize'],
 

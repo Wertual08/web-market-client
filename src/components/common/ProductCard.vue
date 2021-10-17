@@ -2,7 +2,7 @@
   <div class="product-card">
     <div class="fields">
       <router-link :to="to" class="name">{{ product.name }}</router-link>
-      <p class="id">Артикул: {{ product.id }}</p>
+      <p class="id">Артикул: {{ product.code }}</p>
       <p class="description">{{ product.description }}</p>
     </div>
     <div class="interaction">

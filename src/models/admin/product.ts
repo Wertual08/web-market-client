@@ -3,13 +3,15 @@ import Record from '../record'
 
 
 export default class Product {
-  id: number = -1
-  name: string = ''
-  description: string = ''
-  oldPrice: number|null = null
-  price: number = -1
-  createdAt: number = 0
-  updatedAt: number = 0
-  records: Record[] = []
-  sections: Section[] = []
+  public id: number = -1
+  public code: string = ''
+  public name: string = ''
+  public description: string = ''
+  public privateInfo: string = ''
+  public oldPrice: number|null = null
+  public price: number = -1
+  public createdAt: number = 0
+  public updatedAt: number = 0
+  public records: Record[] = []
+  public sections: Section[] = []
 }

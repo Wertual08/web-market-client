@@ -1,10 +1,11 @@
 export default class Product {
-  id: number = -1
-  name: string = ''
-  description: string = ''
-  oldPrice: number|null = null
-  price: number = -1
-  records: string[] = []
-  categories: string[] = []
-  sections: string[] = []
+  public id: number = -1
+  public code: string = ''
+  public name: string = ''
+  public description: string = ''
+  public oldPrice: number|null = null
+  public price: number = -1
+  public records: string[] = []
+  public categories: string[] = []
+  public sections: string[] = []
 }
