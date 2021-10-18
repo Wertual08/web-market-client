@@ -41,25 +41,66 @@
       Остались Вопросы? <br />
       <div class="cont2">Закажите обратный звонок</div>
     </div>
-    <!-- <div class="phoneback">
+    <div class="phoneback">
       <div class="column">
-        <div>Как мы можем к вам обращаться?</div>
-        <input class="text-input" placeholder="Поиск товара" />
+        <div class="input">Как мы можем к вам обращаться?</div>
+        <input
+          class="text-input"
+          placeholder="Константин Васильевич Константинов"
+        />
       </div>
       <div class="column">
-        <div>Как мы можем к вам обращаться?</div>
-        <input class="text-input" placeholder="Поиск товара" />
+        <div class="input">Как мы можем к вам обращаться?</div>
+        <input class="text-input" placeholder="+7 (___) ___ __ __" />
       </div>
       <div class="column">
-        <button>Отправить заявку на звонок</button>
+        <button class="but">Отправить заявку на звонок</button>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 
 <style scoped>
-.phoneback{
+.but {
+  background: #e04040;
+  border-radius: 6px;
+  color: #ffffff;
+  position: relative;
+  top: 33px;
+  right: 60px;
+  padding: 18px 16px;
+  width: 370px;
+  height: 48px;
+  text-align: center;
+   box-sizing: border-box;
+   border: none;
+}
+.input {
+  text-align: left;
+  margin-bottom: 20px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  color: #8c929f;
+  
+}
+.text-input {
+  background: #355396;
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  height: 48px;
+  width: 470px;
+  text-align: left;
+  border: none;
+}
+.phoneback {
   display: flex;
   justify-content: space-around;
   align-content: center;
@@ -80,7 +121,7 @@
   letter-spacing: 0em;
   text-align: left;
   position: relative;
-  left: 134px;
+  left: 160px;
   height: 200px;
   margin-top: 64px;
   width: 1080px;
