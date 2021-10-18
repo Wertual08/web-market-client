@@ -45,7 +45,7 @@
 }
 
 .catalog-product-view > .content > .columns > .filter-column {
-  width: 15%;
+  width: 20%;
   height: 100%;
 
   display: flex;
@@ -58,6 +58,7 @@
 
   color: #E04040;
 
+  text-align: left;
   text-decoration: none;
 
   font-style: normal;
@@ -67,7 +68,7 @@
 }
 
 .catalog-product-view > .content > .columns > .product-column {
-  width: 85%;
+  width: 80%;
   height: 100%;
 
   display: flex;
@@ -76,6 +77,7 @@
 }
 
 .catalog-product-view > .content > .columns > .product-column > .details {
+  width: 100%;
   height: auto;
 
   margin-top: 106px;

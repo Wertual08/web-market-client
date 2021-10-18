@@ -68,7 +68,11 @@ export default abstract class AbstractRepository<T> {
   }
   private mapConflict(data: any): ConflictError {
     let result = new ConflictError()
-    result.field = data.Field
+    if (data.Field) {
+      result.field = data.Field
+    } else if (data) {
+      result.field = data
+    }
     return result;
   }
 

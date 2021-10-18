@@ -38,7 +38,7 @@
 }
 
 .filter-column {
-  width: 15%;
+  width: 20%;
 
   margin-right: 50px;
 

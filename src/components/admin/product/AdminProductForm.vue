@@ -1,4 +1,11 @@
 <template>
+  <modal-window v-if="warningVisible" @close="onDeleteReject">
+    <delete-warning-window @submit="onDeleteSubmit" @reject="onDeleteReject">
+      Вы уверены, что хотите удалить товар "{{product.code}}: {{ product.name }}"?
+      Это действие необратимо.
+    </delete-warning-window>
+  </modal-window>
+
   <div class="admin-product-form">
     <div class="images">
       <slider class="slider" v-model:selected-index="selectedIndex">    
@@ -6,17 +13,22 @@
           <image-form class="image" :image="image.url()" @update="(url) => imageUpdate(index, url)"/>
         </div>
       </slider>
-      <action-button class="add-image" @click="addImage">Add image</action-button>
+      <action-button class="add-image" @click="addImage">Добавить изображение</action-button>
     </div>
     <div class="properties">
-      <h1 class="name">{{ product.id }}</h1>
-      <label class="name">Name</label>
+      <label class="name">Артикул</label>
+      <input class="field" v-model="product.code"/><br>
+      <label class="name">Название</label>
       <input class="field" v-model="product.name"/><br>
-      <label class="name">Price</label>
+      <label class="name">Цена</label>
       <input class="field" type="number" v-model="product.price"/><br>
-      <label class="name">Description</label>
+      <label class="name">Старая цена</label>
+      <input class="field" type="number" v-model="oldPrice"/><br>
+      <label class="name">Описание</label>
       <textarea class="field large-field" v-model="product.description"/><br>
-      <p class="name">Created at: [{{ createdAt }}] Updated at: [{{ updatedAt }}]</p>
+      <label class="name">Информация администратора</label>
+      <textarea class="field large-field" v-model="product.privateInfo"/><br>
+      <p class="name">Создан: [{{ createdAt }}] Обновлен: [{{ updatedAt }}]</p>
 
       <div class="sections">
         <admin-product-section-label 
@@ -28,7 +40,10 @@
         />
       </div>
 
-      <action-button class="save" @click="save">Save</action-button>
+      <div class="actions">
+        <action-button class="save" @click="saveProduct">Сохранить</action-button>
+        <action-button class="delete" @click="warningVisible=true">Удалить</action-button>
+      </div>
     </div>
   </div>    
 </template>
@@ -135,10 +150,22 @@ img {
   flex-wrap: wrap;
 }
 
-.admin-product-form > .properties > .save {
+.admin-product-form > .properties > .actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-product-form > .properties > .actions > .save {
+  width: 80px;
+  height: 32px;
+  margin-top: 16px;
+}
+
+.admin-product-form > .properties > .actions > .delete {
   width: 64px;
   height: 32px;
   margin-top: 16px;
+  background: red;
 }
 </style>
 
@@ -154,15 +181,17 @@ import { dateToString } from '@/services/datetime'
 import ImageEntry from '@/models/local/imageEntry'
 import RecordsRepository from '@/repositories/recordsRepository'
 import Section from '@/models/admin/section'
+import ModalWindow from '@/components/windows/ModalWindow.vue'
+import DeleteWarningWindow from '@/components/windows/DeleteWarningWindow.vue'
 
 
 
 export default defineComponent({
   name: 'admin-product-form',
 
-  components: { Slider, ActionButton, ImageForm, AdminProductSectionLabel },
+  components: { Slider, ActionButton, ImageForm, AdminProductSectionLabel, ModalWindow, DeleteWarningWindow },
 
-  emits: ['save'],
+  emits: ['save', 'delete'],
 
   props: {
     product: {
@@ -187,6 +216,8 @@ export default defineComponent({
       selectedSections: [] as number[],
       images: this.productImages() as ImageEntry[],
       selectedIndex: 0,
+      warningVisible: false,
+      oldPrice: this.product.oldPrice?.toString() ?? '',
     }
   },
 
@@ -229,7 +260,8 @@ export default defineComponent({
         this.images[position].newUrl = url
       }
     },
-    async save() {
+
+    async saveProduct() {
       this.product.records = []
       for (let i = 0; i < this.images.length; i++) {
         const image = this.images[i]
@@ -255,6 +287,13 @@ export default defineComponent({
       }
 
       this.$emit('save', this.product)
+    },
+    onDeleteReject() {
+      this.warningVisible = false
+    },
+    onDeleteSubmit() {
+      this.warningVisible = false
+      this.$emit('delete', this.product);
     },
 
     sectionToggle(id: number) {
@@ -286,6 +325,10 @@ export default defineComponent({
     product() {
       this.selectedSections = this.productSections()
       this.images = this.productImages()
+    },
+    oldPrice(payload: String) {
+      this.product.oldPrice = payload.length == 0 || isNaN(+payload) ? null : +payload
+      console.log(this.product.oldPrice)
     }
   }
 })

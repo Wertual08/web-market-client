@@ -1,18 +1,40 @@
 <template>
   <div class="admin-view">
-    <router-link to="/admin/sections">Секции</router-link>
-    <router-link to="/admin/products">Товары</router-link>
+    <div class="navigator">
+      <router-link class="item" to="/admin/sections">Редактирование секций</router-link>
+      <router-link class="item" to="/admin/products">Редактирование товаров</router-link>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .admin-view {
-  background: #192F60;
+  width: 100%;
   height: 100%;
+  
+  background: #192F60;
 
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.admin-view > .navigator {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.admin-view > .navigator > .item {
+  text-decoration: none;
+  color: red;
+  
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+.admin-view > .navigator > .item:hover {
+  color: #AA0000;
 }
 </style>
 

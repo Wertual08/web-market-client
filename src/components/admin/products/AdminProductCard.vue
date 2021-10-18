@@ -20,6 +20,7 @@
           </div>
         </div>
         <p class="description">{{ product.description }}</p>
+        <p class="description">{{ product.privateInfo }}</p>
         <action-button class="delete-button" @click="$emit('delete', product)">Удалить</action-button>
       </div>
     </div>
@@ -34,6 +35,28 @@
   border-bottom: 1px solid #355396;
   color: white;
   display: flex;
+  
+  overflow: hidden;
+}
+
+.admin-product-card > .cover-box {
+  width: 200px;
+  height: 100%;
+  margin: 0px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-product-card > .cover-box > .cover-image {
+  max-height: 90%;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+  border-radius: 5px;
+  border: black;
+  border-width: 1px;
 }
 
 .vertical-box {
@@ -48,27 +71,8 @@
   height: 100%;
   display: flex;
   align-items: flex-end;
-}
-
-.cover-box {
-  float: left;
-  width: 200px;
-  height: 100%;
-  margin: 0px;
   
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cover-image {
-  max-height: 90%;
-  max-width: 90%;
-  margin: auto;
-  display: block;
-  border-radius: 5px;
-  border: black;
-  border-width: 1px;
+  overflow: hidden;
 }
 
 .name {
@@ -90,7 +94,7 @@
 }
 
 .specifications-box {
-  width: 250px;
+  width: 800px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -98,6 +102,8 @@
 
   font-size: 16px;
   font-weight: normal;
+
+  overflow: hidden;
 }
 
 .description {

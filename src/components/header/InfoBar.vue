@@ -10,7 +10,7 @@
       </div>
 
       <div class="phone">
-        <a href="tel:+7(800)100-09-08">8 (916) 578-26-48</a>
+        <a href="tel:+7(916)578-26-48">+7 (916) 578-26-48</a>
         <img src="@/assets/ic_down.svg">
       </div>
     </div>

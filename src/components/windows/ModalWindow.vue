@@ -59,7 +59,12 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'modal-window',
-  props: ['visible'],
+  props: {
+    visible: {
+      type: Boolean,
+      default: true,
+    }
+  },
   emits: ['close'],
   methods: {
     close() {

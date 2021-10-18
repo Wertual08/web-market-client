@@ -1,6 +1,9 @@
 <template>
-  <modal-window :visible="warningVisible" @close="onDeleteReject">
-    <delete-warning-window :product="pendingDelete" @submit="onDeleteSubmit" @reject="onDeleteReject"/>
+  <modal-window v-if="warningVisible" @close="onDeleteReject">
+    <delete-warning-window @submit="onDeleteSubmit" @reject="onDeleteReject">
+      Вы уверены, что хотите удалить товар "{{pendingDelete.code}}: {{ pendingDelete.name }}"?
+      Это действие необратимо.
+    </delete-warning-window>
   </modal-window>
 
   <div class="admin-products-list" v-for="product in products" :key="product.id">
@@ -22,7 +25,7 @@ import Product from '@/models/admin/product'
 import ProductsRepository from '@/repositories/admin/productsRepository'
 import AdminProductCard from './AdminProductCard.vue'
 import ModalWindow from '@/components/windows/ModalWindow.vue'
-import DeleteWarningWindow from './DeleteWarningWindow.vue'
+import DeleteWarningWindow from '../../windows/DeleteWarningWindow.vue'
 
 export default defineComponent({
   name: 'admin-products-list',

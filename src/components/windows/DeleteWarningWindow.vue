@@ -1,9 +1,6 @@
 <template>
   <div class="delete-warning-window">
-    <p class="message">
-      Вы уверены, что хотите удалить товар "{{ name }}: {{ id }}"?
-      Это действие необратимо.
-    </p>
+    <p class="message"><slot/></p>
     <div class="buttons">
       <action-button class="reject" @click="$emit('reject')">Отмена</action-button>
       <action-button class="submit" @click="$emit('submit')">Удалить</action-button>
@@ -55,9 +52,8 @@
 
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
 import ModalWindow from '@/components/windows/ModalWindow.vue'
-import Product from '@/models/admin/product'
 import ActionButton from '@/components/common/ActionButton.vue'
 
 export default defineComponent({
@@ -69,21 +65,5 @@ export default defineComponent({
   },
 
   emits: ['submit', 'reject'],
-
-  props: {
-    product: {
-      type: Object as PropType<Product>,
-    },
-  },
-
-  computed: {
-    id(): string {
-      return this.product?.id.toString() ?? ''
-    },
-
-    name(): string {
-      return this.product?.name ?? ''
-    },
-  }
 })
 </script>
