@@ -28,7 +28,6 @@ export default class SectionsRepository extends AbstractRepository<Section> {
     for (let i = 0; i < data.length; i++) {
       sections.push(this.map(data[i]))
     }
-    console.log(sections)
     return sections
   }
 }

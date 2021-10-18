@@ -1,5 +1,8 @@
 <template>
   <div class="product-card">
+    <div class="picture-box">
+      <img :src="productImage" class="picture">
+    </div>
     <div class="fields">
       <router-link :to="to" class="name">{{ product.name }}</router-link>
       <p class="id">Артикул: {{ product.code }}</p>
@@ -20,6 +23,22 @@
   height: 100%;
 
   display: flex;
+}
+
+.product-card > .picture-box {
+  width: 20%;
+  height: 100%;
+
+  margin: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-card > .picture-box > .picture {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .product-card > .fields {
@@ -112,6 +131,7 @@
 
 <script lang="ts">
 import LiteProduct from '@/models/liteProduct'
+import RecordsRepository from '@/repositories/recordsRepository'
 import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
@@ -127,5 +147,11 @@ export default defineComponent({
       required: true,
     },
   },
+
+  computed: {
+    productImage() {
+      return RecordsRepository.toUrl(this.product.image)
+    }
+  }
 })
 </script>
