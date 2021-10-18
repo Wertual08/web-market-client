@@ -20,6 +20,8 @@
   width: 100%;
   height: 100%;
 
+  background: #192F60;
+
   display: flex;
   justify-content: space-between;
 }
@@ -34,7 +36,7 @@
   height: 300px;
 
   position: sticky;
-  top: 20px;
+  top: 75px;
   right: 20px;
 
   display: flex;

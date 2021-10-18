@@ -3,7 +3,11 @@ import AbstractRepository from "./abstractRepository"
 
 export default class RecordsRepository extends AbstractRepository<Record> {
   public static toUrl(identifier: string|null): string {
-    return `/api/records/${identifier}`
+    if (identifier === null) {
+      return '';
+    } else {
+      return `/api/records/${identifier}`
+    }
   }
 
   public constructor() {

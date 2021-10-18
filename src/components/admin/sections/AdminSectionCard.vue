@@ -4,7 +4,8 @@
       <img :src="coverImage"/>
     </div>
     <div class="properties">
-      {{ section.id }}: {{ section.name }}
+      <p class="name">{{ section.id }}: {{ section.name }}</p>
+      <p class="dates">Создано: [{{ createdAt }}] Обновлено: [{{ updatedAt }}]</p> 
     </div>
   </div>
 </template>
@@ -14,20 +15,12 @@
 .admin-section-card-box {
   display: flex;
   flex-direction: row;
-  max-width: 400px;
-  height: 50px;
-  background: white;
-  border-radius: 3px;
+  height: 100px;
 }
 
-.admin-section-card-box:hover {
-  box-shadow: 0px 0px 1px 1px cyan;
-  background: lightgray;
-}
-
-.cover {
-  width: 50px;
-  height: 50px;
+.admin-section-card-box > .cover {
+  width: 100px;
+  height: 100px;
 
   flex: 0 0 auto;
 
@@ -36,25 +29,47 @@
   align-content: center;
 }
 
-.cover > img {
+.admin-section-card-box > .cover > img {
   max-width: 100%;
   max-height: 100%;
   border-radius: 2px;
 }
 
-.properties {
+.admin-section-card-box > .properties {
   width: 100%;
   height: 100%;
 
-  margin: 0px 10px;
+  padding: 0px 10px;
+  box-sizing: border-box;
 
   text-align: left;
   display: flex;
-  justify-content: center;
-  align-content: center;
   flex-direction: column;
+  justify-content: space-around;
+  align-content: space-around;
+}
 
+.admin-section-card-box > .properties > .name {
+  color: white;
+
+  font-style: normal;
+  font-weight: bold;
   font-size: 24px;
+  line-height: 100%;
+
+  cursor: pointer;
+}
+.admin-section-card-box > .properties > .name:hover {
+  color: #AAAAAA;
+}
+
+.admin-section-card-box > .properties > .dates {
+  color: white;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 100%;
 }
 </style>
 
@@ -63,6 +78,7 @@
 import { defineComponent, PropType } from 'vue'
 import Section from '@/models/admin/section'
 import RecordsRepository from '@/repositories/recordsRepository'
+import { dateToString } from '@/services/datetime'
 
 
 export default defineComponent({
@@ -85,6 +101,12 @@ export default defineComponent({
       } else {
         return require('@/assets/placeholder.jpg')
       }
+    },
+    createdAt(): string {
+      return dateToString(this.section.createdAt)
+    },
+    updatedAt(): string {
+      return dateToString(this.section.updatedAt)
     },
   }
 });

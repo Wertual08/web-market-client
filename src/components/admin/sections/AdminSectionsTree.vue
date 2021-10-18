@@ -1,5 +1,5 @@
 <template>
-  <div id="box">
+  <div class="admin-sections-tree">
     <div id="node">
       <input type="checkbox" v-model="expanded" :disabled="section.sections.length == 0">
       <admin-section-card :section="section" @click="$emit('selected', section)"/>
@@ -14,7 +14,7 @@
 
 
 <style scoped>
-#box {
+.admin-sections-tree {
   display: flex;
   flex-direction: column;
   padding: 2px 2px 0px 2px;
@@ -22,6 +22,11 @@
 
 #node {
   display: flex;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 200%;
 }
 
 #nested-nodes {
