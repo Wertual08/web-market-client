@@ -38,9 +38,9 @@ export default class ProductsRepository extends AbstractRepository<Product> {
   public async getProducts(page: number = 0, categories: number[] = [], sections: number[] = []): Promise<Product[]> {
     let response = await this.axios.get('', {
       params: {
-        page: page,
-        categories: categories,
-        sections: sections,
+        page,
+        categories,
+        sections,
       }
     })
     let data = response.data;

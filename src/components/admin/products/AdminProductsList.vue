@@ -1,5 +1,5 @@
 <template>
-  <modal-window v-if="warningVisible" @close="onDeleteReject">
+  <modal-window v-if="pendingDelete" @close="onDeleteReject">
     <delete-warning-window @submit="onDeleteSubmit" @reject="onDeleteReject">
       Вы уверены, что хотите удалить товар "{{pendingDelete.code}}: {{ pendingDelete.name }}"?
       Это действие необратимо.
@@ -46,10 +46,9 @@ export default defineComponent({
     return {
       products: [] as Product[],
       page: 0,
-      productsToLoad: true,
+      toLoad: true,
       loading: false,
 
-      warningVisible: false,
       pendingDelete: null as Product|null,
     };
   },
@@ -76,10 +75,10 @@ export default defineComponent({
         this.loading = false
         this.products = []
         this.page = 0
-        this.productsToLoad = true
+        this.toLoad = true
       }
 
-      if (!this.loading && this.productsToLoad) {
+      if (!this.loading && this.toLoad) {
         this.loading = true
         this.productsRepository.getProducts(this.page)
           .then(result => {
@@ -88,7 +87,7 @@ export default defineComponent({
                 result.forEach(item => this.products.push(item))
                 this.page++
               } else {
-                this.productsToLoad = false
+                this.toLoad = false
               }
               this.loading = false
               this.onScroll()
@@ -102,23 +101,20 @@ export default defineComponent({
     },
     onDelete(model: Product): void {
       this.pendingDelete = model
-      this.warningVisible = true
     },
     onDeleteSubmit(): void {
       if (this.pendingDelete !== null) {
         this.productsRepository.deleteProduct(this.pendingDelete.id)
           .then(model => {
-            this.warningVisible = false
+            this.pendingDelete = null
             this.loadUp(true)
           })
       } else {
-        this.warningVisible = false
+        this.pendingDelete = null
       }
-      this.pendingDelete = null
     },
     onDeleteReject(): void {
       this.pendingDelete = null
-      this.warningVisible = false
     },
   },
 });

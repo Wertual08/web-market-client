@@ -18,6 +18,22 @@ export default class RecordsRepository extends AbstractRepository<Record> {
     return new Record(item)
   }
 
+  public async getRecords(page: number): Promise<Record[]> {
+    let response = await this.axios.get('', {
+      params: {
+        page,
+      }
+    })
+    let data = response.data;
+
+    let models: Record[] = []
+    for (let i = 0; i < data.length; i++) {
+      models.push(this.map(data[i]))
+    }
+
+    return models
+  }
+
   public async createRecord(file: Blob): Promise<Record> {
     let formData = new FormData()
     formData.append('Files', file)
@@ -35,5 +51,11 @@ export default class RecordsRepository extends AbstractRepository<Record> {
     }
 
     return models[0]
+  }
+
+  public async deleteRecord(id: number): Promise<Record> {
+    let response = await this.axios.post(id.toString())
+    let data = response.data
+    return this.map(data)
   }
 }
