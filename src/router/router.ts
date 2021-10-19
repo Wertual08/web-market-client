@@ -9,6 +9,7 @@ import AdminView from '@/views/AdminView.vue'
 import AdminProductsView from '@/views/AdminProductsView.vue'
 import AdminProductView from '@/views/AdminProductView.vue'
 import AdminSectionsView from '@/views/AdminSectionsView.vue'
+import AdminRecordsView from '@/views/AdminRecordsView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -49,6 +50,10 @@ const routes: RouteRecordRaw[] = [
     path: '/admin/sections',
     component: AdminSectionsView,
   },
+  {
+    path: '/admin/records',
+    component: AdminRecordsView,
+  }
 ]
 
 const router = createRouter({

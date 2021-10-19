@@ -1,6 +1,7 @@
 <template>
   <div class="admin-view">
     <div class="navigator">
+      <router-link class="item" to="/admin/records">Редактирование файлов</router-link>
       <router-link class="item" to="/admin/sections">Редактирование секций</router-link>
       <router-link class="item" to="/admin/products">Редактирование товаров</router-link>
     </div>
