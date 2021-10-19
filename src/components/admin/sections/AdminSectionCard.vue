@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-section-card-box">
+  <div class="admin-section-card">
     <div class="cover">
       <img :src="coverImage"/>
     </div>
@@ -7,18 +7,22 @@
       <p class="name">{{ section.id }}: {{ section.name }}</p>
       <p class="dates">Создано: [{{ createdAt }}] Обновлено: [{{ updatedAt }}]</p> 
     </div>
+    <action-button class="delete-button" @click="$emit('delete', section)">Удалить</action-button>
   </div>
 </template>
 
 
 <style scoped>
-.admin-section-card-box {
+.admin-section-card {
+  height: 100px;
+
   display: flex;
   flex-direction: row;
-  height: 100px;
+  justify-content: center;
+  align-items: center;
 }
 
-.admin-section-card-box > .cover {
+.admin-section-card > .cover {
   width: 100px;
   height: 100px;
 
@@ -29,13 +33,13 @@
   align-content: center;
 }
 
-.admin-section-card-box > .cover > img {
+.admin-section-card > .cover > img {
   max-width: 100%;
   max-height: 100%;
   border-radius: 2px;
 }
 
-.admin-section-card-box > .properties {
+.admin-section-card > .properties {
   width: 100%;
   height: 100%;
 
@@ -49,7 +53,7 @@
   align-content: space-around;
 }
 
-.admin-section-card-box > .properties > .name {
+.admin-section-card > .properties > .name {
   color: white;
 
   font-style: normal;
@@ -59,17 +63,27 @@
 
   cursor: pointer;
 }
-.admin-section-card-box > .properties > .name:hover {
+.admin-section-card > .properties > .name:hover {
   color: #AAAAAA;
 }
 
-.admin-section-card-box > .properties > .dates {
+.admin-section-card > .properties > .dates {
   color: white;
 
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 100%;
+}
+
+.admin-section-card > .delete-button {
+  width: 64px;
+  height: 32px;
+
+  background: red;
+}
+.admin-section-card > .delete-button:hover {
+  background: #AA0000;
 }
 </style>
 
@@ -79,12 +93,14 @@ import { defineComponent, PropType } from 'vue'
 import Section from '@/models/admin/section'
 import RecordsRepository from '@/repositories/recordsRepository'
 import { dateToString } from '@/services/datetime'
+import ActionButton from '@/components/common/ActionButton.vue';
 
 
 export default defineComponent({
+  components: { ActionButton },
   name: 'admin-section-card',
 
-  emits: ['add-cart'],
+  emits: ['delete'],
 
   props: {
     section: {

@@ -47,4 +47,9 @@ export default class ProductsRepository extends AbstractRepository<Section> {
     })
     return this.map(response.data)
   }
+
+  public async deleteSection(id: number): Promise<Section> {
+    let response = await this.axios.delete(id.toString())
+    return this.map(response.data)
+  }
 }

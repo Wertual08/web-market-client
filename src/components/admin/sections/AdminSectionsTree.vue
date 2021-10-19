@@ -2,11 +2,11 @@
   <div class="admin-sections-tree">
     <div id="node">
       <input type="checkbox" v-model="expanded" :disabled="section.sections.length == 0">
-      <admin-section-card :section="section" @click="$emit('selected', section)"/>
+      <admin-section-card :section="section" @click="$emit('selected', section)" @delete="deleteSection"/>
     </div>
     <div v-if="expanded">
       <div id="nested-nodes" v-for="section in section.sections" :key="section.name">
-        <admin-sections-tree :section="section" @selected="$emit('selected', $event)"/>
+        <admin-sections-tree :section="section" @selected="$emit('selected', $event)" @delete="deleteSection"/>
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default defineComponent({
     AdminSectionCard,
   },
 
-  emits: ['selected'],
+  emits: ['selected', 'delete'],
 
   props: {
     section: {
@@ -63,5 +63,11 @@ export default defineComponent({
       expanded: false,
     }
   },
+
+  methods: {
+    deleteSection(section: Section) {
+      this.$emit('delete', section)
+    }
+  }
 })
 </script>
