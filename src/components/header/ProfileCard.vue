@@ -1,10 +1,16 @@
 <template>
-  <div class="profile-card" @click="activate()">
-    <img src="@/assets/ic_profile.svg">
-    <p v-if="profile === null">Войти</p>
-    <p v-if="profile !== null">{{profile.email}}</p>
-    <div v-if="profile !== null" class="dropdown">
-      <profile-dropdown @logout="performLogout"/>
+  <div class="profile-card">
+    <modal-window v-if="passwordUpdateVisible" @close="stopChangePassword">
+      <password-update-window @close="stopChangePassword"/>
+    </modal-window>
+
+    <div class="content" @click="activate()">
+      <img src="@/assets/ic_profile.svg">
+      <p v-if="profile === null">Войти</p>
+      <p v-if="profile !== null">{{profile.email}}</p>
+      <div v-if="profile !== null" class="dropdown">
+        <profile-dropdown @logout="performLogout" @change-password="performChangePassword"/>
+      </div>
     </div>
   </div>
 </template>
@@ -12,6 +18,10 @@
 
 <style scoped>
 .profile-card {
+  height: 100%;
+}
+
+.profile-card > .content {
   height: 100%;
 
   cursor: pointer;
@@ -28,20 +38,20 @@
   flex-wrap: wrap;
 }
 
-.profile-card:hover {
+.profile-card > .content:hover {
   color: lightgray;
 }
 
-.profile-card > img {
+.profile-card > .content > img {
   width: 20px;
   height: 20px;
 }
 
-.profile-card > p {
+.profile-card > .content > p {
   padding-left: 12px;
 }
 
-.profile-card:hover > .dropdown {
+.profile-card > .content:hover > .dropdown {
   display: inline;
 }
 
@@ -71,11 +81,13 @@ import { defineComponent } from 'vue'
 import AuthRepository from '@/repositories/authRepository'
 import ProfileRepository from '@/repositories/profileRepository'
 import ProfileDropdown from './ProfileDropdown.vue'
+import ModalWindow from '@/components/windows/ModalWindow.vue'
+import PasswordUpdateWindow from '@/components/windows/PasswordUpdateWindow.vue'
 
 export default defineComponent({
   name: 'profile-card',
 
-  components: { ProfileDropdown },
+  components: { ProfileDropdown, ModalWindow, PasswordUpdateWindow },
 
   emits: ['authorize'],
 
@@ -89,6 +101,7 @@ export default defineComponent({
   data() {
     return {
       profile: null as Profile|null,
+      passwordUpdateVisible: false,
     }
   },
 
@@ -108,6 +121,13 @@ export default defineComponent({
       this.authRepository.logout()
       this.$router.push('/')
       this.$router.go(0)
+    },
+
+    performChangePassword() {
+      this.passwordUpdateVisible = true
+    },
+    stopChangePassword() {
+      this.passwordUpdateVisible = false
     },
   },
 })

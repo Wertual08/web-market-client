@@ -58,7 +58,7 @@ export const store = createStore<State>({
   plugins: [
     createPersistedState({
       paths: ['auth', 'cart', 'cartAmount'],
-      storage: window.sessionStorage
+      storage: window.localStorage
     }),
     createLogger()
   ],

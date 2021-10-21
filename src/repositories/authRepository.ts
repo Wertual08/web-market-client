@@ -57,6 +57,13 @@ export default class AuthRepository extends AbstractRepository<Auth> {
     return this.store.state.auth
   }
 
+  public async password(currentPassword: string, newPassword: string): Promise<void> {
+    const response = await this.axios.post('password', {
+      CurrentPassword: currentPassword,
+      newPassword: newPassword,
+    })
+  }
+
   public async logout(): Promise<void> {
     this.store.commit('auth', null)
     this.store.commit('profile', null)
