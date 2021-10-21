@@ -70,10 +70,11 @@
 </style>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import CartRepository from '@/repositories/cartRepository'
 
-export default {
+export default defineComponent({
   name: 'cart-bar',
 
   components: {
@@ -96,5 +97,5 @@ export default {
       return this.cartRepository.getTotalPrice() ?? 0
     }
   }
-}
+})
 </script>
