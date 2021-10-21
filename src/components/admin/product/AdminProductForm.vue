@@ -167,6 +167,12 @@ img {
   margin-top: 16px;
   background: red;
 }
+.admin-product-form > .properties > .actions > .delete:hover {
+  background: #DD0000;
+}
+.admin-product-form > .properties > .actions > .delete:active {
+  background: #AA0000;
+}
 </style>
 
 

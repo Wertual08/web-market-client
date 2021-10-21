@@ -59,14 +59,14 @@
   border-width: 1px;
 }
 
-.vertical-box {
+.admin-product-card > .vertical-box {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.horizontal-box {
+.admin-product-card > .vertical-box > .horizontal-box {
   width: 100%;
   height: 100%;
   display: flex;
@@ -75,7 +75,7 @@
   overflow: hidden;
 }
 
-.name {
+.admin-product-card > .vertical-box > .name {
   width: 100%;
   margin: 0px;
 
@@ -89,11 +89,11 @@
   cursor: pointer;
 }
 
-.name:hover {
+.admin-product-card > .vertical-box > .name:hover {
   color: lightgray;
 }
 
-.specifications-box {
+.admin-product-card > .vertical-box > .horizontal-box > .specifications-box {
   width: 800px;
   height: 100%;
   display: flex;
@@ -106,7 +106,7 @@
   overflow: hidden;
 }
 
-.description {
+.admin-product-card > .vertical-box > .horizontal-box > .description {
   vertical-align: top;
   text-align: left;
   margin: 0px;
@@ -114,12 +114,12 @@
   height: 100%;
 }
 
-.sections-box {
+.admin-product-card > .vertical-box > .horizontal-box > .sections-box {
   display: flex;
   flex-wrap: wrap;
 }
 
-.section-label {
+.admin-product-card > .vertical-box > .horizontal-box > .section-label {
   background: #00174A;
   border-radius: 5px;
   padding: 0px 4px;
@@ -129,10 +129,17 @@
   font-weight: normal;
 }
 
-.delete-button {
+.admin-product-card > .vertical-box > .horizontal-box > .delete-button {
   width: 64pt;
   height: 32px;
   margin: 16px;
+  background: red;
+}
+.admin-product-card > .vertical-box > .horizontal-box > .delete-button:hover {
+  background: #DD0000;
+}
+.admin-product-card > .vertical-box > .horizontal-box > .delete-button:active {
+  background: #AA0000;
 }
 </style>
 

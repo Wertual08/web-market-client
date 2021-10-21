@@ -1,11 +1,17 @@
 <template>
+  <modal-window v-if="pendingDelete" @close="onDeleteReject">
+    <delete-warning-window @submit="onDeleteSubmit" @reject="onDeleteReject">
+      Вы уверены, что хотите удалить файл "{{pendingDelete.id}}: {{ pendingDelete.identifier }}"?
+      Это действие необратимо.
+    </delete-warning-window>
+  </modal-window>
   <div class="admin-records-view">
     <div class="record-card" v-for="record in records" :key="record.id">
       <div class="picture-box">
         <img class="picture" :src="record.url"/>
       </div>
-      <p class="info">Создано: {{formatDate(record)}}</p><br>
-      <action-button>Удалить</action-button>
+      <p class="info">Создан: {{formatDate(record)}}</p><br>
+      <action-button class="delete-button" @click="onDelete(record)">Удалить</action-button>
     </div>
   </div>
 </template>
@@ -31,11 +37,17 @@
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .admin-records-view > .record-card > .picture-box {
   width: 256px;
   height: 256px;
+
+  padding: 8px;
+
+  box-sizing: border-box;
 
   display: flex;
   justify-content: center;
@@ -48,6 +60,30 @@
 
   border-radius: 10px;
 }
+
+.admin-records-view > .record-card > .info {
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.admin-records-view > .record-card > .delete-button {
+  width: 80px;
+  height: 32px;
+
+  padding: 0;
+  margin: 16px;
+
+  background: red;
+}
+.admin-records-view > .record-card > .delete-button:hover {
+  background: #DD0000;
+}
+.admin-records-view > .record-card > .delete-button:active {
+  background: #AA0000;
+}
 </style>
 
 
@@ -57,9 +93,11 @@ import RecordsRepository from '@/repositories/recordsRepository'
 import Record from '@/models/record'
 import { dateToString } from '@/services/datetime'
 import ActionButton from '@/components/common/ActionButton.vue'
+import ModalWindow from '@/components/windows/ModalWindow.vue'
+import DeleteWarningWindow from '@/components/windows/DeleteWarningWindow.vue'
 
 export default defineComponent({
-  components: { ActionButton },
+  components: { ActionButton, ModalWindow, DeleteWarningWindow },
   name: 'admin-records-view',
   
   setup() {

@@ -54,7 +54,7 @@ export default class RecordsRepository extends AbstractRepository<Record> {
   }
 
   public async deleteRecord(id: number): Promise<Record> {
-    let response = await this.axios.post(id.toString())
+    let response = await this.axios.delete(id.toString())
     let data = response.data
     return this.map(data)
   }

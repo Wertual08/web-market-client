@@ -9,8 +9,8 @@
       <p class="description">{{ product.description }}</p>
     </div>
     <div class="interaction">
-      <p class="price-full" v-if="product.oldPrice !== null">{{ product.oldPrice }}₽</p>
-      <p class="price-current">{{ product.price }}₽</p>
+      <p class="price-full" v-if="product.oldPrice !== null">{{ product.oldPrice.toFixed(2) }}₽</p>
+      <p class="price-current">{{ product.price.toFixed(2) }}₽</p>
       <slot/>
     </div>
   </div>
