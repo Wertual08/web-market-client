@@ -77,4 +77,20 @@ export default class CartRepository extends AbstractRepository<CartProduct> {
       return this.store.state.cartAmount
     }
   }
+
+  public getTotalPrice() {
+    if (this.authorized()) {
+      // API
+    } else {
+      return this.store.state.totalPrice
+    }
+  }
+
+  public emptyCart() {
+    if (this.authorized()) {
+      // API
+    } else {
+      this.store.commit('emptyCart')
+    }
+  }
 }
