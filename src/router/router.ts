@@ -10,6 +10,7 @@ import AdminProductsView from '@/views/AdminProductsView.vue'
 import AdminProductView from '@/views/AdminProductView.vue'
 import AdminSectionsView from '@/views/AdminSectionsView.vue'
 import AdminRecordsView from '@/views/AdminRecordsView.vue'
+import NewOrderView from '@/views/NewOrderView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -33,6 +34,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/cart',
     component: CartView,
+  },
+  {
+    path: '/order/new',
+    component: NewOrderView,
   },
   {
     path: '/admin',
