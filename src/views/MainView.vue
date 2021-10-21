@@ -51,9 +51,9 @@
   color: #ffffff;
   position: relative;
   top: 33px;
-  right: 60px;
+  right: 20%;
   padding: 18px 16px;
-  width: 370px;
+  width: 120%;
   height: 48px;
   text-align: center;
   box-sizing: border-box;
@@ -106,10 +106,11 @@
   width: 100%;
   background-color: rgba(25, 47, 96, 1);
   letter-spacing: 0em;
-  text-align: center;
+  text-align: left;
+  left: 3%;
   position: relative;
   height: 200px;
-  margin-top: 64px;
+  margin-top: 10%;
   font-family: Inter;
   font-style: normal;
   font-weight: bold;

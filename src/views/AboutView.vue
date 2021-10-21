@@ -68,13 +68,13 @@
   color: #ffffff;
   position: relative;
   top: 33px;
-  right: 60px;
+  right: 20%;
   padding: 18px 16px;
-  width: 370px;
+  width: 120%;
   height: 48px;
   text-align: center;
-   box-sizing: border-box;
-   border: none;
+  box-sizing: border-box;
+  border: none;
 }
 .input {
   text-align: left;
@@ -113,18 +113,24 @@
   background-color: rgba(25, 47, 96, 1);
   width: auto;
 }
+
 .cont2 {
+   padding: 1px;
   color: #5c6175;
+
 }
 .cont {
+  box-sizing: border-box;
+   padding: 1px;
+    position: relative;
+  width: 100%;
   background-color: rgba(25, 47, 96, 1);
   letter-spacing: 0em;
   text-align: left;
+  left: 3%;
   position: relative;
-  left: 100px;
   height: 200px;
-  margin-top: 64px;
-  width: 1080px;
+  margin-top: 10%;
   font-family: Inter;
   font-style: normal;
   font-weight: bold;

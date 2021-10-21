@@ -1,0 +1,3 @@
+<template>
+    Promo start
+</template>
