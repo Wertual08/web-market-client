@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <cart-bar/>
+    <cart-bar @empty-cart="emptyCart"/>
     <cart-product-list :cartProducts="cartProducts" @remove="remove"/>
   </div>
 </template>
@@ -42,7 +42,7 @@ export default defineComponent({
 
   data() {
     return {
-      cartProducts: [] as CartProduct[]
+      cartProducts: [] as CartProduct[],
     }
   },
 
@@ -55,7 +55,12 @@ export default defineComponent({
     remove(cartProd: CartProduct) {
       this.cartRepository.removeProduct(cartProd.product.id)
       this.cartProducts = this.cartProducts.filter(p => p.product.id !== cartProd.product.id)
+    },
+
+    emptyCart() {
+      this.cartRepository.emptyCart()
+      this.cartProducts = []
     }
-  }
+  },
 });
 </script>

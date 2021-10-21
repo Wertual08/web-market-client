@@ -10,6 +10,7 @@ export class State {
   public profile: Profile|null = null
   public cart: CartProduct[] = []
   public cartAmount: number = 0
+  public totalPrice: number = 0
 }
 
 export const store = createStore<State>({
@@ -31,16 +32,30 @@ export const store = createStore<State>({
       }
       if (isInCart != -1) {
         state.cart[isInCart].amount += cartProd.amount
+        state.totalPrice += cartProd.amount * cartProd.product.price
       }
       else {
         state.cart.push(cartProd)
+        state.totalPrice += cartProd.amount * cartProd.product.price
       }
       state.cartAmount = state.cart.length
     },
     cartRemove(state, id: number) {
+      let removingId = -1;
+      for (let i = 0; i < state.cart.length; i++) {
+        if (id == state.cart[i].product.id) {
+          removingId = i;
+        }
+      }
+      state.totalPrice -= state.cart[removingId].amount * state.cart[removingId].product.price
       state.cart = state.cart.filter(p => p.product.id !== id)
       state.cartAmount = state.cart.length
     },
+    emptyCart(state) {
+      state.cart = []
+      state.cartAmount = 0,
+      state.totalPrice = 0
+    }
   },
 
   getters: {

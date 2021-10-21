@@ -1,11 +1,14 @@
 <template>
   <div class="cartBar">
     <div class="content">
-      <div class="cartInfo">
-      В корзине X товаров на сумму Y
+      <div class="cartInfo" v-if="cartAmount > 0">
+        В корзине видов товаров: {{ cartAmount }}, стоимость заказа: {{ cartTotalPrice.toFixed(2) }}₽
+      </div>
+      <div class="cartInfo" v-else>
+        Корзина пуста
       </div>
       <div class="cartTools">
-        <action-button class="tool">Очистить корзину</action-button>
+        <action-button class="tool" @click="$emit('empty-cart')">Очистить корзину</action-button>
         <action-button class="tool">Оформить заказ</action-button>
       </div>
     </div>
@@ -66,14 +69,33 @@
   }
 </style>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import ActionButton from '@/components/common/ActionButton.vue'
+import CartRepository from '@/repositories/cartRepository'
 
-export default {
+export default defineComponent({
   name: 'cart-bar',
 
   components: {
     ActionButton
+  },
+
+  emits: ['empty-cart'],
+
+  setup() {
+    return {
+      cartRepository: new CartRepository()
+    }
+  },
+
+  computed: {
+    cartAmount(): number {
+      return this.cartRepository.getAmount() ?? 0
+    },
+    cartTotalPrice(): number {
+      return this.cartRepository.getTotalPrice() ?? 0
+    }
   }
-}
+})
 </script>

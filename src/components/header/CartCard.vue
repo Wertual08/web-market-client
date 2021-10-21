@@ -77,11 +77,6 @@ export default defineComponent({
     }
   },
 
-  data() {
-    return {
-    }
-  }, 
-
   computed: {
     cartAmount(): number {
       return this.cartRepository.getAmount() ?? 0
