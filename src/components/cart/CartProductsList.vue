@@ -1,7 +1,11 @@
 <template>
   <div class="products-list">
     <div class="product-container" v-for="cartProduct in cartProducts" :key="cartProduct.product.id">
-      <cart-product-card :to="`/catalog/${cartProduct.product.id}`" :cartProduct="cartProduct" @remove="remove(cartProduct)"/>
+      <cart-product-card
+        :to="`/catalog/${cartProduct.product.id}`"
+        :cartProduct="cartProduct"
+        @remove="$emit('remove', cartProduct)"
+      />
     </div>
   </div>
 </template>
@@ -29,10 +33,9 @@
 </style>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import CartProductCard from '@/components/cart/CartProductCard.vue'
 import QuantityInput from '@/components/common/QuantityInput.vue'
-import CartRepository from '@/repositories/cartRepository'
 import CartProduct from '@/models/cartProduct'
 
 export default defineComponent({
@@ -43,28 +46,13 @@ export default defineComponent({
     QuantityInput
   },
 
-  setup() {
-    return {
-      cartRepository: new CartRepository()
+  emits: ['remove'],
+
+  props: {
+    cartProducts: {
+      type: Object as PropType<CartProduct[]>,
+      required: true
     }
   },
-
-  data() {
-    return {
-      cartProducts: [] as CartProduct[]
-    }
-  },
-
-  mounted() {
-    this.cartRepository.getCart()
-      .then(cartProducts => this.cartProducts = cartProducts)
-  },
-
-  methods: {
-    remove(cartProd: CartProduct) {
-      this.cartRepository.removeProduct(cartProd.product.id)
-      this.cartProducts = this.cartProducts.filter(p => p.product.id !== cartProd.product.id)
-    }
-  }
 });
 </script>

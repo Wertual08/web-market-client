@@ -39,16 +39,18 @@
 
 <script lang="ts">
 import CartProduct from '@/models/cartProduct'
-import LiteProduct from '@/models/liteProduct'
 import { defineComponent, PropType } from 'vue'
 import ActionButton from '../common/ActionButton.vue'
 import ProductCard from '../common/ProductCard.vue'
 
 export default defineComponent({
-  components: { ProductCard, ActionButton },
   name: 'cart-product-card',
 
+  components: { ProductCard, ActionButton },
+
   emits: ['remove'],
+
+  optionalProps: true,
 
   props: {
     cartProduct: {
