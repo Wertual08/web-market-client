@@ -83,6 +83,8 @@
   border: none;
 }
 .phoneback {
+  position: relative;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-content: center;
@@ -93,17 +95,21 @@
 }
 
 .cont2 {
+   padding: 1px;
   color: #5c6175;
+
 }
 .cont {
+  box-sizing: border-box;
+   padding: 1px;
+    position: relative;
+  width: 100%;
   background-color: rgba(25, 47, 96, 1);
   letter-spacing: 0em;
-  text-align: left;
+  text-align: center;
   position: relative;
-  left: 100px;
   height: 200px;
   margin-top: 64px;
-  width: 1080px;
   font-family: Inter;
   font-style: normal;
   font-weight: bold;

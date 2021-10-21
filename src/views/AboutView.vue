@@ -121,7 +121,7 @@
   letter-spacing: 0em;
   text-align: left;
   position: relative;
-  left: 160px;
+  left: 100px;
   height: 200px;
   margin-top: 64px;
   width: 1080px;
