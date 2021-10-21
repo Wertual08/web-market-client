@@ -1,5 +1,5 @@
 <template>
-  <div id="box" @click="activate()">
+  <div class="profile-card" @click="activate()">
     <img src="@/assets/ic_profile.svg">
     <p v-if="profile === null">Войти</p>
     <p v-if="profile !== null">{{profile.email}}</p>
@@ -11,7 +11,7 @@
 
 
 <style scoped>
-#box {
+.profile-card {
   height: 100%;
 
   cursor: pointer;
@@ -28,26 +28,24 @@
   flex-wrap: wrap;
 }
 
-#box:hover {
+.profile-card:hover {
   color: lightgray;
 }
 
-#box > img {
+.profile-card > img {
   width: 20px;
   height: 20px;
 }
 
-#box > p {
+.profile-card > p {
   padding-left: 12px;
 }
 
-#box:hover > .dropdown {
+.profile-card:hover > .dropdown {
   display: inline;
 }
 
 .dropdown {
-  width: 200px;
-  height: 300px;
 
   position: absolute;
   top: 100%;
@@ -60,6 +58,8 @@
   box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.6);
 
   display: none;
+
+  cursor: default;
 }
 
 </style>

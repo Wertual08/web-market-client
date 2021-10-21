@@ -29,7 +29,8 @@
   width: 20%;
   height: 100%;
 
-  margin: 5px;
+  margin: 8px;
+  box-sizing: border-box;
 
   display: flex;
   justify-content: center;
@@ -39,6 +40,10 @@
 .product-card > .picture-box > .picture {
   max-width: 100%;
   max-height: 100%;
+  border-radius: 8px;
+
+  pointer-events: none;
+  user-select: none;
 }
 
 .product-card > .fields {

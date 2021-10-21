@@ -4,7 +4,13 @@
       <slot/>
     </div> 
     <div class="controls">
-      <button class="selector" :style="selectorStyle(i - 1)" v-for="i in count" :key="i" @click="current=i - 1"/>
+      <div class="turners">
+        <button class="turner" @click="turnLeft">&lt;</button>
+        <button class="turner" @click="turnRight">&gt;</button>
+      </div>
+      <div class="selectors">
+        <button class="selector" :style="selectorStyle(i - 1)" v-for="i in count" :key="i" @click="current=i - 1"/>
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +45,7 @@
   top: 0;
 
   display: flex;
+  flex-direction: column;
   align-content: center;
   justify-content: center;
   
@@ -48,24 +55,60 @@
   pointer-events: none;
 }
 
-.slider > .controls > .selector {
-  display: inline-block;
-  align-self: flex-end;
+.slider > .controls > .turners {
+  display: flex;
+  justify-content: space-between;
+}
+.slider > .controls > .turners > .turner {
+  width: 48px;
+  height: 64px;
+  margin: 16px;
 
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(88, 88, 88, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+
+  cursor: pointer;
+  pointer-events: auto;
+}
+.slider > .controls > .turners > .turner:hover {
+  background: rgba(88, 88, 88, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+.slider > .controls > .turners > .turner:active {
+  background: rgba(88, 88, 88, 0.4);
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.slider > .controls > .selectors  {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider > .controls > .selectors > .selector {
   width: 8px;
   height: 8px;
 
-  cursor: pointer;
-
   margin: 1px;
-  margin-bottom: 10px;
   
   background: #ffffffaa;
   
   border-color: #00000088;
   border-width: 1px;
   border-radius: 3px;
-  
+
+  cursor: pointer;
   pointer-events: auto;
 }
 </style>
@@ -101,6 +144,19 @@ export default defineComponent({
   },
 
   methods: {
+    turnLeft() {
+      this.current--
+      if (this.current < 0) {
+        this.current = this.count - 1
+      }
+    },
+    turnRight() {
+      this.current++
+      if (this.current >= this.count) {
+        this.current = 0
+      }
+    },
+
     selectorStyle(i: number): object {
       return { 
         width: `${i == this.current ? 14 : 8}pt`, 

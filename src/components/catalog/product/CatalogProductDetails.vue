@@ -12,8 +12,8 @@
     <div class="right">
       <p class="name">{{ product.name }}</p>
       <div class="bottom">
-        <p class="old-price">{{ product.oldPrice }}</p>
-        <p class="price">{{ product.price }}</p>
+        <p v-if="product.oldPrice" class="old-price">{{ product.oldPrice.toFixed(2) }}₽</p>
+        <p class="price">{{ product.price.toFixed(2) }}₽</p>
         <div class="controls">
           <quantity-input class="quantity" v-model="selectedQuantity" :min="1"/>
           <action-button class="submit" @click="addCart">Добавить в корзину</action-button>
@@ -50,6 +50,9 @@
   width: 100%;
   height: 100%;
 
+  padding: 8px;
+  box-sizing: border-box;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,6 +61,11 @@
 .slide > .image {
   max-width: 100%;
   max-height: 100%;
+
+  border-radius: 8px;
+
+  pointer-events: none;
+  user-select: none;
 }
 
 .catalog-product-details > .left > .id {
