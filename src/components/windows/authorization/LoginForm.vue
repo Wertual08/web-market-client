@@ -74,7 +74,7 @@
 import { defineComponent } from 'vue'
 import AuthRepository from '@/repositories/authRepository'
 import ProfileRepository from '@/repositories/profileRepository'
-import PasswordInput from './PasswordInput.vue'
+import PasswordInput from '../../common/PasswordInput.vue'
 import TextInput from '@/components/common/TextInput.vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import UnouthorizedError from '@/models/errors/unouthorizedError'

@@ -79,7 +79,7 @@
 
 
 <script lang="ts">
-import PasswordInput from './PasswordInput.vue'
+import PasswordInput from '../../common/PasswordInput.vue'
 import TextInput from '@/components/common/TextInput.vue'
 import { defineComponent } from 'vue'
 import ActionButton from '@/components/common/ActionButton.vue'

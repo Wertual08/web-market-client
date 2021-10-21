@@ -1,7 +1,7 @@
 <template>
   <div class="profile-dropdown">
     <p class="navigator">Мои заказы</p>
-    <p class="navigator">Изменить пароль</p>
+    <p class="navigator" @click="$emit('change-password')">Изменить пароль</p>
     <action-button class="logout" @click="$emit('logout')">Выйти</action-button>
   </div>
 </template>
@@ -47,10 +47,16 @@ export default defineComponent({
   components: { ActionButton },
   name: 'profile-dropdown',
 
-  emits: ['logout'],
+  emits: ['logout', 'change-password'],
 
   setup() {
         
   },
+
+  data() {
+    return {
+      
+    }
+  }
 })
 </script>
