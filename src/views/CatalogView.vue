@@ -7,7 +7,6 @@
 
 <style scoped>
 .catalog {
-  background: #192F60;
   height: 100%;
 
   display: flex;

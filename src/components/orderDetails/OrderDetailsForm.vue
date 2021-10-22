@@ -1,17 +1,18 @@
 <template>
   <div class="order-details-form">
     <label class="field-label">E-Mail</label>
-    <text-input class="field"/>
+    <text-input class="field" type="email" v-model="order.email"/>
     <label class="field-label">Телефон</label>
-    <text-input class="field"/>
+    <text-input class="field" v-model="order.phone"/>
     <label class="field-label">Имя</label>
-    <text-input class="field"/>
+    <text-input class="field" v-model="order.name"/>
     <label class="field-label">Фамилия</label>
-    <text-input class="field"/>
+    <text-input class="field" v-model="order.surname"/>
     <label class="field-label">Адрес</label>
-    <text-input class="field"/>
+    <text-input class="field" v-model="order.address"/>
     <label class="field-label">Коментарий</label>
-    <textarea class="field large-field"/>
+    <textarea class="field large-field" v-model="order.description"/>
+    <action-button class="submit-button">Оформить заказ</action-button>
   </div>
 </template>
 
@@ -44,6 +45,8 @@
 }
 
 .order-details-form > .large-field {
+  padding: 8px 16px;
+  
   resize: vertical;
 
   color: white;
@@ -61,6 +64,18 @@
   border: none;
   outline: none;
 }
+
+.order-details-form > .submit-button {
+  width: 500px;
+  height: 48px;
+
+  margin: 8px;
+  
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 160%;
+}
 </style>
 
 
@@ -68,11 +83,12 @@
 import { defineComponent, PropType } from 'vue'
 import TextInput from '@/components/common/TextInput.vue'
 import Order from '@/models/order'
+import ActionButton from '../common/ActionButton.vue'
 
 export default defineComponent({
   name: 'order-details-form',
 
-  components: { TextInput },
+  components: { TextInput, ActionButton },
 
   props: {
     order: {
@@ -83,6 +99,12 @@ export default defineComponent({
 
   setup() {
         
+  },
+  
+  data() {
+    return {
+      valid: false,
+    }
   },
 })
 </script>

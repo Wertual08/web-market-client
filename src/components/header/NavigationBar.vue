@@ -27,7 +27,7 @@
   top: 0px;
   z-index: 100;
 
-  height: 75;
+  height: 75px;
   background: #192F60;
 
   font-family: Inter;

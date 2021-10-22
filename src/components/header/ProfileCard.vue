@@ -59,7 +59,6 @@
   position: absolute;
   top: 100%;
 
-  color: black;
   background: #192F60;
 
   border-radius: 10px;

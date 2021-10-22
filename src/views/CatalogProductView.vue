@@ -19,7 +19,6 @@
 
 <style scoped>
 .catalog-product-view {
-  background: #192F60;
 
   display: flex;
   justify-content: center;

@@ -1,20 +1,21 @@
 <template>
-  <div id="app">
-    <app-header/>
+  <app-header/>
+  <div id="content">
     <router-view/>
-    <app-footer/>
   </div>
+  <app-footer/>
 </template>
 
 
 <style>
 @import url('https://rsms.me/inter/inter.css');
 
-/* html {
+html {
   height: 100%;
-} */
+} 
 
 body {
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -22,16 +23,22 @@ body {
 
 #app {
   width: 100%;
-  max-height: 100%;
+  height: 100%;
+
+  background: lightseagreen;
 
   font-family: Inter;
   text-align: center;
 
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
+  overflow: auto;
 }
 
+#content {
+  width: 100%;
+  min-height: calc(100% - 425px);
+
+  background: #192F60;
+}
 </style>
 
 

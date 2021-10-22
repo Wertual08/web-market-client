@@ -1,14 +1,12 @@
 <template>
   <div class="new-order-view">
-    <order-details-form class="content"/>
+    <order-details-form class="content" :order="order"/>
   </div>
 </template>
 
 
 <style scoped>
 .new-order-view {
-  background: #192F60;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +28,7 @@
 
 <script lang="ts">
 import OrderDetailsForm from '@/components/orderDetails/OrderDetailsForm.vue'
+import Order from '@/models/order'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -39,5 +38,11 @@ export default defineComponent({
   setup() {
         
   },
+
+  data() {
+    return {
+      order: new Order(),
+    }
+  }
 })
 </script>
