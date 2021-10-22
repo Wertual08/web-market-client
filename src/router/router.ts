@@ -11,11 +11,16 @@ import AdminProductView from '@/views/AdminProductView.vue'
 import AdminSectionsView from '@/views/AdminSectionsView.vue'
 import AdminRecordsView from '@/views/AdminRecordsView.vue'
 import NewOrderView from '@/views/NewOrderView.vue'
+import PromoView from '@/views/PromoView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: MainView
+  },
+  {
+    path: '/promo',
+    component: PromoView
   },
   {
     path: '/about',
