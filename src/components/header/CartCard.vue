@@ -3,9 +3,7 @@
     <div class="box">
       <img src="@/assets/ic_cart.svg">
       <p>Корзина</p>
-      <div class="count">
-        {{ cartAmount }}
-      </div>
+      <span class="count">{{ cartAmount }}</span>
     </div>
   </router-link>
 </template>
@@ -45,11 +43,11 @@
 }
 
 .box > .count {
-  width: 16px;
-  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
 
   background: #E04040;
-  border-radius: 50%;
+  border-radius: 8px;
 
   font-style: normal;
   font-weight: 600;

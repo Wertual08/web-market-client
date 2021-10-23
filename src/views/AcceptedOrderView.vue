@@ -1,16 +1,17 @@
 <template>
-  <div class="new-order-view">
-    <p class="title">Оформление заказа</p>
-    <div class="content">
-      <order-details-form class="details" :order="order" @submit="submitOrder"/>
-      <order-products-list class="products" :products="products" :amounts="amounts"/>
-    </div>
+  <div class="accepted-order-view">
+    <p class="title">Поздравляем, ваш заказ принят!</p>
+    <p class="message">
+      В ближайшее время на указанный вами адрес электронной почты 
+      будет доставлено письмо с деталями вашего заказа.
+    </p>
+    <router-link class="return" to="/">Вернуться на главную</router-link>
   </div>
 </template>
 
 
 <style scoped>
-.new-order-view {
+.accepted-order-view {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,13 +25,11 @@
   color: white;
 }
 
-.new-order-view > .title {
+.accepted-order-view > .title {
   padding: 0px;
   margin: 24px 0px;
 
   color: #E04040;
-
-  text-decoration: none;
 
   font-style: normal;
   font-weight: bold;
@@ -41,18 +40,35 @@
   align-items: center;
 }
 
-.new-order-view > .content {
-  width: 90%;
+.accepted-order-view > .message {
+  color: white;
 
-  display: flex;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 120%;
 }
 
-/* .new-order-view > .content > .details {
-  width: 100%;
-} */
+.accepted-order-view > .return {
+  text-decoration: none;
 
-.new-order-view > .content > .products {
-  width: 100%;
+  color: lightgray;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+.accepted-order-view > .return:hover {
+  text-decoration: none;
+
+  color: gray;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 120%;
 }
 </style>
 
@@ -70,7 +86,7 @@ import OrdersRepository from '@/repositories/ordersRepository'
 
 export default defineComponent({
   components: { OrderDetailsForm, OrderProductsList },
-  name: 'new-order-view',
+  name: 'accepted-order-view',
 
   setup() {
     return {
@@ -119,8 +135,7 @@ export default defineComponent({
     submitOrder() {
       this.ordersRepository.createOrder(this.order, this.amounts)
         .then(model => {
-          this.cartRepository.clearCart()
-            .then(() => this.$router.push('/order/accepted'))
+          console.log(model)
         })
     },
   }

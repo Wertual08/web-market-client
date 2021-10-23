@@ -1,29 +1,25 @@
 <template>
-  <div class="cartBar">
+  <div class="cart-bar">
     <div class="content">
-      <div class="cartInfo" v-if="cartAmount > 0">
-        В корзине видов товаров: {{ cartAmount }}, стоимость заказа: {{ cartTotalPrice.toFixed(2) }}₽
-      </div>
+      <p class="cartInfo" v-if="totalAmount > 0">
+        Стоимость заказа: {{ totalPrice.toFixed(2) }}₽
+      </p>
       <div class="cartInfo" v-else>
         Корзина пуста
       </div>
       <div class="cartTools">
-        <action-button class="tool" @click="$emit('empty-cart')">Очистить корзину</action-button>
-        <action-button class="tool">Оформить заказ</action-button>
+        <action-button class="tool" :disabled="totalAmount == 0" @click="$emit('empty-cart')">Очистить корзину</action-button>
+        <action-button class="tool" :disabled="totalAmount == 0" @click="$emit('submit-cart')">Оформить заказ</action-button>
       </div>
     </div>
   </div>
 </template>
 
 <style>
-  .cartBar {
+  .cart-bar {
     width: 100%;
     height: 75px;
-    background-color: #355396;
-    
-    position: sticky;
-    top: 75px;
-    z-index: 100;
+    background-color: #192F60;
 
     color: white;
     font-family: Inter;
@@ -72,7 +68,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ActionButton from '@/components/common/ActionButton.vue'
-import CartRepository from '@/repositories/cartRepository'
 
 export default defineComponent({
   name: 'cart-bar',
@@ -81,21 +76,17 @@ export default defineComponent({
     ActionButton
   },
 
-  emits: ['empty-cart'],
+  emits: ['empty-cart', 'submit-cart'],
 
-  setup() {
-    return {
-      cartRepository: new CartRepository()
+  props: {
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
+    totalAmount: {
+      type: Number,
+      required: true,
     }
   },
-
-  computed: {
-    cartAmount(): number {
-      return this.cartRepository.getAmount() ?? 0
-    },
-    cartTotalPrice(): number {
-      return this.cartRepository.getTotalPrice() ?? 0
-    }
-  }
 })
 </script>

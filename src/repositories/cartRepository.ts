@@ -8,7 +8,7 @@ export default class CartRepository extends AbstractRepository<CartProduct> {
   protected map(item: any): CartProduct {
     const model = new CartProduct()
     model.amount = item.Amount
-    model.product = item.Product
+    model.productId = item.ProductId
     return model
   }
 
@@ -20,77 +20,70 @@ export default class CartRepository extends AbstractRepository<CartProduct> {
     this.liteProductsRepository = new LiteProductsRepository()
   }
 
-  public async getCartFromAPI(): Promise<CartProduct[]> {
-    let responese = await this.axios.get('', {
-      params: {
-        page: 0,
-      }
-    })
-    let data = responese.data;
-
-    let cartProducts: CartProduct[] = []
-    for (let i = 0; i < data.length; i++) {
-      cartProducts.push(this.map(data[i]))
-    }
-
-    console.log(cartProducts)
-    return cartProducts
-  }
-
-  public async getCart(): Promise<CartProduct[]> {
-    let cartProducts: CartProduct[] = []
+  public async initCart(): Promise<void> {
     if (this.authorized()) {
-      // грузим с API
-      return this.getCartFromAPI()
-    } else {
-      cartProducts = this.store.state.cart
-      return cartProducts
-    }
-  }
+      let cart = this.store.state.cart
 
-  public addCart(id: number, amount: number) {
-    this.liteProductsRepository.getLiteProduct(id)
-    .then(model => {
-      if (this.authorized()) {
-        // API
+      if (cart.length == 0) {
+        let responese = await this.axios.get('')
+        let data = responese.data;
+    
+        let models: CartProduct[] = []
+        for (let i = 0; i < data.length; i++) {
+          models.push(this.map(data[i]))
+        }
+        this.store.commit('cart', models)
       } else {
-        let cartProd = new CartProduct()
-        cartProd.amount = amount
-        cartProd.product = model
-        this.store.commit('cartAdd', cartProd)
+        let productsObject: any = {}
+        cart.forEach(model => productsObject[model.productId] = model.amount)
+        await this.axios.put('', {
+          Products: productsObject,
+        })
       }
-    })
-  }
-
-  public removeProduct(id: number) {
-    if (this.authorized()) {
-      // API
-    } else {
-      this.store.commit('cartRemove', id)
     }
   }
 
-  public getAmount() {
-    if (this.authorized()) {
-      // API
-    } else {
-      return this.store.state.cartAmount
-    }
+  public getCart(): CartProduct[] {
+    return this.store.state.cart
   }
 
-  public getTotalPrice() {
+  public async addCart(id: number, amount: number) {
+    let model = new CartProduct()
+    model.amount = amount + (this.store.state.cart.find(item => item.productId == id)?.amount ?? 0)
+    model.productId = id
+    
     if (this.authorized()) {
-      // API
-    } else {
-      return this.store.state.totalPrice
-    }
+      await this.axios.post('', {
+        ProductId: model.productId,
+        Amount: model.amount,
+      })
+    } 
+    this.store.commit('cartAdd', model)
   }
 
-  public emptyCart() {
+  public async removeProduct(id: number) {
     if (this.authorized()) {
-      // API
-    } else {
-      this.store.commit('emptyCart')
+      await this.axios.delete(id.toString())
+    } 
+    
+    this.store.commit('cartRemove', id)
+  }
+
+  public async clearCart(): Promise<void> {
+    if (this.authorized()) {
+      await this.axios.put('', {
+        Products: {},
+      })
+    } 
+    this.store.commit('cart', [])
+  }
+
+  public getAmount(): number {
+    const cart = this.store.state.cart
+    let amount = 0
+    for (let i = 0; i < cart.length; i++) {
+      amount += cart[i].amount
     }
+    return amount
   }
 }
