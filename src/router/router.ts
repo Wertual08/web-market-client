@@ -12,6 +12,7 @@ import AdminSectionsView from '@/views/AdminSectionsView.vue'
 import AdminRecordsView from '@/views/AdminRecordsView.vue'
 import NewOrderView from '@/views/NewOrderView.vue'
 import AcceptedOrderView from '@/views/AcceptedOrderView.vue'
+import OrdersView from '@/views/OrdersView.vue'
 import PromoView from '@/views/PromoView.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -42,12 +43,16 @@ const routes: RouteRecordRaw[] = [
     component: CartView,
   },
   {
-    path: '/order/new',
+    path: '/orders/new',
     component: NewOrderView,
   },
   {
-    path: '/order/accepted',
+    path: '/orders/accepted',
     component: AcceptedOrderView,
+  },
+  {
+    path: '/orders',
+    component: OrdersView,
   },
   {
     path: '/admin',

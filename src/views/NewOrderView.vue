@@ -120,7 +120,7 @@ export default defineComponent({
       this.ordersRepository.createOrder(this.order, this.amounts)
         .then(model => {
           this.cartRepository.clearCart()
-            .then(() => this.$router.push('/order/accepted'))
+            .then(() => this.$router.push('/orders/accepted'))
         })
     },
   }

@@ -128,7 +128,7 @@ export default defineComponent({
     },
 
     submitCart() {
-      this.$router.push('/order/new')
+      this.$router.push('/orders/new')
     },
   },
 });
