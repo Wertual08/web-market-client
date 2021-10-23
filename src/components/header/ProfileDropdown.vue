@@ -1,6 +1,6 @@
 <template>
   <div class="profile-dropdown">
-    <p class="navigator">Мои заказы</p>
+    <router-link class="navigator" to="/orders">Мои заказы</router-link>
     <p class="navigator" @click="$emit('change-password')">Изменить пароль</p>
     <action-button class="logout" @click="$emit('logout')">Выйти</action-button>
   </div>
@@ -11,7 +11,7 @@
 .profile-dropdown {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -20,11 +20,13 @@
 
   cursor: pointer;
   color: white;
+
+  text-decoration: none;
   
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 160%;
+  line-height: 100%;
 }
 .profile-dropdown > .navigator:hover {
   color: lightgray;

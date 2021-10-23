@@ -6,9 +6,6 @@
         <router-link class="section" to="/">Главная</router-link>
         <router-link class="section" to="/catalog">Каталог товаров</router-link>
         <router-link class="section" to="/">Где купить?</router-link>
-        <div v-if="admin">
-          <router-link class="section admin" to="/admin">Управление</router-link>
-        </div>
       </div>
 
       <div class="interaction">
@@ -80,16 +77,6 @@
   color: #BBBBBB;
 }
 
-.admin {
-  font-size: 20px;
-  color: red;
-}
-
-.admin:hover {
-  font-size: 20px;
-  color: darkred;
-}
-
 .interaction {
   display: flex;
   align-items: center;
@@ -119,12 +106,5 @@ export default defineComponent({
   },
 
   emits: ['authorize'],
-
-  props: {
-    admin: {
-      type: Boolean,
-      default: false,
-    }
-  },
 })
 </script>

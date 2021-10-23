@@ -50,12 +50,7 @@
   padding-left: 12px;
 }
 
-.profile-card > .content:hover > .dropdown {
-  display: inline;
-}
-
-.dropdown {
-
+.profile-card > .content > .dropdown {
   position: absolute;
   top: 100%;
 
@@ -68,6 +63,10 @@
   display: none;
 
   cursor: default;
+}
+
+.profile-card > .content:hover > .dropdown {
+  display: inline;
 }
 
 </style>

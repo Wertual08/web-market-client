@@ -1,6 +1,6 @@
 <template>
-  <info-bar/>
-  <navigation-bar :admin="isAdmin" @authorize="openAuthorization()"/>
+  <info-bar :admin="isAdmin"/>
+  <navigation-bar @authorize="openAuthorization()"/>
   
   <modal-window :visible="authorizationOpened" @close="closeAuthorization()">
     <authorization-window/>

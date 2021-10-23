@@ -6,6 +6,7 @@
         <div class="items">
           <router-link class="item" to="/promo">Акции</router-link>
           <router-link class="item" to="/about">Контакты</router-link>
+          <router-link class="item admin" to="/admin" v-if="admin">Управление</router-link>
         </div>
       </div>
 
@@ -31,14 +32,14 @@
   font-style: normal;
 }
 
-.content {
+.info-bar > .content {
   width: 90%;
   
   display: flex;
   justify-content: space-between;
 }
 
-.info {
+.info-bar > .content > .info {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -52,22 +53,30 @@
   user-select: none;
 }
 
-.info > .items {
+.info-bar > .content > .info > .items {
   padding-left: 30px;
 }
 
-.info > .items > .item {
+.info-bar > .content > .info > .items > .item {
   padding: 0px 12px;
 
   text-decoration: none;
   color: #8C929F;
 }
 
-.info > .items > .item:hover {
+.info-bar > .content > .info > .items > .item:hover {
   padding: 0px 12px;
 
   text-decoration: none;
   color: #DDDDDD;
+}
+
+.info-bar > .content > .info > .items > .admin {
+  color: red;
+}
+
+.info-bar > .content > .info > .items > .admin:hover {
+  color: darkred;
 }
 
 .phone {
@@ -106,6 +115,13 @@ export default defineComponent({
   name: 'tool-bar',
 
   emits: ['register'],
+
+  props: {
+    admin: {
+      type: Boolean,
+      default: false,
+    }
+  },
 
   setup() {
     
