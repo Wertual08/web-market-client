@@ -6,16 +6,7 @@ import qs from 'qs'
 
 export default class LiteProductsRepository extends AbstractRepository<LiteProduct> {
   protected map(item: any): LiteProduct {
-    const model = new LiteProduct()
-    model.id = item.Id
-    model.name = item.Name
-    model.description = item.Description
-    model.oldPrice = item.OldPrice
-    model.price = item.Price
-    model.categories = item.Categories
-    model.sections = item.Sections
-    model.image = item.Image
-    return model
+    return new LiteProduct(item)
   }
 
   public constructor() {

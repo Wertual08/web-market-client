@@ -1,5 +1,7 @@
 import AbstractRepository from './abstractRepository'
 import Order from '@/models/order'
+import OrderProduct from '@/models/orderProduct'
+import LiteProduct from '@/models/liteProduct'
 
 
 
@@ -43,7 +45,7 @@ export default class OrdersRepository extends AbstractRepository<Order> {
     return this.map(response.data)
   }
 
-  public async getOrders(page: number) {
+  public async getOrders(page: number): Promise<Order[]> {
     const response = await this.axios.get('', {
       params: {
         page,
@@ -53,6 +55,30 @@ export default class OrdersRepository extends AbstractRepository<Order> {
     let models: Order[] = []
     response.data.forEach((item: any) => {
       models.push(this.map(item))
+    });
+    return models
+  }
+
+  public async getOrder(id: number): Promise<Order> {
+    const response = await this.axios.get(id.toString())
+    return this.map(response.data)
+  }
+
+  public async cancelOrder(id: number): Promise<Order> {
+    const response = await this.axios.delete(id.toString())
+    return this.map(response.data)
+  }
+
+  public async getOrderProducts(id: number): Promise<OrderProduct[]> {
+    const response = await this.axios.get(`${id}/products`);
+    const data = response.data
+    let models: OrderProduct[] = []
+    data.forEach((item: any) => {
+      models.push({
+        amount: item.Amount,
+        price: item.Price,
+        product: new LiteProduct(item.Product)
+      });
     });
     return models
   }

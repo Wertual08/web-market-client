@@ -2,8 +2,8 @@
   <div class="delete-warning-window">
     <p class="message"><slot/></p>
     <div class="buttons">
-      <action-button class="reject" @click="$emit('reject')">Отмена</action-button>
-      <action-button class="submit" @click="$emit('submit')">Удалить</action-button>
+      <action-button class="reject" @click="$emit('reject')">{{ cancelMessage }}</action-button>
+      <action-button class="submit" @click="$emit('submit')">{{ deleteMessage }}</action-button>
     </div>
   </div>
 </template>
@@ -59,11 +59,19 @@ import ActionButton from '@/components/common/ActionButton.vue'
 export default defineComponent({
   name: 'delete-warning-window',
 
-  components: {
-    ModalWindow,
-    ActionButton,
-  },
+  components: { ModalWindow, ActionButton },
 
   emits: ['submit', 'reject'],
+
+  props: {
+    cancelMessage: {
+      type: String,
+      default: 'Отмена',
+    },
+    deleteMessage: {
+      type: String,
+      default: 'Удалить',
+    }
+  }
 })
 </script>

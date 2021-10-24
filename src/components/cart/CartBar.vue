@@ -4,12 +4,10 @@
       <p class="cartInfo" v-if="totalAmount > 0">
         Стоимость заказа: {{ totalPrice.toFixed(2) }}₽
       </p>
-      <div class="cartInfo" v-else>
-        Корзина пуста
-      </div>
+      <p class="cartInfo" v-else>Корзина пуста</p>
       <div class="cartTools">
-        <action-button class="tool" :disabled="totalAmount == 0" @click="$emit('empty-cart')">Очистить корзину</action-button>
-        <action-button class="tool" :disabled="totalAmount == 0" @click="$emit('submit-cart')">Оформить заказ</action-button>
+        <action-button class="tool" v-if="totalAmount > 0" @click="$emit('empty-cart')">Очистить корзину</action-button>
+        <action-button class="tool" v-if="totalAmount > 0" @click="$emit('submit-cart')">Оформить заказ</action-button>
       </div>
     </div>
   </div>

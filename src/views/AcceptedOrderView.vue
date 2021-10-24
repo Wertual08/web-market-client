@@ -74,8 +74,8 @@
 
 
 <script lang="ts">
-import OrderDetailsForm from '@/components/newOrder/OrderDetailsForm.vue'
-import OrderProductsList from '@/components/newOrder/OrderProductsList.vue'
+import OrderDetailsForm from '@/components/orders/OrderDetailsForm.vue'
+import OrderProductsList from '@/components/orders/OrderProductsList.vue'
 import Order from '@/models/order'
 import { defineComponent } from 'vue'
 import ProfileRepository from '@/repositories/profileRepository'
