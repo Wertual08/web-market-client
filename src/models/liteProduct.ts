@@ -12,6 +12,7 @@ export default class LiteProduct {
   public constructor(item: any = null) {
     if (item !== null) {
       this.id = item.Id
+      this.code = item.Code
       this.name = item.Name
       this.description = item.Description
       this.oldPrice = item.OldPrice
