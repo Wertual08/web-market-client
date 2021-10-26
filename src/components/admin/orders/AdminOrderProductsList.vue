@@ -19,7 +19,7 @@
 }
 
 .admin-order-products-list > .card {
-  width: 90%;
+  width: 100%;
 
   overflow: hidden;
 
@@ -58,7 +58,7 @@
 }
 
 .admin-order-products-list > .total {
-  width: 90%;
+  width: 100%;
   color: white;
 
   margin: 32px 0px;
