@@ -11,6 +11,7 @@ import AdminProductView from '@/views/AdminProductView.vue'
 import AdminSectionsView from '@/views/AdminSectionsView.vue'
 import AdminRecordsView from '@/views/AdminRecordsView.vue'
 import AdminOrderView from '@/views/AdminOrderView.vue'
+import AdminPublicView from '@/views/AdminPublicView.vue'
 import NewOrderView from '@/views/NewOrderView.vue'
 import AcceptedOrderView from '@/views/AcceptedOrderView.vue'
 import OrdersView from '@/views/OrdersView.vue'
@@ -83,7 +84,11 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/admin/orders/:id',
     component: AdminOrderView,
-  }
+  },
+  {
+    path: '/admin/public',
+    component: AdminPublicView,
+  },
 ]
 
 const router = createRouter({

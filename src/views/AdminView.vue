@@ -4,6 +4,8 @@
       <router-link class="item" to="/admin/records">Редактирование файлов</router-link>
       <router-link class="item" to="/admin/sections">Редактирование секций</router-link>
       <router-link class="item" to="/admin/products">Редактирование товаров</router-link>
+      <router-link class="item" to="/admin/products/bulk">Массовое редактирование товаров</router-link>
+      <router-link class="item" to="/admin/public">Редактирование главной страницы</router-link>
     </div>
     <p class="section-title">Список заказов</p>
     <admin-orders-list class="orders" :orders="orders"/>
@@ -39,6 +41,8 @@
 }
 
 .admin-view > .navigator > .item {
+  padding: 16px;
+
   text-decoration: none;
   color: red;
   

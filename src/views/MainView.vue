@@ -1,8 +1,7 @@
 <template>
-  <div id="main">
-    <div id="container">
-      <main-slider />
-      <img class="SliderImg" src=@/assets/slideImg.jpg/>
+  <div class="main-view">
+    <div class="container">
+      <main-slider class="slider" :images="slides"/>
       <table class="table">
         <div class="sections" v-for="section in sections" :key="section.id">
           <router-link class="productCardContent" :to="{ path: '/catalog' }">
@@ -41,6 +40,28 @@
 
 
 <style scoped>
+.main-view {
+  width: 100%;
+
+  background: #e5e5e5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main-view > .container {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 1080px;
+}
+.slider {
+  width: 100%;
+  height: 512px;
+}
+
 .mini-page{
     background-color: rgba(25, 47, 96, 1);
   width: auto;
@@ -125,21 +146,6 @@
   min-width: 293px;
   align-content: center;
 }
-#main {
-  background: #e5e5e5;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-#container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 1080px;
-  background: #f7f7f7;
-}
 .sectionImg {
   width: 150pt;
   height: 150pt;
@@ -190,6 +196,7 @@ import { defineComponent } from "vue";
 import Section from "@/models/section";
 import SectionsRepository from "@/repositories/sectionsRepository";
 import RecordsRepository from "@/repositories/recordsRepository";
+import PublicRepository from "@/repositories/publicRepository";
 import MainSlider from "@/components/main/MainSlider.vue";
 
 export default defineComponent({
@@ -198,12 +205,14 @@ export default defineComponent({
   setup() {
     return {
       sectionsRepository: new SectionsRepository(),
+      publicRepository: new PublicRepository(),
     };
   },
 
   data() {
     return {
       sections: [] as Section[],
+      slides: [] as string[],
     };
   },
 
@@ -211,6 +220,9 @@ export default defineComponent({
     this.sectionsRepository.getSections().then((result: Section[]) => {
       this.sections = result;
     });
+
+    this.publicRepository.getMainSlides()
+      .then(models => this.slides = models)
   },
 
   methods: {

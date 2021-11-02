@@ -91,6 +91,7 @@ export default defineComponent({
       } else {
         this.localUrl = null
       }
+      this.$emit('update', this.localUrl)
     },
 
     clearImage() {
@@ -101,12 +102,14 @@ export default defineComponent({
         URL.revokeObjectURL(this.localUrl)
       }
       this.localUrl = null
+      this.$emit('update', this.localUrl)
     },
 
     resetImage() {
       let input = this.$refs.imageLoader as HTMLInputElement
       input.value = ''
       this.localUrl = this.image
+      this.$emit('update', this.localUrl)
     },
   },
 
@@ -114,10 +117,6 @@ export default defineComponent({
     image(payload: string) {
       this.localUrl = payload
     },
-
-    localUrl(payload: string) {
-      this.$emit('update', payload)
-    }
   }
 })
 </script>

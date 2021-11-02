@@ -64,28 +64,19 @@ export default defineComponent({
   methods: {
     saveProduct(product: Product) {
       if (product.id >= 0) {
-        this.productsRepository.putProduct(product)
-          .then(model => {
-            this.product = model
-            this.$router.push('/admin/products')
-          })
-          .catch((conflict: ConflictError) => {
-            if (conflict.field == 'Code') {
-              this.saveError = 'Артикул уже используется';
-            }
-          })
+        var promise = this.productsRepository.putProduct(product)
       } else {
-        this.productsRepository.createProduct(product)
-          .then(model => {
-            this.product = model
-            this.$router.push('/admin/products')
-          })
-          .catch((conflict: ConflictError) => {
-            if (conflict.field == 'Code') {
-              this.saveError = 'Артикул уже используется';
-            }
-          })
+        var promise = this.productsRepository.createProduct(product)
       }
+      promise.then(model => {
+        this.product = model
+        this.$router.push('/admin/products')
+      })
+      .catch((conflict: ConflictError) => {
+        if (conflict.field == 'Code') {
+          this.saveError = 'Артикул уже используется';
+        }
+      })
     },
     deleteProduct(product: Product) {
       this.productsRepository.deleteProduct(product.id)
