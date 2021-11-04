@@ -8,6 +8,7 @@
       <section-entry 
         v-for="subsection in section.sections" 
         :key="subsection.name" 
+        :selectedIds="selectedIds"
         :section="subsection"
         :subsection="true"
         :parent-selected="selected"
@@ -101,7 +102,7 @@
 
 <script lang="ts">
 import Section from '@/models/section'
-import { defineComponent, PropType, watch } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   components: { },
@@ -120,39 +121,43 @@ export default defineComponent({
       default: false,
     },
 
-    parentSelected: {
-      type: Boolean,
-      default: false,
-    }
+    selectedIds: {
+      type: Array as PropType<number[]>,
+      required: true,
+    },
   },
 
   data() {
+    let expanded = false;
+    this.section.sections.forEach(model => {
+      if (this.selectedIds.indexOf(model.id) >= 0) {
+        expanded = true;
+        return false;
+      }
+    })
+
     return {
-      expanded: false,
-      selected: false,
-      childSelection: false,
+      expanded,
     }
   },
 
   methods: {
     clickTitle() {
-      this.selected = !this.selected
-      if (this.selected) {
-        this.expanded = true
-      }
+      this.$emit('selection', this.section.id)
     },
     toggleExpanded() {
       this.expanded = !this.expanded
     },
-    onChildSelection(id: number, selected: boolean) {
-      if (selected) {
-        this.selected = true
-      }
-      this.$emit('selection', id, selected)
+    onChildSelection(id: number) {
+      this.$emit('selection', id)
     }
   },
 
   computed: {
+    selected(): boolean {
+      return this.selectedIds.findIndex(id => id == this.section.id) >= 0
+    },
+
     titleClass(): object {
       return {
         title: true,
@@ -168,17 +173,6 @@ export default defineComponent({
         expander: true, 
         expanded: this.expanded,
       }
-    }
-  },
-
-  watch: {
-    parentSelected(payload: boolean) {
-      if (!payload) {
-        this.selected = false
-      }
-    },
-    selected(payload: boolean) {
-      this.$emit('selection', this.section.id, payload)
     }
   },
 })

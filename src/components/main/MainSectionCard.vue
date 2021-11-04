@@ -1,5 +1,5 @@
 <template>
-  <div class="main-section-card">
+  <router-link tag="div" class="main-section-card" :to="url">
     <div class="image-box">
       <img :src="sectionCover(section)"/>
     </div>
@@ -8,7 +8,7 @@
       <p class="price">от {{minPrice.toFixed(2)}} ₽</p>
       <p class="products">Позиций: {{productsCount}}</p>
     </div>
-  </div>
+  </router-link>
 </template>
 
 
@@ -19,6 +19,8 @@
   box-sizing: border-box;
 
   background: white;
+
+  text-decoration: none;;
 
   display: flex;
   flex-direction: column;
@@ -119,6 +121,17 @@ export default defineComponent({
     productsCount: {
       type: Number,
       required: true,
+    }
+  },
+
+  computed: {
+    url(): object {
+      return {
+        path: '/catalog',
+        query: {
+          sections: this.section.id
+        }
+      }
     }
   },
 

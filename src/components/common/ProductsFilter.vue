@@ -2,7 +2,13 @@
   <div class="catalog-filter">
     <p class="title">Модельный ряд</p>
     <div class="sections-tree">
-      <section-entry v-for="section in sections" :key="section.name" :section="section" @selection="onSelection"/>
+      <section-entry 
+        v-for="section in sections" 
+        :key="section.name" 
+        :selectedIds="selectedIds"
+        :section="section" 
+        @selection="onSelection"
+      />
     </div>
     <p class="price-title">Цена</p>
     <range-slider v-model:min="sliderMin" v-model:max="sliderMax" class="slider"/>
@@ -109,6 +115,10 @@ export default defineComponent({
   },
 
   props: {
+    selectedIds: {
+      type: Array as PropType<number[]>,
+      required: true,
+    },
     sections: {
       type: Array as PropType<Section[]>,
       required: true,
@@ -142,8 +152,8 @@ export default defineComponent({
   },
 
   methods: {
-    onSelection(id: number, selected: boolean) {
-      this.$emit('selection', id, selected)
+    onSelection(id: number) {
+      this.$emit('selection', id)
     }
   },
 

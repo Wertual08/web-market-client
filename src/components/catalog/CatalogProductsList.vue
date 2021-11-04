@@ -4,7 +4,13 @@
     <div class="columns">
       <div class="filter-column">
         <router-link to="/catalog" class="title">Каталог</router-link>
-        <products-filter :sections="sections" :products-stats="productsStats" @selection="filterSelectionChanged" @price-range="filterPrice"/>
+        <products-filter 
+          :selectedIds="filterSections" 
+          :sections="sections" 
+          :products-stats="productsStats" 
+          @selection="filterSelectionChanged" 
+          @price-range="filterPrice"
+        />
       </div>
       <div class="products-list">
         <div class="product-container" v-for="product in products" :key="product.id">
@@ -97,7 +103,7 @@
 
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import CatalogProductCard from '@/components/catalog/CatalogProductCard.vue'
 import SectionsRepository from '@/repositories/sectionsRepository'
 import SearchRepository from '@/repositories/searchRepository'
@@ -118,10 +124,14 @@ export default defineComponent({
   },
 
   props: {
-    launch: {
+    launchQuery: {
       type: String,
       default: '',
     },
+    launchSelections: {
+      type: Array as PropType<number[]>,
+      default: [],
+    }
   },
 
   setup() {
@@ -140,10 +150,10 @@ export default defineComponent({
       productsToLoad: true,
       loading: false,
 
-      filterQuery: this.launch,
+      filterQuery: this.launchQuery,
       filterPage: 0 as number,
       filterCategories: [] as number[],
-      filterSections: [] as number[],
+      filterSections: this.launchSelections,
       filterMinPrice: null as number|null,
       filterMaxPrice: null as number|null,
       notFound: false,
@@ -164,12 +174,14 @@ export default defineComponent({
   },
 
   methods: {
-    filterSelectionChanged(id: number, selected: boolean) {
-      if (selected) {
+    filterSelectionChanged(id: number) {
+      let index = this.filterSections.indexOf(id)
+      if (index >= 0) {
+        this.filterSections.splice(index, 1)
+      } else { 
         this.filterSections.push(id)
-      } else {
-        this.filterSections = this.filterSections.filter(sectionId => sectionId != id)
       }
+
       this.loadUp(true)
     },
 
