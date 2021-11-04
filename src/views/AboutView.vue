@@ -37,31 +37,16 @@
       </div>
     </div>
     <img class="dislocation" src="@/assets/dislocation,.jpg" />
-    <div class="cont">
-      Остались Вопросы? <br />
-      <div class="cont2">Закажите обратный звонок</div>
-    </div>
-    <div class="phoneback">
-      <div class="column">
-        <div class="input">Как мы можем к вам обращаться?</div>
-        <input
-          class="text-input"
-          placeholder="Константин Васильевич Константинов"
-        />
-      </div>
-      <div class="column">
-        <div class="input">Как мы можем к вам обращаться?</div>
-        <input class="text-input" placeholder="+7 (___) ___ __ __" />
-      </div>
-      <div class="column">
-        <button class="but">Отправить заявку на звонок</button>
-      </div>
-    </div>
+    <call-back-card class="call" />
   </div>
 </template>
 
 
 <style scoped>
+.call{
+  background-color: rgba(25, 47, 96, 1);
+  width: 100%;
+}
 .but {
   background: #e04040;
   border-radius: 6px;
@@ -251,3 +236,13 @@
   line-height: 180%;
 }
 </style>
+<script lang = 'ts'>
+import { defineComponent } from 'vue'
+import CallBackCard from '@/components/main/CallBackCard.vue'
+export default {
+  components: { CallBackCard },
+  setup(){
+
+  }
+}
+</script>

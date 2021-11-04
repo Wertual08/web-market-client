@@ -26,19 +26,28 @@
 
 
 <style scoped>
+.column {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 .button:hover {
-  background: #C03535;
+  background: #c03535;
 }
 
 .button:active {
-  background: #A03030;
+  background: #a03030;
 }
 .button {
-  display: flex;
+  padding: 1px;
+  width: 100%;
+  position: relative;
+  top: 32px;
   background: #e04040;
   border-radius: 6px;
   color: #ffffff;
-  padding: 18px 16px;
+  padding: 15px 16px;
   text-align: center;
   box-sizing: border-box;
   border: none;
@@ -54,9 +63,12 @@
   color: #8c929f;
 }
 .text-input {
+  padding-inline: 16px;
   background: #355396;
   border-radius: 6px;
-
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,15 +78,15 @@
   text-align: left;
   border: none;
   color: #ffffff;
-
 }
-.text-input :active, :hover, :focus {
-    outline:#e04040;
-    outline-offset: #e04040;
+.text-input :active,
+:hover,
+:focus {
+  outline: #e04040;
+  outline-offset: #e04040;
 }
 .phoneback {
-  position: relative;
-  width: 100%;
+  width: auto;
   display: flex;
   justify-content: space-around;
   align-content: center;
@@ -85,12 +97,13 @@
 }
 
 .subtitile {
+  width: 100%;
   padding: 1px;
   color: #5c6175;
 }
 .title {
-  position: relative;
-  width: 1000px;
+  width: 100%;
+  width: 560px;
   background-color: rgba(25, 47, 96, 1);
   letter-spacing: 0em;
   text-align: left;
@@ -108,12 +121,10 @@
 </style>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-name: 'call-back-card',
-  setup() {
-    
-  },
-})
+  name: "call-back-card",
+  setup() {},
+});
 </script>
