@@ -50,7 +50,7 @@ import RecordsRepository from '@/repositories/recordsRepository'
 import PublicRepository from '@/repositories/publicRepository'
 import MainSlider from '@/components/main/MainSlider.vue'
 import MainNavigator from '@/components/main/MainNavigator.vue'
-import CallBackCard from '@/components/main/CallBack.vue'
+import CallBackCard from '@/components/main/CallBackCard.vue'
 
 export default defineComponent({
   components: { MainSlider, MainNavigator, CallBackCard },
