@@ -5,8 +5,8 @@
     </div> 
     <div class="controls">
       <div class="turners">
-        <button class="turner" @click="turnLeft">&lt;</button>
-        <button class="turner" @click="turnRight">&gt;</button>
+        <button class="turner" @click="turnLeft"><img src="@/assets/ic_left.svg"/></button>
+        <button class="turner" @click="turnRight"><img src="@/assets/ic_right.svg"/></button>
       </div>
       <div class="selectors">
         <button class="selector" :style="selectorStyle(i - 1)" v-for="i in count" :key="i" @click="current=i - 1"/>
@@ -63,18 +63,19 @@
   width: 48px;
   height: 64px;
   margin: 16px;
+  padding: 0;
 
   color: rgba(255, 255, 255, 0.6);
   background: rgba(88, 88, 88, 0.2);
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  
-  font-style: normal;
-  font-weight: bold;
-  font-size: 30px;
 
   cursor: pointer;
   pointer-events: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .slider > .controls > .turners > .turner:hover {
   background: rgba(88, 88, 88, 0.3);
@@ -83,6 +84,12 @@
 .slider > .controls > .turners > .turner:active {
   background: rgba(88, 88, 88, 0.4);
   border: 2px solid rgba(0, 0, 0, 0.3);
+}
+.slider > .controls > .turners > .turner > img {
+  width: 50%;
+  height: 50%;
+
+  filter: opacity(0.6);
 }
 
 .slider > .controls > .selectors  {

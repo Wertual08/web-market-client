@@ -2,16 +2,7 @@
   <div class="main-view">
     <div class="container">
       <main-slider class="slider" :images="slides"/>
-      <table class="table">
-        <div class="sections" v-for="section in sections" :key="section.id">
-          <router-link class="productCardContent" :to="{ path: '/catalog' }">
-            <div class="prodCardContent">
-              <img class="sectionImg" :src="sectionImage(section.record)" />
-              <p class="prodName">{{ section.name }}</p>
-            </div>
-          </router-link>
-        </div>
-      </table>
+      <main-navigator class="navigator"/>
       <div class = 'mini-page'>
         <div class="cont">
           Остались Вопросы? <br />
@@ -55,11 +46,15 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 1080px;
+  align-items: center;
 }
-.slider {
+.main-view > .container > .slider {
   width: 100%;
   height: 512px;
+}
+.main-view > .container > .navigator {
+  width: 80%;
+  margin: 64px 0;
 }
 
 .mini-page{
@@ -139,68 +134,20 @@
   line-height: 44px;
   color: #ffffff;
 }
-.SliderImg {
-  width: auto;
-  height: auto;
-  min-height: 124px;
-  min-width: 293px;
-  align-content: center;
-}
-.sectionImg {
-  width: 150pt;
-  height: 150pt;
-  margin-top: 30pt;
-}
-.table {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1184px;
-}
-.productCardContent {
-  text-decoration: none;
-}
-.prodCardContent {
-  width: 100%;
-  height: 100%;
-}
-.sections {
-  width: 293px;
-  height: 423px;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  background: #ffffff;
-  border: 1px solid #e3ecf3;
-  display: inline;
-  float: left;
-  overflow: hidden;
-}
-.prodName {
-  height: 78px;
-  /* Headline / H4 */
-  font-family: Inter;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 130%;
-  /* or 26px */
-  color: #363f53;
-}
 </style>
 
+
 <script lang="ts">
-import { defineComponent } from "vue";
-import Section from "@/models/section";
-import SectionsRepository from "@/repositories/sectionsRepository";
-import RecordsRepository from "@/repositories/recordsRepository";
-import PublicRepository from "@/repositories/publicRepository";
-import MainSlider from "@/components/main/MainSlider.vue";
+import { defineComponent } from 'vue'
+import Section from '@/models/section'
+import SectionsRepository from '@/repositories/sectionsRepository'
+import RecordsRepository from '@/repositories/recordsRepository'
+import PublicRepository from '@/repositories/publicRepository'
+import MainSlider from '@/components/main/MainSlider.vue'
+import MainNavigator from '@/components/main/MainNavigator.vue'
 
 export default defineComponent({
-  components: { MainSlider },
+  components: { MainSlider, MainNavigator },
 
   setup() {
     return {
