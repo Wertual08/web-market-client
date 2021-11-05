@@ -18,7 +18,7 @@ deploy:
   tags:
     - primal-shell-runner
   script:
-    - docker build project -f Dockerfile -t korea-bus-web
+    - docker build . -f Dockerfile -t korea-bus-web
     - kubectl apply -f deployment.yml
     - kubectl rollout restart deployment korea-bus-web
 
