@@ -4,13 +4,16 @@
       <main-slider class="slider" :images="slides"/>
       <main-navigator class="navigator"/>
     </div>
-    <call-back-card class="call" />
+    <call-back-card class="call" >
+      <template v-slot:title>Хотите оставить заявку?</template>
+      <template v-slot:subtitle>Заполните форму</template>
+    </call-back-card>
   </div>
 </template>
 
 
 <style scoped>
-.call{
+.call {
   background-color: rgba(25, 47, 96, 1);
   width: 100%;
 }
@@ -43,20 +46,19 @@
 
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import Section from '@/models/section'
-import SectionsRepository from '@/repositories/sectionsRepository'
-import RecordsRepository from '@/repositories/recordsRepository'
-import PublicRepository from '@/repositories/publicRepository'
-import MainSlider from '@/components/main/MainSlider.vue'
-import MainNavigator from '@/components/main/MainNavigator.vue'
-import CallBackCard from '@/components/main/CallBackCard.vue'
+import { defineComponent } from "vue";
+import Section from "@/models/section";
+import SectionsRepository from "@/repositories/sectionsRepository";
+import RecordsRepository from "@/repositories/recordsRepository";
+import PublicRepository from "@/repositories/publicRepository";
+import MainSlider from "@/components/main/MainSlider.vue";
+import MainNavigator from "@/components/main/MainNavigator.vue";
+import CallBackCard from "@/components/main/CallBackCard.vue";
 
 export default defineComponent({
   components: { MainSlider, MainNavigator, CallBackCard },
 
-  setup() 
-  {
+  setup() {
     return {
       sectionsRepository: new SectionsRepository(),
       publicRepository: new PublicRepository(),
@@ -75,8 +77,9 @@ export default defineComponent({
       this.sections = result;
     });
 
-    this.publicRepository.getMainSlides()
-      .then(models => this.slides = models)
+    this.publicRepository
+      .getMainSlides()
+      .then((models) => (this.slides = models));
   },
 
   methods: {

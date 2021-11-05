@@ -1,8 +1,8 @@
 <template>
   <div class="mini-page">
     <div class="title">
-      Остались Вопросы? <br />
-      <div class="subtitile">Закажите обратный звонок</div>
+      <slot name="title"/> <br />
+      <div class="subtitile"><slot name="subtitle"/></div>
     </div>
     <div class="phoneback">
       <div class="column">
@@ -40,14 +40,12 @@
   background: #a03030;
 }
 .button {
-  padding: 1px;
-  width: 100%;
   position: relative;
   top: 32px;
   background: #e04040;
   border-radius: 6px;
   color: #ffffff;
-  padding: 15px 16px;
+  padding: 15px 106px;
   text-align: center;
   box-sizing: border-box;
   border: none;
@@ -63,18 +61,15 @@
   color: #8c929f;
 }
 .text-input {
+  width: 190%;
   padding-inline: 16px;
   background: #355396;
   border-radius: 6px;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-bottom: 50px;
   height: 48px;
-  width: 470px;
   text-align: left;
   border: none;
   color: #ffffff;
@@ -83,34 +78,25 @@
 :hover,
 :focus {
   outline: #e04040;
-  outline-offset: #e04040;
+
 }
 .phoneback {
-  width: auto;
   display: flex;
   justify-content: space-around;
   align-content: center;
 }
-.dislocation {
-  box-sizing: border-box;
-  width: 100%;
-}
 
 .subtitile {
-  width: 100%;
-  padding: 1px;
   color: #5c6175;
 }
 .title {
-  width: 100%;
-  width: 560px;
+  white-space: normal;
   background-color: rgba(25, 47, 96, 1);
   letter-spacing: 0em;
   text-align: left;
-  left: 5.7%;
-  position: relative;
+  margin-left: 170px;
   height: 200px;
-  margin-top: 10%;
+  margin-top: 5%;
   font-family: Inter;
   font-style: normal;
   font-weight: bold;
@@ -121,10 +107,12 @@
 </style>
 
 <script lang="ts">
+import ActBut from '@/components/common/ActionButton.vue'
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "call-back-card",
+  components: {ActBut},
   setup() {},
 });
 </script>

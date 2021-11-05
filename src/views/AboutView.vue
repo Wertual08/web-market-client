@@ -37,13 +37,16 @@
       </div>
     </div>
     <img class="dislocation" src="@/assets/dislocation,.jpg" />
-    <call-back-card class="call" />
+    <call-back-card class="call">
+      <template v-slot:title>Остались вопросы?</template>
+      <template v-slot:subtitle>Закажите обратный звонок</template>
+    </call-back-card>
   </div>
 </template>
 
 
 <style scoped>
-.call{
+.call {
   background-color: rgba(25, 47, 96, 1);
   width: 100%;
 }
@@ -70,7 +73,6 @@
   font-size: 12px;
   line-height: 100%;
   color: #8c929f;
-  
 }
 .text-input {
   background: #355396;
@@ -100,14 +102,13 @@
 }
 
 .cont2 {
-   padding: 1px;
+  padding: 1px;
   color: #5c6175;
-
 }
 .cont {
   box-sizing: border-box;
-   padding: 1px;
-    position: relative;
+  padding: 1px;
+  position: relative;
   width: 100%;
   background-color: rgba(25, 47, 96, 1);
   letter-spacing: 0em;
@@ -237,12 +238,10 @@
 }
 </style>
 <script lang = 'ts'>
-import { defineComponent } from 'vue'
-import CallBackCard from '@/components/main/CallBackCard.vue'
+import { defineComponent } from "vue";
+import CallBackCard from "@/components/main/CallBackCard.vue";
 export default {
   components: { CallBackCard },
-  setup(){
-
-  }
-}
+  setup() {},
+};
 </script>
