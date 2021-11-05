@@ -20,6 +20,7 @@
 .slide > img {
   max-width: 100%;
   max-height: 100%;
+  height: 100%;
 
   user-select: none;
   pointer-events: none;

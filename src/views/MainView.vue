@@ -1,19 +1,14 @@
 <template>
   <div class="main-view">
-    <div class="container">
-      <main-slider class="slider" :images="slides"/>
-      <main-navigator class="navigator"/>
-    </div>
+    <main-slider class="slider" :images="slides"/>
+    <main-navigator class="navigator"/>
     <call-back-card class="call" />
+    <main-reviews-list class="reviews"/>
   </div>
 </template>
 
 
 <style scoped>
-.call{
-  background-color: rgba(25, 47, 96, 1);
-  width: 100%;
-}
 .main-view {
   width: 100%;
 
@@ -24,20 +19,24 @@
   align-items: center;
   justify-content: center;
 }
-.main-view > .container {
-  width: 90%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.main-view > .container > .slider {
+
+.main-view > .slider {
   width: 100%;
-  height: 512px;
+  height: 680px;
 }
-.main-view > .container > .navigator {
+
+.main-view > .navigator {
   width: 80%;
   margin: 64px 0;
+}
+
+.main-view > .call {
+  background-color: rgba(25, 47, 96, 1);
+  width: 100%;
+}
+
+.main-view > .reviews {
+  width: 80%;
 }
 </style>
 
@@ -51,9 +50,10 @@ import PublicRepository from '@/repositories/publicRepository'
 import MainSlider from '@/components/main/MainSlider.vue'
 import MainNavigator from '@/components/main/MainNavigator.vue'
 import CallBackCard from '@/components/main/CallBackCard.vue'
+import MainReviewsList from '@/components/main/reviews/MainReviewsList.vue'
 
 export default defineComponent({
-  components: { MainSlider, MainNavigator, CallBackCard },
+  components: { MainSlider, MainNavigator, CallBackCard, MainReviewsList },
 
   setup() 
   {
