@@ -9,28 +9,30 @@ stages:
 notify_start:
   stage: start
   tags:
-    - dev-shell-runner
+    - primal-shell-runner
   script:
     - $CI_CD_UTILS_PATH/notifications/deployment-start.sh
 
 deploy:
   stage: deploy
   tags:
-    - dev-shell-runner
+    - primal-shell-runner
   script:
-    - docker-compose up -d --build --force-recreate --remove-orphans
+    - docker build project -f Dockerfile -t korea-bus-web
+    - kubectl apply -f deployment.yml
+    - kubectl rollout restart deployment korea-bus-web
 
 notify_success:
   stage: finish
   tags:
-    - dev-shell-runner
+    - primal-shell-runner
   script:
     - $CI_CD_UTILS_PATH/notifications/deployment-success.sh
 
 notify_error:
   stage: finish
   tags:
-    - dev-shell-runner
+    - primal-shell-runner
   script:
     - $CI_CD_UTILS_PATH/notifications/deployment-fail.sh
   when: on_failure
