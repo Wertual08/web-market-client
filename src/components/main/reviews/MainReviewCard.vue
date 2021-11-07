@@ -4,6 +4,12 @@
     </div>
     <div class="content">
       <p class="description">{{ review.description }}</p>
+      <div class="rating" v-if="review.grade">
+        <img v-for="i in 5" :key="i" :src="chooseStar(i)">
+      </div>
+      <p class="name">{{ review.name }}</p>
+      <p class="address">{{ review.address }}</p>
+      <p class="date">{{ createdAt }}</p>
     </div>
   </div>
 </template>
@@ -49,6 +55,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .main-review-card > .content > .description {
@@ -71,12 +78,55 @@
   font-size: 14px;
   line-height: 160%;
 }
+
+.main-review-card > .content > .rating {
+  margin: 18px;
+
+  display: flex;
+}
+
+.main-review-card > .content > .name {
+  padding: 0px;
+  margin: 4px;
+
+  color: white;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.main-review-card > .content > .address {
+  padding: 0px;
+  margin: 8px;
+
+  color: #9D9D9D;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.main-review-card > .content > .date {
+  padding: 0px;
+  margin: 8px;
+
+  color: #9D9D9D;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+}
 </style>
 
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import Review from '@/models/review'
+import { dateToString } from '@/services/datetime'
 
 export default defineComponent({
   name: 'main-review-card',
@@ -88,8 +138,20 @@ export default defineComponent({
     }
   },
 
-  setup() {
-        
+  computed: {
+    createdAt(): string {
+      return dateToString(this.review.createdAt)
+    }
+  },
+
+  methods: {
+    chooseStar(i: number): string {
+      if (i <= (this.review.grade ?? 0)) {
+        return require('@/assets/ic_star.svg')
+      } else {
+        return require('@/assets/ic_star_empty.svg')
+      }
+    }
   },
 })
 </script>
