@@ -5,7 +5,12 @@
       <div class="columns">
         <div class="filter-column">
           <router-link to="/catalog" class="title">Каталог</router-link>
-          <products-filter :sections="sections" :products-stats="productsStats"/> <!-- @selection="filterSelectionChanged" @price-range="filterPrice"-->
+          <products-filter 
+            :selected-ids="filterSections" 
+            :sections="sections" 
+            :products-stats="productsStats"
+            @selection="onSelection"
+          /> 
         </div>
         <div class="product-column">
           <catalog-product-details class="details" :product="product"/>
@@ -126,6 +131,7 @@ export default defineComponent({
 
   data() {
     return { 
+      filterSections: [] as number[],
       sections: [] as Section[],
       productsStats: new ProductsStats(),
       filterQuery: '',
@@ -145,6 +151,14 @@ export default defineComponent({
   },
 
   methods: {
+    onSelection(id: number) {
+      this.$router.push({
+        path: '/catalog',
+        query: {
+          sections: id,
+        }
+      })
+    }
   },
 });
 </script>
