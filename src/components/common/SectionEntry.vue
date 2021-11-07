@@ -24,6 +24,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  user-select: none;
 }
 
 .section-entry > .title-box {
