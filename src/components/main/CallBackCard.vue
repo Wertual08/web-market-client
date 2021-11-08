@@ -17,7 +17,7 @@
         <input class="text-input" placeholder="+7 (___) ___ __ __" />
       </div>
       <div class="column">
-        <submit-button class="button">Отправить заявку на звонок</submit-button>
+        <action-button class="button">Отправить заявку на звонок</action-button>
       </div>
     </div>
   </div>
@@ -32,28 +32,22 @@
   flex-direction: column;
   justify-content: flex-end;
 }
-.button:hover {
-  background: #c03535;
-}
-
-.button:active {
-  background: #a03030;
-}
 .button {
+  width: auto;
+  height: 48px;
+
   position: relative;
   top: 32px;
-  background: #e04040;
-  border-radius: 6px;
-  color: #ffffff;
-  padding: 15px 106px;
-  text-align: center;
-  box-sizing: border-box;
-  border: none;
+  padding: 0 16px;
+  
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
 }
 .input {
   text-align: left;
   margin-bottom: 20px;
-  font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -107,12 +101,12 @@
 </style>
 
 <script lang="ts">
-import ActBut from '@/components/common/ActionButton.vue'
+import ActionButton from '@/components/common/ActionButton.vue'
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "call-back-card",
-  components: {ActBut},
+  components: { ActionButton },
   setup() {},
 });
 </script>

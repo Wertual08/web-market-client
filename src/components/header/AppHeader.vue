@@ -2,7 +2,7 @@
   <info-bar :admin="isAdmin"/>
   <navigation-bar @authorize="openAuthorization()"/>
   
-  <modal-window :visible="authorizationOpened" @close="closeAuthorization()">
+  <modal-window v-show="authorizationOpened" @close="closeAuthorization()">
     <authorization-window/>
   </modal-window>
 </template>

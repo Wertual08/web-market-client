@@ -2,7 +2,7 @@
   <div class="main-view">
     <main-slider class="slider" :images="slides"/>
     <main-navigator class="navigator"/>
-    <call-back-card class="call" />
+    <call-back-card class="call"/>
     <main-reviews-list class="reviews"/>
   </div>
 </template>

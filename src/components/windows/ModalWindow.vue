@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-background" @click="close" v-show="visible">
+  <div class="modal-background" @click="close">
     <button type="button" class="btn-close" @click="close">X</button>
     <div class="container" @click.stop>
       <slot/>
@@ -59,13 +59,9 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'modal-window',
-  props: {
-    visible: {
-      type: Boolean,
-      default: true,
-    }
-  },
+
   emits: ['close'],
+  
   methods: {
     close() {
       this.$emit('close')

@@ -85,6 +85,7 @@ import { defineComponent } from 'vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import AuthRepository from '@/repositories/authRepository'
 import ConflictError from '@/models/errors/conflictError'
+import { emailRegex, passwordRegex } from '@/services/regex'
 
 export default defineComponent({
   name: 'registration-form',
@@ -94,8 +95,6 @@ export default defineComponent({
   setup() {
     return {
       authRepository: new AuthRepository(),
-      emailRegExp: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-      passwordRegExp: /^.{5,}$/,
     }
   },
     
@@ -137,8 +136,8 @@ export default defineComponent({
 
   computed: {
     allValid(): boolean {
-      return this.emailRegExp.test(this.email) &&
-        this.passwordRegExp.test(this.password) &&
+      return emailRegex.test(this.email) &&
+        passwordRegex.test(this.password) &&
         this.password == this.repeat
     },
     samePasswords(): boolean {

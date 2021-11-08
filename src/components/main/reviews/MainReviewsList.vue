@@ -1,5 +1,9 @@
 <template>
   <div class="main-reviews-list">
+    <modal-window v-show="createRequest" @close="finishCreate">
+      <create-review-window @finish="finishCreate"/>
+    </modal-window>
+
     <div class="columns">
       <div class="left">
         <p class="title-question">Что говорят?</p>
@@ -7,11 +11,14 @@
         <p class="title-second">клиентов о нас</p>
       </div>
       <div class="right">
+        <action-button class="new-cancel" @click="startCreate">
+          Оставить отзыв
+        </action-button>
         <router-link class="to-full" to="/reviews">Все отзывы о компании Korea Bus</router-link>
       </div>
     </div>
     <div class="container">
-      <main-review-card :review="plug"/>
+      <main-review-card class="review" v-for="review in reviews" :key="review.id" :review="review"/>
     </div>
   </div>
 </template>
@@ -82,6 +89,21 @@
   align-items: flex-end;
 }
 
+.main-reviews-list > .columns > .right > .new-cancel {
+  width: auto;
+  height: 48px;
+
+  padding: 0 16px;
+  margin-bottom: 16px;
+
+  
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+}
+
 .main-reviews-list > .columns > .right > .to-full {
   padding: 9px;
 
@@ -96,15 +118,23 @@
   font-size: 14px;
   line-height: 160%;
 }
+.main-reviews-list > .columns > .right > .to-full:hover {
+  background: #DDDDDD;
+}
 
 .main-reviews-list > .container {
   width: 100%;
+  min-height: 342px;
 
   margin: 38px 0 64px 0;
 
   display: flex;
 
   justify-content: center;
+}
+
+.main-reviews-list > .container > .review {
+  margin: 0 15px;
 }
 </style>
 
@@ -113,15 +143,45 @@
 import { defineComponent } from 'vue'
 import MainReviewCard from './MainReviewCard.vue'
 import Review from '@/models/review'
+import ActionButton from '@/components/common/ActionButton.vue'
+import CreateReviewWindow from '@/components/windows/CreateReviewWindow.vue'
+import ModalWindow from '@/components/windows/ModalWindow.vue'
+import ReviewsRepository from '@/repositories/reviewsRepository'
 
 export default defineComponent({
-  components: { MainReviewCard },
+  components: { MainReviewCard, ActionButton, CreateReviewWindow, ModalWindow },
   name: 'main-reviews-list',
+
+  emits: ['new-review'],
 
   setup() {
     return {
-      plug: new Review(),
+      reviewsRepository: new ReviewsRepository(),
     }
   },
+
+  data() {
+    return {
+      reviews: [] as Review[],
+      createRequest: false,
+    }
+  },
+
+  mounted() {
+    this.reviewsRepository.getReviews(0)
+      .then(models => this.reviews = models)
+  },
+
+  methods: {
+    startCreate() {
+      this.createRequest = true
+    },
+    finishCreate(model: Review|undefined) {
+      this.createRequest = false
+      if (model) {
+        this.reviews.unshift(model)
+      }
+    },
+  }
 })
 </script>

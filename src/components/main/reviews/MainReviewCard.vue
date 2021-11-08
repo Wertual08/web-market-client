@@ -80,7 +80,13 @@
 }
 
 .main-review-card > .content > .rating {
-  margin: 18px;
+  margin: 13px;
+
+  display: flex;
+}
+
+.main-review-card > .content > .rating > img {
+  margin: 5px;
 
   display: flex;
 }
