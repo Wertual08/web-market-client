@@ -200,7 +200,7 @@ export default defineComponent({
     
     this.loadUp()
   },
-  unmounted() {
+  beforeUnmount() {
     this.ro?.unobserve(this.$refs.container as HTMLDivElement)
   },
 
