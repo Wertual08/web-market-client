@@ -17,6 +17,7 @@ import AcceptedOrderView from '@/views/AcceptedOrderView.vue'
 import OrdersView from '@/views/OrdersView.vue'
 import OrderView from '@/views/OrderView.vue'
 import PromoView from '@/views/PromoView.vue'
+import ReviewsView from '@/views/ReviewsView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -88,6 +89,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/admin/public',
     component: AdminPublicView,
+  },
+  {
+    path: '/reviews',
+    component: ReviewsView,
   },
 ]
 

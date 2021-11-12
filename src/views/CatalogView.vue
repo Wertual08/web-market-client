@@ -47,7 +47,6 @@ export default defineComponent({
       } else if (items && !isNaN(+items)) {
         result.push(+items)
       }
-      console.log(items)
       return result
     }
   },

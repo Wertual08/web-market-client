@@ -20,7 +20,7 @@
 
   background: white;
 
-  text-decoration: none;;
+  text-decoration: none;
 
   display: flex;
   flex-direction: column;

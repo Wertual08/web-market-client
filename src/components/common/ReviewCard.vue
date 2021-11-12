@@ -1,5 +1,5 @@
 <template>
-  <div class="main-review-card">
+  <div class="review-card">
     <div class="background">
     </div>
     <div class="content">
@@ -16,12 +16,12 @@
 
 
 <style scoped>
-.main-review-card {
+.review-card {
   position: relative;
   overflow: hidden;
 }
 
-.main-review-card > .background {
+.review-card > .background {
   position: absolute;
   top: 31px;
   left: 0;
@@ -39,7 +39,7 @@
   border-radius: 12px;
 }
 
-.main-review-card > .content {
+.review-card > .content {
   position: absolute;
   top: 0;
   left: 0;
@@ -55,7 +55,7 @@
   justify-content: flex-start;
 }
 
-.main-review-card > .content > .description {
+.review-card > .content > .description {
   width: 306px;
   height: 172px;
 
@@ -76,13 +76,13 @@
   line-height: 160%;
 }
 
-.main-review-card > .content > .rating {
+.review-card > .content > .rating {
   margin: 13px;
 
   display: flex;
 }
 
-.main-review-card > .content > .rating > img {
+.review-card > .content > .rating > img {
   margin: 5px;
 
   user-select: none;
@@ -91,7 +91,7 @@
   display: flex;
 }
 
-.main-review-card > .content > .name {
+.review-card > .content > .name {
   padding: 0px;
   margin: 4px;
 
@@ -103,7 +103,7 @@
   line-height: 100%;
 }
 
-.main-review-card > .content > .address {
+.review-card > .content > .address {
   padding: 0px;
   margin: 8px;
 
@@ -115,7 +115,7 @@
   line-height: 100%;
 }
 
-.main-review-card > .content > .date {
+.review-card > .content > .date {
   padding: 0px;
   margin: 8px;
 
@@ -135,7 +135,7 @@ import Review from '@/models/review'
 import { dateToString } from '@/services/datetime'
 
 export default defineComponent({
-  name: 'main-review-card',
+  name: 'review-card',
 
   props: {
     review: {

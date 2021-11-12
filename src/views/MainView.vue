@@ -12,7 +12,7 @@
 .main-view {
   width: 100%;
 
-  background: #e5e5e5;
+  background: #E5E5E5;
 
   display: flex;
   flex-direction: column;

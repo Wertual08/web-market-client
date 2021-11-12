@@ -19,7 +19,7 @@
     </div>
     <page-slider class="slider" :left="leftEnabled" :right="rightEnabled" @left="turnLeft" @right="turnRight">
       <div class="slide" :key="displayIndex">
-        <main-review-card 
+        <review-card 
           class="review" 
           v-for="review in displayReviews" 
           :key="review.id" 
@@ -149,7 +149,7 @@
   display: flex;
   justify-content: center;
 }
-.review {
+.slide > .review {
   width: 370px;
   height: 342px;
 
@@ -160,7 +160,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import MainReviewCard from './MainReviewCard.vue'
+import ReviewCard from '../../common/ReviewCard.vue'
 import Review from '@/models/review'
 import ActionButton from '@/components/common/ActionButton.vue'
 import CreateReviewWindow from '@/components/windows/CreateReviewWindow.vue'
@@ -169,7 +169,7 @@ import ReviewsRepository from '@/repositories/reviewsRepository'
 import PageSlider from '@/components/common/PageSlider.vue'
 
 export default defineComponent({
-  components: { MainReviewCard, ActionButton, CreateReviewWindow, ModalWindow, PageSlider },
+  components: { ReviewCard, ActionButton, CreateReviewWindow, ModalWindow, PageSlider },
   name: 'main-reviews-list',
 
   emits: ['new-review'],
