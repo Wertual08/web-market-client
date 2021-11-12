@@ -1,5 +1,5 @@
 <template>
-  <div class="main-reviews-list">
+  <div class="main-reviews-list" ref="container">
     <modal-window v-show="createRequest" @close="finishCreate">
       <create-review-window @finish="finishCreate"/>
     </modal-window>
@@ -17,9 +17,16 @@
         <router-link class="to-full" to="/reviews">Все отзывы о компании Korea Bus</router-link>
       </div>
     </div>
-    <div class="container">
-      <main-review-card class="review" v-for="review in reviews" :key="review.id" :review="review"/>
-    </div>
+    <page-slider class="slider" :left="leftEnabled" :right="rightEnabled" @left="turnLeft" @right="turnRight">
+      <div class="slide" :key="displayIndex">
+        <main-review-card 
+          class="review" 
+          v-for="review in displayReviews" 
+          :key="review.id" 
+          :review="review"
+        />
+      </div>
+    </page-slider>
   </div>
 </template>
 
@@ -122,7 +129,9 @@
   background: #DDDDDD;
 }
 
-.main-reviews-list > .container {
+.main-reviews-list > .slider {
+  position: relative;
+
   width: 100%;
   min-height: 342px;
 
@@ -133,7 +142,17 @@
   justify-content: center;
 }
 
-.main-reviews-list > .container > .review {
+.slide {
+  position: absolute;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+.review {
+  width: 370px;
+  height: 342px;
+
   margin: 0 15px;
 }
 </style>
@@ -147,9 +166,10 @@ import ActionButton from '@/components/common/ActionButton.vue'
 import CreateReviewWindow from '@/components/windows/CreateReviewWindow.vue'
 import ModalWindow from '@/components/windows/ModalWindow.vue'
 import ReviewsRepository from '@/repositories/reviewsRepository'
+import PageSlider from '@/components/common/PageSlider.vue'
 
 export default defineComponent({
-  components: { MainReviewCard, ActionButton, CreateReviewWindow, ModalWindow },
+  components: { MainReviewCard, ActionButton, CreateReviewWindow, ModalWindow, PageSlider },
   name: 'main-reviews-list',
 
   emits: ['new-review'],
@@ -162,17 +182,48 @@ export default defineComponent({
 
   data() {
     return {
+      capacity: 0,
+      page: 0,
       reviews: [] as Review[],
+      allLoaded: false,
+
+      displayIndex: 0,
+      displayReviews: [] as Review[],
       createRequest: false,
     }
   },
 
   mounted() {
-    this.reviewsRepository.getReviews(0)
-      .then(models => this.reviews = models)
+    let container = this.$refs.container as HTMLDivElement
+    this.capacity = Math.floor(container.clientWidth / 400)
+    
+    this.loadUp()
+  },
+
+  updated() {
+    let container = this.$refs.container as HTMLDivElement
+    this.capacity = Math.floor(container.clientWidth / 400)
+  },
+
+  computed: {
+    leftEnabled(): boolean {
+      return this.displayIndex > 0
+    },
+
+    rightEnabled(): boolean {
+      return !this.allLoaded || this.displayIndex < this.reviews.length - this.capacity
+    },
   },
 
   methods: {
+    loadUp() {
+      this.reviewsRepository.getReviews(this.page++)
+      .then(models => { 
+        this.reviews = models
+        this.displayReviews = this.reviews.slice(0, this.capacity)
+      })
+    },
+
     startCreate() {
       this.createRequest = true
     },
@@ -180,8 +231,38 @@ export default defineComponent({
       this.createRequest = false
       if (model) {
         this.reviews.unshift(model)
+        this.displayReviews = this.reviews.slice(
+          this.displayIndex, 
+          this.displayIndex + this.capacity
+        )
       }
     },
-  }
+
+    turnLeft() {
+      this.displayIndex -= this.capacity
+    },
+
+    async turnRight() {
+      if (this.displayIndex + this.capacity >= this.reviews.length) {
+        if (!this.allLoaded) {
+          let models = await this.reviewsRepository.getReviews(this.page++)
+          if (models.length == 0) {
+            this.allLoaded = true
+          } else {
+            models.forEach(model => this.reviews.push(model))
+            this.displayIndex += this.capacity
+          }
+        }
+      } else {
+        this.displayIndex += this.capacity
+      }
+    },
+  },
+
+  watch: {
+    displayIndex(payload: number) {
+      this.displayReviews = this.reviews.slice(payload, payload + this.capacity)
+    }
+  },
 })
 </script>

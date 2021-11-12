@@ -19,9 +19,6 @@
 .main-review-card {
   position: relative;
   overflow: hidden;
-
-  width: 370px;
-  height: 342px;
 }
 
 .main-review-card > .background {
@@ -87,6 +84,9 @@
 
 .main-review-card > .content > .rating > img {
   margin: 5px;
+
+  user-select: none;
+  pointer-events: none;
 
   display: flex;
 }
