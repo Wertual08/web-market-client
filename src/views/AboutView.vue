@@ -36,7 +36,13 @@
         </div>
       </div>
     </div>
-    <img class="dislocation" src="@/assets/dislocation,.jpg" />
+    
+    <iframe 
+      class="dislocation"
+      src="https://api-maps.yandex.ru/frame/v1/-/CVh7YBYg?" 
+      frameborder="0"
+    />
+
     <call-back-card class="call">
       <template v-slot:title>Остались вопросы?</template>
       <template v-slot:subtitle>Закажите обратный звонок</template>
@@ -94,7 +100,8 @@
 }
 .dislocation {
   box-sizing: border-box;
-  width: 100%;
+  width: 90%;
+  height: 700px;
 }
 .page {
   background-color: rgba(25, 47, 96, 1);
