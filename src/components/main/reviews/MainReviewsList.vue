@@ -188,21 +188,17 @@ export default defineComponent({
       allLoaded: false,
 
       displayIndex: 0,
-      displayReviews: [] as Review[],
       createRequest: false,
+
+      ro: null as ResizeObserver|null,
     }
   },
 
   mounted() {
-    let container = this.$refs.container as HTMLDivElement
-    this.capacity = Math.floor(container.clientWidth / 400)
+    this.ro = new ResizeObserver(this.onResize)
+    this.ro.observe(this.$refs.container as HTMLDivElement)
     
     this.loadUp()
-  },
-
-  updated() {
-    let container = this.$refs.container as HTMLDivElement
-    this.capacity = Math.floor(container.clientWidth / 400)
   },
 
   computed: {
@@ -213,14 +209,25 @@ export default defineComponent({
     rightEnabled(): boolean {
       return !this.allLoaded || this.displayIndex < this.reviews.length - this.capacity
     },
+
+    displayReviews(): Review[] {
+      return this.reviews.slice(
+        this.displayIndex, 
+        this.displayIndex + this.capacity
+      )
+    },
   },
 
   methods: {
+    onResize() {
+      let container = this.$refs.container as HTMLDivElement
+      this.capacity = Math.floor(container.clientWidth / 400)
+    },
+
     loadUp() {
       this.reviewsRepository.getReviews(this.page++)
       .then(models => { 
         this.reviews = models
-        this.displayReviews = this.reviews.slice(0, this.capacity)
       })
     },
 
@@ -231,15 +238,14 @@ export default defineComponent({
       this.createRequest = false
       if (model) {
         this.reviews.unshift(model)
-        this.displayReviews = this.reviews.slice(
-          this.displayIndex, 
-          this.displayIndex + this.capacity
-        )
       }
     },
 
     turnLeft() {
       this.displayIndex -= this.capacity
+      if (this.displayIndex < 0) {
+        this.displayIndex = 0
+      }
     },
 
     async turnRight() {
@@ -257,12 +263,6 @@ export default defineComponent({
         this.displayIndex += this.capacity
       }
     },
-  },
-
-  watch: {
-    displayIndex(payload: number) {
-      this.displayReviews = this.reviews.slice(payload, payload + this.capacity)
-    }
   },
 })
 </script>
