@@ -2,7 +2,9 @@
   <div id="box">
     <div class="content">
       <div class="navigation">
-        <img class="logo" src="@/assets/logo.svg" alt="vue logo" />
+        <router-link to="/">
+          <img class="logo" src="@/assets/logo.svg" alt="vue logo"/>
+        </router-link>
         <router-link class="section" to="/">Главная</router-link>
         <router-link class="section" to="/catalog">Каталог товаров</router-link>
         <router-link class="section" to="/delivery">Где купить?</router-link>
@@ -58,6 +60,8 @@
   width: 120px;
   height: 39px;
   margin: 18px 18px 18px 0px;
+
+
 }
 
 .section {

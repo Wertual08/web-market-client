@@ -24,6 +24,7 @@ body {
 
 #app {
   width: 100%;
+  min-width: 1130px;
   min-height: 100vh;
 
   background: lightseagreen;
