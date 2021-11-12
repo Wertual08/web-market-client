@@ -2,7 +2,10 @@
   <div class="main-view">
     <main-slider class="slider" :images="slides"/>
     <main-navigator class="navigator"/>
-    <call-back-card class="call" />
+    <call-back-card class="call" >
+      <template v-slot:title>Хотите оставить заявку?</template>
+      <template v-slot:subtitle>Ваш номер ниже</template>
+    </call-back-card>
     <main-reviews-list class="reviews"/>
   </div>
 </template>
