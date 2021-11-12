@@ -11,31 +11,30 @@
 @import url('https://rsms.me/inter/inter.css');
 
 html {
-  height: 100%;
+  min-height: 100%;
 } 
 
 body {
-  height: 100%;
   width: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
+  background: red;
 }
 
 #app {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
 
   background: lightseagreen;
 
   font-family: Inter;
   text-align: center;
-
-  overflow: auto;
 }
 
 #content {
   width: 100%;
-  min-height: calc(100% - 425px);
+  min-height: calc(100vh - 425px);
 
   background: #192F60;
 }

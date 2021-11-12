@@ -5,7 +5,7 @@
         <img class="logo" src="@/assets/logo.svg" alt="vue logo" />
         <router-link class="section" to="/">Главная</router-link>
         <router-link class="section" to="/catalog">Каталог товаров</router-link>
-        <router-link class="section" to="/">Где купить?</router-link>
+        <router-link class="section" to="/delivery">Где купить?</router-link>
       </div>
 
       <div class="interaction">

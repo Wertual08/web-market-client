@@ -4,7 +4,7 @@
       <div class="info">
         <region-card/>
         <div class="items">
-          <router-link class="item" to="/promo">Акции</router-link>
+          <router-link class="item" to="/sales">Акции</router-link>
           <router-link class="item" to="/about">Контакты</router-link>
           <router-link class="item admin" to="/admin" v-if="admin">Управление</router-link>
         </div>

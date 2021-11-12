@@ -13,9 +13,13 @@
         />
       </div>
       <div class="products-list">
-        <div class="product-container" v-for="product in products" :key="product.id">
-          <catalog-product-card :product="product" :to="`/catalog/${product.id}`"></catalog-product-card>
-        </div>
+        <catalog-product-card 
+          class="product"
+          v-for="product in products" 
+          :key="product.id"
+          :product="product" 
+          :to="`/catalog/${product.id}`"
+        />
         <p class="not-found" v-if="notFound">Ничего не найдено :(</p>
       </div>
     </div>
@@ -81,12 +85,9 @@
   align-items: center;
 }
 
-.product-container {
+.product {
   width: 100%;
   height: 243px;
-  display: inline;
-  float: left;
-  overflow: hidden;
 
   border-bottom: 1px solid #355396;
 }
@@ -168,9 +169,10 @@ export default defineComponent({
 
     this.loadUp(true)
 
-    window.onscroll = () => {
-      this.onScroll()
-    }
+    window.addEventListener('scroll', this.onScroll)
+  },
+  unmounted() {
+    window.removeEventListener('scroll', this.onScroll)
   },
 
   methods: {
@@ -192,9 +194,8 @@ export default defineComponent({
     },
 
     onScroll(): void {
-      let height = document.documentElement.scrollTop + window.innerHeight
-      let bottomOfWindow = height === document.documentElement.offsetHeight;
-      if (bottomOfWindow) {
+      const fraction = window.scrollY / (window.document.body.clientHeight - window.innerHeight)
+      if (fraction > 0.7) {
         this.loadUp(false)
       }
     },

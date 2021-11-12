@@ -2,12 +2,12 @@
   <div class="registration-form" @keyup.enter="register()">
     <text-input class="spacer email" placeholder="E-mail" 
       v-model="email" 
-      :valid="emailRegExp.test(email)"
+      :valid="emailValid"
     />
     <div class="passwords spacer">
       <password-input class="password main-password" placeholder="Пароль" 
         v-model="password" 
-        :valid="passwordRegExp.test(password)"
+        :valid="passwordValid"
       />
       <password-input class="password" placeholder="Повторите пароль"
         v-model="repeat" 
@@ -85,6 +85,7 @@ import { defineComponent } from 'vue'
 import ActionButton from '@/components/common/ActionButton.vue'
 import AuthRepository from '@/repositories/authRepository'
 import ConflictError from '@/models/errors/conflictError'
+import { emailRegex, passwordRegex } from '@/services/regex'
 
 export default defineComponent({
   name: 'registration-form',
@@ -94,8 +95,6 @@ export default defineComponent({
   setup() {
     return {
       authRepository: new AuthRepository(),
-      emailRegExp: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-      passwordRegExp: /^.{5,}$/,
     }
   },
     
@@ -136,9 +135,15 @@ export default defineComponent({
   },
 
   computed: {
+    emailValid(): boolean {
+      return emailRegex.test(this.email)
+    },
+    passwordValid(): boolean {
+      return passwordRegex.test(this.password)
+    },
     allValid(): boolean {
-      return this.emailRegExp.test(this.email) &&
-        this.passwordRegExp.test(this.password) &&
+      return this.emailValid &&
+        this.passwordValid &&
         this.password == this.repeat
     },
     samePasswords(): boolean {

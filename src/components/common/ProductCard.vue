@@ -23,6 +23,8 @@
   height: 100%;
 
   display: flex;
+
+  overflow: hidden;
 }
 
 .product-card > .picture-box {

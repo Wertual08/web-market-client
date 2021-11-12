@@ -86,6 +86,7 @@ import { defineComponent, PropType } from 'vue'
 import TextInput from '@/components/common/TextInput.vue'
 import Order from '@/models/order'
 import ActionButton from '../common/ActionButton.vue'
+import { emailRegex, phoneRegex, requiredRegex } from '@/services/regex'
 
 export default defineComponent({
   name: 'order-details-form',
@@ -100,14 +101,6 @@ export default defineComponent({
       required: true,
     }
   },
-
-  setup() {
-    return {
-      emailRegExp: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-      phoneRegExp: /^\+?\d.*\d{3,}.*\d{3,}.*\d{2,}.*\d{2,}$/i,
-      requiredRexExp: /^..*$/i,
-    }
-  },
   
   data() {
     return {
@@ -117,19 +110,19 @@ export default defineComponent({
 
   computed: {
     emailValid(): boolean {
-      return this.emailRegExp.test(this.order.email)
+      return emailRegex.test(this.order.email)
     },
     phoneValid(): boolean {
-      return this.phoneRegExp.test(this.order.phone)
+      return phoneRegex.test(this.order.phone)
     },
     nameValid(): boolean {
-      return this.requiredRexExp.test(this.order.name)
+      return requiredRegex.test(this.order.name)
     },
     surnameValid(): boolean {
-      return this.requiredRexExp.test(this.order.surname)
+      return requiredRegex.test(this.order.surname)
     },
     addressValid(): boolean {
-      return this.requiredRexExp.test(this.order.address)
+      return requiredRegex.test(this.order.address)
     },
 
     allValid(): boolean {

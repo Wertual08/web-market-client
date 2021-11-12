@@ -56,16 +56,16 @@ export default defineComponent({
   mounted() {
     this.loadUp(false)
 
-    window.onscroll = () => {
-      this.onScroll()
-    }
+    window.addEventListener('scroll', this.onScroll)
+  },
+  unmounted() {
+    window.removeEventListener('scroll', this.onScroll)
   },
 
   methods: {
     onScroll(): void {
-      let height = document.documentElement.scrollTop + window.innerHeight
-      let bottomOfWindow = height === document.documentElement.offsetHeight;
-      if (bottomOfWindow) {
+      const fraction = window.scrollY / (window.document.body.clientHeight - window.innerHeight)
+      if (fraction > 0.7) {
         this.loadUp(false)
       }
     },
