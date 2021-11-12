@@ -200,6 +200,9 @@ export default defineComponent({
     
     this.loadUp()
   },
+  unmounted() {
+    this.ro?.unobserve(this.$refs.container as HTMLDivElement)
+  },
 
   computed: {
     leftEnabled(): boolean {

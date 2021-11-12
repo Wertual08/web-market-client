@@ -18,6 +18,7 @@ import OrdersView from '@/views/OrdersView.vue'
 import OrderView from '@/views/OrderView.vue'
 import ReviewsView from '@/views/ReviewsView.vue'
 import SalesView from '@/views/SalesView.vue'
+import DeliveryView from '@/views/DeliveryView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -93,6 +94,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/sales',
     component: SalesView,
+  },
+  {
+    path: '/delivery',
+    component: DeliveryView,
   },
 ]
 

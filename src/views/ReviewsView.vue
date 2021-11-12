@@ -1,11 +1,14 @@
 <template>
   <div class="reviews-view">
-    <review-card 
-      class="review" 
-      v-for="review in reviews" 
-      :key="review.id" 
-      :review="review"
-    />
+    <p class="title">Отзывы</p>
+    <div class="content">
+      <review-card 
+        class="review" 
+        v-for="review in reviews" 
+        :key="review.id" 
+        :review="review"
+      />
+    </div>
   </div>
 </template>
 
@@ -15,11 +18,34 @@
   background: #E5E5E5;
 
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviews-view > .title {
+  padding: 0px;
+  margin: 24px 0px;
+
+  color: #E04040;
+
+  text-decoration: none;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 120%;
+
+  display: flex;
+  align-items: center;
+}
+
+.reviews-view > .content {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.reviews-view > .review {
+.reviews-view > .content > .review {
   width: 370px;
   height: 342px;
 
