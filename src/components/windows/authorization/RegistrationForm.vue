@@ -2,12 +2,12 @@
   <div class="registration-form" @keyup.enter="register()">
     <text-input class="spacer email" placeholder="E-mail" 
       v-model="email" 
-      :valid="emailRegExp.test(email)"
+      :valid="emailValid"
     />
     <div class="passwords spacer">
       <password-input class="password main-password" placeholder="Пароль" 
         v-model="password" 
-        :valid="passwordRegExp.test(password)"
+        :valid="passwordValid"
       />
       <password-input class="password" placeholder="Повторите пароль"
         v-model="repeat" 
@@ -135,9 +135,15 @@ export default defineComponent({
   },
 
   computed: {
+    emailValid(): boolean {
+      return emailRegex.test(this.email)
+    },
+    passwordValid(): boolean {
+      return passwordRegex.test(this.password)
+    },
     allValid(): boolean {
-      return emailRegex.test(this.email) &&
-        passwordRegex.test(this.password) &&
+      return this.emailValid &&
+        this.passwordValid &&
         this.password == this.repeat
     },
     samePasswords(): boolean {

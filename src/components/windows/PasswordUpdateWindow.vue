@@ -6,7 +6,7 @@
       class="password"
       placeholder="Новый парль" 
       v-model="newPassword"
-      :valid="passwordRegExp.test(newPassword)"
+      :valid="passwordValid"
     />
     <password-input 
       class="password"
@@ -75,6 +75,7 @@
 <script lang="ts">
 import ForbiddenError from '@/models/errors/forbiddenError'
 import AuthRepository from '@/repositories/authRepository'
+import { passwordRegex } from '@/services/regex'
 import { defineComponent } from 'vue'
 import ActionButton from '../common/ActionButton.vue'
 import PasswordInput from '../common/PasswordInput.vue'
@@ -88,7 +89,6 @@ export default defineComponent({
   setup() {
     return {
       authRepository: new AuthRepository(),
-      passwordRegExp: /^.{5,}$/,
     }
   },
 
@@ -102,11 +102,14 @@ export default defineComponent({
   },
 
   computed: {
+    passwordValid(): boolean {
+      return passwordRegex.test(this.newPassword)
+    },
     samePasswords(): boolean {
       return this.newPassword == this.newRepeatPassword
     },
     allValid(): boolean {
-      return this.passwordRegExp.test(this.newPassword) && this.newPassword == this.newRepeatPassword
+      return this.passwordValid && this.samePasswords
     }
   },
 
