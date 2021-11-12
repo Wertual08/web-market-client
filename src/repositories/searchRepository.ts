@@ -27,6 +27,7 @@ export default class SearchRepository extends AbstractRepository<LiteProduct> {
     sections: number[] = [],
     minPrice: number|null = null,
     maxPrice: number|null = null,
+    discounted: boolean|null = null,
   ): Promise<LiteProduct[]> {
     let response = await this.axios.get('', {
       params: {
@@ -36,6 +37,7 @@ export default class SearchRepository extends AbstractRepository<LiteProduct> {
         Sections: sections,
         MinPrice: minPrice,
         MaxPrice: maxPrice,
+        Discounted: discounted,
       },
       paramsSerializer: params =>{
         return qs.stringify(params, { arrayFormat: 'repeat' })

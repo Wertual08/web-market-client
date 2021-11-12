@@ -13,9 +13,13 @@
         />
       </div>
       <div class="products-list">
-        <div class="product-container" v-for="product in products" :key="product.id">
-          <catalog-product-card :product="product" :to="`/catalog/${product.id}`"></catalog-product-card>
-        </div>
+        <catalog-product-card 
+          class="product"
+          v-for="product in products" 
+          :key="product.id"
+          :product="product" 
+          :to="`/catalog/${product.id}`"
+        />
         <p class="not-found" v-if="notFound">Ничего не найдено :(</p>
       </div>
     </div>
@@ -81,12 +85,9 @@
   align-items: center;
 }
 
-.product-container {
+.product {
   width: 100%;
   height: 243px;
-  display: inline;
-  float: left;
-  overflow: hidden;
 
   border-bottom: 1px solid #355396;
 }
