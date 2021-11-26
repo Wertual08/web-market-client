@@ -42,6 +42,8 @@
 
   color: #C3C5CB;
 
+  text-align: left;
+
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -129,13 +131,20 @@ export default defineComponent({
   },
 
   data() {
-    let expanded = false;
-    this.section.sections.forEach(model => {
-      if (this.selectedIds.indexOf(model.id) >= 0) {
-        expanded = true;
-        return false;
-      }
-    })
+    let expanded = !this.subsection;
+    let ind = this.selectedIds.indexOf(this.section.id)
+    if (ind >= 0 && this.section.sections.length > 0) {
+      this.selectedIds.splice(ind, 1)
+      expanded = true
+    }
+    if (!expanded) {
+      this.section.sections.forEach(model => {
+        if (this.selectedIds.indexOf(model.id) >= 0) {
+          expanded = true;
+          return false;
+        }
+      })
+    }
 
     return {
       expanded,
@@ -144,7 +153,11 @@ export default defineComponent({
 
   methods: {
     clickTitle() {
-      this.$emit('selection', this.section.id)
+      if (this.section.sections.length == 0) {
+        this.$emit('selection', this.section.id)
+      } else {
+        this.expanded = !this.expanded
+      }
     },
     toggleExpanded() {
       this.expanded = !this.expanded

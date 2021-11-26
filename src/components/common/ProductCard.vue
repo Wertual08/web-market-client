@@ -65,12 +65,15 @@
 
   margin: 8px 0px;
   padding: 0px;
+  
+  text-align: left;
   text-decoration: none;
-
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   line-height: 130%;
+
+  white-space: pre-wrap;
 
   cursor: pointer;
 }
