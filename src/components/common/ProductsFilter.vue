@@ -134,7 +134,6 @@ export default defineComponent({
   },
 
   data() {
-      console.log(this.productsStats.minPrice)
     return {
       fieldMin: this.productsStats.minPrice.toString(),
       fieldMax: this.productsStats.maxPrice.toString(),
@@ -180,13 +179,14 @@ export default defineComponent({
         this.fieldMinInvalid = true
       }
     },
-    fiedlMax(payload: string) {
+    fieldMax(payload: string) {
+      console.log('shit1')
       const value = +payload
       if (!isNaN(value) && value >= this.minPrice) {
         this.maxPrice = value
         this.fieldMaxInvalid = false
       } else { 
-        this.fieldMinInvalid = true
+        this.fieldMaxInvalid = true
       }
     },
 
@@ -200,6 +200,7 @@ export default defineComponent({
     maxPrice(payload: number) {
       this.sliderMax = (payload - this.productsStats.minPrice) / (this.productsStats.maxPrice - this.productsStats.minPrice)
       this.fieldMax = payload.toFixed(0)   
+      console.log('shit')
 
       clearTimeout(this.priceTimeout)
       this.priceTimeout = setTimeout(() => this.$emit('price-range', this.minPrice, this.maxPrice), 500)

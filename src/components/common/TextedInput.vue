@@ -59,13 +59,9 @@ export default defineComponent({
     }
   },
 
-  setup() {
-        
-  },
-
   data() {
     return {
-      value: "",
+      value: this.modelValue,
     }
   },
 
