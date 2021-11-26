@@ -25,13 +25,15 @@
   display: flex;
 
   overflow: hidden;
+
+  box-sizing: content-box;
 }
 
 .product-card > .picture-box {
   width: 20%;
   height: 100%;
 
-  margin: 8px;
+  padding: 8px;
   box-sizing: border-box;
 
   display: flex;

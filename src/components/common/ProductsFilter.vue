@@ -68,7 +68,7 @@
 }
 
 .catalog-filter > .slider {
-  width: 100%;
+  width: 90%;
 }
 
 .catalog-filter > .range-fields {
@@ -134,6 +134,7 @@ export default defineComponent({
   },
 
   data() {
+      console.log(this.productsStats.minPrice)
     return {
       fieldMin: this.productsStats.minPrice.toString(),
       fieldMax: this.productsStats.maxPrice.toString(),
